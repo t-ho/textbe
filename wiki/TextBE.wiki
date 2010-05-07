@@ -2,8 +2,8 @@
 
 = TextBE Wiki =
 
-InstallingTextBE
+[http://code.google.com/p/textbe/wiki/InstallingTextBE InstallingTextBE]
 
-BTTextualRepresentation
+[http://code.google.com/p/textbe/wiki/BTTextualRepresentation BTTextualRepresentation]
 
-BEVisualiser
+[http://code.google.com/p/textbe/wiki/BEVisualiser BEVisualiser]
