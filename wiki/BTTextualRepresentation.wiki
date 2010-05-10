@@ -1,4 +1,5 @@
 #summary Behavior Tree Textual Representation
+#sidebar TableOfContents
 
 = Behavior Tree Textual Representation =
 
