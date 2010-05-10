@@ -1,7 +1,5 @@
 #summary TextBE Main Wiki Page
 
-#sidebar TableOfContents
-
 = TextBE Wiki =
 
 [http://code.google.com/p/textbe/wiki/InstallingTextBE Installing TextBE]
