@@ -4,12 +4,12 @@
 
   # Download and install [http://www.graphviz.org/Download..php Graphviz] (if not already installed).
   # Download and install [http://www.eclipse.org/downloads/packages/ Eclipse Gallileo SR2] Modeling Tools (includes incubating projects)
-  # Install EclipseGraphViz using the Abstratt Update Site
+  # Install Eclipse Graphviz using the Abstratt Update Site
     * Help => Install new software ... => Add
        * Name: Abstratt Update Site
        * Location: http://abstratt.com/update
     * Deselect Group Items by Category option
-    * Select EclipseGraphviz
+    * Select Eclipse Graphviz
     * Restart Eclipse when prompted
   # Install TextBE using the BE Update Site
     * Help => Install new software .. => Add
