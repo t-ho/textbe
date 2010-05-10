@@ -10,4 +10,4 @@
 
 == Acknowledgements ==
 
-TextBE is based on an idea for a [http://www.itee.uq.edu.au/~jgsuess/teaching/projects/it-projects08.html?print=1 student project] that was to be supervised by Joern Guy Suss and Kirsten Winter.  Many thanks to them for allowing me to realise this project.
+TextBE is based on an idea for a student project called [http://www.itee.uq.edu.au/~jgsuess/teaching/projects/it-projects08.html?print=1 BeeTreeMee] that was to be supervised by Joern Guy Suss and Kirsten Winter.  Many thanks to them for allowing me to realise this project.
