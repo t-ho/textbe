@@ -1,5 +1,4 @@
 #summary The BE Visualiser
+#sidebar TableOfContents
 
 = TextBE Visualiser =
-
-Add your content here.
