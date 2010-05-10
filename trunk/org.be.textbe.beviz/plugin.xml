@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="org.be.textbe.beviz"
+            name="Behavior Engineering">
+      </category>
+      <view
+            category="org.be.textbe.beviz"
+            class="org.be.textbe.beviz.BEView"
+            icon="icons/beicon.gif"
+            id="org.be.textbe.beviz.BEView"
+            name="BE Visualiser"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.viewActions">
+      <viewContribution
+            id="org.be.textbe.beviz.graphicalViewActions"
+            targetID="org.be.textbe.beviz.BEView">
+         <action
+               class="org.be.textbe.beviz.SaveToFileAction"
+               disabledIcon="icons/dsave_edit.gif"
+               icon="icons/esave_edit.gif"
+               id="org.be.textbe.beviz.saveFile"
+               label="Save to ..."
+               style="push"
+               toolbarPath="file_actions"
+               tooltip="Save this BE View to a file">
+         </action>
+         <action
+               class="org.be.textbe.beviz.RefreshFileAction"
+               disabledIcon="icons/refresh_nav.gif"
+               icon="icons/refresh.gif"
+               id="org.be.textbe.beviz.refresh"
+               label="Refresh"
+               style="push"
+               toolbarPath="file_actions"
+               tooltip="Refresh the Current BE View">
+         </action>
+      </viewContribution>
+   </extension>
+
+</plugin>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="org.be.textbe.bt.examples.category"
+            name="BE"
+            parentCategory="org.eclipse.ui.Examples">
+      </category>
+      <wizard
+            canFinishEarly="true"
+            category="org.eclipse.ui.Examples/org.be.textbe.bt.examples.category"
+            class="org.be.textbe.bt.examples.MOvenExampleWizard"
+            haspages="false"
+            icon="icons/beicon.gif"
+            id="org.be.textbe.bt.examples.moven"
+            name="Microwave Oven Example"
+            project="true">
+         <description>
+            Insert Description
+         </description>
+      </wizard>
+      <wizard
+            canFinishEarly="true"
+            category="org.eclipse.ui.Examples/org.be.textbe.bt.examples.category"
+            class="org.be.textbe.bt.examples.ATPExampleWizard"
+            haspages="false"
+            icon="icons/beicon.gif"
+            id="org.be.textbe.bt.examples.atp"
+            name="Automated Train Protection Example"
+            project="true">
+         <description>
+            Insert Description
+         </description>
+      </wizard>
+      <wizard
+            canFinishEarly="true"
+            category="org.eclipse.ui.Examples/org.be.textbe.bt.examples.category"
+            class="org.be.textbe.bt.examples.BTNotationExampleWizard"
+            haspages="false"
+            icon="icons/beicon.gif"
+            id="org.be.textbe.bt.examples.wizard.btnotation"
+            name="BT Notation v1.0 Example"
+            project="true">
+         <description>
+            Insert Description
+         </description>
+      </wizard>
+   </extension>
+
+</plugin>
