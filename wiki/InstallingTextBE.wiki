@@ -18,3 +18,4 @@
     * Select BE => TextBE Feature
     * Choose okay to security warning when prompted
     * Restart Eclipse when prompted
+  # Add [http://www.java2s.com/Code/JarDownload/xercesImpl.jar.zip xercesImpl.jar] to your java /lib/ext folder   
