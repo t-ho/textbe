@@ -2,4 +2,32 @@
 
 = Behavior Tree Textual Representation =
 
-Add your content here.
+
+|| Traceability || Requirements Traceability || #RT reference value ||
+||              || Requirements Status       || +, -, --, +-, ++ ||
+|| Component    || Name	                     || #C reference value ||
+|| System Component ||	Name || #SC reference value ||
+|| Behavior || State Realisation || #S reference value ||
+|| 	|| Selection || #L reference value ||
+||  	|| Event	|| #E reference value || 
+|| 	|| Guard	|| #G reference value || 
+|| 	|| Internal Input Event || 	#II reference value || 
+|| 	|| Internal Output Event || 	#IO reference value || 
+|| 	|| External Input Event	|| #EI reference value || 
+|| 	|| External Output Event	|| #EO reference value || 
+|| 	|| Assertion	|| #A reference value || 
+|| 	|| Empty (use in BT instead of #C.ref, B.ref) || `_` || 
+|| Relational Behavior || 	Single-Level Relations	|| #R qualifier preposition  C.reference || 
+|| || 	Multi-Level Relations	||  Add / at start of qualifier || 
+|| Operators	 || Reference	|| => || 
+|| 	|| Reversion	|| ^ || 
+|| 	|| Thread Kill	|| -- || 
+|| 	|| Synchronise	|| = || 
+|| 	|| May	|| % ||
+|| 	|| Start New	|| ^^ || 
+|| 	|| Operator with Label (L) (use in  BT)	|| value || 
+|| Behavior Tree ||	Behavior Tree	 || #T  || 
+|| Composition	|| Sequential Composition || ; || 
+|| 	|| Atomic Composition	||  ;; || 
+|| Branching	|| Alternative Branching || #N {  } || 
+||  	|| Parallel Branching || #P {  } || 
