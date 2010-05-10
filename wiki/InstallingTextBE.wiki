@@ -1,4 +1,5 @@
 #summary Guide to installing TextBE
+#sidebar TableOfContents
 
 = Installing TextBE =
 
