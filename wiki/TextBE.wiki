@@ -1,4 +1,5 @@
 #summary TextBE Main Wiki Page
+#sidebar TableOfContents
 
 = TextBE Wiki =
 
