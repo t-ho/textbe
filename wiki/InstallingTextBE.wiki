@@ -2,4 +2,19 @@
 
 = Installing TextBE =
 
-Add your content here.
+  # Download and install [http://www.graphviz.org/Download..php Graphviz] (if not already installed).
+  # Download and install [http://www.eclipse.org/downloads/packages/ Eclipse Gallileo SR2] Modeling Tools (includes incubating projects)
+  # Install EclipseGraphViz using the Abstratt Update Site
+    * Help => Install new software ... => Add
+       * Name: Abstratt Update Site
+       * Location: http://abstratt.com/update
+    * Deselect Group Items by Category option
+    * Select EclipseGraphviz
+    * Restart Eclipse when prompted
+  # Install TextBE using the BE Update Site
+    * Help => Install new software .. => Add
+       * Name: Behavior Engineering Update Site
+       * Location: http://www.behaviorengineering.org/update
+    * Select BE => TextBE Feature
+    * Choose okay to security warning when prompted
+    * Restart Eclipse when prompted
