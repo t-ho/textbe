@@ -1,5 +1,3 @@
-#summary One-sentence summary of this page.
-
   * [TextBE Home]
     * [InstallingTextBE Installing TextBE Guide]
     * [BTTextualRepresentation BT Textual Representation]
