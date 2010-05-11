@@ -1,6 +1,7 @@
 #summary One-sentence summary of this page.
 
   * [TextBE Home]
-    * [InstallingTextBE Guide to Installing TextBE]
-    * [BTTextualRepresentation Behavior Tree Textual Representation]
-    * [BEVisualiser Guide to the BE Visualiser]
+    * [InstallingTextBE Installing TextBE Guide]
+    * [BTTextualRepresentation BT Textual Representation]
+    * [BEVisualiser BE Visualiser Guide]
+    * [InstallingExamples Examples Guide] 
