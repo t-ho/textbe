@@ -12,6 +12,12 @@
     * Deselect Group Items by Category option
     * Select Eclipse Graphviz
     * Restart Eclipse when prompted
+  # Install EMFText using the Reuseware Update Site
+    * Help => Install new software ... => Add
+      * Name: Reuseware Update Site
+      * Location: http://reuseware.org/update
+    * Select EMFText Access
+    * Restart Eclipse when prompted
   # Install TextBE using the BE Update Site
     * Help => Install new software .. => Add
        * Name: Behavior Engineering Update Site
