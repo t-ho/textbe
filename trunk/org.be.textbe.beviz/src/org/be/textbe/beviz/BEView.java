@@ -103,8 +103,8 @@ public class BEView extends ViewPart {
 	}
 
 	public BEView() throws IOException {	
-		dotFile = File.createTempFile("dotfile", "dot");
-		svgFile = File.createTempFile("svgfile", "svg");
+		dotFile = File.createTempFile("dotfile", ".dot");
+		svgFile = File.createTempFile("svgfile", ".svg");
 		listener = new BEWindowListener(this);
 		PlatformUI.getWorkbench().addWindowListener(listener);
 	}
@@ -149,8 +149,10 @@ public class BEView extends ViewPart {
 	
 	public void clear(){
 		try {
-			dotFile = File.createTempFile("dotfile", "dot");
-			svgFile = File.createTempFile("svgfile", "svg");
+			dotFile.delete();
+			svgFile.delete();
+			dotFile = File.createTempFile("dotfile", ".dot");
+			svgFile = File.createTempFile("svgfile", ".svg");
 			svg.setVisible(false);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -219,14 +221,16 @@ public class BEView extends ViewPart {
 
 			GraphViz.runDot("svg", new Point(0, 0), dotFile, svgFile);
 			
-			FileReader input = new FileReader((File)svgFile);
+			FileReader input = new FileReader(svgFile);
 			BufferedReader bufRead = new BufferedReader(input);
 
 			String line = bufRead.readLine();
 			if (line == null){
-				svgFile = null;
+				svgFile.delete();
+				dotFile.delete();
+				dotFile = File.createTempFile("dotfile", ".dot");
+				svgFile = File.createTempFile("svgfile", ".svg");
 				svg.setVisible(false);
-				view.setDOTFile(null);
 			}else{
 				view.setDOTFile(dotFile);
 				svg.setSVGFile(svgFile.toURI().toURL());
@@ -277,8 +281,10 @@ public class BEView extends ViewPart {
 			if (part instanceof TextEditor && part.getTitle().endsWith(".bt") && part != currentPart){
 				part = currentPart;
 				try{
-					IFile file = (IFile)((IFileEditorInput)((TextEditor)currentPart).getEditorInput()).getFile();
-					processGVModel(file,view, btASMURL);
+					if (((TextEditor)currentPart).getEditorInput() != null){
+						IFile file = (IFile)((IFileEditorInput)((TextEditor)currentPart).getEditorInput()).getFile();
+						processGVModel(file,view, btASMURL);
+					}
 				}catch(Exception e){
 					e.printStackTrace();
 				}
