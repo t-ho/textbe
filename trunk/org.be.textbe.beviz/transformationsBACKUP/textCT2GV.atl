@@ -1,0 +1,307 @@
+-- Author: tmyers
+-- Version: 0.1
+-- Created: 02.06.2010
+
+module textCT2GV;
+create GV : OUT from TEXTCT : IN;
+
+helper def : nodeCounter : Integer = 1;
+helper def : visitor : Map(IN!AbstractNode, Integer) = Map{};
+helper def : converter : Map(IN!AbstractNode, Integer) = Map{};
+
+rule TextCT{
+	from s: IN!TextCT
+	to t : OUT!Graph(
+		type <- 'digraph',
+		statements <- t2
+	),
+	
+	t2 : OUT!StatementList(
+		statement <- t3,
+		tail <- t4
+	),
+	
+	t3 : OUT!AssignmentStatement(
+		left <- 'splines',
+		right <- 'line'
+	), 
+	
+	t4: OUT!StatementList( 
+		statement <- t5,
+		tail <- thisModule.resolveTemp(s.compositionTree.rootNode, 't')
+	),
+	
+	t5: OUT!AttributeStatement(
+		context <- 'node',
+		attributes <- t7
+	),
+	
+	t7: OUT!AttributeList(
+		list <- t8
+	),
+	
+	t8: OUT!AList(
+		attribute <- t9,
+		tail <- t10
+	),
+	
+	t9 : OUT!Attribute(
+		key <- 'shape',
+		value <- 'plaintext'
+	),
+	
+	t10 : OUT!AList(
+		attribute <- t11,
+		tail <- t12
+	),
+	
+	t11 : OUT!Attribute(
+		key <- 'fontname',
+		value <- 'Arial'
+	),
+	
+	t12 : OUT!AList(
+		attribute <- t13
+	),
+	
+	t13 : OUT!Attribute(
+		key <- 'fontsize',
+		value <- '12'
+	)	
+}
+
+rule Node{
+	from s : IN!AbstractNode
+	using{
+		foundBranch : IN!AbstractBlock = IN!AbstractBlock;
+		foundNode : IN!AbstractNode = IN!AbstractNode;
+	}
+	to t : OUT!StatementList(
+		statement <- t2
+	),
+	t2 : OUT!AttributeStatement(
+		context <- 'n'+thisModule.nodeCounter.toString(),
+		attributes <- t3
+	),
+	t3 : OUT!AttributeList(
+		list <- t4
+	),
+	t4 : OUT!AList(
+		attribute <- t5
+	),
+	t5 : OUT!Attribute( 
+		key <- 'label',
+		value <- ''--thisModule.addNode(s)
+	)
+	do{
+		thisModule.converter <- thisModule.converter->including(s, thisModule.nodeCounter);
+		thisModule.nodeCounter <- thisModule.nodeCounter + 1;
+		
+		--if (s.isSystemComponent()){
+		--}
+		
+		if (s.childNode->size() > 0){
+			if (s.childNode->at(1).oclIsKindOf(IN!AbstractBlock)){
+				t.tail <- thisModule.resolveTemp(s.childNode->at(1).childNode->at(1), 't');
+			}else{
+				t.tail <- thisModule.resolveTemp(s.childNode->at(1), 't');
+			}
+		}else{
+			foundBranch <- thisModule.findBranch(s);
+			if (foundBranch = false){
+				-- Add Edges
+				thisModule.visitor <- Map{};
+				thisModule.branchNum <- 1;
+				foundNode <- thisModule.findRootNode(s);
+				if (foundNode.childNode->size() > 0){
+					t.tail <- thisModule.addEdges(foundNode);
+				}
+			}else{
+				if (foundBranch.childNode->at(thisModule.branchNum).oclIsKindOf(IN!AbstractBlock)){
+					foundNode <- foundBranch.childNode->at(thisModule.branchNum).childNode->at(1);
+				}else{
+					foundNode <- foundBranch.childNode->at(thisModule.branchNum);
+				}
+				
+				t.tail <- thisModule.resolveTemp(foundNode,'t');
+			}
+		}
+	}
+}
+
+rule addNode(node : IN!AbstractNode) {
+	using{
+		output : String = '';
+	}do {
+		output <- '<<TABLE BORDER="0" BGCOLOR="#' + node.getColor() + '" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" PORT="p"><TR><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD FIXEDSIZE="TRUE" WIDTH="50" HEIGHT="25">'+node.getRequirement()+' </TD></TR><TR><TD FIXEDSIZE="TRUE" WIDTH="50" HEIGHT="25">'+node.getValidity()+' </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD FIXEDSIZE="TRUE" HEIGHT="25" WIDTH="115" PORT="top">'+node.getComponent()+' </TD><TD FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="25"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD> </TD></TR><TR><TD> </TD></TR></TABLE></TD></TR><TR><TD FIXEDSIZE="TRUE" HEIGHT="25" WIDTH="115"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD ALIGN="RIGHT"> </TD><TD> </TD><TD ALIGN="LEFT"> </TD></TR></TABLE></TD></TR></TABLE></TD></TR></TABLE>>';
+				
+		output;
+	}
+}
+
+rule findRootNode(node : IN!AbstractNode){
+	do {
+		if (node.refImmediateComposite().oclIsKindOf(IN!CompositionTree)){
+			node;
+		}else{
+			thisModule.findRootNode(node.refImmediateComposite());
+		}
+	}
+}
+
+rule findBranch(node : IN!AbstractNode){
+	using{
+		found : Boolean = false;
+		branch : IN!AbstractBlock = IN!AbstractBlock;
+	}
+	do {
+		if (thisModule.findBranch2(node) = false){
+			false;
+		}else{
+			branch <- thisModule.findBranch2(node);
+			thisModule.branchNum <- thisModule.visitor.get(branch);
+			if (thisModule.branchNum.oclIsUndefined()){
+				thisModule.visitor <- thisModule.visitor->including(branch,2);
+				thisModule.branchNum <- 2;
+			}else{
+				thisModule.branchNum <- thisModule.branchNum + 1;
+				thisModule.visitor <- thisModule.visitor->including(branch, thisModule.branchNum);
+			}
+			
+			if (thisModule.branchNum > branch.childNode->size()){
+				branch <- thisModule.findBranch(branch);
+			}
+			
+			branch;
+		}
+	}
+}
+
+rule findBranch2(node : IN!AbstractNode){
+	do {
+		if (node.refImmediateComposite().oclIsKindOf(IN!CompositionTree)){
+			false;
+		}else{
+			if (node.refImmediateComposite().childNode->size() > 1){
+				node.refImmediateComposite();
+			}else{
+				thisModule.findBranch2(node.refImmediateComposite());
+			}
+		}
+	}
+}
+
+rule addEdges(node : IN!AbstractNode) {
+	using{
+		id1 : Integer = 0;
+		id2 : Integer = 0;
+		child : IN!AbstractNode = IN!AbstractNode;
+		foundBranch : IN!AbstractBlock = IN!AbstractBlock;
+		foundNode : IN!AbstractNode = IN!AbstractNode;
+	}
+	to t : OUT!StatementList(
+	)
+	do {
+		if (node.childNode->at(1).oclIsKindOf(IN!AbstractBlock)){
+			child <- node.childNode->at(1).childNode->at(1);
+		}else{
+			child <- node.childNode->at(1);
+		}
+		
+--		if (node.oclIsKindOf(IN!AbstractBlock)){
+--			node <- node.refImmediateComposite();
+--		}
+		
+		for (i in thisModule.converter.getKeys()){
+			if (node = i){
+				id1 <- thisModule.converter.get(i);
+			}else if (child = i){
+				id2 <- thisModule.converter.get(i);
+			}
+		}
+		
+		t.statement <- thisModule.addEdge(id1,id2);
+		
+		--if (node.childNode.oclIsKindOf(IN!AbstractBlock)){
+		--	t.tail <- thisModule.addBranchEdges(node, 2);
+		if (child.childNode->size() > 0) {
+			t.tail <- thisModule.addEdges(child);
+		}else{	
+			foundBranch <- thisModule.findBranch(child);
+			if (foundBranch = false){
+			}else{
+				t.tail <- thisModule.addBranchEdge(foundBranch);
+			}
+		}
+		
+		t;
+	}
+}
+
+rule addBranchEdge(node : IN!AbstractNode){
+	using{
+		id1 : Integer = 0;
+		id2 : Integer = 0;
+		child : IN!AbstractNode = IN!AbstractNode;
+		foundBranch : IN!AbstractBlock = IN!AbstractBlock;
+	}
+	to t : OUT!StatementList
+	do{
+		if (node.childNode->at(thisModule.branchNum).oclIsKindOf(IN!AbstractBlock)){
+			child <- node.childNode->at(thisModule.branchNum).childNode->at(1);
+		}else{
+			child <- node.childNode->at(thisModule.branchNum);
+		}
+		
+		for (i in thisModule.converter.getKeys()){
+			if (node = i){
+				id1 <- thisModule.converter.get(i);
+			}else if (child = i){
+				id2 <- thisModule.converter.get(i);
+			}
+		}
+				
+		t.statement <- thisModule.addEdge(id1,id2);
+		
+		if (child.childNode->size() > 0) {
+			t.tail <- thisModule.addEdges(child);
+		}else{	
+			foundBranch <- thisModule.findBranch(child);
+			if (foundBranch = false){
+			}else{
+				t.tail <- thisModule.addBranchEdge(foundBranch);
+			}
+		}
+		
+		t;
+	}
+}
+
+rule addEdge(a : Integer, b : Integer) {
+	to t2 : OUT!EdgeStatement( 
+		source <- t3,
+		target <- t4
+	),
+	t3 : OUT!NodeID(
+		id <- 'n'+a.toString(),
+		port <- t5
+	),
+	t4 : OUT!Target(
+		target <- t6
+	),
+	t5 : OUT!Port(
+		id <- 'p',
+		compass <- #SOUTH
+	),
+	t6 : OUT!NodeID(
+		id <- 'n'+b.toString(),
+		port <- t7
+	),
+	t7 : OUT!Port(
+		id <- 'p',
+		compass <- #NORTH
+	)
+	do {
+		t2;
+	}
+}

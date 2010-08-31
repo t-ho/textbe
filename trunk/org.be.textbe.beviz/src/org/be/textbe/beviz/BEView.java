@@ -18,17 +18,11 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.be.textbe.textbt2gv.files.TextBT2GV;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.IBundleGroupProvider;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.core.runtime.Plugin;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.jet.BodyContentWriter;
 import org.eclipse.jet.BufferedJET2Writer;
 import org.eclipse.jet.JET2Context;
@@ -65,10 +59,10 @@ import org.eclipse.ui.part.ViewPart;
 import com.abstratt.graphviz.GraphViz;
 import org.eclipse.ui.IWindowListener;
 import org.eclipse.ui.IFileEditorInput;
-import org.eclipse.ui.texteditor.StatusTextEditor;
 import org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.osgi.framework.Bundle;
+import org.eclipse.m2m.atl.common.ATLExecutionException;
 
 public class BEView extends ViewPart {
 
@@ -96,7 +90,7 @@ public class BEView extends ViewPart {
 			injector = CoreService.getInjector("EMF"); //$NON-NLS-1$
 			extractor = CoreService.getExtractor("EMF"); //$NON-NLS-1$
 			
-			factory = CoreService.createModelFactory("EMF");
+			factory = CoreService.getModelFactory("EMF");
 		} catch (ATLCoreException e) {
 			e.printStackTrace();
 		}		
@@ -161,6 +155,19 @@ public class BEView extends ViewPart {
 	}
 
 	private void processGVModel(IFile file, BEView view, URL transformation){	
+		try {
+			TextBT2GV runner = new TextBT2GV();
+			runner.loadModels(file.getFullPath().toPortableString());
+			runner.doTextBT2GV(new NullProgressMonitor());
+			runner.saveModels("outputModel.gv");
+		} catch (ATLCoreException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ATLExecutionException e) {
+			e.printStackTrace();
+		}	
+		
 		IFile f = (IFile) file;
 		IPath path = (IPath) f.getLocation();
 		IModel outputModel = null;

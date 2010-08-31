@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<gv:Graph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gv="http://org.be.textbe/gv" type="digraph">
+  <statements>
+    <statement xsi:type="gv:AssignmentStatement" left="splines" right="line"/>
+    <tail>
+      <statement xsi:type="gv:AttributeStatement" context="node">
+        <attributes>
+          <list>
+            <attribute key="shape" value="plaintext"/>
+            <tail>
+              <attribute key="fontname" value="Arial"/>
+              <tail>
+                <attribute key="fontsize" value="12"/>
+              </tail>
+            </tail>
+          </list>
+        </attributes>
+      </statement>
+      <tail>
+        <statement xsi:type="gv:AttributeStatement" context="n1">
+          <attributes>
+            <list>
+              <attribute key="label" value=""/>
+            </list>
+          </attributes>
+        </statement>
+        <tail>
+          <statement xsi:type="gv:AttributeStatement" context="n2">
+            <attributes>
+              <list>
+                <attribute key="label" value=""/>
+              </list>
+            </attributes>
+          </statement>
+          <tail>
+            <statement xsi:type="gv:AttributeStatement" context="n3">
+              <attributes>
+                <list>
+                  <attribute key="label" value=""/>
+                </list>
+              </attributes>
+            </statement>
+            <tail>
+              <statement xsi:type="gv:AttributeStatement" context="n4">
+                <attributes>
+                  <list>
+                    <attribute key="label" value=""/>
+                  </list>
+                </attributes>
+              </statement>
+              <tail>
+                <statement xsi:type="gv:AttributeStatement" context="n5">
+                  <attributes>
+                    <list>
+                      <attribute key="label" value=""/>
+                    </list>
+                  </attributes>
+                </statement>
+                <tail>
+                  <statement xsi:type="gv:AttributeStatement" context="n6">
+                    <attributes>
+                      <list>
+                        <attribute key="label" value=""/>
+                      </list>
+                    </attributes>
+                  </statement>
+                  <tail>
+                    <statement xsi:type="gv:AttributeStatement" context="n7">
+                      <attributes>
+                        <list>
+                          <attribute key="label" value=""/>
+                        </list>
+                      </attributes>
+                    </statement>
+                    <tail>
+                      <statement xsi:type="gv:EdgeStatement">
+                        <source xsi:type="gv:NodeID" id="n1">
+                          <port id="p" compass="s"/>
+                        </source>
+                        <target>
+                          <target xsi:type="gv:NodeID" id="n2">
+                            <port id="p"/>
+                          </target>
+                        </target>
+                      </statement>
+                      <tail>
+                        <statement xsi:type="gv:EdgeStatement">
+                          <source xsi:type="gv:NodeID" id="n2">
+                            <port id="p" compass="s"/>
+                          </source>
+                          <target>
+                            <target xsi:type="gv:NodeID" id="n3">
+                              <port id="p"/>
+                            </target>
+                          </target>
+                        </statement>
+                        <tail>
+                          <statement xsi:type="gv:EdgeStatement">
+                            <source xsi:type="gv:NodeID" id="n3">
+                              <port id="p" compass="s"/>
+                            </source>
+                            <target>
+                              <target xsi:type="gv:NodeID" id="n4">
+                                <port id="p"/>
+                              </target>
+                            </target>
+                          </statement>
+                          <tail>
+                            <statement xsi:type="gv:EdgeStatement">
+                              <source xsi:type="gv:NodeID" id="n1">
+                                <port id="p" compass="s"/>
+                              </source>
+                              <target>
+                                <target xsi:type="gv:NodeID" id="n5">
+                                  <port id="p"/>
+                                </target>
+                              </target>
+                            </statement>
+                            <tail>
+                              <statement xsi:type="gv:EdgeStatement">
+                                <source xsi:type="gv:NodeID" id="n1">
+                                  <port id="p" compass="s"/>
+                                </source>
+                                <target>
+                                  <target xsi:type="gv:NodeID" id="n6">
+                                    <port id="p"/>
+                                  </target>
+                                </target>
+                              </statement>
+                              <tail>
+                                <statement xsi:type="gv:EdgeStatement">
+                                  <source xsi:type="gv:NodeID" id="n6">
+                                    <port id="p" compass="s"/>
+                                  </source>
+                                  <target>
+                                    <target xsi:type="gv:NodeID" id="n7">
+                                      <port id="p"/>
+                                    </target>
+                                  </target>
+                                </statement>
+                              </tail>
+                            </tail>
+                          </tail>
+                        </tail>
+                      </tail>
+                    </tail>
+                  </tail>
+                </tail>
+              </tail>
+            </tail>
+          </tail>
+        </tail>
+      </tail>
+    </tail>
+  </statements>
+</gv:Graph>

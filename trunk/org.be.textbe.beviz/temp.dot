@@ -1,0 +1,41 @@
+digraph structs {
+	splines=line 
+	node [shape=box, fontname=Arial, fontsize=12]; 
+	n1 [label="1"]; 
+	n2 [label="2"]; 
+	n3 [label="3"]; 
+	n4 [label="4"]; 
+	n5 [label="5"]; 
+	n6 [label="6"]; 
+	n7 [label="7"];
+	
+	n2:p:s -> n3:p:n; 
+	n3:p:s -> n4:p:n; 
+	n6:p:s -> n7:p:n;
+	
+	n1t5[shape=point, width="0.01"]
+    n1:p:s -> n1t5:p:n [arrowhead = none];
+    n1t5:p:s -> n5:p:n [dir = back, arrowtail = vee];
+    
+    n1t3[shape=point, width="0.01"]
+    n1:p:s -> n1t3:p:n [arrowhead = none];
+    n1t3:p:s -> n2:p:n [dir = both, arrowhead = none, arrowtail=crow];
+    
+    n1t6[shape=point, width="0.01"]
+    n1:p:s -> n1t6:p:n [arrowhead = none];
+    n1t6:p:s -> n6:p:n [dir = both, arrowhead = none, arrowtail=crow];
+    
+    n1t8[shape=point, width="0.01"]
+    n1:p:s -> n1t8:p:n [arrowhead = none];
+    n1t8:p:s -> n8:p:n [dir = back, arrowtail = vee];
+    
+    n1t9[shape=point, width="0.01"]
+    n1:p:s -> n1t9:p:n [arrowhead = none];
+    n1t9:p:s -> n9:p:n [dir = back, arrowtail = vee];
+    
+    n1t10[shape=point, width="0.01"]
+    n1:p:s -> n1t10:p:n [arrowhead = none];
+    n1t10:p:s -> n10:p:n [dir = back, arrowtail = vee];
+    
+    
+}

@@ -25,414 +25,420 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class TextbtFactoryImpl extends EFactoryImpl implements TextbtFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+   * Creates the default factory implementation.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public static TextbtFactory init() {
-		try {
-			TextbtFactory theTextbtFactory = (TextbtFactory)EPackage.Registry.INSTANCE.getEFactory("http://org.be.textbe/textbt"); 
-			if (theTextbtFactory != null) {
-				return theTextbtFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new TextbtFactoryImpl();
-	}
+    try
+    {
+      TextbtFactory theTextbtFactory = (TextbtFactory)EPackage.Registry.INSTANCE.getEFactory("http://org.be.textbe/textbt"); 
+      if (theTextbtFactory != null)
+      {
+        return theTextbtFactory;
+      }
+    }
+    catch (Exception exception)
+    {
+      EcorePlugin.INSTANCE.log(exception);
+    }
+    return new TextbtFactoryImpl();
+  }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+   * Creates an instance of the factory.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public TextbtFactoryImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case TextbtPackage.TEXT_BT: return createTextBT();
-			case TextbtPackage.REQUIREMENT_LIST: return createRequirementList();
-			case TextbtPackage.REQUIREMENT: return createRequirement();
-			case TextbtPackage.COMPONENT_LIST: return createComponentList();
-			case TextbtPackage.COMPONENT: return createComponent();
-			case TextbtPackage.SYSTEM_COMPONENT: return createSystemComponent();
-			case TextbtPackage.OPTION_LIST: return createOptionList();
-			case TextbtPackage.OPTION: return createOption();
-			case TextbtPackage.BEHAVIOR_TREE: return createBehaviorTree();
-			case TextbtPackage.RELATIONAL_BEHAVIOR: return createRelationalBehavior();
-			case TextbtPackage.RELATION: return createRelation();
-			case TextbtPackage.STATE: return createState();
-			case TextbtPackage.SELECTION: return createSelection();
-			case TextbtPackage.EVENT: return createEvent();
-			case TextbtPackage.GUARD: return createGuard();
-			case TextbtPackage.INTERNAL_INPUT: return createInternalInput();
-			case TextbtPackage.INTERNAL_OUTPUT: return createInternalOutput();
-			case TextbtPackage.EXTERNAL_INPUT: return createExternalInput();
-			case TextbtPackage.EXTERNAL_OUTPUT: return createExternalOutput();
-			case TextbtPackage.ASSERTION: return createAssertion();
-			case TextbtPackage.NODE: return createNode();
-			case TextbtPackage.SEQUENTIAL_NODE: return createSequentialNode();
-			case TextbtPackage.ATOMIC_NODE: return createAtomicNode();
-			case TextbtPackage.PARALLEL_BLOCK: return createParallelBlock();
-			case TextbtPackage.ALTERNATIVE_BLOCK: return createAlternativeBlock();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+    switch (eClass.getClassifierID())
+    {
+      case TextbtPackage.TEXT_BT: return createTextBT();
+      case TextbtPackage.REQUIREMENT_LIST: return createRequirementList();
+      case TextbtPackage.REQUIREMENT: return createRequirement();
+      case TextbtPackage.COMPONENT_LIST: return createComponentList();
+      case TextbtPackage.COMPONENT: return createComponent();
+      case TextbtPackage.SYSTEM_COMPONENT: return createSystemComponent();
+      case TextbtPackage.OPTION_LIST: return createOptionList();
+      case TextbtPackage.OPTION: return createOption();
+      case TextbtPackage.BEHAVIOR_TREE: return createBehaviorTree();
+      case TextbtPackage.RELATIONAL_BEHAVIOR: return createRelationalBehavior();
+      case TextbtPackage.RELATION: return createRelation();
+      case TextbtPackage.STATE: return createState();
+      case TextbtPackage.SELECTION: return createSelection();
+      case TextbtPackage.EVENT: return createEvent();
+      case TextbtPackage.GUARD: return createGuard();
+      case TextbtPackage.INTERNAL_INPUT: return createInternalInput();
+      case TextbtPackage.INTERNAL_OUTPUT: return createInternalOutput();
+      case TextbtPackage.EXTERNAL_INPUT: return createExternalInput();
+      case TextbtPackage.EXTERNAL_OUTPUT: return createExternalOutput();
+      case TextbtPackage.ASSERTION: return createAssertion();
+      case TextbtPackage.NODE: return createNode();
+      case TextbtPackage.SEQUENTIAL_NODE: return createSequentialNode();
+      case TextbtPackage.ATOMIC_NODE: return createAtomicNode();
+      case TextbtPackage.PARALLEL_BLOCK: return createParallelBlock();
+      case TextbtPackage.ALTERNATIVE_BLOCK: return createAlternativeBlock();
+      default:
+        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    }
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case TextbtPackage.FIVE_WS:
-				return createFiveWsFromString(eDataType, initialValue);
-			case TextbtPackage.VALIDITY:
-				return createValidityFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
+    switch (eDataType.getClassifierID())
+    {
+      case TextbtPackage.FIVE_WS:
+        return createFiveWsFromString(eDataType, initialValue);
+      case TextbtPackage.VALIDITY:
+        return createValidityFromString(eDataType, initialValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case TextbtPackage.FIVE_WS:
-				return convertFiveWsToString(eDataType, instanceValue);
-			case TextbtPackage.VALIDITY:
-				return convertValidityToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
+    switch (eDataType.getClassifierID())
+    {
+      case TextbtPackage.FIVE_WS:
+        return convertFiveWsToString(eDataType, instanceValue);
+      case TextbtPackage.VALIDITY:
+        return convertValidityToString(eDataType, instanceValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public TextBT createTextBT() {
-		TextBTImpl textBT = new TextBTImpl();
-		return textBT;
-	}
+    TextBTImpl textBT = new TextBTImpl();
+    return textBT;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public RequirementList createRequirementList() {
-		RequirementListImpl requirementList = new RequirementListImpl();
-		return requirementList;
-	}
+    RequirementListImpl requirementList = new RequirementListImpl();
+    return requirementList;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public Requirement createRequirement() {
-		RequirementImpl requirement = new RequirementImpl();
-		return requirement;
-	}
+    RequirementImpl requirement = new RequirementImpl();
+    return requirement;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public ComponentList createComponentList() {
-		ComponentListImpl componentList = new ComponentListImpl();
-		return componentList;
-	}
+    ComponentListImpl componentList = new ComponentListImpl();
+    return componentList;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public Component createComponent() {
-		ComponentImpl component = new ComponentImpl();
-		return component;
-	}
+    ComponentImpl component = new ComponentImpl();
+    return component;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public SystemComponent createSystemComponent() {
-		SystemComponentImpl systemComponent = new SystemComponentImpl();
-		return systemComponent;
-	}
+    SystemComponentImpl systemComponent = new SystemComponentImpl();
+    return systemComponent;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public OptionList createOptionList() {
-		OptionListImpl optionList = new OptionListImpl();
-		return optionList;
-	}
+    OptionListImpl optionList = new OptionListImpl();
+    return optionList;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public Option createOption() {
-		OptionImpl option = new OptionImpl();
-		return option;
-	}
+    OptionImpl option = new OptionImpl();
+    return option;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public BehaviorTree createBehaviorTree() {
-		BehaviorTreeImpl behaviorTree = new BehaviorTreeImpl();
-		return behaviorTree;
-	}
+    BehaviorTreeImpl behaviorTree = new BehaviorTreeImpl();
+    return behaviorTree;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public RelationalBehavior createRelationalBehavior() {
-		RelationalBehaviorImpl relationalBehavior = new RelationalBehaviorImpl();
-		return relationalBehavior;
-	}
+    RelationalBehaviorImpl relationalBehavior = new RelationalBehaviorImpl();
+    return relationalBehavior;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public Relation createRelation() {
-		RelationImpl relation = new RelationImpl();
-		return relation;
-	}
+    RelationImpl relation = new RelationImpl();
+    return relation;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public State createState() {
-		StateImpl state = new StateImpl();
-		return state;
-	}
+    StateImpl state = new StateImpl();
+    return state;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public Selection createSelection() {
-		SelectionImpl selection = new SelectionImpl();
-		return selection;
-	}
+    SelectionImpl selection = new SelectionImpl();
+    return selection;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public Event createEvent() {
-		EventImpl event = new EventImpl();
-		return event;
-	}
+    EventImpl event = new EventImpl();
+    return event;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public Guard createGuard() {
-		GuardImpl guard = new GuardImpl();
-		return guard;
-	}
+    GuardImpl guard = new GuardImpl();
+    return guard;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public InternalInput createInternalInput() {
-		InternalInputImpl internalInput = new InternalInputImpl();
-		return internalInput;
-	}
+    InternalInputImpl internalInput = new InternalInputImpl();
+    return internalInput;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public InternalOutput createInternalOutput() {
-		InternalOutputImpl internalOutput = new InternalOutputImpl();
-		return internalOutput;
-	}
+    InternalOutputImpl internalOutput = new InternalOutputImpl();
+    return internalOutput;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public ExternalInput createExternalInput() {
-		ExternalInputImpl externalInput = new ExternalInputImpl();
-		return externalInput;
-	}
+    ExternalInputImpl externalInput = new ExternalInputImpl();
+    return externalInput;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public ExternalOutput createExternalOutput() {
-		ExternalOutputImpl externalOutput = new ExternalOutputImpl();
-		return externalOutput;
-	}
+    ExternalOutputImpl externalOutput = new ExternalOutputImpl();
+    return externalOutput;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public Assertion createAssertion() {
-		AssertionImpl assertion = new AssertionImpl();
-		return assertion;
-	}
+    AssertionImpl assertion = new AssertionImpl();
+    return assertion;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public Node createNode() {
-		NodeImpl node = new NodeImpl();
-		return node;
-	}
+    NodeImpl node = new NodeImpl();
+    return node;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public SequentialNode createSequentialNode() {
-		SequentialNodeImpl sequentialNode = new SequentialNodeImpl();
-		return sequentialNode;
-	}
+    SequentialNodeImpl sequentialNode = new SequentialNodeImpl();
+    return sequentialNode;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public AtomicNode createAtomicNode() {
-		AtomicNodeImpl atomicNode = new AtomicNodeImpl();
-		return atomicNode;
-	}
+    AtomicNodeImpl atomicNode = new AtomicNodeImpl();
+    return atomicNode;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public ParallelBlock createParallelBlock() {
-		ParallelBlockImpl parallelBlock = new ParallelBlockImpl();
-		return parallelBlock;
-	}
+    ParallelBlockImpl parallelBlock = new ParallelBlockImpl();
+    return parallelBlock;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public AlternativeBlock createAlternativeBlock() {
-		AlternativeBlockImpl alternativeBlock = new AlternativeBlockImpl();
-		return alternativeBlock;
-	}
+    AlternativeBlockImpl alternativeBlock = new AlternativeBlockImpl();
+    return alternativeBlock;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public FiveWs createFiveWsFromString(EDataType eDataType, String initialValue) {
-		FiveWs result = FiveWs.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
+    FiveWs result = FiveWs.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public String convertFiveWsToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
+    return instanceValue == null ? null : instanceValue.toString();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public Validity createValidityFromString(EDataType eDataType, String initialValue) {
-		Validity result = Validity.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
+    Validity result = Validity.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public String convertValidityToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
+    return instanceValue == null ? null : instanceValue.toString();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public TextbtPackage getTextbtPackage() {
-		return (TextbtPackage)getEPackage();
-	}
+    return (TextbtPackage)getEPackage();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+   * @deprecated
+   * @generated
+   */
 	@Deprecated
 	public static TextbtPackage getPackage() {
-		return TextbtPackage.eINSTANCE;
-	}
+    return TextbtPackage.eINSTANCE;
+  }
 
 } //TextbtFactoryImpl
