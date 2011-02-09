@@ -1,17 +1,87 @@
 -- Author: tmyers
--- Version: 0.1
--- Created: 07.05.2010
+-- Version: 0.2
+-- Created: 04.02.2011
 
 module textBT2GV;
 create GV : OUT from TEXTBT : IN;
 
 helper def : nodeCounter : Integer = 1;
 helper def : visitor : Map(IN!AbstractNode, Integer) = Map{};
-helper def : branchNum : Integer = 0;
+helper def : branchNum : Integer = 0; 
 helper def : converter : Map(IN!AbstractNode, Integer) = Map{};
+
 helper def : noColor : Boolean = false;
 helper def : noTag : Boolean = false;
 helper def : fontSize : String = '12';
+
+helper def : requirementMap : Map(String, String) = IN!Requirement.allInstances()->collect(r | Map{(r.ref,r.val)})->flatten()->iterate(m; map : Map(String, String) = Map{} | map->union(m));
+helper def : componentNameMap : Map(String, String) = IN!Component.allInstances()->collect(c | Map{(c.ref,c.val)})->flatten()->iterate(m; map : Map(String, String) = Map{} | map->union(m));
+helper def : componentBehaviorMap : Map(String, Map(String, IN!AbstractBehavior)) = IN!Component.allInstances()->collect(c|Map{(c.ref, c.behaviors->collect(b|Map{(b.ref, b)})->flatten()->iterate(m; map : Map(String, IN!AbstractBehavior) = Map{} | map->union(m)))})->flatten()->iterate(m; map : Map(String, Map(String, IN!AbstractBehavior)) = Map{} | map->union(m));
+helper def : validityStatusMap : Map(IN!Validity, String) = Map {(#"", ''), (#"+", '+'), (#"-",'&#8211;'),(#"--",'&#8211; &#8211;'),(#"+-",'+&#8211;'),(#"++",'++')};
+helper def : validityColorMap : Map(IN!Validity, String) = Map {(#"", 'B3D345'), (#"+", 'FBF5AD'), (#"-",'F7A8AA'),(#"--",'DDDDDD'),(#"+-",'FFFFFF'),(#"++",'45B3D3')};
+helper def : qualifierMap : Map(IN!Qualifier, String) = Map{(#"", ''), (#"~",'~'), (#"?",'?'), (#"!",'!')};
+
+helper context IN!AbstractNode def : getComponent() : String = 
+	if self.componentRef.oclIsUndefined() then
+		''
+	else
+		thisModule.componentNameMap.get(self.componentRef)
+	endif;
+helper context IN!Relation def : getComponent() : String = 
+	if self.componentRef.oclIsUndefined() then
+		''
+	else
+		thisModule.componentNameMap.get(self.componentRef)
+	endif;
+helper context IN!AbstractNode def : getBehaviorName() : String =
+	if self.getBehavior().oclIsUndefined() then
+		''
+	else
+		self.getBehavior().val->regexReplaceAll('>','&gt;')->regexReplaceAll('<','&lt;')
+	endif;
+
+helper context IN!Relation def : getBehaviorName() : String =
+	if self.getBehavior().oclIsUndefined() then
+		''
+	else
+		self.getBehavior().val
+	endif;
+helper context IN!AbstractNode def : getBehavior() : IN!Behavior = 
+	if 	thisModule.componentBehaviorMap.get(self.componentRef).oclIsUndefined() then
+		thisModule.componentBehaviorMap.get(self.componentRef)
+	else
+		thisModule.componentBehaviorMap.get(self.componentRef).get(self.behaviorRef)
+	endif;
+helper context IN!Relation def : getBehavior() : IN!Behavior = 
+	if 	thisModule.componentBehaviorMap.get(self.componentRef).oclIsUndefined() then
+		thisModule.componentBehaviorMap.get(self.componentRef)
+	else
+		thisModule.componentBehaviorMap.get(self.componentRef).get(self.behaviorRef)
+	endif;
+helper context IN!AbstractNode def : getLeftBracket() : String = thisModule.qualifierMap.get(self.secondQualifier) + thisModule.qualifierMap.get(self.qualifier) + ')'; 	
+helper context IN!AbstractNode def : getRightBracket() : String = '(' + thisModule.qualifierMap.get(self.qualifier) + thisModule.qualifierMap.get(self.secondQualifier);
+helper context IN!AbstractNode def : getValidity() : String = thisModule.validityStatusMap.get(self.traceabilityStatus);
+helper context IN!AbstractNode def : getColor() : String = thisModule.validityColorMap.get(self.traceabilityStatus);
+
+
+helper context IN!AbstractNode def : getRequirement() : String = 
+	if (self.requirementRef = Sequence{}) then
+		' '
+	else
+		self.requirementRef->iterate(r; output : String = '' |	
+		if output = '' then
+			output + thisModule.requirementMap.get(r)
+		else
+			output + ',' + thisModule.requirementMap.get(r)
+		endif)
+	endif;
+
+helper context IN!AbstractNode def : getOperator() : String = 
+	if self.operator.oclIsUndefined() then
+		''
+	else 
+		self.operator->regexReplaceAll('>','&gt;')->regexReplaceAll('-','&#8211;')->regexReplaceAll('&','&amp;')
+	endif;
 
 helper context IN!Relation def : getComponentLevel() : String = 
 	if self.componentLevel.oclIsUndefined() then
@@ -27,89 +97,74 @@ helper context IN!Relation def : getLevel() : String =
 		self.level
 	endif;
 
-helper context IN!Relation def : getBehavior() : String = 
-	let allComponents : Sequence (IN!Component) = IN!Component.allInstances()->asSequence() in
-	allComponents->iterate(c; text : String = '' |
-	if c.ref = self.componentRef then
-		let allBehaviors : Sequence (IN!Behavior) = c.behaviors->asSequence() in
-		allBehaviors->iterate(b; text : String = '' |
-		if b.ref = self.behaviorRef then
-			b.val
-		else
-			text
-		endif)
-	else
-		text
-	endif
-	);
+helper context IN!Behavior def : getBehaviorLeftType() : String = 
+	if (self.oclIsKindOf(IN!State)) then
+		'['
+	else if (self.oclIsKindOf(IN!Selection)) then
+		'?'
+	else if (self.oclIsKindOf(IN!Event)) then
+		'??'
+	else if (self.oclIsKindOf(IN!Guard)) then
+		'???'
+	else if (self.oclIsKindOf(IN!InternalInput)) then
+		'&gt;'
+	else if (self.oclIsKindOf(IN!InternalOutput)) then
+		'&lt;'
+	else if (self.oclIsKindOf(IN!ExternalInput)) then
+		'&gt;&gt;'
+	else if (self.oclIsKindOf(IN!ExternalOutput)) then
+		'&lt;&lt;'
+	else -- Assertion
+		'!'
+	endif endif endif endif endif endif endif endif;
 
 helper context IN!Relation def : getBehaviorLeftType() : String = 
-	let allComponents : Sequence (IN!Component) = IN!Component.allInstances()->asSequence() in
-	allComponents->iterate(c; text : String = '' |
-	if c.ref = self.componentRef then
-		let allBehaviors : Sequence (IN!Behavior) = c.behaviors->asSequence() in
-		allBehaviors->iterate(b; text : String = '' |
-		if b.ref = self.behaviorRef then
-			if (b.oclIsKindOf(IN!State)) then
-				'['
-			else if (b.oclIsKindOf(IN!Selection)) then
-				'?'
-			else if (b.oclIsKindOf(IN!Event)) then
-				'??'
-			else if (b.oclIsKindOf(IN!Guard)) then
-				'???'
-			else if (b.oclIsKindOf(IN!InternalInput)) then
-				'&gt;'
-			else if (b.oclIsKindOf(IN!InternalOutput)) then
-				'&lt;'
-			else if (b.oclIsKindOf(IN!ExternalInput)) then
-				'&gt;&gt;'
-			else if (b.oclIsKindOf(IN!ExternalOutput)) then
-				'&lt;&lt;'
-			else -- Assertion
-				'!'
-			endif endif endif endif endif endif endif endif
-		else
-			text
-		endif)
+	if self.behaviorRef.oclIsUndefined() then
+		''
 	else
-		text
-	endif
-	);
+		self.getBehavior().getBehaviorLeftType()
+	endif;
+helper context IN!AbstractNode def : getBehaviorLeftType() : String = 
+	if self.behaviorRef.oclIsUndefined() then
+		''
+	else
+		self.getBehavior().getBehaviorLeftType()
+	endif;
+
+helper context IN!Behavior def : getBehaviorRightType() : String = 
+	if (self.oclIsTypeOf(IN!State)) then
+		'&#93;'
+	else if (self.oclIsTypeOf(IN!Selection)) then
+		'?'
+	else if (self.oclIsTypeOf(IN!Event)) then
+		'??'
+	else if (self.oclIsTypeOf(IN!Guard)) then
+		'???'
+	else if (self.oclIsTypeOf(IN!InternalInput)) then
+		'&lt;'
+	else if (self.oclIsTypeOf(IN!InternalOutput)) then
+		'&gt;'
+	else if (self.oclIsTypeOf(IN!ExternalInput)) then
+		'&lt;&lt;'
+	else if (self.oclIsTypeOf(IN!ExternalOutput)) then
+		'&gt;&gt;'
+	else -- Assertion
+		'!'
+	endif endif endif endif endif endif endif endif;
 
 helper context IN!Relation def : getBehaviorRightType() : String = 
-	let allComponents : Sequence (IN!Component) = IN!Component.allInstances()->asSequence() in
-	allComponents->iterate(c; text : String = '' |
-	if c.ref = self.componentRef then
-		let allBehaviors : Sequence (IN!Behavior) = c.behaviors->asSequence() in
-		allBehaviors->iterate(b; text : String = '' |
-		if b.ref = self.behaviorRef then
-			if (b.oclIsTypeOf(IN!State)) then
-				'&#93;'
-			else if (b.oclIsTypeOf(IN!Selection)) then
-				'?'
-			else if (b.oclIsTypeOf(IN!Event)) then
-				'??'
-			else if (b.oclIsTypeOf(IN!Guard)) then
-				'???'
-			else if (b.oclIsTypeOf(IN!InternalInput)) then
-				'&lt;'
-			else if (b.oclIsTypeOf(IN!InternalOutput)) then
-				'&gt;'
-			else if (b.oclIsTypeOf(IN!ExternalInput)) then
-				'&lt;&lt;'
-			else if (b.oclIsTypeOf(IN!ExternalOutput)) then
-				'&gt;&gt;'
-			else -- Assertion
-				'!'
-			endif endif endif endif endif endif endif endif
-		else
-			text
-		endif)
+	if self.behaviorRef.oclIsUndefined() then
+		''
 	else
-		text
-	endif
-	);
+		self.getBehavior().getBehaviorRightType()
+	endif;
+
+helper context IN!AbstractNode def : getBehaviorRightType() : String = 
+	if self.behaviorRef.oclIsUndefined() then
+		'' 
+	else
+		self.getBehavior().getBehaviorRightType()
+	endif;
 
 helper context IN!AbstractNode def : getLabel() : String = 
 	if self.label.oclIsUndefined() then
@@ -122,196 +177,22 @@ helper context IN!AbstractNode def : isSystemComponent() : Boolean =
 	if self.componentRef.oclIsUndefined() then
 		false
 	else 
-		let allComponents : Sequence (IN!Component) = IN!Component.allInstances()->asSequence() in
-		allComponents->iterate(c; text : Boolean = false |
-		if c.ref = self.componentRef then
-			if c.oclIsKindOf(IN!SystemComponent) then
-				true
-			else
-				text
-			endif
+		if (thisModule.componentNameMap.get(self.componentRef).oclIsKindOf(IN!SystemComponent)) then
+			true
 		else
-			text
-		endif)
+			false
+		endif
 	endif;
 
-helper context IN!AbstractNode def : getValidity() : String = 
-	thisModule.validityStatusMap.get(self.traceabilityStatus);
-	
-helper def: validityStatusMap : Map(IN!Validity, String) =
-	Map {(#"", ''), (#"+", '+'), (#"-",'&#8211;'),(#"--",'&#8211; &#8211;'),(#"+-",'+&#8211;'),(#"++",'++')};
-	
-helper context IN!AbstractNode def : getOperator() : String = 
-	if self.operator.oclIsUndefined() then
-		''
-	else 
-		self.operator->regexReplaceAll('>','&gt;')->regexReplaceAll('-','&#8211;')->regexReplaceAll('&','&amp;')
-	endif;
+helper context IN!Relation def : getComponentSet() : String = thisModule.componentNameMap.get(self.componentSet);
+helper context IN!AbstractNode def : getComponentSet() : String = thisModule.componentNameMap.get(self.componentSet); 
 
-helper def: validityColorMap : Map(IN!Validity, String) =
-	Map {(#"", 'B3D345'), (#"+", 'FBF5AD'), (#"-",'F7A8AA'),(#"--",'DDDDDD'),(#"+-",'FFFFFF'),(#"++",'45B3D3')};
-
-helper context IN!AbstractNode def : getColor() : String =
-	if thisModule.noColor = true then
-		'FFFFFF'
-	else
-		thisModule.validityColorMap.get(self.traceabilityStatus)
-	endif;
-
-helper context IN!AbstractNode def : getRequirement() : String = 
-	let allRequirements : Sequence (IN!Requirement) = IN!Requirement.allInstances()->asSequence() in
-	allRequirements->iterate(r; text : String = '' |
-	if r.ref = self.requirementRef->first() then
-		r.val
-	else
-		text
-	endif
-	);
-
-helper context IN!AbstractNode def : getComponent() : String = 
-	let allComponents : Sequence (IN!Component) = IN!Component.allInstances()->asSequence() in
-	allComponents->iterate(c; text : String = '' |
-	if c.ref = self.componentRef then
-		c.val
-	else
-		text
-	endif
-	);
-
-
-helper context IN!Relation def : getComponentSet() : String = 
-	let allComponents : Sequence (IN!Component) = IN!Component.allInstances()->asSequence() in
-	allComponents->iterate(c; text : String = '' |
-	if c.ref = self.componentSet then
-		c.val
-	else
-		text
-	endif
-	);
-
-helper context IN!AbstractNode def : getComponentSet() : String = 
-	let allComponents : Sequence (IN!Component) = IN!Component.allInstances()->asSequence() in
-	allComponents->iterate(c; text : String = '' |
-	if c.ref = self.componentSet then
-		c.val
-	else
-		text
-	endif
-	);
-	
-helper context IN!Relation def : getComponent() : String = 
-	let allComponents : Sequence (IN!Component) = IN!Component.allInstances()->asSequence() in
-	allComponents->iterate(c; text : String = '' |
-	if c.ref = self.componentRef then
-		c.val
-	else
-		text
-	endif
-	);
-
-helper context IN!AbstractNode def : getBehavior() : String = 
-	let allComponents : Sequence (IN!Component) = IN!Component.allInstances()->asSequence() in
-	allComponents->iterate(c; text : String = '' |
-	if c.ref = self.componentRef then
-		let allBehaviors : Sequence (IN!Behavior) = c.behaviors->asSequence() in
-		allBehaviors->iterate(b; text : String = '' |
-		if b.ref = self.behaviorRef then
-			b.val->regexReplaceAll('>','&gt;')->regexReplaceAll('<','&lt;')  
-		else
-			text
-		endif)
-	else
-		text
-	endif
-	); 
- 
 helper context IN!AbstractNode def : getRelations() : String = 
-	let allComponents : Sequence (IN!Component) = IN!Component.allInstances()->asSequence() in
-	allComponents->iterate(c; relations : Sequence(IN!Relation) = Sequence{} |
-	if c.ref = self.componentRef then
-		let allBehaviors : Sequence (IN!Behavior) = c.behaviors->asSequence() in
-		allBehaviors->iterate(b; relations : Sequence(IN!Relation) = Sequence{} |
-		if b.ref = self.behaviorRef then
-			if b.relations.oclIsUndefined() then
-				false
-			else
-				b.relations
-			endif
-		else
-			relations
-		endif)
+	if self.getBehavior().oclIsUndefined() then
+		Sequence{}
 	else
-		relations
-	endif
-	);
-
-helper context IN!AbstractNode def : getBehaviorLeftType() : String = 
-	let allComponents : Sequence (IN!Component) = IN!Component.allInstances()->asSequence() in
-	allComponents->iterate(c; text : String = '' |
-	if c.ref = self.componentRef then
-		let allBehaviors : Sequence (IN!Behavior) = c.behaviors->asSequence() in
-		allBehaviors->iterate(b; text : String = '' |
-		if b.ref = self.behaviorRef then
-			if (b.oclIsKindOf(IN!State)) then
-				'['
-			else if (b.oclIsKindOf(IN!Selection)) then
-				'?'
-			else if (b.oclIsKindOf(IN!Event)) then
-				'??'
-			else if (b.oclIsKindOf(IN!Guard)) then
-				'???'
-			else if (b.oclIsKindOf(IN!InternalInput)) then
-				'&gt;'
-			else if (b.oclIsKindOf(IN!InternalOutput)) then
-				'&lt;'
-			else if (b.oclIsKindOf(IN!ExternalInput)) then
-				'&gt;&gt;'
-			else if (b.oclIsKindOf(IN!ExternalOutput)) then
-				'&lt;&lt;'
-			else -- Assertion
-				'!'
-			endif endif endif endif endif endif endif endif
-		else
-			text
-		endif)
-	else
-		text
-	endif
-	);
-
-helper context IN!AbstractNode def : getBehaviorRightType() : String = 
-	let allComponents : Sequence (IN!Component) = IN!Component.allInstances()->asSequence() in
-	allComponents->iterate(c; text : String = '' |
-	if c.ref = self.componentRef then
-		let allBehaviors : Sequence (IN!Behavior) = c.behaviors->asSequence() in
-		allBehaviors->iterate(b; text : String = '' |
-		if b.ref = self.behaviorRef then
-			if (b.oclIsTypeOf(IN!State)) then
-				'&#93;'
-			else if (b.oclIsTypeOf(IN!Selection)) then
-				'?'
-			else if (b.oclIsTypeOf(IN!Event)) then
-				'??'
-			else if (b.oclIsTypeOf(IN!Guard)) then
-				'???'
-			else if (b.oclIsTypeOf(IN!InternalInput)) then
-				'&lt;'
-			else if (b.oclIsTypeOf(IN!InternalOutput)) then
-				'&gt;'
-			else if (b.oclIsTypeOf(IN!ExternalInput)) then
-				'&lt;&lt;'
-			else if (b.oclIsTypeOf(IN!ExternalOutput)) then
-				'&gt;&gt;'
-			else -- Assertion
-				'!'
-			endif endif endif endif endif endif endif endif
-		else
-			text
-		endif)
-	else
-		text
-	endif
-	);
+		self.getBehavior().relations
+	endif;
 
 rule TextBT{
 	from s : IN!TextBT
@@ -403,8 +284,7 @@ rule Node{
 		endif
 	)
 	using{
-		foundBranch : IN!AbstractBlock = IN!AbstractBlock;
-		foundNode : IN!AbstractNode = IN!AbstractNode;
+		nextElement : IN!AbstractNode = IN!AbstractNode;
 	}
 	to t : OUT!StatementList(
 		statement <- t2
@@ -424,67 +304,242 @@ rule Node{
 		value <- thisModule.addNode(s)
 	)
 	do{
-		thisModule.converter <- thisModule.converter->including(s, thisModule.nodeCounter);
-		thisModule.nodeCounter <- thisModule.nodeCounter + 1;
-			
 		if (s.isSystemComponent()){
 			t5.value <- '<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="1" CELLPADDING="2" BGCOLOR="#'+s.getColor()+'" PORT="p"><TR><TD>'+t5.value.substring(2,t5.value->size()-1)+'</TD></TR></TABLE>>';
 		}
 		
-		if (s.childNode.oclIsUndefined() = false){
-			if (s.childNode.oclIsKindOf(IN!AbstractBlock)){
-				t.tail <- thisModule.resolveTemp(s.childNode.childNode->at(1), 't');
+		nextElement <- thisModule.nextElement(s);
+		if (not(nextElement = false))
+			t.tail <- thisModule.resolveTemp(nextElement, 't');
+	}
+}	
+
+rule addNode(node : IN!AbstractNode) {
+	using{
+		output : String = '';
+	}do {
+		if (thisModule.noTag = true){
+			output <- '<<TABLE BORDER="0" BGCOLOR="#' + node.getColor() + '" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" PORT="p"><TR><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD  HEIGHT="25" WIDTH="115" PORT="top">'+node.getComponent()+' </TD><TD  WIDTH="15" HEIGHT="25"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD>'+node.getOperator()+'</TD></TR><TR><TD>'+node.getLabel()+'</TD></TR></TABLE></TD></TR><TR><TD  HEIGHT="25" WIDTH="115"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD ALIGN="RIGHT">'+node.getBehaviorLeftType()+'</TD><TD>'+node.getBehaviorName()+' </TD><TD ALIGN="LEFT">'+node.getBehaviorRightType()+'</TD></TR></TABLE></TD></TR></TABLE></TD></TR>';
+		}else{
+			if (node.mci.oclIsUndefined()){
+				output <- '<<TABLE BORDER="0" BGCOLOR="#' + node.getColor() + '" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" PORT="p"><TR><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD  WIDTH="50" HEIGHT="25">'+node.getRequirement()+' </TD></TR><TR><TD  WIDTH="50" HEIGHT="25">'+node.getValidity()+' </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD  HEIGHT="25" WIDTH="115" PORT="top">'+node.getComponent()+' </TD><TD  WIDTH="15" HEIGHT="25"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD>'+node.getOperator()+'</TD></TR><TR><TD>'+node.getLabel()+'</TD></TR></TABLE></TD></TR><TR><TD  HEIGHT="25" WIDTH="115"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD ALIGN="RIGHT">'+node.getBehaviorLeftType()+'</TD><TD>'+node.getBehaviorName()+' </TD><TD ALIGN="LEFT">'+node.getBehaviorRightType()+'</TD></TR></TABLE></TD></TR></TABLE></TD></TR>';
 			}else{
-				if (s.childNode.oclIsTypeOf(IN!AtomicNode)){
-					foundNode <- thisModule.nextNotAtomic(s.childNode);
-					if (foundNode = false){
-						foundBranch <- thisModule.findBranch(s);
-						if (foundBranch = false){
-							-- Add Edges
-							thisModule.visitor <- Map{};
-							thisModule.branchNum <- 1;
-							foundNode <- thisModule.findRootNode(s);
-							if (foundNode.childNode.oclIsUndefined()=false){
-								if (foundNode.childNode.oclIsTypeOf(IN!AtomicNode)){
-									if (thisModule.nextNotAtomic(foundNode) = false){
-									}else{
-										t.tail <- thisModule.addEdges(foundNode);										
-									}									
-								}else{
-									t.tail <- thisModule.addEdges(foundNode);
-								}
-							}
-						}else{
-							t.tail <- thisModule.resolveTemp(foundBranch.childNode->at(thisModule.branchNum),'t');
-						}
-					}else{
-						t.tail <- thisModule.resolveTemp(foundNode, 't');
-					}
+				output <- '<<TABLE BORDER="0" BGCOLOR="#' + node.getColor() + '" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" PORT="p"><TR><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD  WIDTH="50" HEIGHT="25">'+node.getRequirement()+' </TD></TR><TR><TD  WIDTH="50" HEIGHT="25">'+node.getValidity()+' </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD  HEIGHT="25" WIDTH="115" PORT="top">'+node.mci+' '+node.getComponent()+':'+node.getComponentSet()+' </TD><TD  WIDTH="15" HEIGHT="25"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD>'+node.getOperator()+'</TD></TR><TR><TD>'+node.getLabel()+'</TD></TR></TABLE></TD></TR><TR><TD  HEIGHT="25" WIDTH="115"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD ALIGN="RIGHT">'+node.getBehaviorLeftType()+'</TD><TD>'+node.getBehaviorName()+' </TD><TD ALIGN="LEFT">'+node.getBehaviorRightType()+'</TD></TR></TABLE></TD></TR></TABLE></TD></TR>';
+			}
+		}
+		
+		-- Add Relational Behavior
+		for (i in node.getRelations()){
+			output <- output + thisModule.addRelation(i);
+		}
+		
+		if (node.childNode.oclIsUndefined() = false){
+			if (node.childNode.oclIsKindOf(IN!AtomicNode)){
+				output <- output + thisModule.addAtomicNode(node.childNode);
+			}
+			
+			if (node.childNode.oclIsTypeOf(IN!AlternativeBlock)){
+				if (thisModule.noTag = true){
+					output <- output + '<TR><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0" ><TR><TD  WIDTH="0" HEIGHT="20">[  ]</TD></TR></TABLE></TD></TR>';
 				}else{
-					t.tail <- thisModule.resolveTemp(s.childNode, 't');
+					output <- output + '<TR><TD COLSPAN="2"><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0" ><TR><TD  WIDTH="0" HEIGHT="20">[  ]</TD></TR></TABLE></TD></TR>';
+				}
+			}
+		}
+		
+		output <- output + '</TABLE>>';
+				
+		output;
+	}
+}
+
+rule addRelation(relation : IN!Relation) {
+	using{
+		output : String = '';
+		node : IN!AbstractNode = IN!AbstractNode;
+		preposition : String = '';
+	}do {
+		if (relation.preposition.oclIsUndefined() = false){
+			preposition <- relation.preposition;
+		}
+		if (thisModule.noTag = true){
+			if (relation.behaviorRef.oclIsUndefined()){
+				output <- output + '<TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD  WIDTH="30" HEIGHT="20">'+relation.getLevel()+' '+relation.question.toString()+' </TD></TR><TR><TD  WIDTH="30" HEIGHT="20"> ('+preposition+') </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD  HEIGHT="40" WIDTH="82" PORT="top">'+relation.getComponent()+' '+relation.getComponentLevel()+' </TD><TD  HEIGHT="40" WIDTH="1"> </TD></TR></TABLE></TD></TR></TABLE></TD></TR>';
+			}else{
+				output <- output + '<TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD  WIDTH="30" HEIGHT="20">'+relation.getLevel()+' '+relation.question.toString()+' </TD></TR><TR><TD  WIDTH="30" HEIGHT="20"> ('+preposition+') </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD  HEIGHT="20" WIDTH="82" PORT="top">'+relation.getComponent()+' '+relation.getComponentLevel()+' </TD><TD  HEIGHT="20" WIDTH="1"> </TD></TR><TR><TD  HEIGHT="20" WIDTH="82" PORT="top">'+relation.getBehaviorName()+'</TD><TD  HEIGHT="20" WIDTH="1"> </TD></TABLE></TD></TR></TABLE></TD></TR>';
+				
+			}
+		}else{
+			if (relation.behaviorRef.oclIsUndefined()){
+				if (relation.mci.oclIsUndefined()){
+					output <- output + '<TR><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD  WIDTH="50" HEIGHT="20">'+relation.getLevel()+' '+relation.question.toString()+' </TD></TR><TR><TD  WIDTH="50" HEIGHT="20"> ('+preposition+') </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD  HEIGHT="40" WIDTH="115" PORT="top">'+relation.getComponent()+' '+relation.getComponentLevel()+' </TD><TD  HEIGHT="40" WIDTH="15"> </TD></TR></TABLE></TD></TR>';
+				}else{
+					output <- output + '<TR><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD  WIDTH="50" HEIGHT="20">'+relation.getLevel()+' '+relation.question.toString()+' </TD></TR><TR><TD  WIDTH="50" HEIGHT="20"> ('+preposition+') </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD  HEIGHT="40" WIDTH="115" PORT="top">'+relation.mci+' '+relation.getComponent()+':'+relation.getComponentSet()+' </TD><TD  HEIGHT="40" WIDTH="15"> </TD></TR></TABLE></TD></TR>';
+				}
+			}else{
+				if (relation.mci.oclIsUndefined()){
+					output <- output + '<TR><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD  WIDTH="50" HEIGHT="20">'+relation.getLevel()+' '+relation.question.toString()+' </TD></TR><TR><TD  WIDTH="50" HEIGHT="20"> ('+preposition+') </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD  HEIGHT="20" WIDTH="115" PORT="top">'+relation.getComponent()+' '+relation.getComponentLevel()+' </TD><TD  HEIGHT="20" WIDTH="15"> </TD></TR><TR><TD  HEIGHT="20" WIDTH="115"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD ALIGN="RIGHT">'+relation.getBehaviorLeftType()+'</TD><TD>'+relation.getBehaviorName()+' </TD><TD ALIGN="LEFT">'+relation.getBehaviorRightType()+'</TD></TR></TABLE></TD></TR></TABLE></TD></TR>';
+				}else{
+					output <- output + '<TR><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD  WIDTH="50" HEIGHT="20">'+relation.getLevel()+' '+relation.question.toString()+' </TD></TR><TR><TD  WIDTH="50" HEIGHT="20"> ('+preposition+') </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD  HEIGHT="20" WIDTH="115" PORT="top">'+relation.mci+' '+relation.getComponent()+':'+relation.getComponentSet()+' </TD><TD  HEIGHT="20" WIDTH="15"> </TD></TR><TR><TD  HEIGHT="20" WIDTH="115"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD ALIGN="RIGHT">'+relation.getBehaviorLeftType()+'</TD><TD>'+relation.getBehaviorName()+' </TD><TD ALIGN="LEFT">'+relation.getBehaviorRightType()+'</TD></TR></TABLE></TD></TR></TABLE></TD></TR>';
+				}
+			}
+		}
+		
+		output;
+	}
+}
+
+rule addAtomicNode(node : IN!AbstractNode) {
+	using{
+		output : String = '';
+	}
+	do {
+		thisModule.converter <- thisModule.converter->including(node, thisModule.nodeCounter);
+		
+		if (thisModule.noTag = true){
+			output <- output + '<TR><TD><TABLE BORDER="1" BGCOLOR="#' + node.getColor() + '" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD  HEIGHT="25" WIDTH="115" PORT="top">'+node.getComponent()+' </TD><TD  WIDTH="10" HEIGHT="25">'+node.getOperator()+' </TD></TR><TR><TD  HEIGHT="25" WIDTH="115"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD ALIGN="RIGHT">'+node.getBehaviorLeftType()+'</TD><TD>'+node.getBehaviorName()+' </TD><TD ALIGN="LEFT">'+node.getBehaviorRightType()+'</TD></TR></TABLE></TD></TR></TABLE></TD></TR>';
+		}else{
+			output <- output + '<TR><TD><TABLE BORDER="1" BGCOLOR="#' + node.getColor() + '" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD  WIDTH="50" HEIGHT="25">'+node.getRequirement()+' </TD></TR><TR><TD  WIDTH="50" HEIGHT="25">'+node.getValidity()+' </TD></TR></TABLE></TD><TD><TABLE BORDER="1" BGCOLOR="#' + node.getColor() +'" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD  HEIGHT="25" WIDTH="115" PORT="top">'+node.getComponent()+' </TD><TD  WIDTH="10" HEIGHT="25">'+node.getOperator()+' </TD></TR><TR><TD  HEIGHT="25" WIDTH="115"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD ALIGN="RIGHT">'+node.getBehaviorLeftType()+'</TD><TD>'+node.getBehaviorName()+' </TD><TD ALIGN="LEFT">'+node.getBehaviorRightType()+'</TD></TR></TABLE></TD></TR></TABLE></TD></TR>';
+		}
+		
+		-- Add Relational Behavior
+		for (i in node.getRelations()){
+			output <- output + thisModule.addRelation(i);
+		}
+		
+		if (node.childNode.oclIsUndefined() = false){
+			if (node.childNode.oclIsTypeOf(IN!AtomicNode)){
+				output <- output + thisModule.addAtomicNode(node.childNode);
+			}else if (node.childNode.oclIsTypeOf(IN!AlternativeBlock)){
+				if (thisModule.noTag = true){
+					output <- output + '<TR><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0" ><TR><TD  WIDTH="0" HEIGHT="20">[  ]</TD></TR></TABLE></TD></TR></TABLE>>';
+				}else{
+					output <- output+ '<TR><TD COLSPAN="2"><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0" ><TR><TD  WIDTH="0" HEIGHT="20">[  ]</TD></TR></TABLE></TD></TR></TABLE>>';
+				}
+			}
+		}
+		
+		output;
+	}
+}
+
+rule nextElement(node : IN!AbstractNode){
+	using{
+		foundBranch : IN!AbstractBlock = IN!AbstractBlock;
+		nextElement : IN!AbstractNode = IN!AbstractNode;
+	}
+	do{
+		thisModule.converter <- thisModule.converter->including(node, thisModule.nodeCounter);
+		thisModule.nodeCounter <- thisModule.nodeCounter + 1;
+		
+		if (node.childNode.oclIsUndefined() = false){
+			if (node.childNode.oclIsKindOf(IN!AbstractBlock)){
+				--t.tail <- thisModule.resolveTemp(s.childNode.childNode->at(1), 't');
+				nextElement <- false;
+			}else{
+				if (node.childNode.oclIsTypeOf(IN!AtomicNode)){
+					nextElement <- thisModule.nextNotAtomic(node.childNode);
+				}else{
+					nextElement <- node.childNode;
 				}
 			}
 		}else{
-			foundBranch <- thisModule.findBranch(s);
+			foundBranch <- thisModule.findBranch(node);
 			if (foundBranch = false){
 				-- Add Edges
 				thisModule.visitor <- Map{};
 				thisModule.branchNum <- 1;
-				foundNode <- thisModule.findRootNode(s);
-				if (foundNode.childNode.oclIsUndefined()=false){
-					if (foundNode.childNode.oclIsTypeOf(IN!AtomicNode)){
-						if (thisModule.nextNotAtomic(foundNode) = false){
-						}else{
-							t.tail <- thisModule.addEdges(foundNode);										
-						}									
-					}else{
-						t.tail <- thisModule.addEdges(foundNode);
-					}
+				nextElement <- thisModule.findRootNode(node);
+				if (nextElement.childNode.oclIsUndefined()=false){
+					nextElement <- thisModule.addEdges(nextElement);
+				}else{
+					nextElement <- false;
 				}
 			}else{
-				t.tail <- thisModule.resolveTemp(foundBranch.childNode->at(thisModule.branchNum),'t');
+				nextElement <- foundBranch.childNode->at(thisModule.branchNum);
 			}
 		}
+		nextElement;
+	}
+}
+
+rule nextNotAtomic(node : IN!AbstractNode) {
+	using{
+		nextNode : IN!AbstractNode = IN!AbstractNode;
+	}do {
+		if (node.childNode.oclIsUndefined() = false){
+			if (node.childNode.oclIsKindOf(IN!AtomicNode)){
+				nextNode <- thisModule.nextNotAtomic(node.childNode);
+			}else if (node.childNode.oclIsKindOf(IN!AbstractBlock)){
+				nextNode <- node.childNode.childNode->at(1);
+			}else{
+				nextNode <- node.childNode;
+			}
+		}else{
+			nextNode <- false;
+		}
+		
+		nextNode;
+	}
+}
+
+rule findBranch(node : IN!AbstractNode){
+	using{
+		branch : IN!AbstractBlock = IN!AbstractBlock;
+	}
+	do {
+		branch <- thisModule.findBranch2(node);
+		
+		if (not(branch = false)){
+			thisModule.branchNum <- thisModule.visitor.get(branch);
+			if (thisModule.branchNum.oclIsUndefined()){
+				thisModule.visitor <- thisModule.visitor->including(branch,2);
+				thisModule.branchNum <- 2;
+			}else{
+				thisModule.branchNum <- thisModule.branchNum + 1;
+				thisModule.visitor <- thisModule.visitor->including(branch, thisModule.branchNum);
+			}
+			
+			if (thisModule.branchNum > branch.childNode->size()){
+				branch <- thisModule.findBranch(branch);
+			}
+		}
+		
+		branch;
+	}
+}
+
+rule findBranch2(node : IN!AbstractNode){
+	using{
+		branch : IN!AbstractBlock = IN!AbstractBlock;
+	}do {
+		if (node.refImmediateComposite().oclIsKindOf(IN!BehaviorTree)){
+			branch <- false;
+		}else{
+			if (node.refImmediateComposite().oclIsKindOf(IN!AbstractNode)){
+				branch <- thisModule.findBranch2(node.refImmediateComposite());
+			}else{
+				if (node.refImmediateComposite().oclIsKindOf(IN!AbstractBlock)){
+					branch <- node.refImmediateComposite();
+				}
+			}
+		}
+		
+		branch;
+	}
+}
+
+rule findRootNode(node : IN!AbstractNode){
+	using{
+		root : IN!AbstractNode = IN!AbstractNode;
+	}do {
+		if (node.refImmediateComposite().oclIsKindOf(IN!BehaviorTree)){
+			root <- node;
+		}else{
+			root <- thisModule.findRootNode(node.refImmediateComposite());
+		}
+		
+		root;
 	}
 }
 
@@ -523,8 +578,6 @@ rule addEdges(node : IN!AbstractNode) {
 		
 		t.statement <- thisModule.addEdge(id1,id2);
 		
-		--if (node.childNode.oclIsKindOf(IN!AbstractBlock)){
-		--	t.tail <- thisModule.addBranchEdges(node, 2);
 		if (child.childNode.oclIsUndefined() = false) {
 			if (child.childNode.oclIsKindOf(IN!AtomicNode)){
 				foundNode <- thisModule.nextNotAtomic(child.childNode);
@@ -617,181 +670,3 @@ rule addEdge(a : Integer, b : Integer) {
 	}
 }
 
-rule findBranch(node : IN!AbstractNode){
-	using{
-		found : Boolean = false;
-		branch : IN!AbstractBlock = IN!AbstractBlock;
-	}
-	do {
-		if (thisModule.findBranch2(node) = false){
-				false;
-		}else{
-			branch <- thisModule.findBranch2(node);
-			thisModule.branchNum <- thisModule.visitor.get(branch);
-			if (thisModule.branchNum.oclIsUndefined()){
-				thisModule.visitor <- thisModule.visitor->including(branch,2);
-				thisModule.branchNum <- 2;
-			}else{
-				thisModule.branchNum <- thisModule.branchNum + 1;
-				thisModule.visitor <- thisModule.visitor->including(branch, thisModule.branchNum);
-			}
-			
-			if (thisModule.branchNum > branch.childNode->size()){
-				branch <- thisModule.findBranch(branch);
-			}
-			
-			branch;
-		}
-	}
-}
-
-rule findBranch2(node : IN!AbstractNode){
-	do {
-		if (node.refImmediateComposite().oclIsKindOf(IN!BehaviorTree)){
-			false;
-		}else{
-			if (node.refImmediateComposite().oclIsKindOf(IN!AbstractNode)){
-				thisModule.findBranch2(node.refImmediateComposite());
-			}else{
-				if (node.refImmediateComposite().oclIsKindOf(IN!AbstractBlock)){
-					node.refImmediateComposite();
-				}
-			}
-		}
-	}
-}
-
-rule findRootNode(node : IN!AbstractNode){
-	do {
-		if (node.refImmediateComposite().oclIsKindOf(IN!BehaviorTree)){
-			node;
-		}else{
-			thisModule.findRootNode(node.refImmediateComposite());
-		}
-	}
-}
-
-rule addNode(node : IN!AbstractNode) {
-	using{
-		output : String = '';
-	}do {
-		if (thisModule.noTag = true){
-			output <- '<<TABLE BORDER="0" BGCOLOR="#' + node.getColor() + '" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" PORT="p"><TR><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD FIXEDSIZE="TRUE" HEIGHT="25" WIDTH="115" PORT="top">'+node.getComponent()+' </TD><TD FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="25"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD>'+node.getOperator()+'</TD></TR><TR><TD>'+node.getLabel()+'</TD></TR></TABLE></TD></TR><TR><TD FIXEDSIZE="TRUE" HEIGHT="25" WIDTH="115"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD ALIGN="RIGHT">'+node.getBehaviorLeftType()+'</TD><TD>'+node.getBehavior()+' </TD><TD ALIGN="LEFT">'+node.getBehaviorRightType()+'</TD></TR></TABLE></TD></TR></TABLE></TD></TR>';
-		}else{
-			if (node.mci.oclIsUndefined()){
-				output <- '<<TABLE BORDER="0" BGCOLOR="#' + node.getColor() + '" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" PORT="p"><TR><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD FIXEDSIZE="TRUE" WIDTH="50" HEIGHT="25">'+node.getRequirement()+' </TD></TR><TR><TD FIXEDSIZE="TRUE" WIDTH="50" HEIGHT="25">'+node.getValidity()+' </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD FIXEDSIZE="TRUE" HEIGHT="25" WIDTH="115" PORT="top">'+node.getComponent()+' </TD><TD FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="25"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD>'+node.getOperator()+'</TD></TR><TR><TD>'+node.getLabel()+'</TD></TR></TABLE></TD></TR><TR><TD FIXEDSIZE="TRUE" HEIGHT="25" WIDTH="115"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD ALIGN="RIGHT">'+node.getBehaviorLeftType()+'</TD><TD>'+node.getBehavior()+' </TD><TD ALIGN="LEFT">'+node.getBehaviorRightType()+'</TD></TR></TABLE></TD></TR></TABLE></TD></TR>';
-			}else{
-				output <- '<<TABLE BORDER="0" BGCOLOR="#' + node.getColor() + '" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0" PORT="p"><TR><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD FIXEDSIZE="TRUE" WIDTH="50" HEIGHT="25">'+node.getRequirement()+' </TD></TR><TR><TD FIXEDSIZE="TRUE" WIDTH="50" HEIGHT="25">'+node.getValidity()+' </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD FIXEDSIZE="TRUE" HEIGHT="25" WIDTH="115" PORT="top">'+node.mci+' '+node.getComponent()+':'+node.getComponentSet()+' </TD><TD FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="25"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD>'+node.getOperator()+'</TD></TR><TR><TD>'+node.getLabel()+'</TD></TR></TABLE></TD></TR><TR><TD FIXEDSIZE="TRUE" HEIGHT="25" WIDTH="115"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD ALIGN="RIGHT">'+node.getBehaviorLeftType()+'</TD><TD>'+node.getBehavior()+' </TD><TD ALIGN="LEFT">'+node.getBehaviorRightType()+'</TD></TR></TABLE></TD></TR></TABLE></TD></TR>';
-			}
-		}
-		
-		-- Add Relational Behavior
-		for (i in node.getRelations()){
-			output <- output + thisModule.addRelation(i);
-		}
-		
-		if (node.childNode.oclIsUndefined() = false){
-			if (node.childNode.oclIsKindOf(IN!AtomicNode)){
-				output <- output + thisModule.addAtomicNode(node.childNode);
-			}
-			
-			if (node.childNode.oclIsTypeOf(IN!AlternativeBlock)){
-				if (thisModule.noTag = true){
-					output <- output + '<TR><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0" ><TR><TD FIXEDSIZE="TRUE" WIDTH="0" HEIGHT="20">[  ]</TD></TR></TABLE></TD></TR>';
-				}else{
-					output <- output + '<TR><TD COLSPAN="2"><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0" ><TR><TD FIXEDSIZE="TRUE" WIDTH="0" HEIGHT="20">[  ]</TD></TR></TABLE></TD></TR>';
-				}
-			}
-		}
-		
-		output <- output + '</TABLE>>';
-				
-		output;
-	}
-}
-
-rule addRelation(relation : IN!Relation) {
-	using{
-		output : String = '';
-		node : IN!AbstractNode = IN!AbstractNode;
-		preposition : String = '';
-	}do {
-		if (relation.preposition.oclIsUndefined() = false){
-			preposition <- relation.preposition;
-		}
-		if (thisModule.noTag = true){
-			if (relation.getBehavior() = ''){
-				output <- output + '<TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD FIXEDSIZE="TRUE" WIDTH="30" HEIGHT="20">'+relation.getLevel()+' '+relation.question.toString()+' </TD></TR><TR><TD FIXEDSIZE="TRUE" WIDTH="30" HEIGHT="20"> ('+preposition+') </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD FIXEDSIZE="TRUE" HEIGHT="40" WIDTH="82" PORT="top">'+relation.getComponent()+' '+relation.getComponentLevel()+' </TD><TD FIXEDSIZE="TRUE" HEIGHT="40" WIDTH="1"> </TD></TR></TABLE></TD></TR></TABLE></TD></TR>';
-			}else{
-				output <- output + '<TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD FIXEDSIZE="TRUE" WIDTH="30" HEIGHT="20">'+relation.getLevel()+' '+relation.question.toString()+' </TD></TR><TR><TD FIXEDSIZE="TRUE" WIDTH="30" HEIGHT="20"> ('+preposition+') </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD FIXEDSIZE="TRUE" HEIGHT="20" WIDTH="82" PORT="top">'+relation.getComponent()+' '+relation.getComponentLevel()+' </TD><TD FIXEDSIZE="TRUE" HEIGHT="20" WIDTH="1"> </TD></TR><TR><TD FIXEDSIZE="TRUE" HEIGHT="20" WIDTH="82" PORT="top">'+relation.getBehavior()+'</TD><TD FIXEDSIZE="TRUE" HEIGHT="20" WIDTH="1"> </TD></TABLE></TD></TR></TABLE></TD></TR>';
-				
-			}
-		}else{
-			if (relation.getBehavior() = ''){
-				if (relation.mci.oclIsUndefined()){
-					output <- output + '<TR><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD FIXEDSIZE="TRUE" WIDTH="50" HEIGHT="20">'+relation.getLevel()+' '+relation.question.toString()+' </TD></TR><TR><TD FIXEDSIZE="TRUE" WIDTH="50" HEIGHT="20"> ('+preposition+') </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD FIXEDSIZE="TRUE" HEIGHT="40" WIDTH="115" PORT="top">'+relation.getComponent()+' '+relation.getComponentLevel()+' </TD><TD FIXEDSIZE="TRUE" HEIGHT="40" WIDTH="15"> </TD></TR></TABLE></TD></TR>';
-				}else{
-					output <- output + '<TR><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD FIXEDSIZE="TRUE" WIDTH="50" HEIGHT="20">'+relation.getLevel()+' '+relation.question.toString()+' </TD></TR><TR><TD FIXEDSIZE="TRUE" WIDTH="50" HEIGHT="20"> ('+preposition+') </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD FIXEDSIZE="TRUE" HEIGHT="40" WIDTH="115" PORT="top">'+relation.mci+' '+relation.getComponent()+':'+relation.getComponentSet()+' </TD><TD FIXEDSIZE="TRUE" HEIGHT="40" WIDTH="15"> </TD></TR></TABLE></TD></TR>';
-				}
-			}else{
-				if (relation.mci.oclIsUndefined()){
-					output <- output + '<TR><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD FIXEDSIZE="TRUE" WIDTH="50" HEIGHT="20">'+relation.getLevel()+' '+relation.question.toString()+' </TD></TR><TR><TD FIXEDSIZE="TRUE" WIDTH="50" HEIGHT="20"> ('+preposition+') </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD FIXEDSIZE="TRUE" HEIGHT="20" WIDTH="115" PORT="top">'+relation.getComponent()+' '+relation.getComponentLevel()+' </TD><TD FIXEDSIZE="TRUE" HEIGHT="20" WIDTH="15"> </TD></TR><TR><TD FIXEDSIZE="TRUE" HEIGHT="20" WIDTH="115"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD ALIGN="RIGHT">'+relation.getBehaviorLeftType()+'</TD><TD>'+relation.getBehavior()+' </TD><TD ALIGN="LEFT">'+relation.getBehaviorRightType()+'</TD></TR></TABLE></TD></TR></TABLE></TD></TR>';
-				}else{
-					output <- output + '<TR><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD FIXEDSIZE="TRUE" WIDTH="50" HEIGHT="20">'+relation.getLevel()+' '+relation.question.toString()+' </TD></TR><TR><TD FIXEDSIZE="TRUE" WIDTH="50" HEIGHT="20"> ('+preposition+') </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD FIXEDSIZE="TRUE" HEIGHT="20" WIDTH="115" PORT="top">'+relation.mci+' '+relation.getComponent()+':'+relation.getComponentSet()+' </TD><TD FIXEDSIZE="TRUE" HEIGHT="20" WIDTH="15"> </TD></TR><TR><TD FIXEDSIZE="TRUE" HEIGHT="20" WIDTH="115"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD ALIGN="RIGHT">'+relation.getBehaviorLeftType()+'</TD><TD>'+relation.getBehavior()+' </TD><TD ALIGN="LEFT">'+relation.getBehaviorRightType()+'</TD></TR></TABLE></TD></TR></TABLE></TD></TR>';
-				}
-			}
-		}
-		
-		output;
-	}
-}
-
-rule addAtomicNode(node : IN!AbstractNode) {
-	using{
-		output : String = '';
-	}
-	do {
-		thisModule.converter <- thisModule.converter->including(node, thisModule.nodeCounter);
-		
-		if (thisModule.noTag = true){
-			output <- output + '<TR><TD><TABLE BORDER="1" BGCOLOR="#' + node.getColor() + '" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD FIXEDSIZE="TRUE" HEIGHT="25" WIDTH="115" PORT="top">'+node.getComponent()+' </TD><TD FIXEDSIZE="TRUE" WIDTH="10" HEIGHT="25">'+node.getOperator()+' </TD></TR><TR><TD FIXEDSIZE="TRUE" HEIGHT="25" WIDTH="115"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD ALIGN="RIGHT">'+node.getBehaviorLeftType()+'</TD><TD>'+node.getBehavior()+' </TD><TD ALIGN="LEFT">'+node.getBehaviorRightType()+'</TD></TR></TABLE></TD></TR></TABLE></TD></TR>';
-		}else{
-			output <- output + '<TR><TD><TABLE BORDER="1" BGCOLOR="#' + node.getColor() + '" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD FIXEDSIZE="TRUE" WIDTH="50" HEIGHT="25">'+node.getRequirement()+' </TD></TR><TR><TD FIXEDSIZE="TRUE" WIDTH="50" HEIGHT="25">'+node.getValidity()+' </TD></TR></TABLE></TD><TD><TABLE BORDER="1" BGCOLOR="#' + node.getColor() +'" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD FIXEDSIZE="TRUE" HEIGHT="25" WIDTH="115" PORT="top">'+node.getComponent()+' </TD><TD FIXEDSIZE="TRUE" WIDTH="10" HEIGHT="25">'+node.getOperator()+' </TD></TR><TR><TD FIXEDSIZE="TRUE" HEIGHT="25" WIDTH="115"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD ALIGN="RIGHT">'+node.getBehaviorLeftType()+'</TD><TD>'+node.getBehavior()+' </TD><TD ALIGN="LEFT">'+node.getBehaviorRightType()+'</TD></TR></TABLE></TD></TR></TABLE></TD></TR>';
-		}
-		
-		-- Add Relational Behavior
-		for (i in node.getRelations()){
-			output <- output + thisModule.addRelation(i);
-		}
-		
-		if (node.childNode.oclIsUndefined() = false){
-			if (node.childNode.oclIsTypeOf(IN!AtomicNode)){
-				output <- output + thisModule.addAtomicNode(node.childNode);
-			}else if (node.childNode.oclIsTypeOf(IN!AlternativeBlock)){
-				if (thisModule.noTag = true){
-					output <- output + '<TR><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0" ><TR><TD FIXEDSIZE="TRUE" WIDTH="0" HEIGHT="20">[  ]</TD></TR></TABLE></TD></TR></TABLE>>';
-				}else{
-					output <- output+ '<TR><TD COLSPAN="2"><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0" ><TR><TD FIXEDSIZE="TRUE" WIDTH="0" HEIGHT="20">[  ]</TD></TR></TABLE></TD></TR></TABLE>>';
-				}
-			}
-		}
-		
-		output;
-	}
-}
-
-rule nextNotAtomic(node : IN!AbstractNode) {
-	do {
-		if (node.childNode.oclIsUndefined() = false){
-			if (node.childNode.oclIsKindOf(IN!AtomicNode)){
-				thisModule.nextNotAtomic(node.childNode);
-			}else if (node.childNode.oclIsKindOf(IN!AbstractBlock)){
-				node.childNode.childNode->at(1);
-			}else{
-				node.childNode;
-			}
-		}else{
-			false;
-		}
-	}
-}

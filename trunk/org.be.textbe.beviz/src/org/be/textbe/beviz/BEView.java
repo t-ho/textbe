@@ -18,7 +18,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.be.textbe.textbt2gv.files.TextBT2GV;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -90,7 +89,7 @@ public class BEView extends ViewPart {
 			injector = CoreService.getInjector("EMF"); //$NON-NLS-1$
 			extractor = CoreService.getExtractor("EMF"); //$NON-NLS-1$
 			
-			factory = CoreService.getModelFactory("EMF");
+			factory = CoreService.createModelFactory("EMF");
 		} catch (ATLCoreException e) {
 			e.printStackTrace();
 		}		
@@ -155,7 +154,7 @@ public class BEView extends ViewPart {
 	}
 
 	private void processGVModel(IFile file, BEView view, URL transformation){	
-		try {
+		/*try {
 			TextBT2GV runner = new TextBT2GV();
 			runner.loadModels(file.getFullPath().toPortableString());
 			runner.doTextBT2GV(new NullProgressMonitor());
@@ -166,7 +165,7 @@ public class BEView extends ViewPart {
 			e.printStackTrace();
 		} catch (ATLExecutionException e) {
 			e.printStackTrace();
-		}	
+		}*/
 		
 		IFile f = (IFile) file;
 		IPath path = (IPath) f.getLocation();
