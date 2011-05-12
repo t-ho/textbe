@@ -17,6 +17,7 @@
       * Name: Reuseware Update Site
       * Location: http://reuseware.org/update
     * Select EMFText Access
+    * Choose okay to security warning when prompted
     * Restart Eclipse when prompted
   # Install TextBE using the BE Update Site
     * Help => Install new software .. => Add
