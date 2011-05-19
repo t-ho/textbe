@@ -4,7 +4,7 @@
 = Installing TextBE =
 
   # Download and install [http://www.graphviz.org/Download..php Graphviz] (if not already installed).
-  # Download and install [http://www.eclipse.org/downloads/packages/ Eclipse Gallileo SR2] Modeling Tools (includes incubating projects)
+  # Download and install [http://www.eclipse.org/downloads/packages/release/galileo/sr2 Eclipse Gallileo SR2] Modeling Tools (includes incubating projects)
   # Install Eclipse Graphviz using the Abstratt Update Site
     * Help => Install new software ... => Add
        * Name: Abstratt Update Site
