@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<site>
-   <feature url="features/org.be.textbe_0.1.0.jar" id="org.be.textbe" version="0.1.0">
-      <category name="BE"/>
-   </feature>
-   <category-def name="BE" label="BE"/>
-</site>
