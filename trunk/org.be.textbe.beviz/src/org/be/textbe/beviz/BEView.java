@@ -287,9 +287,11 @@ public class BEView extends ViewPart {
 			if (part instanceof TextEditor && part.getTitle().endsWith(".bt") && part != currentPart){
 				part = currentPart;
 				try{
-					if (((TextEditor)currentPart).getEditorInput() != null){
-						IFile file = (IFile)((IFileEditorInput)((TextEditor)currentPart).getEditorInput()).getFile();
-						processGVModel(file,view, btASMURL);
+					if (currentPart != null){
+						if (((TextEditor)currentPart).getEditorInput() != null){
+							IFile file = (IFile)((IFileEditorInput)((TextEditor)currentPart).getEditorInput()).getFile();
+							processGVModel(file,view, btASMURL);
+						}
 					}
 				}catch(Exception e){
 					e.printStackTrace();
