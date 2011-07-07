@@ -45,9 +45,9 @@ RULES {
 				(requirementRef[REQUIREMENT]*)? (traceabilityStatus[VALIDITY]|traceabilityStatus[DOUBLEMINUS])? componentRef[COMPONENT] behaviorRef[TEXT] label[TEXT]? ((operator[OPERATOR]|operator[OPERATORWITHLABEL]|operator[PERCENT]|operator[DOUBLEMINUS]|operator[EQUALS]|operator[BEHAVIOR])?) childNode:AbstractBlockOrNode?|
 				(requirementRef[REQUIREMENT]*)? (traceabilityStatus[VALIDITY]|traceabilityStatus[DOUBLEMINUS])? "_" label[TEXT]? ((operator[OPERATOR]|operator[OPERATORWITHLABEL]|operator[PERCENT]|operator[DOUBLEMINUS]|operator[EQUALS]|operator[BEHAVIOR])?) childNode:AbstractBlockOrNode?);
 	
-	ParallelBlock ::= "#P{" childNode:Node+ "}";
+	ParallelBlock ::= "#P" "{" childNode:Node+ "}";
 	
-	AlternativeBlock ::= "#N{" childNode:Node+ "}";
+	AlternativeBlock ::= "#N" "{" childNode:Node+ "}";
 	 
 	Node ::= ((requirementRef[REQUIREMENT]*)? (traceabilityStatus[VALIDITY]|traceabilityStatus[DOUBLEMINUS])? (mci[MCI]|mci[PERCENT]) componentRef[COMPONENT] ":" componentSet[COMPONENT] behaviorRef[TEXT]? label[TEXT]? ((operator[OPERATOR]|operator[OPERATORWITHLABEL]|operator[PERCENT]|operator[DOUBLEMINUS]|operator[EQUALS]|operator[BEHAVIOR])?) childNode:AbstractBlockOrNode?|
 				(requirementRef[REQUIREMENT]*)? (traceabilityStatus[VALIDITY]|traceabilityStatus[DOUBLEMINUS])? componentRef[COMPONENT] behaviorRef[TEXT] label[TEXT]? ((operator[OPERATOR]|operator[OPERATORWITHLABEL]|operator[PERCENT]|operator[DOUBLEMINUS]|operator[EQUALS]|operator[BEHAVIOR])?) childNode:AbstractBlockOrNode?|
