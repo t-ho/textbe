@@ -1,6 +1,8 @@
 -- Author: tmyers
--- Version: 0.2
+-- Version: 0.3
 -- Created: 04.02.2011
+
+-- 0.3: Fixed Atomic Leaf issue
 
 module textBT2GV;
 create GV : OUT from TEXTBT : IN;
@@ -311,6 +313,8 @@ rule Node{
 		nextElement <- thisModule.nextElement(s);
 		if (not(nextElement = false))
 			t.tail <- thisModule.resolveTemp(nextElement, 't');
+		if (t.tail.oclIsUndefined())
+			t.tail <- nextElement;
 	}
 }	
 
@@ -434,11 +438,26 @@ rule nextElement(node : IN!AbstractNode){
 		
 		if (node.childNode.oclIsUndefined() = false){
 			if (node.childNode.oclIsKindOf(IN!AbstractBlock)){
-				--t.tail <- thisModule.resolveTemp(s.childNode.childNode->at(1), 't');
-				nextElement <- false;
+				nextElement <- node.childNode.childNode->at(1);
 			}else{
 				if (node.childNode.oclIsTypeOf(IN!AtomicNode)){
 					nextElement <- thisModule.nextNotAtomic(node.childNode);
+					if (nextElement = false){
+						foundBranch <- thisModule.findBranch(node);
+						if (foundBranch = false){
+							-- Add Edges
+							thisModule.visitor <- Map{};
+							thisModule.branchNum <- 1;
+							nextElement <- thisModule.findRootNode(node);
+							if (nextElement.childNode.oclIsUndefined()=false){
+								nextElement <- thisModule.addEdges(nextElement);
+							}else{
+								nextElement <- false;
+							}
+						}else{
+							nextElement <- foundBranch.childNode->at(thisModule.branchNum);
+						}
+					}
 				}else{
 					nextElement <- node.childNode;
 				}
@@ -513,7 +532,9 @@ rule findBranch2(node : IN!AbstractNode){
 	using{
 		branch : IN!AbstractBlock = IN!AbstractBlock;
 	}do {
-		if (node.refImmediateComposite().oclIsKindOf(IN!BehaviorTree)){
+		if (node = false){
+			branch <- false;
+		}else if (node.refImmediateComposite().oclIsKindOf(IN!BehaviorTree)){
 			branch <- false;
 		}else{
 			if (node.refImmediateComposite().oclIsKindOf(IN!AbstractNode)){
@@ -543,24 +564,25 @@ rule findRootNode(node : IN!AbstractNode){
 	}
 }
 
-rule addEdges(node : IN!AbstractNode) {
+rule getChild(node : IN!AbstractNode) {
 	using{
-		id1 : Integer = 0;
-		id2 : Integer = 0;
-		child : IN!AbstractNode = IN!AbstractNode;
-		foundBranch : IN!AbstractBlock = IN!AbstractBlock;
-		foundNode : IN!AbstractNode = IN!AbstractNode;
+		foundNode : IN!AbstractNode = OclUndefined;
+		child : IN!AbstractNode = OclUndefined;
+		edge : Sequence(IN!AbstractNode) = Sequence{};
 	}
-	to t : OUT!StatementList(
-	)
-	do {
+	do{
 		if (node.childNode.oclIsKindOf(IN!AbstractBlock)){
 			child <- node.childNode.childNode->at(1);
 		}else if (node.childNode.oclIsKindOf(IN!AtomicNode)){
 			foundNode <- thisModule.nextNotAtomic(node.childNode);
 			if (foundNode = false){
-				foundBranch <- thisModule.findBranch(foundNode);
-				child <- foundBranch.childNode->at(thisModule.branchNum);
+				node <- thisModule.findBranch(node);
+				if (node = false){
+				}else{
+					edge <- thisModule.getChild(node);
+					node <- edge.first();
+					child <- edge.last();
+				}
 			}else{
 				child <- foundNode;
 			}
@@ -568,6 +590,31 @@ rule addEdges(node : IN!AbstractNode) {
 			child <- node.childNode;
 		}
 		
+		if (node = false) 
+			edge <- false;
+		else
+			edge <- Sequence{node, child};
+			
+		edge;
+	}
+}
+
+rule addEdges(node : IN!AbstractNode) {
+	using{
+		id1 : Integer = 0;
+		id2 : Integer = 0;
+		child : IN!AbstractNode = IN!AbstractNode;
+		foundBranch : IN!AbstractBlock = IN!AbstractBlock;
+		foundNode : IN!AbstractNode = IN!AbstractNode;
+		edge : Sequence(IN!AbstractNode) = Sequence{node, child};
+	}
+	to t : OUT!StatementList(
+	)
+	do {
+		edge <- thisModule.getChild(node);
+		node <- edge.first();
+		child <- edge.last();
+						
 		for (i in thisModule.converter.getKeys()){
 			if (node = i){
 				id1 <- thisModule.converter.get(i);
@@ -582,14 +629,11 @@ rule addEdges(node : IN!AbstractNode) {
 			if (child.childNode.oclIsKindOf(IN!AtomicNode)){
 				foundNode <- thisModule.nextNotAtomic(child.childNode);
 				if (foundNode = false){
-					foundBranch <- thisModule.findBranch(foundNode);
+					foundBranch <- thisModule.findBranch(child);
 					if (foundBranch = false){
-						-- END PARSE
 					}else{
-						t.tail <- thisModule.addEdges(child);
+						t.tail <- thisModule.addBranchEdge(foundBranch.refImmediateComposite());
 					}
-				}else{
-					t.tail <- thisModule.addEdges(child);
 				}
 			}else{
 				t.tail <- thisModule.addEdges(child);
@@ -612,6 +656,7 @@ rule addBranchEdge(node : IN!AbstractNode){
 		id2 : Integer = 0;
 		child : IN!AbstractNode = IN!AbstractNode;
 		foundBranch : IN!AbstractBlock = IN!AbstractBlock;
+		foundNode : IN!AbstractNode = IN!AbstractNode;
 	}
 	to t : OUT!StatementList
 	do{
@@ -628,7 +673,18 @@ rule addBranchEdge(node : IN!AbstractNode){
 		t.statement <- thisModule.addEdge(id1,id2);
 		
 		if (child.childNode.oclIsUndefined() = false) {
-			t.tail <- thisModule.addEdges(child);
+			if (child.childNode.oclIsKindOf(IN!AtomicNode)){
+				foundNode <- thisModule.nextNotAtomic(child.childNode);
+				if (foundNode = false){
+					foundBranch <- thisModule.findBranch(child);
+					if (foundBranch = false){
+					}else{
+						t.tail <- thisModule.addBranchEdge(foundBranch.refImmediateComposite());
+					}
+				}
+			}else{
+				t.tail <- thisModule.addEdges(child);
+			}		
 		}else{	
 			foundBranch <- thisModule.findBranch(child);
 			if (foundBranch = false){
