@@ -3,11 +3,6 @@
 <plugin>
    <extension
          point="org.eclipse.ui.newWizards">
-      <category
-            id="org.be.textbe.bt.examples.category"
-            name="BE"
-            parentCategory="org.eclipse.ui.Examples">
-      </category>
       <wizard
             canFinishEarly="true"
             category="org.eclipse.ui.Examples/org.be.textbe.bt.examples.category"
@@ -47,6 +42,11 @@
             Insert Description
          </description>
       </wizard>
+      <category
+            id="org.be.textbe.bt.examples.category"
+            name="Behavior Trees"
+            parentCategory="org.eclipse.ui.Examples">
+      </category>
    </extension>
 
 </plugin>

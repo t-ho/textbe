@@ -63,7 +63,7 @@ import org.eclipse.ui.editors.text.TextEditor;
 import org.osgi.framework.Bundle;
 import org.eclipse.m2m.atl.common.ATLExecutionException;
 
-public class BEView extends ViewPart {
+public class BEView extends ViewPart implements Runnable {
 
 	private static IInjector injector;
 	private static IExtractor extractor;
@@ -84,7 +84,7 @@ public class BEView extends ViewPart {
 			Bundle bundle = Platform.getBundle("org.be.textbe.beviz");
 			btASMURL = bundle.getEntry("transformations/textBT2GV.asm");
 			ctASMURL = null;
-			stASMURL = null;
+			stASMURL = bundle.getEntry("transformations/textST2GV.asm");
 			
 			injector = CoreService.getInjector("EMF"); //$NON-NLS-1$
 			extractor = CoreService.getExtractor("EMF"); //$NON-NLS-1$
@@ -100,6 +100,8 @@ public class BEView extends ViewPart {
 		svgFile = File.createTempFile("svgfile", ".svg");
 		listener = new BEWindowListener(this);
 		PlatformUI.getWorkbench().addWindowListener(listener);
+		
+		new Thread(this, "BEView").start();
 	}
 
 	@Override
@@ -176,8 +178,11 @@ public class BEView extends ViewPart {
 			// Metamodels
 			inMetamodel = factory.newReferenceModel();
 			outMetamodel = factory.newReferenceModel();
-			injector.inject(inMetamodel, "http://org.be.textbe/textbt");	    
-			injector.inject(outMetamodel, "http://org.be.textbe/gv");		    
+			if (transformation == btASMURL)
+				injector.inject(inMetamodel, "http://org.be.textbe/textbt");
+			else if (transformation == stASMURL)
+				injector.inject(inMetamodel, "http://org.be.textbe/textst");
+			injector.inject(outMetamodel, "http://org.be.textbe/gv");	    
 
 			// Getting Launcher
 			ILauncher launcher = null;
@@ -196,7 +201,10 @@ public class BEView extends ViewPart {
 						
 			// Launching
 			launcher.addOutModel(outputModel, "GV", "OUT");
-			launcher.addInModel(inputModel, "TEXTBT", "IN");
+			if (transformation == btASMURL)
+				launcher.addInModel(inputModel, "TEXTBT", "IN");
+			else if (transformation == stASMURL)
+				launcher.addInModel(inputModel, "TEXTST", "IN");
 
 			launcher.launch(ILauncher.RUN_MODE, new NullProgressMonitor(), Collections.<String, Object> emptyMap(), transformation.openStream());
 
@@ -284,17 +292,33 @@ public class BEView extends ViewPart {
 
 		@Override
 		public void partActivated(IWorkbenchPart part) {
-			if (part instanceof TextEditor && part.getTitle().endsWith(".bt") && part != currentPart){
-				part = currentPart;
-				try{
-					if (currentPart != null){
-						if (((TextEditor)currentPart).getEditorInput() != null){
-							IFile file = (IFile)((IFileEditorInput)((TextEditor)currentPart).getEditorInput()).getFile();
-							processGVModel(file,view, btASMURL);
+			if (part instanceof TextEditor && part != currentPart) {
+				if (part.getTitle().endsWith(".bt")) {
+					part = currentPart;
+					try {
+						if (part != null){
+							if (((TextEditor) currentPart).getEditorInput() != null) {
+								IFile file = (IFile) ((IFileEditorInput) ((TextEditor) currentPart)
+										.getEditorInput()).getFile();
+								processGVModel(file, view, btASMURL);
+							}
 						}
+					} catch (Exception e) {
+						e.printStackTrace();
 					}
-				}catch(Exception e){
-					e.printStackTrace();
+				} else if (part.getTitle().endsWith(".st")) {
+					part = currentPart;
+					try {
+						if (part != null){
+							if (((TextEditor) currentPart).getEditorInput() != null) {
+								IFile file = (IFile) ((IFileEditorInput) ((TextEditor) currentPart)
+										.getEditorInput()).getFile();
+								processGVModel(file, view, stASMURL);
+							}
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}
@@ -313,18 +337,24 @@ public class BEView extends ViewPart {
 			}
 			
 			// Check for an open editor
-			for(IEditorReference e : page.getEditorReferences()){
-				if (e.getTitle().endsWith(".bt")){
+			for (IEditorReference e : page.getEditorReferences()) {
+				if (e.getTitle().endsWith(".bt")) {
+					return;
+				} else if (e.getTitle().endsWith(".st")) {
 					return;
 				}
 			}
 				
 			// Check for active selection
-			for(IViewReference v : page.getViewReferences()){
-				if (v instanceof PackageExplorerPart){
-					ISelection s = ((PackageExplorerPart)v).getTreeViewer().getSelection();
-					org.eclipse.core.internal.resources.File file = (org.eclipse.core.internal.resources.File)((TreeSelection)s).getFirstElement();
-					if (file.getFileExtension().equals("bt")){
+			for (IViewReference v : page.getViewReferences()) {
+				if (v instanceof PackageExplorerPart) {
+					ISelection s = ((PackageExplorerPart) v).getTreeViewer()
+							.getSelection();
+					org.eclipse.core.internal.resources.File file = (org.eclipse.core.internal.resources.File) ((TreeSelection) s)
+							.getFirstElement();
+					if (file.getFileExtension().equals("bt")) {
+						return;
+					} else if (file.getFileExtension().equals("st")) {
 						return;
 					}
 				}
@@ -333,7 +363,10 @@ public class BEView extends ViewPart {
 
 		@Override
 		public void partOpened(IWorkbenchPart part) {
-			if (part instanceof TextEditor && part.getTitle().endsWith(".bt")){
+			if (part instanceof TextEditor && part.getTitle().endsWith(".bt")) {
+				currentPart = part;
+			} else if (part instanceof TextEditor
+					&& part.getTitle().endsWith(".st")) {
 				currentPart = part;
 			}
 		}
@@ -350,25 +383,36 @@ public class BEView extends ViewPart {
 
 		@Override
 		public void selectionChanged(IWorkbenchPart part, ISelection selection) {
-			if (part instanceof PackageExplorerPart && selection instanceof TreeSelection){
-				if (((TreeSelection)selection).getFirstElement() instanceof org.eclipse.core.internal.resources.File){
-					org.eclipse.core.internal.resources.File file = (org.eclipse.core.internal.resources.File)((TreeSelection)selection).getFirstElement();
-					if (file.getFileExtension().equals("bt")){
-						if (!file.equals(currentFile)){
+			if (part instanceof PackageExplorerPart
+					&& selection instanceof TreeSelection) {
+				if (((TreeSelection) selection).getFirstElement() instanceof org.eclipse.core.internal.resources.File) {
+					org.eclipse.core.internal.resources.File file = (org.eclipse.core.internal.resources.File) ((TreeSelection) selection)
+							.getFirstElement();
+					if (file.getFileExtension().equals("bt")) {
+						if (!file.equals(currentFile)) {
 							currentFile = file;
-							processGVModel(currentFile,view,btASMURL);
+							processGVModel(currentFile, view, btASMURL);
 						}
-					}else{
+					}else if (file.getFileExtension().equals("st")) {
+						if (!file.equals(currentFile)) {
+							currentFile = file;
+							processGVModel(currentFile, view, stASMURL);
+						}
+					}else {
 						view.clear();
 						currentFile = null;
 					}
-				}else{
+				} else {
 					return;
 				}
-			}else if (part instanceof TextEditor && part.getTitle().endsWith(".bt")){
-				IFile file = (IFile)((IFileEditorInput)((TextEditor)part).getEditorInput()).getFile();
+			} else if (part instanceof TextEditor && part.getTitle().endsWith(".bt")) {
+				IFile file = (IFile) ((IFileEditorInput) ((TextEditor) part).getEditorInput()).getFile();
 				currentFile = (org.eclipse.core.internal.resources.File) file;
-				processGVModel(file,view,btASMURL);
+				processGVModel(file, view, btASMURL);
+			} else if (part instanceof TextEditor && part.getTitle().endsWith(".st")) {
+				IFile file = (IFile) ((IFileEditorInput) ((TextEditor) part).getEditorInput()).getFile();
+				currentFile = (org.eclipse.core.internal.resources.File) file;
+				processGVModel(file, view, stASMURL);
 			}
 		}
 	}
@@ -378,10 +422,27 @@ public class BEView extends ViewPart {
 		private BEView view;
 		private ISelectionListener selectionListener;
 		private IPartListener partListener;
-
+		private IWorkbenchPage page;
 		
 		public BEWindowListener(BEView btView) {
 			this.view = btView;
+		}
+		
+		public IFile getFile() {
+			if (page != null) {
+				IEditorPart e = page.getActiveEditor();
+				IEditorInput input = null;
+				input = e.getEditorInput();
+				if (input instanceof IFileEditorInput
+						& e.getTitle().endsWith(".bt")) {
+					return (IFile) ((IFileEditorInput) input).getFile();
+				} else if (input instanceof IFileEditorInput
+						& e.getTitle().endsWith(".st")) {
+					return (IFile) ((IFileEditorInput) input).getFile();
+				}
+			}
+
+			return null;
 		}
 
 		@Override public void windowActivated(IWorkbenchWindow window) {}
@@ -390,24 +451,97 @@ public class BEView extends ViewPart {
 		
 		@Override
 		public void windowOpened(IWorkbenchWindow window) {
-			if (window.getActivePage() != null){
-				IWorkbenchPage page = window.getActivePage();
+			if (window.getActivePage() != null) {
+				page = window.getActivePage();
 				partListener = new BEPartListener(this.view);
 				page.addPartListener(partListener);
 				selectionListener = new BESelectionListener(this.view);
-				page.addPostSelectionListener(selectionListener);		
-				
-				if (page.getActiveEditor() != null){
+				page.addPostSelectionListener(selectionListener);
+
+				if (page.getActiveEditor() != null) {
 					IEditorPart e = page.getActiveEditor();
 					IFile file;
 					IEditorInput input = null;
 					input = e.getEditorInput();
-					if (input instanceof IFileEditorInput & e.getTitle().endsWith(".bt")){
-						file = (IFile)((IFileEditorInput)input).getFile();
+					if (input instanceof IFileEditorInput
+							& e.getTitle().endsWith(".bt")) {
+						file = (IFile) ((IFileEditorInput) input).getFile();
 						processGVModel(file, view, btASMURL);
+					} else if (input instanceof IFileEditorInput
+							& e.getTitle().endsWith(".st")) {
+						file = (IFile) ((IFileEditorInput) input).getFile();
+						processGVModel(file, view, stASMURL);
 					}
 				}
 			}
+		}
+	}
+		
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		try {
+			while (true) {
+				synchronized (this) {
+					this.wait();
+				}
+				if (listener.getFile().getName().endsWith("st") | listener.getFile().getName().endsWith("bt")) {
+					PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
+								public void run() {
+									for (IWorkbenchWindow w : PlatformUI.getWorkbench().getWorkbenchWindows()) {
+										for (IWorkbenchPage p : w.getPages()) {
+											for (IViewReference v : p.getViewReferences()) {
+												if (v.getTitle().equals("BE Visualiser")) {
+													((BEView) v.getPart(true)).processGVModel(getFile(),(BEView) v.getPart(true),getType());
+												}
+											}
+										}
+									}
+								}
+
+								public IFile getFile() {
+									IEditorPart e;
+									try {
+										e = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+									} catch (Exception e2) {
+										return null;
+									}
+
+									IEditorInput input = null;
+									input = e.getEditorInput();
+									if (input instanceof IFileEditorInput & e.getTitle().endsWith(".bt")) {
+										return (IFile) ((IFileEditorInput) input).getFile();
+									} else if (input instanceof IFileEditorInput & e.getTitle().endsWith(".st")) {
+										return (IFile) ((IFileEditorInput) input).getFile();
+									}
+
+									return null;
+								}
+
+								public URL getType() {
+									IEditorPart e;
+									try {
+										e = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+									} catch (Exception e2) {
+										return null;
+									}
+
+									IEditorInput input = null;
+									input = e.getEditorInput();
+									if (input instanceof IFileEditorInput & e.getTitle().endsWith(".bt")) {
+										return btASMURL;
+									} else if (input instanceof IFileEditorInput & e.getTitle().endsWith(".st")) {
+										return stASMURL;
+									}
+									
+									return null;
+								}
+							});
+				}
+			}
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

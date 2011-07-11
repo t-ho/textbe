@@ -2,7 +2,7 @@
 <feature
       id="org.be.textbe"
       label="TextBE Feature"
-      version="0.1.0"
+      version="0.1.1"
       provider-name="Behavior Engineering">
 
    <description>
@@ -11,7 +11,7 @@ available for installation using Eclipse Update Manager.
    </description>
 
    <copyright>
-      2010 Behavior Engineering. All rights reserved.
+      2011 Behavior Engineering. All rights reserved.
    </copyright>
 
    <license url="http://www.example.com/license">
@@ -31,30 +31,28 @@ feature into your product.
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="com.abstratt.graphviz"/>
-      <import plugin="org.apache.xerces"/>
       <import plugin="org.eclipse.emf.common"/>
       <import plugin="org.eclipse.emf.ecore"/>
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.eclipse.jdt.ui"/>
       <import plugin="org.eclipse.jet"/>
+      <import plugin="org.eclipse.m2m.atl.common"/>
       <import plugin="org.eclipse.m2m.atl.core"/>
+      <import plugin="org.eclipse.m2m.atl.core.emf"/>
       <import plugin="org.eclipse.ui.ide"/>
       <import plugin="org.eclipse.ui.editors"/>
-      <import plugin="org.eclipse.emf.edit"/>
-      <import plugin="org.eclipse.emf.edit.ui"/>
-      <import plugin="org.junit"/>
+      <import plugin="org.w3c.dom.svg"/>
+      <import plugin="org.eclipse.emf"/>
       <import plugin="org.eclipse.emf.codegen.ecore"/>
       <import plugin="org.eclipse.emf.ecore.edit"/>
+      <import plugin="org.eclipse.emf.validation"/>
       <import plugin="org.eclipse.emf.workspace"/>
+      <import plugin="org.emftext.commons.antlr3_3_0"/>
+      <import plugin="org.eclipse.emf.edit.ui"/>
+      <import plugin="org.eclipse.jface"/>
       <import plugin="org.eclipse.jface.text"/>
+      <import plugin="org.eclipse.ui.views"/>
    </requires>
-
-   <plugin
-         id="org.emftext.commons.antlr3_1_1"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
 
    <plugin
          id="org.be.textbe.beviz"
@@ -78,20 +76,6 @@ feature into your product.
          unpack="false"/>
 
    <plugin
-         id="org.be.textbe.bt.model.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.be.textbe.bt.model.editor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.be.textbe.bt.textbt.resource.bt"
          download-size="0"
          install-size="0"
@@ -107,6 +91,62 @@ feature into your product.
 
    <plugin
          id="org.be.textbe.gv.model"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.be.textbe.bt.textbt.resource.bt.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.be.textbe.ct.model"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.be.textbe.ct.textct.resource.ct"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.be.textbe.ct.textct.resource.ct.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.be.textbe.st.model"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.be.textbe.st.textst.resource.st"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.be.textbe.st.textst.resource.st.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.be.textbe.st.examples"
          download-size="0"
          install-size="0"
          version="0.0.0"

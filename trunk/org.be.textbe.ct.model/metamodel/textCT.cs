@@ -8,10 +8,10 @@ START TextCT
 
 OPTIONS {
 	reloadGeneratorModel = "true";
-	generateCodeFromGeneratorModel = "false";
-	overrideClasspath = "false";
-	overrideManifest = "false";
-	overrideProjectFile = "false";
+	generateCodeFromGeneratorModel = "true";
+	//overrideClasspath = "false";
+	//overrideManifest = "false";
+	//overrideProjectFile = "false";
 }
 
 TOKENS {
