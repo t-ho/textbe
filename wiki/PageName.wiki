@@ -1,0 +1,14 @@
+#summary Making a Textbe update
+
+= Making a TextBE Update =
+
+  # Make a new workspace in Eclipse
+  # Download the latest code from the svn respository
+  # Generate code for required projects i.e.
+    * org.be.textbe.bt.model/metamodel/textbt.cs => Generate Text Resource
+    * org.be.textbe.ct.model/metamodel/textct.cs => Generate Text Resource
+    * org.be.textbe.st.model/metamodel/textst.cs => Generate Text Resource
+    * org.be.textbe.gv.model/metamodel/gv.genmodel => Generate Model Code
+  # Update plugin versions
+  # Update feature org.textbe-feature
+  # Send feature to Toby to upload to update site
