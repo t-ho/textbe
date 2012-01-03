@@ -2,4 +2,6 @@
     * [InstallingTextBE Installing TextBE Guide]
     * [BTTextualRepresentation BT Textual Representation]
     * [BEVisualiser BE Visualiser Guide]
-    * [InstallingExamples Examples Guide] 
+    * [InstallingExamples Examples Guide]
+    * [BuildingTextBE Building TextBE Guide]
+ 
