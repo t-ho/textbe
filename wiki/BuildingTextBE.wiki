@@ -14,4 +14,4 @@ To use this description install
 
  * [http://en.wikipedia.org/wiki/Windows_XP Windows XP Professional 32 Bit Service pack 3]. You must obtain a licence for this software.
  * [http://en.wikipedia.org/wiki/Java_Development_Kit Java SE 6 Update 30 JDK]. It is available from the [http://www.oracle.com/technetwork/java/javase/downloads/index.html Oracle Java SE Downloads] page.
- * Eclipse Classic 3.7.1 (labeled '[http://en.wikipedia.org/wiki/Eclipse_(software)#Releases Indigo]') available from the[http://www.eclipse.org/downloads/?osType=win32 Eclipse Downloads] page. At the time of this writing this revision[http://www.eclipse.org/downloads/download.php?file=/eclipse/downloads/drops/R-3.7.1-201109091335/eclipse-SDK-3.7.1-win32.zip R-3.7.1-201109091335]
+ * Eclipse Classic 3.7.1 (labeled '[http://en.wikipedia.org/wiki/Eclipse_(software)#Releases Indigo]') available from the [http://www.eclipse.org/downloads/?osType=win32 Eclipse Downloads] page. At the time of this writing this revision [http://www.eclipse.org/downloads/download.php?file=/eclipse/downloads/drops/R-3.7.1-201109091335/eclipse-SDK-3.7.1-win32.zip R-3.7.1-201109091335 available through this link]
