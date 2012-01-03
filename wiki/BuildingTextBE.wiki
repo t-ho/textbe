@@ -6,11 +6,11 @@ TextBE is an Eclipse feature that consists of a set of plugins that are partly g
 
 This page is set up as a beginners guide, but its ultimate aim is to provide the information necessary to use [http://wiki.eclipse.org/PDE/Build PDE Build] to generate the set using [http://jenkins-ci.org/ Jenkins] [http://en.wikipedia.org/wiki/Continuous_integration Continuous integration].
 
-This page will give concrete version numbers. However u
+This page will give concrete version numbers. However users can and should attempt to use more recent versions, if the ones mentioned have become outdated.
 
-= Details =
+= Build Environment =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+This description has been developed on
+
+* [http://en.wikipedia.org/wiki/Windows_XP Windows XP Professional 32 Bit Service pack 3].
+* 
