@@ -68,7 +68,7 @@ The TextBE build is not a plain Java compilation. Instead, it involves different
 
 *Note:* We aim to build a repository for upload, so we will use {{{p2.gathering = true}}} and {{{skipMirroring=defined}}} in the global build.properties as described in [http://help.eclipse.org/indigo/topic/org.eclipse.pde.doc.user/tasks/pde_p2_builds.htm P2 Builds]
 
-||*Concrete syntaxes*||
+|| *Concrete Syntaxes* ||
 ||org.be.textbe.bt.model/metamodel/textbt.cs||
 ||org.be.textbe.ct.model/metamodel/textct.cs||
 ||org.be.textbe.st.model/metamodel/textst.cs||
@@ -121,7 +121,14 @@ The TextBE build is not a plain Java compilation. Instead, it involves different
 
 === Assembling the Builder (Bootstrap) ===
 
-[http://help.eclipse.org/indigo/topic/org.eclipse.platform.doc.isv/guide/p2_director.html  Installing software using the p2 director application] 
+[http://help.eclipse.org/indigo/topic/org.eclipse.platform.doc.isv/guide/p2_director.html  Installing software using the p2 director application]
+
+ # Obtain the director
+ # Install 
+  # PDE
+  # EMF
+  # EMFText
+  # PDE Subversive Fetch 
 
 [http://help.eclipse.org/indigo/topic/org.eclipse.platform.doc.isv/reference/misc/update_standalone.html Running update manager from command line]
 
