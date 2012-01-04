@@ -16,11 +16,22 @@ To use this description install
  * [http://en.wikipedia.org/wiki/Java_Development_Kit Java SE 6 Update 30 JDK]. It is available from the [http://www.oracle.com/technetwork/java/javase/downloads/index.html Oracle Java SE Downloads] page.
  * Eclipse Classic 3.7.1 (labeled '[http://en.wikipedia.org/wiki/Eclipse_(software)#Releases Indigo]') available from the [http://www.eclipse.org/downloads/?osType=win32 Eclipse Downloads] page. At the time of this writing this revision [http://www.eclipse.org/downloads/download.php?file=/eclipse/downloads/drops/R-3.7.1-201109091335/eclipse-SDK-3.7.1-win32.zip R-3.7.1-201109091335 available through this link] *Note:* While TextBE requires numerous Modeling plugins to build, the *Eclipse Modeling Tools* version on the Indigo downloads page is still based on version 3.6 'Helios' of Eclipse. As a result, we need to assemble the required features by hand.
 
- 
- = Installing Mylyn (Optional) =
+
+= Version Control =
+
+[http://code.google.com/p/support/wiki/SubversionFAQ#Where_do_I_get_a_password_for_committing_to_Subversion? Getting the subversion access key]
+
+[http://textbe.googlecode.com/svn/trunk Trunk]
+
+ = Issue Managment =
+Installing Mylyn Google Code Connector 
 
  8.Now install the Google Code Mylyn Connector. In Eclipse go to Help->Install New Software 
 9.In the "Work with:" field, type "http://knittig.de/googlecode-mylyn-connector/update/" 
+
+= Wiki 
+
+The wiki is in [http://moinmo.in/ MoinMoin syntax
  
 = Making a TextBE Update =
 
