@@ -62,8 +62,11 @@ The TextBE build is not a plain Java compilation. Instead, it involves different
 || 3 || Generate Text Resource for EMFText Concrete Syntaxes and Antlr plugin || customTargets.xml || Post Fetch source || [http://www.emftext.org/EMFTextGuide.php#x1-120002.3.2 EMFText Ant Task] ||
 || 4 ||  Generate Java Code for Ecore Model org.be.textbe.gv.model/metamodel/gv.genmodel || plugin build.properties>customBuildCallbacks=customBuildCallbacks.xml || customBuildCallbacks.xml->pre.build.jars || [http://wiki.eclipse.org/EMF/FAQ#How_can_I_use_the_EMF_Ant_tasks.3F EMF ant tasks] ||
 || 5 || Update plugin versions || qualifier = context || [http://help.eclipse.org/indigo/topic/org.eclipse.pde.doc.user/tasks/pde_version_qualifiers.htm Version Qualifier Context with Fetch]|| - ||
-|| 6 || Update feature org.textbe-feature || global build.properties || none - implicit, as we are building this feature || - ||
-|| 7 || upload feature to update site || customTargets.xml || postBuild || [http://www.eclipse.org/articles/Article-PDE-Automation/automation.html Build for update site ] ||
+|| 6 || Copy the graphviz feature to the target to be included ||  global build.properties->runPackager || runPackager=defined || [http://help.eclipse.org/indigo/topic/org.eclipse.pde.doc.user/tasks/pde_packager.htm packaging Tool] ||
+|| 7 || Update feature org.textbe-feature || global build.properties || none - implicit, as we are building this feature || - ||
+|| 8 || upload feature to update site || customTargets.xml || postBuild || [http://www.eclipse.org/articles/Article-PDE-Automation/automation.html Use this technique to copy the resulting repository ] ||
+
+*Note:* We aim to build a repository for upload, so we will use {{{p2.gathering = true}}} and {{{skipMirroring=defined}}} in the global build.properties as described in [http://help.eclipse.org/indigo/topic/org.eclipse.pde.doc.user/tasks/pde_p2_builds.htm P2 Builds]
 
 ||*Concrete syntaxes*||
 ||org.be.textbe.bt.model/metamodel/textbt.cs||
