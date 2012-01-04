@@ -59,11 +59,10 @@ The TextBE build is not a plain Java compilation. Instead, it involves different
 || *Step* || *Activity* || *PDE Component* || *Hook* || *Additional Builder Plugin* ||
 || 1 || Make a new (empty) workspace in Eclipse ||  customTargets.xml || Pre-Fetch source || - ||  
 || 2 || Download the latest code from the svn respository || global build.properties || [http://help.eclipse.org/indigo/topic/org.eclipse.pde.doc.user/reference/pde_builder_config.htm#fetchControl Fetch Control] || [http://wiki.eclipse.org/Subversive_PDE_Fetch Subversive PDE fetch] ||
-|| 3 || Generate Text Resource for EMFText Concrete Syntaxes and Antlr plugin
-|| customTargets.xml || Post Fetch source || [http://www.emftext.org/EMFTextGuide.php#x1-120002.3.2 EMFText Ant Task] ||
+|| 3 || Generate Text Resource for EMFText Concrete Syntaxes and Antlr plugin || customTargets.xml || Post Fetch source || [http://www.emftext.org/EMFTextGuide.php#x1-120002.3.2 EMFText Ant Task] ||
 || 4 ||  Generate Java Code for Ecore Model org.be.textbe.gv.model/metamodel/gv.genmodel || plugin build.properties>customBuildCallbacks=customBuildCallbacks.xml || customBuildCallbacks.xml->pre.build.jars || [http://wiki.eclipse.org/EMF/FAQ#How_can_I_use_the_EMF_Ant_tasks.3F EMF ant tasks] ||
-|| 5 || Update plugin versions || qualifier = context|| [http://help.eclipse.org/indigo/topic/org.eclipse.pde.doc.user/tasks/pde_version_qualifiers.htm Version Qualifier Context with Fetch]
-|| 6 || Update feature org.textbe-feature || global build.properties || none - implicit, as we are building this feature || ||
+|| 5 || Update plugin versions || qualifier = context || [http://help.eclipse.org/indigo/topic/org.eclipse.pde.doc.user/tasks/pde_version_qualifiers.htm Version Qualifier Context with Fetch]|| - ||
+|| 6 || Update feature org.textbe-feature || global build.properties || none - implicit, as we are building this feature || - ||
 || 7 || upload feature to update site || customTargets.xml || postBuild || [http://www.eclipse.org/articles/Article-PDE-Automation/automation.html Build for update site ] ||
 
 ||*Concrete syntaxes*||
@@ -131,4 +130,3 @@ The TextBE build is not a plain Java compilation. Instead, it involves different
 [http://wiki.eclipse.org/Subversive_PDE_Fetch Subversive PDE fetch]
 
 *Note:* The subversive provider is brittle and different from the subclipse provider installed for interactive use!!
-
