@@ -16,32 +16,119 @@ To use this description install
  * [http://en.wikipedia.org/wiki/Java_Development_Kit Java SE 6 Update 30 JDK]. It is available from the [http://www.oracle.com/technetwork/java/javase/downloads/index.html Oracle Java SE Downloads] page.
  * Eclipse Classic 3.7.1 (labeled '[http://en.wikipedia.org/wiki/Eclipse_(software)#Releases Indigo]') available from the [http://www.eclipse.org/downloads/?osType=win32 Eclipse Downloads] page. At the time of this writing this revision [http://www.eclipse.org/downloads/download.php?file=/eclipse/downloads/drops/R-3.7.1-201109091335/eclipse-SDK-3.7.1-win32.zip R-3.7.1-201109091335 available through this link] *Note:* While TextBE requires numerous Modeling plugins to build, the *Eclipse Modeling Tools* version on the Indigo downloads page is still based on version 3.6 'Helios' of Eclipse. As a result, we need to assemble the required features by hand.
 
+= Installing software into eclipse =
 
-= Version Control =
+Procedure for [http://help.eclipse.org/indigo/topic/org.eclipse.platform.doc.user/tasks/tasks-124.htm?resultof=%22%69%6e%73%74%61%6c%6c%22%20%22%69%6e%73%74%61%6c%22%20%22%6e%65%77%22%20%22%73%6f%66%74%77%61%72%65%22%20%22%73%6f%66%74%77%61%72%22%20 installing new software] in Indigo.
 
-[http://code.google.com/p/support/wiki/SubversionFAQ#Where_do_I_get_a_password_for_committing_to_Subversion? Getting the subversion access key]
+= Project Access / Version Control =
 
-[http://textbe.googlecode.com/svn/trunk Trunk]
+Install [http://subclipse.tigris.org/ Subclipse] from the
+[http://subclipse.tigris.org/update_1.8.x Subclipse 1.8.x release update site]
 
- = Issue Managment =
-Installing Mylyn Google Code Connector 
+*Note:* In order to connect to source code as a contributor, you need to use 
+'xyz@google.com' (replace 'xyz' by your uid) as your SVN user name, but you need a *different* password. Look at the following procedure that shows you 
+[http://code.google.com/p/support/wiki/SubversionFAQ#Where_do_I_get_a_password_for_committing_to_Subversion? where to get your subversion access password].
 
- 8.Now install the Google Code Mylyn Connector. In Eclipse go to Help->Install New Software 
-9.In the "Work with:" field, type "http://knittig.de/googlecode-mylyn-connector/update/" 
+== Code ==
 
-= Wiki 
+[http://textbe.googlecode.com/svn/trunk TextBe Repository Trunk (SVN)]
 
-The wiki is in [http://moinmo.in/ MoinMoin syntax
+== Wiki (Optional) ==
+
+You can edit the [http://code.google.com/p/textbe/w/list TextBE wiki online]. If you want to edit it offline, you can check it using the [https://textbe.googlecode.com/svn TextBe Wiki Trunk (SVN)].
+
+Use this procedure [http://code.google.com/p/heekscad/wiki/HowtoAddImagesToWiki to add images to the wiki].
+
+The wiki content is written in a subset of the [http://en.wikipedia.org/wiki/MoinMoin MoinMoin] syntax documented on the [http://code.google.com/p/support/wiki/WikiSyntax Google Code Wiki Syntax page ]. To have some support with editing the content, install Mylyn Wikitext and the  
+[http://update-site.moinmoinwikitext.googlecode.com/hg/ Moinmoin Wikitext integration] for Eclipse from the [http://update-site.moinmoinwikitext.googlecode.com/hg/ Moinmoin Wikitext integration download site]
  
-= Making a TextBE Update =
+== Issues (Optional)==
 
-  # Make a new workspace in Eclipse
-  # Download the latest code from the svn respository
-  # Generate code for required projects i.e.
-    * org.be.textbe.bt.model/metamodel/textbt.cs => Generate Text Resource
-    * org.be.textbe.ct.model/metamodel/textct.cs => Generate Text Resource
-    * org.be.textbe.st.model/metamodel/textst.cs => Generate Text Resource
-    * org.be.textbe.gv.model/metamodel/gv.genmodel => Generate Model Code
-  # Update plugin versions
-  # Update feature org.textbe-feature
-  # Send feature to Toby to upload to update site 
+You can manage issues in the [http://code.google.com/p/textbe/issues/list TextBE online issues list]. If you want to edit them in Eclipse, install Mylyn, followed by the [http://code.google.com/p/googlecode-mylyn-connector/ Mylyn Google Code Connector] installable from the  [http://knittig.de/googlecode-mylyn-connector/update/ Google code mylyn connector update site].
+
+*Note:* This connector uses your google account uid and password.
+
+= Building =
+This section describes how TextBE is built. It starts with an informal description of the process, then refines the items description of items that are produced with formal descriptions in the Concepts and Technology section.
+
+== Build Steps of TextBE ==
+
+The TextBE build is not a plain Java compilation. Instead, it involves different generators
+
+
+|| *Step* || *Activity* || *PDE Component* || *Hook* || *Additional Builder Plugin* ||
+|| 1 || Make a new (empty) workspace in Eclipse ||  customTargets.xml || Pre-Fetch source || - ||  
+|| 2 || Download the latest code from the svn respository || global build.properties || [http://help.eclipse.org/indigo/topic/org.eclipse.pde.doc.user/reference/pde_builder_config.htm#fetchControl Fetch Control] || [http://wiki.eclipse.org/Subversive_PDE_Fetch Subversive PDE fetch] ||
+|| 3 || Generate Text Resource for EMFText Concrete Syntaxes and Antlr plugin
+|| customTargets.xml || Post Fetch source || [http://www.emftext.org/EMFTextGuide.php#x1-120002.3.2 EMFText Ant Task] ||
+|| 4 ||  Generate Java Code for Ecore Model org.be.textbe.gv.model/metamodel/gv.genmodel || plugin build.properties>customBuildCallbacks=customBuildCallbacks.xml || customBuildCallbacks.xml->pre.build.jars || [http://wiki.eclipse.org/EMF/FAQ#How_can_I_use_the_EMF_Ant_tasks.3F EMF ant tasks] ||
+|| 5 || Update plugin versions || qualifier = context|| [http://help.eclipse.org/indigo/topic/org.eclipse.pde.doc.user/tasks/pde_version_qualifiers.htm Version Qualifier Context with Fetch]
+|| 6 || Update feature org.textbe-feature || global build.properties || none - implicit, as we are building this feature || ||
+|| 7 || upload feature to update site || customTargets.xml || postBuild || [http://www.eclipse.org/articles/Article-PDE-Automation/automation.html Build for update site ] ||
+
+||*Concrete syntaxes*||
+||org.be.textbe.bt.model/metamodel/textbt.cs||
+||org.be.textbe.ct.model/metamodel/textct.cs||
+||org.be.textbe.st.model/metamodel/textst.cs||
+
+== Concepts and Terminology ==
+
+
+
+=== Target ===
+
+[http://help.eclipse.org/indigo/topic/org.eclipse.pde.doc.user/concepts/target.htm Eclipse Help Definition of Target]
+
+=== Builder ===
+
+[http://help.eclipse.org/indigo/nav/4_3_1 Builder Configuration]
+
+=== Artefacts ===
+
+[http://help.eclipse.org/indigo/topic/org.eclipse.pde.doc.user/tasks/pde_version_qualifiers.htm Versions]
+
+==== Feature ====
+
+[http://help.eclipse.org/indigo/topic/org.eclipse.pde.doc.user/concepts/feature.htm Eclipse Help Definition of Feature]
+
+==== Plugin ====
+
+[http://help.eclipse.org/indigo/topic/org.eclipse.pde.doc.user/concepts/plugin.htm Eclipse Help Definition of Plugin]
+
+==== Fragment ====
+
+[http://help.eclipse.org/indigo/topic/org.eclipse.pde.doc.user/concepts/fragment.htm Eclipse Help Definition of Fragment]
+
+ 
+== Automating the Build ==
+
+=== Alternatives ===
+
+=== Introduction to PDE Build ===
+[http://www.vogella.de/articles/EclipsePDEBuild/article.html PDE Build introductory article] 
+
+[http://www.eclipse.org/articles/Article-PDE-Automation/automation.html PDE Build extended article]
+
+[http://help.eclipse.org/indigo/nav/4_2 Eclipse PDE Build Core Documentation]
+
+[http://help.eclipse.org/indigo/topic/org.eclipse.pde.doc.user/tasks/pde_custom_callbacks.htm PDE Build custom Callbacks]
+
+=== PDE Locations ===
+
+
+
+=== Assembling the Builder (Bootstrap) ===
+
+[http://help.eclipse.org/indigo/topic/org.eclipse.platform.doc.isv/guide/p2_director.html  Installing software using the p2 director application] 
+
+[http://help.eclipse.org/indigo/topic/org.eclipse.platform.doc.isv/reference/misc/update_standalone.html Running update manager from command line]
+
+
+=== Assembling the Target ===
+
+[http://help.eclipse.org/indigo/topic/org.eclipse.pde.doc.user/tasks/pde_fetch_phase.htm PDE fetch]
+
+[http://wiki.eclipse.org/Subversive_PDE_Fetch Subversive PDE fetch]
+
+*Note:* The subversive provider is brittle and different from the subclipse provider installed for interactive use!!
+
