@@ -1,6 +1,8 @@
 = Development Environment =
 
-To use this description install
+This page will give concrete version numbers. However users can and should attempt to use more recent versions, if the ones mentioned have become outdated.
+
+To set up your Environment
 
  * [http://en.wikipedia.org/wiki/Windows_XP Windows XP Professional 32 Bit Service pack 3]. You must obtain a licence for this software.
  * [http://en.wikipedia.org/wiki/Java_Development_Kit Java SE 6 Update 30 JDK]. It is available from the [http://www.oracle.com/technetwork/java/javase/downloads/index.html Oracle Java SE Downloads] page.
