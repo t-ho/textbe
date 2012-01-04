@@ -123,15 +123,15 @@ The TextBE build is not a plain Java compilation. Instead, it involves different
 
 [http://help.eclipse.org/indigo/topic/org.eclipse.platform.doc.isv/guide/p2_director.html  Installing software using the p2 director application]
 
- # Obtain the director
- # Install 
+[http://dev.eclipse.org/viewcvs/viewvc.cgi/org.eclipse.dash/athena/org.eclipse.dash.commonbuilder/org.eclipse.myproject.releng/?root=Technology_Project Use a base releng project and bootstrap]
+
+ # Get the [http://wiki.eclipse.org/Platform-releng-basebuilder#Current_build_tag_for_3.7_stream_builds_.28Indigo.29 Basebuilder for Indigo] from its
+[http://dev.eclipse.org/viewcvs/viewvc.cgi/org.eclipse.releng.basebuilder/ CVS location]
+ # Install into the basebuilder
   # PDE
   # EMF
   # EMFText
   # PDE Subversive Fetch 
-
-[http://help.eclipse.org/indigo/topic/org.eclipse.platform.doc.isv/reference/misc/update_standalone.html Running update manager from command line]
-
 
 === Assembling the Target ===
 
@@ -140,3 +140,5 @@ The TextBE build is not a plain Java compilation. Instead, it involves different
 [http://wiki.eclipse.org/Subversive_PDE_Fetch Subversive PDE fetch]
 
 *Note:* The subversive provider is brittle and different from the subclipse provider installed for interactive use!!
+
+=== Repacking into the Target ===
