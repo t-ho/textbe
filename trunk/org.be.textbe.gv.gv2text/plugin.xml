@@ -7,8 +7,9 @@
          point="org.eclipse.jet.transform">
       <transform
             modelLoader="org.eclipse.jet.emf"
+            private="true"
             startTemplate="templates/main.jet"
-            templateLoaderClass="org.be.gv.gv2text.compiled._jet_transformation">
+            templateLoaderClass="org.be.textbe.gv.gv2text.compiled._jet_transformation">
          <description></description>
          <tagLibraries>
             <importLibrary id="org.eclipse.jet.controlTags" usePrefix="c" autoImport="true"/>
