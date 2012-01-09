@@ -1,22 +1,6 @@
-<%@taglib prefix="ws" id="org.eclipse.jet.workspaceTags" %>
 <%-- Main entry point for org.be.gv.gv2text --%>
 <%-- 
-TODO: traverse input model, performing calculations and storing 
-the results as model annotations via c:set tag 
---%>
-
-
-<%--
-TODO: traverse annotated model, performing text generation actions 
-such as ws:file, ws:folder and ws:project 
---%>
-   
-
-<%-- For debug purposes, dump the annotated input model in 
-   the root of the project containing the original input model.
-   
-   Note that model formatting may not be identical, and that in
-   the case of non-XML input models, the dump may look quite different.
+TODO: find out if this is used anywhere. org.be.textbe.beviz.BEView does not use it.
 --%>
 
 <c:if test="isVariableDefined('org.eclipse.jet.resource.project.name')">
