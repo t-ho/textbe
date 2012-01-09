@@ -2,9 +2,6 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: org.be.gv.gv2text
 Bundle-SymbolicName: org.be.textbe.gv.gv2text;singleton:=true
-Bundle-Version: 0.1.1
-Bundle-Vendor: 
+Bundle-Version: 1.0.0
 Require-Bundle: org.eclipse.jet
-Bundle-ClassPath: .,bin/
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.be.gv.gv2text.compiled;uses:="org.eclipse.jet"
