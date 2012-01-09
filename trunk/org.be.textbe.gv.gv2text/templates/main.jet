@@ -20,6 +20,5 @@ such as ws:file, ws:folder and ws:project
 --%>
 
 <c:if test="isVariableDefined('org.eclipse.jet.resource.project.name')">
-    <%-- <ws:file template="templates/dump.jet" path="{$org.eclipse.jet.resource.project.name}/dump2.gv"/> --%>
     <ws:file template="templates/gv.jet" path="{$org.eclipse.jet.resource.project.name}/temp.dot"/>
 </c:if>
