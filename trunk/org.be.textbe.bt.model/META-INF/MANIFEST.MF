@@ -10,5 +10,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.be.textbe.bt.textbt,
  org.be.textbe.bt.textbt.impl,
  org.be.textbe.bt.textbt.util
-Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport
+Require-Bundle: org.eclipse.emf.ecore
 Bundle-ActivationPolicy: lazy
