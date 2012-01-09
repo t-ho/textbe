@@ -22,6 +22,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart;
 import org.eclipse.jet.BodyContentWriter;
 import org.eclipse.jet.BufferedJET2Writer;
 import org.eclipse.jet.JET2Context;
@@ -37,9 +38,9 @@ import org.eclipse.m2m.atl.core.IInjector;
 import org.eclipse.m2m.atl.core.IModel;
 import org.eclipse.m2m.atl.core.IReferenceModel;
 import org.eclipse.m2m.atl.core.ModelFactory;
+import org.eclipse.m2m.atl.core.emf.EMFModel;
 import org.eclipse.m2m.atl.core.launch.ILauncher;
 import org.eclipse.m2m.atl.core.service.CoreService;
-import org.eclipse.m2m.atl.core.emf.EMFModel;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
@@ -47,24 +48,24 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
+import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.IViewReference;
+import org.eclipse.ui.IWindowListener;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.part.ViewPart;
-import com.abstratt.graphviz.GraphViz;
-import org.eclipse.ui.IWindowListener;
-import org.eclipse.ui.IFileEditorInput;
-import org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart;
 import org.eclipse.ui.editors.text.TextEditor;
+import org.eclipse.ui.part.ViewPart;
 import org.osgi.framework.Bundle;
-import org.eclipse.m2m.atl.common.ATLExecutionException;
+
+import com.abstratt.graphviz.GraphViz;
 
 public class BEView extends ViewPart implements Runnable {
 
+	private static final String TRANSFORMATION_ID_OF_GV2TEXT = "org.be.textbe.gv.gv2text";
 	private static IInjector injector;
 	private static IExtractor extractor;
 	private static IReferenceModel inMetamodel;	
@@ -220,7 +221,7 @@ public class BEView extends ViewPart implements Runnable {
 			final BufferedJET2Writer out = new BodyContentWriter();				
 
 			try {
-				JET2TemplateManager.run(new String[] {"org.be.textbe.gv.gv2text"}, new JET2TemplateManager.ITemplateOperation() {
+				JET2TemplateManager.run(new String[] {TRANSFORMATION_ID_OF_GV2TEXT}, new JET2TemplateManager.ITemplateOperation() {
 					public void run(ITemplateRunner templateRunner) {
 						templateRunner.generate("templates/gv.jet", context, out);
 					}
