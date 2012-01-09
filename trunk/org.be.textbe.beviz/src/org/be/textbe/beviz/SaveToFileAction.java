@@ -7,20 +7,12 @@
 
 package org.be.textbe.beviz;
 
-import java.io.BufferedReader;
-import java.io.CharArrayReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Reader;
 import java.util.Arrays;
 import java.util.List;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -38,8 +30,6 @@ import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
 
 import com.abstratt.graphviz.GraphViz;
-
-import com.lowagie.text.pdf.PdfWriter;
 
 public class SaveToFileAction implements IViewActionDelegate {
 	

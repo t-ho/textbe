@@ -7,12 +7,12 @@
 
 package org.be.textbe.beviz;
 import java.util.Iterator;
+
 import org.apache.batik.swing.JSVGCanvas;
 import org.apache.batik.swing.svg.SVGDocumentLoader;
 import org.apache.batik.swing.svg.SVGDocumentLoaderListener;
 import org.apache.batik.swing.svg.SVGUserAgent;
 import org.apache.batik.util.ParsedURL;
-import org.w3c.dom.svg.SVGDocument;
 
 
 /**
