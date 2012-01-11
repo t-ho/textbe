@@ -12,7 +12,7 @@
    id="org.be.textbe.st.model"
    name="%pluginName"
    version="0.1.1"
->
+   provider-name="%providerName">
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
