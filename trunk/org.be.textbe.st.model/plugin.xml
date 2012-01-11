@@ -8,7 +8,11 @@
  $Id$
 -->
 
-<plugin>
+<plugin
+   id="org.be.textbe.st.model"
+   name="%pluginName"
+   version="0.1.1"
+>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
