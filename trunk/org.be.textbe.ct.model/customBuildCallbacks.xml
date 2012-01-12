@@ -56,7 +56,20 @@
 	</target>
 
 	<target name="pre.@dot">
-		<emftext.GenerateTextResource syntax="metamodel/textCT.cs" rootFolder=".." generateantlrplugin="true" syntaxprojectname="org.be.textbe.ct.model" />
+		<!-- http://download.eclipse.org/modeling/emf/emf/javadoc/2.5.0/org/eclipse/emf/ant/taskdefs/codegen/ecore/GeneratorTask.html -->
+		<emf.Ecore2Java 
+		model="${basedir}/metamodel/textCT.ecore"
+		genModel="${basedir}/metamodel/textCT.genmodel"
+		reconcileGenModel="keep"
+		generatejavacode="true"
+		generateModelProject="false" 
+		generateEditProject="false"
+		generateEditorProject="false"
+		generateTestsProject="false"
+		modelProject="org.be.textbe.ct.model"
+		modelProjectFragmentPath="src" modelPluginID="org.be.textbe.ct.model"
+		sdo="false">
+		</emf.Ecore2Java>
 	</target>
 
 	<!-- ===================================================================== -->

@@ -66,8 +66,8 @@
 		generateEditProject="false"
 		generateEditorProject="false"
 		generateTestsProject="false"
-		modelProject="org.be.textbe.gv.model"
-		modelProjectFragmentPath="src" modelPluginID="org.be.textbe.gv.model"
+		modelProject="org.be.textbe.bt.model"
+		modelProjectFragmentPath="src" modelPluginID="org.be.textbe.bt.model"
 		sdo="false">
 		</emf.Ecore2Java>
 	</target>
