@@ -61,13 +61,14 @@
 		model="${basedir}/metamodel/textST.ecore"
 		genModel="${basedir}/metamodel/textST.genmodel"
 		reconcileGenModel="keep"
-		generatejavacode="true"
+		generateJavaCode="true"
 		generateModelProject="false" 
 		generateEditProject="false"
 		generateEditorProject="false"
 		generateTestsProject="false"
 		modelProject="org.be.textbe.st.model"
-		modelProjectFragmentPath="src" modelPluginID="org.be.textbe.st.model"
+		modelProjectFragmentPath="src"
+		modelPluginID="org.be.textbe.st.model"
 		sdo="false">
 		</emf.Ecore2Java>
 	</target>

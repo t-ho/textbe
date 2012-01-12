@@ -61,7 +61,7 @@
 		model="${basedir}/metamodel/gv.ecore"
 		genModel="${basedir}/metamodel/gv.genmodel"
 		reconcileGenModel="keep"
-		generatejavacode="true"
+		generateJavaCode="true"
 		generateModelProject="false" 
 		generateEditProject="false"
 		generateEditorProject="false"

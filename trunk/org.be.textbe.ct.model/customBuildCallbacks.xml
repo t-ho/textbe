@@ -61,7 +61,7 @@
 		model="${basedir}/metamodel/textCT.ecore"
 		genModel="${basedir}/metamodel/textCT.genmodel"
 		reconcileGenModel="keep"
-		generatejavacode="true"
+		generateJavaCode="true"
 		generateModelProject="false" 
 		generateEditProject="false"
 		generateEditorProject="false"
