@@ -57,6 +57,7 @@
 
 	<target name="pre.@dot">
 		<!-- http://download.eclipse.org/modeling/emf/emf/javadoc/2.5.0/org/eclipse/emf/ant/taskdefs/codegen/ecore/GeneratorTask.html -->
+		<!-- currently broken, see http://www.eclipse.org/forums/index.php/m/778278/#msg_778278 -->
 		<emf.Ecore2Java 
 		model="${basedir}/metamodel/textbt.ecore"
 		genModel="${basedir}/metamodel/textbt.genmodel"

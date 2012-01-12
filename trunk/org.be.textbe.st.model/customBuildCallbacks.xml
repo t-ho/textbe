@@ -57,6 +57,7 @@
 
 	<target name="pre.@dot">
 		<!-- http://download.eclipse.org/modeling/emf/emf/javadoc/2.5.0/org/eclipse/emf/ant/taskdefs/codegen/ecore/GeneratorTask.html -->
+		<!-- currently broken, see http://www.eclipse.org/forums/index.php/m/778278/#msg_778278 -->
 		<emf.Ecore2Java 
 		model="${basedir}/metamodel/textST.ecore"
 		genModel="${basedir}/metamodel/textST.genmodel"
@@ -66,7 +67,7 @@
 		generateEditProject="false"
 		generateEditorProject="false"
 		generateTestsProject="false"
-		modelProject="org.be.textbe.st.model"
+		modelProject="${basedir}"
 		modelProjectFragmentPath="src"
 		modelPluginID="org.be.textbe.st.model"
 		sdo="false">
