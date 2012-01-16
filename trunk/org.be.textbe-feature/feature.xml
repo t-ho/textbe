@@ -26,6 +26,11 @@ feature into your product.
       <discovery label="EMFText" url="http://reuseware.org/update/"/>
    </url>
 
+   <includes
+         id="com.abstratt.eclipsegraphviz"
+         version="0.0.0"
+         search-location="self"/>
+
    <requires>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.runtime"/>
