@@ -13,5 +13,24 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.ide;bundle-version="3.7.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Bundle-ClassPath: .
+Bundle-ClassPath: .,
+ lib/batik-awt-util.jar,
+ lib/batik-bridge.jar,
+ lib/batik-css.jar,
+ lib/batik-dom.jar,
+ lib/batik-ext.jar,
+ lib/batik-extension.jar,
+ lib/batik-gui-util.jar,
+ lib/batik-gvt.jar,
+ lib/batik-parser.jar,
+ lib/batik-script.jar,
+ lib/batik-svg-dom.jar,
+ lib/batik-svggen.jar,
+ lib/batik-swing.jar,
+ lib/batik-transcoder.jar,
+ lib/batik-util.jar,
+ lib/batik-xml.jar,
+ lib/iText-2.1.7.jar,
+ lib/js.jar,
+ lib/pdf-transcoder.jar
 Bundle-Vendor: Behavior Engineering
