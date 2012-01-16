@@ -1,0 +1,9 @@
+feature@org.be.textbe=SVN,url=https://textbe.googlecode.com/svn,path=org.be.textbe-feature
+plugin@org.be.textbe.beviz=SVN,url=https://textbe.googlecode.com/svn,path=org.be.textbe.beviz
+plugin@org.be.textbe.bt.examples=SVN,url=https://textbe.googlecode.com/svn,path=org.be.textbe.bt.examples
+plugin@org.be.textbe.bt.model=SVN,url=https://textbe.googlecode.com/svn,path=org.be.textbe.bt.model
+plugin@org.be.textbe.ct.model=SVN,url=https://textbe.googlecode.com/svn,path=org.be.textbe.ct.model
+plugin@org.be.textbe.gv.gv2text=SVN,url=https://textbe.googlecode.com/svn,path=org.be.textbe.gv.gv2text
+plugin@org.be.textbe.gv.model=SVN,url=https://textbe.googlecode.com/svn,path=org.be.textbe.gv.model
+plugin@org.be.textbe.st.examples=SVN,url=https://textbe.googlecode.com/svn,path=org.be.textbe.st.examples
+plugin@org.be.textbe.st.model=SVN,url=https://textbe.googlecode.com/svn,path=org.be.textbe.st.model
