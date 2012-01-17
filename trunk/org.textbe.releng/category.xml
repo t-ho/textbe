@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.be.textbe_0.1.1.jar" id="org.be.textbe" version="0.1.1">
+      <category name="org.be.textbe"/>
+   </feature>
+   <category-def name="org.be.textbe" label="textbe - Textual Editor for Behavior Engineering">
+      <description>
+         Behavior Engineering (BE) is an integrated discipline that supports the systems and software engineering of large-scale, dependable software-intensive systems. Behavior Engineering employs a graphical Behavior Modeling Language (BML) that is used to construct complete behavioral, compositional and structural integrated views from natural language descriptions of a large set of requirements for a proposed system.
+
+TextBE provides a textual editor for defining BE models using textual representations of the three integrated views (Behavior Trees (BT), Composition Trees (CT), Structure Trees (ST)) of the Behavior Modeling Language. TextBE converts the textual representation into a graphical visualisation for use whilst editing that can also be saved into various file formats for use outside of TextBE. 
+
+or more information, refer to the project wiki at http://code.google.com/p/textbe/wiki/TextBE.
+      </description>
+   </category-def>
+</site>
