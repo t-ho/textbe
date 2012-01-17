@@ -25,24 +25,24 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 public abstract class AbstractBlockOrNodeImpl extends EObjectImpl implements AbstractBlockOrNode
 {
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected AbstractBlockOrNodeImpl()
   {
-		super();
-	}
+    super();
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   protected EClass eStaticClass()
   {
-		return TextstPackage.Literals.ABSTRACT_BLOCK_OR_NODE;
-	}
+    return TextstPackage.Literals.ABSTRACT_BLOCK_OR_NODE;
+  }
 
 } //AbstractBlockOrNodeImpl

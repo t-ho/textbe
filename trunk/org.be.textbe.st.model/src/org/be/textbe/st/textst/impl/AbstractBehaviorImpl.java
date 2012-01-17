@@ -25,24 +25,24 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 public abstract class AbstractBehaviorImpl extends EObjectImpl implements AbstractBehavior
 {
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected AbstractBehaviorImpl()
   {
-		super();
-	}
+    super();
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   protected EClass eStaticClass()
   {
-		return TextstPackage.Literals.ABSTRACT_BEHAVIOR;
-	}
+    return TextstPackage.Literals.ABSTRACT_BEHAVIOR;
+  }
 
 } //AbstractBehaviorImpl

@@ -39,586 +39,590 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class SecondaryRelationImpl extends AbstractBehaviorImpl implements SecondaryRelation
 {
   /**
-	 * The default value of the '{@link #getBehaviorRef() <em>Behavior Ref</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getBehaviorRef() <em>Behavior Ref</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getBehaviorRef()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getBehaviorRef()
+   * @generated
+   * @ordered
+   */
   protected static final String BEHAVIOR_REF_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getBehaviorRef() <em>Behavior Ref</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getBehaviorRef() <em>Behavior Ref</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getBehaviorRef()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getBehaviorRef()
+   * @generated
+   * @ordered
+   */
   protected String behaviorRef = BEHAVIOR_REF_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getAttribute() <em>Attribute</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getAttribute() <em>Attribute</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getAttribute()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getAttribute()
+   * @generated
+   * @ordered
+   */
   protected static final String ATTRIBUTE_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getAttribute()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getAttribute()
+   * @generated
+   * @ordered
+   */
   protected String attribute = ATTRIBUTE_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getPrimaryLowerBound() <em>Primary Lower Bound</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getPrimaryLowerBound() <em>Primary Lower Bound</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getPrimaryLowerBound()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getPrimaryLowerBound()
+   * @generated
+   * @ordered
+   */
   protected static final String PRIMARY_LOWER_BOUND_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getPrimaryLowerBound() <em>Primary Lower Bound</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getPrimaryLowerBound() <em>Primary Lower Bound</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getPrimaryLowerBound()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getPrimaryLowerBound()
+   * @generated
+   * @ordered
+   */
   protected String primaryLowerBound = PRIMARY_LOWER_BOUND_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getPrimaryUpperBound() <em>Primary Upper Bound</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getPrimaryUpperBound() <em>Primary Upper Bound</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getPrimaryUpperBound()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getPrimaryUpperBound()
+   * @generated
+   * @ordered
+   */
   protected static final String PRIMARY_UPPER_BOUND_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getPrimaryUpperBound() <em>Primary Upper Bound</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getPrimaryUpperBound() <em>Primary Upper Bound</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getPrimaryUpperBound()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getPrimaryUpperBound()
+   * @generated
+   * @ordered
+   */
   protected String primaryUpperBound = PRIMARY_UPPER_BOUND_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getSecondaryLowerBound() <em>Secondary Lower Bound</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getSecondaryLowerBound() <em>Secondary Lower Bound</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getSecondaryLowerBound()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getSecondaryLowerBound()
+   * @generated
+   * @ordered
+   */
   protected static final String SECONDARY_LOWER_BOUND_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getSecondaryLowerBound() <em>Secondary Lower Bound</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getSecondaryLowerBound() <em>Secondary Lower Bound</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getSecondaryLowerBound()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getSecondaryLowerBound()
+   * @generated
+   * @ordered
+   */
   protected String secondaryLowerBound = SECONDARY_LOWER_BOUND_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getSecondaryUpperBound() <em>Secondary Upper Bound</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getSecondaryUpperBound() <em>Secondary Upper Bound</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getSecondaryUpperBound()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getSecondaryUpperBound()
+   * @generated
+   * @ordered
+   */
   protected static final String SECONDARY_UPPER_BOUND_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getSecondaryUpperBound() <em>Secondary Upper Bound</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getSecondaryUpperBound() <em>Secondary Upper Bound</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getSecondaryUpperBound()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getSecondaryUpperBound()
+   * @generated
+   * @ordered
+   */
   protected String secondaryUpperBound = SECONDARY_UPPER_BOUND_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getComponentRef() <em>Component Ref</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getComponentRef() <em>Component Ref</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getComponentRef()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getComponentRef()
+   * @generated
+   * @ordered
+   */
   protected static final String COMPONENT_REF_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getComponentRef() <em>Component Ref</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getComponentRef() <em>Component Ref</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getComponentRef()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getComponentRef()
+   * @generated
+   * @ordered
+   */
   protected String componentRef = COMPONENT_REF_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getComponentAttribute() <em>Component Attribute</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getComponentAttribute() <em>Component Attribute</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getComponentAttribute()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getComponentAttribute()
+   * @generated
+   * @ordered
+   */
   protected static final String COMPONENT_ATTRIBUTE_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getComponentAttribute() <em>Component Attribute</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getComponentAttribute() <em>Component Attribute</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getComponentAttribute()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getComponentAttribute()
+   * @generated
+   * @ordered
+   */
   protected String componentAttribute = COMPONENT_ATTRIBUTE_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getRelationName() <em>Relation Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getRelationName() <em>Relation Name</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getRelationName()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getRelationName()
+   * @generated
+   * @ordered
+   */
   protected static final String RELATION_NAME_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getRelationName() <em>Relation Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getRelationName() <em>Relation Name</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getRelationName()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getRelationName()
+   * @generated
+   * @ordered
+   */
   protected String relationName = RELATION_NAME_EDEFAULT;
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected SecondaryRelationImpl()
   {
-		super();
-	}
+    super();
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   protected EClass eStaticClass()
   {
-		return TextstPackage.Literals.SECONDARY_RELATION;
-	}
+    return TextstPackage.Literals.SECONDARY_RELATION;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getBehaviorRef()
   {
-		return behaviorRef;
-	}
+    return behaviorRef;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setBehaviorRef(String newBehaviorRef)
   {
-		String oldBehaviorRef = behaviorRef;
-		behaviorRef = newBehaviorRef;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TextstPackage.SECONDARY_RELATION__BEHAVIOR_REF, oldBehaviorRef, behaviorRef));
-	}
+    String oldBehaviorRef = behaviorRef;
+    behaviorRef = newBehaviorRef;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TextstPackage.SECONDARY_RELATION__BEHAVIOR_REF, oldBehaviorRef, behaviorRef));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getAttribute()
   {
-		return attribute;
-	}
+    return attribute;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setAttribute(String newAttribute)
   {
-		String oldAttribute = attribute;
-		attribute = newAttribute;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TextstPackage.SECONDARY_RELATION__ATTRIBUTE, oldAttribute, attribute));
-	}
+    String oldAttribute = attribute;
+    attribute = newAttribute;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TextstPackage.SECONDARY_RELATION__ATTRIBUTE, oldAttribute, attribute));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getPrimaryLowerBound()
   {
-		return primaryLowerBound;
-	}
+    return primaryLowerBound;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setPrimaryLowerBound(String newPrimaryLowerBound)
   {
-		String oldPrimaryLowerBound = primaryLowerBound;
-		primaryLowerBound = newPrimaryLowerBound;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TextstPackage.SECONDARY_RELATION__PRIMARY_LOWER_BOUND, oldPrimaryLowerBound, primaryLowerBound));
-	}
+    String oldPrimaryLowerBound = primaryLowerBound;
+    primaryLowerBound = newPrimaryLowerBound;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TextstPackage.SECONDARY_RELATION__PRIMARY_LOWER_BOUND, oldPrimaryLowerBound, primaryLowerBound));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getPrimaryUpperBound()
   {
-		return primaryUpperBound;
-	}
+    return primaryUpperBound;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setPrimaryUpperBound(String newPrimaryUpperBound)
   {
-		String oldPrimaryUpperBound = primaryUpperBound;
-		primaryUpperBound = newPrimaryUpperBound;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TextstPackage.SECONDARY_RELATION__PRIMARY_UPPER_BOUND, oldPrimaryUpperBound, primaryUpperBound));
-	}
+    String oldPrimaryUpperBound = primaryUpperBound;
+    primaryUpperBound = newPrimaryUpperBound;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TextstPackage.SECONDARY_RELATION__PRIMARY_UPPER_BOUND, oldPrimaryUpperBound, primaryUpperBound));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getSecondaryLowerBound()
   {
-		return secondaryLowerBound;
-	}
+    return secondaryLowerBound;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setSecondaryLowerBound(String newSecondaryLowerBound)
   {
-		String oldSecondaryLowerBound = secondaryLowerBound;
-		secondaryLowerBound = newSecondaryLowerBound;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TextstPackage.SECONDARY_RELATION__SECONDARY_LOWER_BOUND, oldSecondaryLowerBound, secondaryLowerBound));
-	}
+    String oldSecondaryLowerBound = secondaryLowerBound;
+    secondaryLowerBound = newSecondaryLowerBound;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TextstPackage.SECONDARY_RELATION__SECONDARY_LOWER_BOUND, oldSecondaryLowerBound, secondaryLowerBound));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getSecondaryUpperBound()
   {
-		return secondaryUpperBound;
-	}
+    return secondaryUpperBound;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setSecondaryUpperBound(String newSecondaryUpperBound)
   {
-		String oldSecondaryUpperBound = secondaryUpperBound;
-		secondaryUpperBound = newSecondaryUpperBound;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TextstPackage.SECONDARY_RELATION__SECONDARY_UPPER_BOUND, oldSecondaryUpperBound, secondaryUpperBound));
-	}
+    String oldSecondaryUpperBound = secondaryUpperBound;
+    secondaryUpperBound = newSecondaryUpperBound;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TextstPackage.SECONDARY_RELATION__SECONDARY_UPPER_BOUND, oldSecondaryUpperBound, secondaryUpperBound));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getComponentRef()
   {
-		return componentRef;
-	}
+    return componentRef;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setComponentRef(String newComponentRef)
   {
-		String oldComponentRef = componentRef;
-		componentRef = newComponentRef;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TextstPackage.SECONDARY_RELATION__COMPONENT_REF, oldComponentRef, componentRef));
-	}
+    String oldComponentRef = componentRef;
+    componentRef = newComponentRef;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TextstPackage.SECONDARY_RELATION__COMPONENT_REF, oldComponentRef, componentRef));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getComponentAttribute()
   {
-		return componentAttribute;
-	}
+    return componentAttribute;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setComponentAttribute(String newComponentAttribute)
   {
-		String oldComponentAttribute = componentAttribute;
-		componentAttribute = newComponentAttribute;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TextstPackage.SECONDARY_RELATION__COMPONENT_ATTRIBUTE, oldComponentAttribute, componentAttribute));
-	}
+    String oldComponentAttribute = componentAttribute;
+    componentAttribute = newComponentAttribute;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TextstPackage.SECONDARY_RELATION__COMPONENT_ATTRIBUTE, oldComponentAttribute, componentAttribute));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getRelationName()
   {
-		return relationName;
-	}
+    return relationName;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setRelationName(String newRelationName)
   {
-		String oldRelationName = relationName;
-		relationName = newRelationName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TextstPackage.SECONDARY_RELATION__RELATION_NAME, oldRelationName, relationName));
-	}
+    String oldRelationName = relationName;
+    relationName = newRelationName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TextstPackage.SECONDARY_RELATION__RELATION_NAME, oldRelationName, relationName));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-		switch (featureID) {
-			case TextstPackage.SECONDARY_RELATION__BEHAVIOR_REF:
-				return getBehaviorRef();
-			case TextstPackage.SECONDARY_RELATION__ATTRIBUTE:
-				return getAttribute();
-			case TextstPackage.SECONDARY_RELATION__PRIMARY_LOWER_BOUND:
-				return getPrimaryLowerBound();
-			case TextstPackage.SECONDARY_RELATION__PRIMARY_UPPER_BOUND:
-				return getPrimaryUpperBound();
-			case TextstPackage.SECONDARY_RELATION__SECONDARY_LOWER_BOUND:
-				return getSecondaryLowerBound();
-			case TextstPackage.SECONDARY_RELATION__SECONDARY_UPPER_BOUND:
-				return getSecondaryUpperBound();
-			case TextstPackage.SECONDARY_RELATION__COMPONENT_REF:
-				return getComponentRef();
-			case TextstPackage.SECONDARY_RELATION__COMPONENT_ATTRIBUTE:
-				return getComponentAttribute();
-			case TextstPackage.SECONDARY_RELATION__RELATION_NAME:
-				return getRelationName();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+    switch (featureID)
+    {
+      case TextstPackage.SECONDARY_RELATION__BEHAVIOR_REF:
+        return getBehaviorRef();
+      case TextstPackage.SECONDARY_RELATION__ATTRIBUTE:
+        return getAttribute();
+      case TextstPackage.SECONDARY_RELATION__PRIMARY_LOWER_BOUND:
+        return getPrimaryLowerBound();
+      case TextstPackage.SECONDARY_RELATION__PRIMARY_UPPER_BOUND:
+        return getPrimaryUpperBound();
+      case TextstPackage.SECONDARY_RELATION__SECONDARY_LOWER_BOUND:
+        return getSecondaryLowerBound();
+      case TextstPackage.SECONDARY_RELATION__SECONDARY_UPPER_BOUND:
+        return getSecondaryUpperBound();
+      case TextstPackage.SECONDARY_RELATION__COMPONENT_REF:
+        return getComponentRef();
+      case TextstPackage.SECONDARY_RELATION__COMPONENT_ATTRIBUTE:
+        return getComponentAttribute();
+      case TextstPackage.SECONDARY_RELATION__RELATION_NAME:
+        return getRelationName();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public void eSet(int featureID, Object newValue)
   {
-		switch (featureID) {
-			case TextstPackage.SECONDARY_RELATION__BEHAVIOR_REF:
-				setBehaviorRef((String)newValue);
-				return;
-			case TextstPackage.SECONDARY_RELATION__ATTRIBUTE:
-				setAttribute((String)newValue);
-				return;
-			case TextstPackage.SECONDARY_RELATION__PRIMARY_LOWER_BOUND:
-				setPrimaryLowerBound((String)newValue);
-				return;
-			case TextstPackage.SECONDARY_RELATION__PRIMARY_UPPER_BOUND:
-				setPrimaryUpperBound((String)newValue);
-				return;
-			case TextstPackage.SECONDARY_RELATION__SECONDARY_LOWER_BOUND:
-				setSecondaryLowerBound((String)newValue);
-				return;
-			case TextstPackage.SECONDARY_RELATION__SECONDARY_UPPER_BOUND:
-				setSecondaryUpperBound((String)newValue);
-				return;
-			case TextstPackage.SECONDARY_RELATION__COMPONENT_REF:
-				setComponentRef((String)newValue);
-				return;
-			case TextstPackage.SECONDARY_RELATION__COMPONENT_ATTRIBUTE:
-				setComponentAttribute((String)newValue);
-				return;
-			case TextstPackage.SECONDARY_RELATION__RELATION_NAME:
-				setRelationName((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+    switch (featureID)
+    {
+      case TextstPackage.SECONDARY_RELATION__BEHAVIOR_REF:
+        setBehaviorRef((String)newValue);
+        return;
+      case TextstPackage.SECONDARY_RELATION__ATTRIBUTE:
+        setAttribute((String)newValue);
+        return;
+      case TextstPackage.SECONDARY_RELATION__PRIMARY_LOWER_BOUND:
+        setPrimaryLowerBound((String)newValue);
+        return;
+      case TextstPackage.SECONDARY_RELATION__PRIMARY_UPPER_BOUND:
+        setPrimaryUpperBound((String)newValue);
+        return;
+      case TextstPackage.SECONDARY_RELATION__SECONDARY_LOWER_BOUND:
+        setSecondaryLowerBound((String)newValue);
+        return;
+      case TextstPackage.SECONDARY_RELATION__SECONDARY_UPPER_BOUND:
+        setSecondaryUpperBound((String)newValue);
+        return;
+      case TextstPackage.SECONDARY_RELATION__COMPONENT_REF:
+        setComponentRef((String)newValue);
+        return;
+      case TextstPackage.SECONDARY_RELATION__COMPONENT_ATTRIBUTE:
+        setComponentAttribute((String)newValue);
+        return;
+      case TextstPackage.SECONDARY_RELATION__RELATION_NAME:
+        setRelationName((String)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public void eUnset(int featureID)
   {
-		switch (featureID) {
-			case TextstPackage.SECONDARY_RELATION__BEHAVIOR_REF:
-				setBehaviorRef(BEHAVIOR_REF_EDEFAULT);
-				return;
-			case TextstPackage.SECONDARY_RELATION__ATTRIBUTE:
-				setAttribute(ATTRIBUTE_EDEFAULT);
-				return;
-			case TextstPackage.SECONDARY_RELATION__PRIMARY_LOWER_BOUND:
-				setPrimaryLowerBound(PRIMARY_LOWER_BOUND_EDEFAULT);
-				return;
-			case TextstPackage.SECONDARY_RELATION__PRIMARY_UPPER_BOUND:
-				setPrimaryUpperBound(PRIMARY_UPPER_BOUND_EDEFAULT);
-				return;
-			case TextstPackage.SECONDARY_RELATION__SECONDARY_LOWER_BOUND:
-				setSecondaryLowerBound(SECONDARY_LOWER_BOUND_EDEFAULT);
-				return;
-			case TextstPackage.SECONDARY_RELATION__SECONDARY_UPPER_BOUND:
-				setSecondaryUpperBound(SECONDARY_UPPER_BOUND_EDEFAULT);
-				return;
-			case TextstPackage.SECONDARY_RELATION__COMPONENT_REF:
-				setComponentRef(COMPONENT_REF_EDEFAULT);
-				return;
-			case TextstPackage.SECONDARY_RELATION__COMPONENT_ATTRIBUTE:
-				setComponentAttribute(COMPONENT_ATTRIBUTE_EDEFAULT);
-				return;
-			case TextstPackage.SECONDARY_RELATION__RELATION_NAME:
-				setRelationName(RELATION_NAME_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+    switch (featureID)
+    {
+      case TextstPackage.SECONDARY_RELATION__BEHAVIOR_REF:
+        setBehaviorRef(BEHAVIOR_REF_EDEFAULT);
+        return;
+      case TextstPackage.SECONDARY_RELATION__ATTRIBUTE:
+        setAttribute(ATTRIBUTE_EDEFAULT);
+        return;
+      case TextstPackage.SECONDARY_RELATION__PRIMARY_LOWER_BOUND:
+        setPrimaryLowerBound(PRIMARY_LOWER_BOUND_EDEFAULT);
+        return;
+      case TextstPackage.SECONDARY_RELATION__PRIMARY_UPPER_BOUND:
+        setPrimaryUpperBound(PRIMARY_UPPER_BOUND_EDEFAULT);
+        return;
+      case TextstPackage.SECONDARY_RELATION__SECONDARY_LOWER_BOUND:
+        setSecondaryLowerBound(SECONDARY_LOWER_BOUND_EDEFAULT);
+        return;
+      case TextstPackage.SECONDARY_RELATION__SECONDARY_UPPER_BOUND:
+        setSecondaryUpperBound(SECONDARY_UPPER_BOUND_EDEFAULT);
+        return;
+      case TextstPackage.SECONDARY_RELATION__COMPONENT_REF:
+        setComponentRef(COMPONENT_REF_EDEFAULT);
+        return;
+      case TextstPackage.SECONDARY_RELATION__COMPONENT_ATTRIBUTE:
+        setComponentAttribute(COMPONENT_ATTRIBUTE_EDEFAULT);
+        return;
+      case TextstPackage.SECONDARY_RELATION__RELATION_NAME:
+        setRelationName(RELATION_NAME_EDEFAULT);
+        return;
+    }
+    super.eUnset(featureID);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public boolean eIsSet(int featureID)
   {
-		switch (featureID) {
-			case TextstPackage.SECONDARY_RELATION__BEHAVIOR_REF:
-				return BEHAVIOR_REF_EDEFAULT == null ? behaviorRef != null : !BEHAVIOR_REF_EDEFAULT.equals(behaviorRef);
-			case TextstPackage.SECONDARY_RELATION__ATTRIBUTE:
-				return ATTRIBUTE_EDEFAULT == null ? attribute != null : !ATTRIBUTE_EDEFAULT.equals(attribute);
-			case TextstPackage.SECONDARY_RELATION__PRIMARY_LOWER_BOUND:
-				return PRIMARY_LOWER_BOUND_EDEFAULT == null ? primaryLowerBound != null : !PRIMARY_LOWER_BOUND_EDEFAULT.equals(primaryLowerBound);
-			case TextstPackage.SECONDARY_RELATION__PRIMARY_UPPER_BOUND:
-				return PRIMARY_UPPER_BOUND_EDEFAULT == null ? primaryUpperBound != null : !PRIMARY_UPPER_BOUND_EDEFAULT.equals(primaryUpperBound);
-			case TextstPackage.SECONDARY_RELATION__SECONDARY_LOWER_BOUND:
-				return SECONDARY_LOWER_BOUND_EDEFAULT == null ? secondaryLowerBound != null : !SECONDARY_LOWER_BOUND_EDEFAULT.equals(secondaryLowerBound);
-			case TextstPackage.SECONDARY_RELATION__SECONDARY_UPPER_BOUND:
-				return SECONDARY_UPPER_BOUND_EDEFAULT == null ? secondaryUpperBound != null : !SECONDARY_UPPER_BOUND_EDEFAULT.equals(secondaryUpperBound);
-			case TextstPackage.SECONDARY_RELATION__COMPONENT_REF:
-				return COMPONENT_REF_EDEFAULT == null ? componentRef != null : !COMPONENT_REF_EDEFAULT.equals(componentRef);
-			case TextstPackage.SECONDARY_RELATION__COMPONENT_ATTRIBUTE:
-				return COMPONENT_ATTRIBUTE_EDEFAULT == null ? componentAttribute != null : !COMPONENT_ATTRIBUTE_EDEFAULT.equals(componentAttribute);
-			case TextstPackage.SECONDARY_RELATION__RELATION_NAME:
-				return RELATION_NAME_EDEFAULT == null ? relationName != null : !RELATION_NAME_EDEFAULT.equals(relationName);
-		}
-		return super.eIsSet(featureID);
-	}
+    switch (featureID)
+    {
+      case TextstPackage.SECONDARY_RELATION__BEHAVIOR_REF:
+        return BEHAVIOR_REF_EDEFAULT == null ? behaviorRef != null : !BEHAVIOR_REF_EDEFAULT.equals(behaviorRef);
+      case TextstPackage.SECONDARY_RELATION__ATTRIBUTE:
+        return ATTRIBUTE_EDEFAULT == null ? attribute != null : !ATTRIBUTE_EDEFAULT.equals(attribute);
+      case TextstPackage.SECONDARY_RELATION__PRIMARY_LOWER_BOUND:
+        return PRIMARY_LOWER_BOUND_EDEFAULT == null ? primaryLowerBound != null : !PRIMARY_LOWER_BOUND_EDEFAULT.equals(primaryLowerBound);
+      case TextstPackage.SECONDARY_RELATION__PRIMARY_UPPER_BOUND:
+        return PRIMARY_UPPER_BOUND_EDEFAULT == null ? primaryUpperBound != null : !PRIMARY_UPPER_BOUND_EDEFAULT.equals(primaryUpperBound);
+      case TextstPackage.SECONDARY_RELATION__SECONDARY_LOWER_BOUND:
+        return SECONDARY_LOWER_BOUND_EDEFAULT == null ? secondaryLowerBound != null : !SECONDARY_LOWER_BOUND_EDEFAULT.equals(secondaryLowerBound);
+      case TextstPackage.SECONDARY_RELATION__SECONDARY_UPPER_BOUND:
+        return SECONDARY_UPPER_BOUND_EDEFAULT == null ? secondaryUpperBound != null : !SECONDARY_UPPER_BOUND_EDEFAULT.equals(secondaryUpperBound);
+      case TextstPackage.SECONDARY_RELATION__COMPONENT_REF:
+        return COMPONENT_REF_EDEFAULT == null ? componentRef != null : !COMPONENT_REF_EDEFAULT.equals(componentRef);
+      case TextstPackage.SECONDARY_RELATION__COMPONENT_ATTRIBUTE:
+        return COMPONENT_ATTRIBUTE_EDEFAULT == null ? componentAttribute != null : !COMPONENT_ATTRIBUTE_EDEFAULT.equals(componentAttribute);
+      case TextstPackage.SECONDARY_RELATION__RELATION_NAME:
+        return RELATION_NAME_EDEFAULT == null ? relationName != null : !RELATION_NAME_EDEFAULT.equals(relationName);
+    }
+    return super.eIsSet(featureID);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public String toString()
   {
-		if (eIsProxy()) return super.toString();
+    if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (behaviorRef: ");
-		result.append(behaviorRef);
-		result.append(", attribute: ");
-		result.append(attribute);
-		result.append(", primaryLowerBound: ");
-		result.append(primaryLowerBound);
-		result.append(", primaryUpperBound: ");
-		result.append(primaryUpperBound);
-		result.append(", secondaryLowerBound: ");
-		result.append(secondaryLowerBound);
-		result.append(", secondaryUpperBound: ");
-		result.append(secondaryUpperBound);
-		result.append(", componentRef: ");
-		result.append(componentRef);
-		result.append(", componentAttribute: ");
-		result.append(componentAttribute);
-		result.append(", relationName: ");
-		result.append(relationName);
-		result.append(')');
-		return result.toString();
-	}
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (behaviorRef: ");
+    result.append(behaviorRef);
+    result.append(", attribute: ");
+    result.append(attribute);
+    result.append(", primaryLowerBound: ");
+    result.append(primaryLowerBound);
+    result.append(", primaryUpperBound: ");
+    result.append(primaryUpperBound);
+    result.append(", secondaryLowerBound: ");
+    result.append(secondaryLowerBound);
+    result.append(", secondaryUpperBound: ");
+    result.append(secondaryUpperBound);
+    result.append(", componentRef: ");
+    result.append(componentRef);
+    result.append(", componentAttribute: ");
+    result.append(componentAttribute);
+    result.append(", relationName: ");
+    result.append(relationName);
+    result.append(')');
+    return result.toString();
+  }
 
 } //SecondaryRelationImpl

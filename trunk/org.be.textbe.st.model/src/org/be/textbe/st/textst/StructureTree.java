@@ -27,29 +27,29 @@ import org.eclipse.emf.ecore.EObject;
 public interface StructureTree extends EObject
 {
   /**
-	 * Returns the value of the '<em><b>Root Node</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Root Node</b></em>' containment reference.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Root Node</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Root Node</em>' containment reference.
-	 * @see #setRootNode(Node)
-	 * @see org.be.textbe.st.textst.TextstPackage#getStructureTree_RootNode()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
+   * @return the value of the '<em>Root Node</em>' containment reference.
+   * @see #setRootNode(Node)
+   * @see org.be.textbe.st.textst.TextstPackage#getStructureTree_RootNode()
+   * @model containment="true" required="true"
+   * @generated
+   */
   Node getRootNode();
 
   /**
-	 * Sets the value of the '{@link org.be.textbe.st.textst.StructureTree#getRootNode <em>Root Node</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.be.textbe.st.textst.StructureTree#getRootNode <em>Root Node</em>}' containment reference.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Root Node</em>' containment reference.
-	 * @see #getRootNode()
-	 * @generated
-	 */
+   * @param value the new value of the '<em>Root Node</em>' containment reference.
+   * @see #getRootNode()
+   * @generated
+   */
   void setRootNode(Node value);
 
 } // StructureTree

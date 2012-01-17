@@ -44,251 +44,257 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class ComponentImpl extends EObjectImpl implements Component
 {
   /**
-	 * The default value of the '{@link #getRef() <em>Ref</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getRef() <em>Ref</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getRef()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getRef()
+   * @generated
+   * @ordered
+   */
   protected static final String REF_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getRef() <em>Ref</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getRef() <em>Ref</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getRef()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getRef()
+   * @generated
+   * @ordered
+   */
   protected String ref = REF_EDEFAULT;
 
   /**
-	 * The default value of the '{@link #getVal() <em>Val</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The default value of the '{@link #getVal() <em>Val</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getVal()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getVal()
+   * @generated
+   * @ordered
+   */
   protected static final String VAL_EDEFAULT = null;
 
   /**
-	 * The cached value of the '{@link #getVal() <em>Val</em>}' attribute.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getVal() <em>Val</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getVal()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getVal()
+   * @generated
+   * @ordered
+   */
   protected String val = VAL_EDEFAULT;
 
   /**
-	 * The cached value of the '{@link #getBehaviors() <em>Behaviors</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getBehaviors() <em>Behaviors</em>}' containment reference list.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getBehaviors()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getBehaviors()
+   * @generated
+   * @ordered
+   */
   protected EList<AbstractBehavior> behaviors;
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected ComponentImpl()
   {
-		super();
-	}
+    super();
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   protected EClass eStaticClass()
   {
-		return TextstPackage.Literals.COMPONENT;
-	}
+    return TextstPackage.Literals.COMPONENT;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getRef()
   {
-		return ref;
-	}
+    return ref;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setRef(String newRef)
   {
-		String oldRef = ref;
-		ref = newRef;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TextstPackage.COMPONENT__REF, oldRef, ref));
-	}
+    String oldRef = ref;
+    ref = newRef;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TextstPackage.COMPONENT__REF, oldRef, ref));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public String getVal()
   {
-		return val;
-	}
+    return val;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public void setVal(String newVal)
   {
-		String oldVal = val;
-		val = newVal;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TextstPackage.COMPONENT__VAL, oldVal, val));
-	}
+    String oldVal = val;
+    val = newVal;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TextstPackage.COMPONENT__VAL, oldVal, val));
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   public EList<AbstractBehavior> getBehaviors()
   {
-		if (behaviors == null) {
-			behaviors = new EObjectContainmentEList<AbstractBehavior>(AbstractBehavior.class, this, TextstPackage.COMPONENT__BEHAVIORS);
-		}
-		return behaviors;
-	}
+    if (behaviors == null)
+    {
+      behaviors = new EObjectContainmentEList<AbstractBehavior>(AbstractBehavior.class, this, TextstPackage.COMPONENT__BEHAVIORS);
+    }
+    return behaviors;
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-		switch (featureID) {
-			case TextstPackage.COMPONENT__BEHAVIORS:
-				return ((InternalEList<?>)getBehaviors()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+    switch (featureID)
+    {
+      case TextstPackage.COMPONENT__BEHAVIORS:
+        return ((InternalEList<?>)getBehaviors()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-		switch (featureID) {
-			case TextstPackage.COMPONENT__REF:
-				return getRef();
-			case TextstPackage.COMPONENT__VAL:
-				return getVal();
-			case TextstPackage.COMPONENT__BEHAVIORS:
-				return getBehaviors();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+    switch (featureID)
+    {
+      case TextstPackage.COMPONENT__REF:
+        return getRef();
+      case TextstPackage.COMPONENT__VAL:
+        return getVal();
+      case TextstPackage.COMPONENT__BEHAVIORS:
+        return getBehaviors();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
-		switch (featureID) {
-			case TextstPackage.COMPONENT__REF:
-				setRef((String)newValue);
-				return;
-			case TextstPackage.COMPONENT__VAL:
-				setVal((String)newValue);
-				return;
-			case TextstPackage.COMPONENT__BEHAVIORS:
-				getBehaviors().clear();
-				getBehaviors().addAll((Collection<? extends AbstractBehavior>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+    switch (featureID)
+    {
+      case TextstPackage.COMPONENT__REF:
+        setRef((String)newValue);
+        return;
+      case TextstPackage.COMPONENT__VAL:
+        setVal((String)newValue);
+        return;
+      case TextstPackage.COMPONENT__BEHAVIORS:
+        getBehaviors().clear();
+        getBehaviors().addAll((Collection<? extends AbstractBehavior>)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public void eUnset(int featureID)
   {
-		switch (featureID) {
-			case TextstPackage.COMPONENT__REF:
-				setRef(REF_EDEFAULT);
-				return;
-			case TextstPackage.COMPONENT__VAL:
-				setVal(VAL_EDEFAULT);
-				return;
-			case TextstPackage.COMPONENT__BEHAVIORS:
-				getBehaviors().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+    switch (featureID)
+    {
+      case TextstPackage.COMPONENT__REF:
+        setRef(REF_EDEFAULT);
+        return;
+      case TextstPackage.COMPONENT__VAL:
+        setVal(VAL_EDEFAULT);
+        return;
+      case TextstPackage.COMPONENT__BEHAVIORS:
+        getBehaviors().clear();
+        return;
+    }
+    super.eUnset(featureID);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public boolean eIsSet(int featureID)
   {
-		switch (featureID) {
-			case TextstPackage.COMPONENT__REF:
-				return REF_EDEFAULT == null ? ref != null : !REF_EDEFAULT.equals(ref);
-			case TextstPackage.COMPONENT__VAL:
-				return VAL_EDEFAULT == null ? val != null : !VAL_EDEFAULT.equals(val);
-			case TextstPackage.COMPONENT__BEHAVIORS:
-				return behaviors != null && !behaviors.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+    switch (featureID)
+    {
+      case TextstPackage.COMPONENT__REF:
+        return REF_EDEFAULT == null ? ref != null : !REF_EDEFAULT.equals(ref);
+      case TextstPackage.COMPONENT__VAL:
+        return VAL_EDEFAULT == null ? val != null : !VAL_EDEFAULT.equals(val);
+      case TextstPackage.COMPONENT__BEHAVIORS:
+        return behaviors != null && !behaviors.isEmpty();
+    }
+    return super.eIsSet(featureID);
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   public String toString()
   {
-		if (eIsProxy()) return super.toString();
+    if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (ref: ");
-		result.append(ref);
-		result.append(", val: ");
-		result.append(val);
-		result.append(')');
-		return result.toString();
-	}
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (ref: ");
+    result.append(ref);
+    result.append(", val: ");
+    result.append(val);
+    result.append(')');
+    return result.toString();
+  }
 
 } //ComponentImpl
