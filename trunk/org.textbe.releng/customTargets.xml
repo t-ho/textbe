@@ -28,7 +28,7 @@
 	<!-- Replace values for mapsCheckoutTag as desired. -->
 	<!-- ===================================================================== -->
 	<target name="getMapFiles" depends="checkLocalMaps" unless="skipMaps">
-		<svn command="export" url="${mapsRepo}" force="true"/>			
+		<svn command="export" url="${mapsRepo}" force="true" dest="${buildDirectory}/maps/"/>			
 	</target>
 
 	<target name="checkLocalMaps">
