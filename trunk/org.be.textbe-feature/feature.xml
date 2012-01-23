@@ -60,18 +60,6 @@ feature into your product.
       <import plugin="org.apache.batik.dom" version="1.7.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.emf.ecore"/>
-      <import plugin="org.eclipse.emf"/>
-      <import plugin="org.eclipse.emf.codegen.ecore"/>
-      <import plugin="org.eclipse.emf.ecore.edit"/>
-      <import plugin="org.eclipse.emf.validation"/>
-      <import plugin="org.eclipse.emf.workspace"/>
-      <import plugin="org.eclipse.debug.core"/>
-      <import plugin="org.eclipse.core.expressions"/>
-      <import plugin="org.eclipse.debug.ui"/>
-      <import plugin="org.eclipse.emf.edit.ui"/>
-      <import plugin="org.eclipse.jface"/>
-      <import plugin="org.eclipse.jface.text"/>
-      <import plugin="org.eclipse.ui.views"/>
       <import plugin="org.apache.batik.css" version="1.6.0" match="equivalent"/>
       <import plugin="org.apache.batik.dom" version="1.6.0" match="equivalent"/>
       <import plugin="org.apache.batik.dom.svg" version="1.6.0" match="equivalent"/>
