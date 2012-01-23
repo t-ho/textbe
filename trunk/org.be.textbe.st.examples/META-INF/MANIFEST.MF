@@ -5,7 +5,6 @@ Bundle-SymbolicName: org.be.textbe.st.examples;singleton:=true
 Bundle-Version: 0.1.1
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime
-Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: Behavior Engineering
 Import-Package: org.eclipse.core.resources,
