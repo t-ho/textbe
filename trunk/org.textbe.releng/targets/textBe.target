@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde version="3.6"?>
 
-<target includeMode="feature" name="textBe" sequenceNumber="26">
+<target includeMode="feature" name="textBe" sequenceNumber="27">
 <locations>
 <location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="com.abstratt.eclipsegraphviz.feature.group" version="1.7.0.201102121434"/>
@@ -34,6 +34,12 @@
 <unit id="org.apache.batik.xml" version="1.7.0.v201011041433"/>
 <unit id="org.w3c.dom.svg" version="1.1.0.v201011041433"/>
 <repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20110523182458/repository/"/>
+</location>
+<location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.emftext.access.feature.group" version="1.4.0.v201107221427"/>
+<unit id="org.emftext.sdk.feature.group" version="1.4.0.v201107221427"/>
+<unit id="org.emftext.commons.antlr3_3_0.feature.group" version="3.3.0.v201107221427"/>
+<repository location="http://emftext.org/update"/>
 </location>
 </locations>
 </target>
