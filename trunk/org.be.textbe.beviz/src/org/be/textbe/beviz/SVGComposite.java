@@ -235,7 +235,7 @@ public class SVGComposite extends Composite implements ISelectionListener {
 	public void paintSVGFile() {
 		try {
 			if (svgFile != null) {
-				URL url = svgFile.getLocation().toFile().toURL();
+				URL url = svgFile.getLocation().toFile().toURI().toURL();
 				svgCanvas.loadSVGDocument(url.toExternalForm());
 			}
 		} catch (MalformedURLException e) {
