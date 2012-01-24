@@ -214,7 +214,7 @@ public class SVGComposite extends Composite implements ISelectionListener {
 	
 	public void setSVGPath(IPath path) {
 	    try {
-	        URL url = path.toFile().toURL();
+	        URL url = path.toFile().toURI().toURL();
 	        setSVGFile(url);
 	    } catch (MalformedURLException e) {
 	        e.printStackTrace();
