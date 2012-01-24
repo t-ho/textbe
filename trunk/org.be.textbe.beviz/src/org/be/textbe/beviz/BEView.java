@@ -89,7 +89,7 @@ public class BEView extends ViewPart implements Runnable {
 	    injector = CoreService.getInjector("EMF"); //$NON-NLS-1$
 	    extractor = CoreService.getExtractor("EMF"); //$NON-NLS-1$
 
-	    factory = CoreService.createModelFactory("EMF");
+	    factory = CoreService.getModelFactory("EMF");
 	} catch (ATLCoreException e) {
 	    e.printStackTrace();
 	}
