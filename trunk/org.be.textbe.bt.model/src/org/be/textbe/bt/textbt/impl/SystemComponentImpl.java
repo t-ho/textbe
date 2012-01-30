@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class SystemComponentImpl extends ComponentImpl implements SystemComponent {
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected SystemComponentImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-		return TextbtPackage.Literals.SYSTEM_COMPONENT;
-	}
+    return TextbtPackage.Literals.SYSTEM_COMPONENT;
+  }
 
 } //SystemComponentImpl

@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class ExternalInputImpl extends BehaviorImpl implements ExternalInput {
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected ExternalInputImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-		return TextbtPackage.Literals.EXTERNAL_INPUT;
-	}
+    return TextbtPackage.Literals.EXTERNAL_INPUT;
+  }
 
 } //ExternalInputImpl

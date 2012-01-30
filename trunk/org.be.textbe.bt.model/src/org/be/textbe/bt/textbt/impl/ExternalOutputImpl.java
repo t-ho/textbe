@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class ExternalOutputImpl extends BehaviorImpl implements ExternalOutput {
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected ExternalOutputImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-		return TextbtPackage.Literals.EXTERNAL_OUTPUT;
-	}
+    return TextbtPackage.Literals.EXTERNAL_OUTPUT;
+  }
 
 } //ExternalOutputImpl

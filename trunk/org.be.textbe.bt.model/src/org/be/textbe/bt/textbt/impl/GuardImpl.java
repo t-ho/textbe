@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class GuardImpl extends BehaviorImpl implements Guard {
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected GuardImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-		return TextbtPackage.Literals.GUARD;
-	}
+    return TextbtPackage.Literals.GUARD;
+  }
 
 } //GuardImpl

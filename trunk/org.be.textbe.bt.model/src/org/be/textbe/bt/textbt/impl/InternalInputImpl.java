@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class InternalInputImpl extends BehaviorImpl implements InternalInput {
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected InternalInputImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-		return TextbtPackage.Literals.INTERNAL_INPUT;
-	}
+    return TextbtPackage.Literals.INTERNAL_INPUT;
+  }
 
 } //InternalInputImpl

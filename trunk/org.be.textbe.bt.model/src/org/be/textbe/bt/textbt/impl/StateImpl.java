@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class StateImpl extends BehaviorImpl implements State {
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected StateImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-		return TextbtPackage.Literals.STATE;
-	}
+    return TextbtPackage.Literals.STATE;
+  }
 
 } //StateImpl

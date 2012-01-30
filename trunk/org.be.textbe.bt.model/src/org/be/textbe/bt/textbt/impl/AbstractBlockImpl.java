@@ -37,118 +37,124 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class AbstractBlockImpl extends AbstractBlockOrNodeImpl implements AbstractBlock {
 	/**
-	 * The cached value of the '{@link #getChildNode() <em>Child Node</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getChildNode() <em>Child Node</em>}' containment reference list.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getChildNode()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getChildNode()
+   * @generated
+   * @ordered
+   */
 	protected EList<Node> childNode;
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected AbstractBlockImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-		return TextbtPackage.Literals.ABSTRACT_BLOCK;
-	}
+    return TextbtPackage.Literals.ABSTRACT_BLOCK;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public EList<Node> getChildNode() {
-		if (childNode == null) {
-			childNode = new EObjectContainmentEList<Node>(Node.class, this, TextbtPackage.ABSTRACT_BLOCK__CHILD_NODE);
-		}
-		return childNode;
-	}
+    if (childNode == null)
+    {
+      childNode = new EObjectContainmentEList<Node>(Node.class, this, TextbtPackage.ABSTRACT_BLOCK__CHILD_NODE);
+    }
+    return childNode;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TextbtPackage.ABSTRACT_BLOCK__CHILD_NODE:
-				return ((InternalEList<?>)getChildNode()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+    switch (featureID)
+    {
+      case TextbtPackage.ABSTRACT_BLOCK__CHILD_NODE:
+        return ((InternalEList<?>)getChildNode()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TextbtPackage.ABSTRACT_BLOCK__CHILD_NODE:
-				return getChildNode();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+    switch (featureID)
+    {
+      case TextbtPackage.ABSTRACT_BLOCK__CHILD_NODE:
+        return getChildNode();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TextbtPackage.ABSTRACT_BLOCK__CHILD_NODE:
-				getChildNode().clear();
-				getChildNode().addAll((Collection<? extends Node>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+    switch (featureID)
+    {
+      case TextbtPackage.ABSTRACT_BLOCK__CHILD_NODE:
+        getChildNode().clear();
+        getChildNode().addAll((Collection<? extends Node>)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case TextbtPackage.ABSTRACT_BLOCK__CHILD_NODE:
-				getChildNode().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+    switch (featureID)
+    {
+      case TextbtPackage.ABSTRACT_BLOCK__CHILD_NODE:
+        getChildNode().clear();
+        return;
+    }
+    super.eUnset(featureID);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TextbtPackage.ABSTRACT_BLOCK__CHILD_NODE:
-				return childNode != null && !childNode.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+    switch (featureID)
+    {
+      case TextbtPackage.ABSTRACT_BLOCK__CHILD_NODE:
+        return childNode != null && !childNode.isEmpty();
+    }
+    return super.eIsSet(featureID);
+  }
 
 } //AbstractBlockImpl

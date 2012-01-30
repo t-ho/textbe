@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class ParallelBlockImpl extends AbstractBlockImpl implements ParallelBlock {
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected ParallelBlockImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-		return TextbtPackage.Literals.PARALLEL_BLOCK;
-	}
+    return TextbtPackage.Literals.PARALLEL_BLOCK;
+  }
 
 } //ParallelBlockImpl

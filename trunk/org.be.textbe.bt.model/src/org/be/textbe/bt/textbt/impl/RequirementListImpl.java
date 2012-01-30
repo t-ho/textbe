@@ -39,118 +39,124 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class RequirementListImpl extends EObjectImpl implements RequirementList {
 	/**
-	 * The cached value of the '{@link #getRequirements() <em>Requirements</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getRequirements() <em>Requirements</em>}' containment reference list.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRequirements()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getRequirements()
+   * @generated
+   * @ordered
+   */
 	protected EList<Requirement> requirements;
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected RequirementListImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-		return TextbtPackage.Literals.REQUIREMENT_LIST;
-	}
+    return TextbtPackage.Literals.REQUIREMENT_LIST;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public EList<Requirement> getRequirements() {
-		if (requirements == null) {
-			requirements = new EObjectContainmentEList<Requirement>(Requirement.class, this, TextbtPackage.REQUIREMENT_LIST__REQUIREMENTS);
-		}
-		return requirements;
-	}
+    if (requirements == null)
+    {
+      requirements = new EObjectContainmentEList<Requirement>(Requirement.class, this, TextbtPackage.REQUIREMENT_LIST__REQUIREMENTS);
+    }
+    return requirements;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TextbtPackage.REQUIREMENT_LIST__REQUIREMENTS:
-				return ((InternalEList<?>)getRequirements()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+    switch (featureID)
+    {
+      case TextbtPackage.REQUIREMENT_LIST__REQUIREMENTS:
+        return ((InternalEList<?>)getRequirements()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TextbtPackage.REQUIREMENT_LIST__REQUIREMENTS:
-				return getRequirements();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+    switch (featureID)
+    {
+      case TextbtPackage.REQUIREMENT_LIST__REQUIREMENTS:
+        return getRequirements();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TextbtPackage.REQUIREMENT_LIST__REQUIREMENTS:
-				getRequirements().clear();
-				getRequirements().addAll((Collection<? extends Requirement>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+    switch (featureID)
+    {
+      case TextbtPackage.REQUIREMENT_LIST__REQUIREMENTS:
+        getRequirements().clear();
+        getRequirements().addAll((Collection<? extends Requirement>)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case TextbtPackage.REQUIREMENT_LIST__REQUIREMENTS:
-				getRequirements().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+    switch (featureID)
+    {
+      case TextbtPackage.REQUIREMENT_LIST__REQUIREMENTS:
+        getRequirements().clear();
+        return;
+    }
+    super.eUnset(featureID);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TextbtPackage.REQUIREMENT_LIST__REQUIREMENTS:
-				return requirements != null && !requirements.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+    switch (featureID)
+    {
+      case TextbtPackage.REQUIREMENT_LIST__REQUIREMENTS:
+        return requirements != null && !requirements.isEmpty();
+    }
+    return super.eIsSet(featureID);
+  }
 
 } //RequirementListImpl

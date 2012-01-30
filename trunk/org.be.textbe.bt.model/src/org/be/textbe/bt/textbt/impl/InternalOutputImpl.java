@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class InternalOutputImpl extends BehaviorImpl implements InternalOutput {
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected InternalOutputImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-		return TextbtPackage.Literals.INTERNAL_OUTPUT;
-	}
+    return TextbtPackage.Literals.INTERNAL_OUTPUT;
+  }
 
 } //InternalOutputImpl

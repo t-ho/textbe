@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class EventImpl extends BehaviorImpl implements Event {
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected EventImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-		return TextbtPackage.Literals.EVENT;
-	}
+    return TextbtPackage.Literals.EVENT;
+  }
 
 } //EventImpl

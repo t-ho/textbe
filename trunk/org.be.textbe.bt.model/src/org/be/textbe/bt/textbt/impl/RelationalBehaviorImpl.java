@@ -42,183 +42,191 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class RelationalBehaviorImpl extends AbstractBehaviorImpl implements RelationalBehavior {
 	/**
-	 * The cached value of the '{@link #getBehavior() <em>Behavior</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getBehavior() <em>Behavior</em>}' containment reference.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBehavior()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getBehavior()
+   * @generated
+   * @ordered
+   */
 	protected Behavior behavior;
 
 	/**
-	 * The cached value of the '{@link #getRelations() <em>Relations</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getRelations() <em>Relations</em>}' containment reference list.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRelations()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getRelations()
+   * @generated
+   * @ordered
+   */
 	protected EList<Relation> relations;
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected RelationalBehaviorImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-		return TextbtPackage.Literals.RELATIONAL_BEHAVIOR;
-	}
+    return TextbtPackage.Literals.RELATIONAL_BEHAVIOR;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public Behavior getBehavior() {
-		return behavior;
-	}
+    return behavior;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public NotificationChain basicSetBehavior(Behavior newBehavior, NotificationChain msgs) {
-		Behavior oldBehavior = behavior;
-		behavior = newBehavior;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR, oldBehavior, newBehavior);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+    Behavior oldBehavior = behavior;
+    behavior = newBehavior;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR, oldBehavior, newBehavior);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public void setBehavior(Behavior newBehavior) {
-		if (newBehavior != behavior) {
-			NotificationChain msgs = null;
-			if (behavior != null)
-				msgs = ((InternalEObject)behavior).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR, null, msgs);
-			if (newBehavior != null)
-				msgs = ((InternalEObject)newBehavior).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR, null, msgs);
-			msgs = basicSetBehavior(newBehavior, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR, newBehavior, newBehavior));
-	}
+    if (newBehavior != behavior)
+    {
+      NotificationChain msgs = null;
+      if (behavior != null)
+        msgs = ((InternalEObject)behavior).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR, null, msgs);
+      if (newBehavior != null)
+        msgs = ((InternalEObject)newBehavior).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR, null, msgs);
+      msgs = basicSetBehavior(newBehavior, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR, newBehavior, newBehavior));
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public EList<Relation> getRelations() {
-		if (relations == null) {
-			relations = new EObjectContainmentEList<Relation>(Relation.class, this, TextbtPackage.RELATIONAL_BEHAVIOR__RELATIONS);
-		}
-		return relations;
-	}
+    if (relations == null)
+    {
+      relations = new EObjectContainmentEList<Relation>(Relation.class, this, TextbtPackage.RELATIONAL_BEHAVIOR__RELATIONS);
+    }
+    return relations;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR:
-				return basicSetBehavior(null, msgs);
-			case TextbtPackage.RELATIONAL_BEHAVIOR__RELATIONS:
-				return ((InternalEList<?>)getRelations()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+    switch (featureID)
+    {
+      case TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR:
+        return basicSetBehavior(null, msgs);
+      case TextbtPackage.RELATIONAL_BEHAVIOR__RELATIONS:
+        return ((InternalEList<?>)getRelations()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR:
-				return getBehavior();
-			case TextbtPackage.RELATIONAL_BEHAVIOR__RELATIONS:
-				return getRelations();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+    switch (featureID)
+    {
+      case TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR:
+        return getBehavior();
+      case TextbtPackage.RELATIONAL_BEHAVIOR__RELATIONS:
+        return getRelations();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR:
-				setBehavior((Behavior)newValue);
-				return;
-			case TextbtPackage.RELATIONAL_BEHAVIOR__RELATIONS:
-				getRelations().clear();
-				getRelations().addAll((Collection<? extends Relation>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+    switch (featureID)
+    {
+      case TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR:
+        setBehavior((Behavior)newValue);
+        return;
+      case TextbtPackage.RELATIONAL_BEHAVIOR__RELATIONS:
+        getRelations().clear();
+        getRelations().addAll((Collection<? extends Relation>)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR:
-				setBehavior((Behavior)null);
-				return;
-			case TextbtPackage.RELATIONAL_BEHAVIOR__RELATIONS:
-				getRelations().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+    switch (featureID)
+    {
+      case TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR:
+        setBehavior((Behavior)null);
+        return;
+      case TextbtPackage.RELATIONAL_BEHAVIOR__RELATIONS:
+        getRelations().clear();
+        return;
+    }
+    super.eUnset(featureID);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR:
-				return behavior != null;
-			case TextbtPackage.RELATIONAL_BEHAVIOR__RELATIONS:
-				return relations != null && !relations.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+    switch (featureID)
+    {
+      case TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR:
+        return behavior != null;
+      case TextbtPackage.RELATIONAL_BEHAVIOR__RELATIONS:
+        return relations != null && !relations.isEmpty();
+    }
+    return super.eIsSet(featureID);
+  }
 
 } //RelationalBehaviorImpl
