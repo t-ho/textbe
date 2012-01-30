@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class AssertionImpl extends BehaviorImpl implements Assertion {
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected AssertionImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-		return TextctPackage.Literals.ASSERTION;
-	}
+    return TextctPackage.Literals.ASSERTION;
+  }
 
 } //AssertionImpl

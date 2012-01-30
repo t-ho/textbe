@@ -39,118 +39,124 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class OptionListImpl extends EObjectImpl implements OptionList {
 	/**
-	 * The cached value of the '{@link #getOptions() <em>Options</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getOptions() <em>Options</em>}' containment reference list.
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOptions()
-	 * @generated
-	 * @ordered
-	 */
+   * @see #getOptions()
+   * @generated
+   * @ordered
+   */
 	protected EList<Option> options;
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected OptionListImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-		return TextctPackage.Literals.OPTION_LIST;
-	}
+    return TextctPackage.Literals.OPTION_LIST;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	public EList<Option> getOptions() {
-		if (options == null) {
-			options = new EObjectContainmentEList<Option>(Option.class, this, TextctPackage.OPTION_LIST__OPTIONS);
-		}
-		return options;
-	}
+    if (options == null)
+    {
+      options = new EObjectContainmentEList<Option>(Option.class, this, TextctPackage.OPTION_LIST__OPTIONS);
+    }
+    return options;
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TextctPackage.OPTION_LIST__OPTIONS:
-				return ((InternalEList<?>)getOptions()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+    switch (featureID)
+    {
+      case TextctPackage.OPTION_LIST__OPTIONS:
+        return ((InternalEList<?>)getOptions()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TextctPackage.OPTION_LIST__OPTIONS:
-				return getOptions();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+    switch (featureID)
+    {
+      case TextctPackage.OPTION_LIST__OPTIONS:
+        return getOptions();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TextctPackage.OPTION_LIST__OPTIONS:
-				getOptions().clear();
-				getOptions().addAll((Collection<? extends Option>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+    switch (featureID)
+    {
+      case TextctPackage.OPTION_LIST__OPTIONS:
+        getOptions().clear();
+        getOptions().addAll((Collection<? extends Option>)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case TextctPackage.OPTION_LIST__OPTIONS:
-				getOptions().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+    switch (featureID)
+    {
+      case TextctPackage.OPTION_LIST__OPTIONS:
+        getOptions().clear();
+        return;
+    }
+    super.eUnset(featureID);
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TextctPackage.OPTION_LIST__OPTIONS:
-				return options != null && !options.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+    switch (featureID)
+    {
+      case TextctPackage.OPTION_LIST__OPTIONS:
+        return options != null && !options.isEmpty();
+    }
+    return super.eIsSet(featureID);
+  }
 
 } //OptionListImpl

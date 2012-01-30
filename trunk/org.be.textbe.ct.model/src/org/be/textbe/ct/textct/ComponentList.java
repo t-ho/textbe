@@ -28,19 +28,19 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ComponentList extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Components</b></em>' containment reference list.
-	 * The list contents are of type {@link org.be.textbe.ct.textct.Component}.
-	 * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Components</b></em>' containment reference list.
+   * The list contents are of type {@link org.be.textbe.ct.textct.Component}.
+   * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Components</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Components</em>' containment reference list.
-	 * @see org.be.textbe.ct.textct.TextctPackage#getComponentList_Components()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
+   * @return the value of the '<em>Components</em>' containment reference list.
+   * @see org.be.textbe.ct.textct.TextctPackage#getComponentList_Components()
+   * @model containment="true" required="true"
+   * @generated
+   */
 	EList<Component> getComponents();
 
 } // ComponentList

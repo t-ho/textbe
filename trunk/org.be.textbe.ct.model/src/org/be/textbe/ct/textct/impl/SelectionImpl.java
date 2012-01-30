@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class SelectionImpl extends BehaviorImpl implements Selection {
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected SelectionImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-		return TextctPackage.Literals.SELECTION;
-	}
+    return TextctPackage.Literals.SELECTION;
+  }
 
 } //SelectionImpl

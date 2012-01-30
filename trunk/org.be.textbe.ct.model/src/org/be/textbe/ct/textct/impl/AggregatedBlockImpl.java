@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class AggregatedBlockImpl extends AbstractBlockImpl implements AggregatedBlock {
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected AggregatedBlockImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-		return TextctPackage.Literals.AGGREGATED_BLOCK;
-	}
+    return TextctPackage.Literals.AGGREGATED_BLOCK;
+  }
 
 } //AggregatedBlockImpl

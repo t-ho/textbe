@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class AssociatedBlockImpl extends AbstractBlockImpl implements AssociatedBlock {
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected AssociatedBlockImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-		return TextctPackage.Literals.ASSOCIATED_BLOCK;
-	}
+    return TextctPackage.Literals.ASSOCIATED_BLOCK;
+  }
 
 } //AssociatedBlockImpl

@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class NodeImpl extends AbstractNodeImpl implements Node {
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected NodeImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-		return TextctPackage.Literals.NODE;
-	}
+    return TextctPackage.Literals.NODE;
+  }
 
 } //NodeImpl

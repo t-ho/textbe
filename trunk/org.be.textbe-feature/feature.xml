@@ -2,7 +2,7 @@
 <feature
       id="org.be.textbe"
       label="TextBE Feature"
-      version="0.1.1"
+      version="1.0.0.qualifier"
       provider-name="Behavior Engineering">
 
    <description>
@@ -32,15 +32,25 @@ feature into your product.
          search-location="self"/>
 
    <includes
-         id="org.eclipse.emf"
-         version="0.0.0"/>
-
-   <includes
          id="org.eclipse.jet"
+         version="0.0.0"
+         search-location="self"/>
+
+   <includes
+         id="org.be.textbe.dependencies"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.m2m.atl"
+         id="org.eclipse.emf"
+         version="0.0.0"
+         search-location="self"/>
+
+   <includes
+         id="org.be.textbe.bt.model"
+         version="0.0.0"/>
+
+   <includes
+         id="org.be.textbe.ct.model"
          version="0.0.0"/>
 
    <requires>
@@ -60,42 +70,6 @@ feature into your product.
       <import plugin="org.apache.batik.dom" version="1.7.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.emf.ecore"/>
-      <import plugin="org.eclipse.emf"/>
-      <import plugin="org.eclipse.emf.codegen.ecore"/>
-      <import plugin="org.eclipse.emf.ecore.edit"/>
-      <import plugin="org.eclipse.emf.validation"/>
-      <import plugin="org.eclipse.emf.workspace"/>
-      <import plugin="org.eclipse.debug.core"/>
-      <import plugin="org.eclipse.core.expressions"/>
-      <import plugin="org.eclipse.debug.ui"/>
-      <import plugin="org.eclipse.emf.edit.ui"/>
-      <import plugin="org.eclipse.jface"/>
-      <import plugin="org.eclipse.jface.text"/>
-      <import plugin="org.eclipse.ui.views"/>
-      <import plugin="org.apache.batik.css" version="1.6.0" match="equivalent"/>
-      <import plugin="org.apache.batik.dom" version="1.6.0" match="equivalent"/>
-      <import plugin="org.apache.batik.dom.svg" version="1.6.0" match="equivalent"/>
-      <import plugin="org.apache.batik.ext.awt" version="1.6.0" match="equivalent"/>
-      <import plugin="org.apache.batik.parser" version="1.6.0" match="equivalent"/>
-      <import plugin="org.apache.batik.util" version="1.6.0" match="equivalent"/>
-      <import plugin="org.apache.batik.util.gui" version="1.6.0" match="equivalent"/>
-      <import plugin="org.apache.batik.xml" version="1.6.0" match="equivalent"/>
-      <import plugin="org.w3c.dom.svg" version="1.1.0"/>
-      <import plugin="org.w3c.css.sac" version="1.3.0" match="equivalent"/>
-      <import plugin="org.eclipse.osgi"/>
-      <import plugin="org.w3c.dom.smil" version="1.0.0" match="equivalent"/>
-      <import plugin="org.apache.batik.bridge" version="1.7.0" match="equivalent"/>
-      <import plugin="org.apache.batik.dom" version="1.7.0" match="equivalent"/>
-      <import plugin="org.apache.batik.dom.svg" version="1.7.0" match="equivalent"/>
-      <import plugin="org.apache.batik.ext.awt" version="1.7.0" match="equivalent"/>
-      <import plugin="org.apache.batik.util" version="1.7.0" match="equivalent"/>
-      <import plugin="org.apache.batik.util.gui" version="1.7.0" match="equivalent"/>
-      <import plugin="org.apache.batik.xml" version="1.7.0" match="equivalent"/>
-      <import plugin="org.w3c.dom.events"/>
-      <import plugin="org.apache.batik.css" version="1.7.0" match="equivalent"/>
-      <import plugin="org.apache.batik.parser" version="1.7.0" match="equivalent"/>
-      <import plugin="org.apache.batik.bridge" version="1.6.0" match="equivalent"/>
-      <import plugin="org.apache.batik.svggen" version="1.6.0" match="equivalent"/>
    </requires>
 
    <plugin
@@ -107,20 +81,6 @@ feature into your product.
 
    <plugin
          id="org.be.textbe.bt.examples"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.be.textbe.bt.model"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.be.textbe.bt.textbt.resource.bt"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -141,168 +101,7 @@ feature into your product.
          unpack="false"/>
 
    <plugin
-         id="org.be.textbe.bt.textbt.resource.bt.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.be.textbe.ct.model"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.be.textbe.ct.textct.resource.ct"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.be.textbe.ct.textct.resource.ct.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.be.textbe.st.model"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.be.textbe.st.textst.resource.st"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.be.textbe.st.textst.resource.st.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.be.textbe.st.examples"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.apache.batik.bridge"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.apache.batik.util"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.apache.batik.dom"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.apache.batik.dom.svg"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.w3c.dom.svg"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.emftext.commons.antlr3_3_0"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.apache.batik.swing"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.apache.batik.css"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.apache.batik.ext.awt"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.apache.batik.extension"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.apache.batik.parser"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.apache.batik.svggen"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.apache.batik.transcoder"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.apache.batik.util.gui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.apache.batik.xml"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.w3c.dom.smil"
          download-size="0"
          install-size="0"
          version="0.0.0"

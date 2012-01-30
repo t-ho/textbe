@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class InheritedBlockImpl extends AbstractBlockImpl implements InheritedBlock {
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	protected InheritedBlockImpl() {
-		super();
-	}
+    super();
+  }
 
 	/**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
 	@Override
 	protected EClass eStaticClass() {
-		return TextctPackage.Literals.INHERITED_BLOCK;
-	}
+    return TextctPackage.Literals.INHERITED_BLOCK;
+  }
 
 } //InheritedBlockImpl
