@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+	<extension point="org.emftext.access.syntax">
+		<metaInformationProvider class="org.be.textbe.bt.textbt.resource.bt.mopp.BtMetaInformation" id="org.be.textbe.bt.textbt.resource.bt.mopp.BtMetaInformation">
+		</metaInformationProvider>
+	</extension>
+	
+	<extension id="org.be.textbe.bt.textbt.resource.bt.problem" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.eclipse.core.resources.problemmarker">
+		</super>
+		<super type="org.eclipse.core.resources.textmarker">
+		</super>
+		<super type="org.eclipse.emf.ecore.diagnostic">
+		</super>
+	</extension>
+	
+	<extension id="org.be.textbe.bt.textbt.resource.bt.problem.syntax_error" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.be.textbe.bt.textbt.resource.bt.problem">
+		</super>
+	</extension>
+	
+	<extension id="org.be.textbe.bt.textbt.resource.bt.problem.print_problem" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.be.textbe.bt.textbt.resource.bt.problem">
+		</super>
+	</extension>
+	
+	<extension id="org.be.textbe.bt.textbt.resource.bt.problem.unresolved_reference" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.be.textbe.bt.textbt.resource.bt.problem">
+		</super>
+	</extension>
+	
+	<extension id="org.be.textbe.bt.textbt.resource.bt.problem.analysis_problem" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.be.textbe.bt.textbt.resource.bt.problem">
+		</super>
+	</extension>
+	
+	<extension id="org.be.textbe.bt.textbt.resource.bt.problem.builder_error" name="EMFText Problem" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.be.textbe.bt.textbt.resource.bt.problem">
+		</super>
+	</extension>
+	
+	<extension id="org.be.textbe.bt.textbt.resource.bt.nature" name="bt nature" point="org.eclipse.core.resources.natures">
+		<runtime>
+			<run class="org.be.textbe.bt.textbt.resource.bt.mopp.BtNature">
+			</run>
+		</runtime>
+		<builder id="org.be.textbe.bt.textbt.resource.bt.builder">
+		</builder>
+	</extension>
+	
+	<extension point="org.eclipse.core.resources.builders" id="org.be.textbe.bt.textbt.resource.bt.builder" name="bt Builder">
+		<builder hasNature="true">
+			<run class="org.be.textbe.bt.textbt.resource.bt.mopp.BtBuilderAdapter">
+			</run>
+		</builder>
+	</extension>
+	
+	<extension-point id="org.be.textbe.bt.textbt.resource.bt.default_load_options" name="Default Load Options" schema="schema/default_load_options.exsd">
+	</extension-point>
+	
+	<extension point="org.eclipse.emf.ecore.extension_parser">
+		<parser class="org.be.textbe.bt.textbt.resource.bt.mopp.BtResourceFactoryDelegator" type="bt">
+		</parser>
+	</extension>
+	
+	<extension-point id="org.be.textbe.bt.textbt.resource.bt.additional_extension_parser" name="Additional Extension Parser" schema="schema/additional_extension_parser.exsd">
+	</extension-point>
+	
+	<extension point="org.eclipse.debug.core.breakpoints">
+		<breakpoint class="org.be.textbe.bt.textbt.resource.bt.debug.BtLineBreakpoint" id="org.be.textbe.bt.textbt.resource.bt.debug.breakpoint" markerType="org.be.textbe.bt.textbt.resource.bt.debug.lineBreakpoint.marker" name="bt Breakpoint">
+		</breakpoint>
+	</extension>
+	
+	<extension id="org.be.textbe.bt.textbt.resource.bt.debug.lineBreakpoint.marker" point="org.eclipse.core.resources.markers">
+		<super type="org.eclipse.debug.core.lineBreakpointMarker">
+		</super>
+		<super type="org.eclipse.core.resources.textmarker">
+		</super>
+		<persistent value="true">
+		</persistent>
+	</extension>
+	
+	<extension point="org.eclipse.debug.core.launchConfigurationTypes">
+		<launchConfigurationType id="org.be.textbe.bt.textbt.resource.bt.ui.launchConfigurationType" delegate="org.be.textbe.bt.textbt.resource.bt.launch.BtLaunchConfigurationDelegate" modes="run,debug" name="bt Application" sourceLocatorId="org.be.textbe.bt.textbt.resource.bt.ui.sourceLocator" sourcePathComputerId="org.be.textbe.bt.textbt.resource.bt.ui.sourcePathComputer" delegateName="bt Launch Tooling" delegateDescription="This will run or debug .bt files.">
+		</launchConfigurationType>
+	</extension>
+	
+	<extension point="org.eclipse.debug.core.sourcePathComputers">
+		<sourcePathComputer class="org.be.textbe.bt.textbt.resource.bt.debug.BtSourcePathComputerDelegate" id="org.be.textbe.bt.textbt.resource.bt.ui.sourcePathComputer">
+		</sourcePathComputer>
+	</extension>
+	
+	<extension point="org.eclipse.debug.core.sourceLocators">
+		<sourceLocator id="org.be.textbe.bt.textbt.resource.bt.ui.sourceLocator" class="org.be.textbe.bt.textbt.resource.bt.debug.BtSourceLocator" name="bt Source Locator">
+		</sourceLocator>
+	</extension>
+	
+</plugin>
