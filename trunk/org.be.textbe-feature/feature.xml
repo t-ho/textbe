@@ -32,11 +32,6 @@ feature into your product.
          search-location="self"/>
 
    <includes
-         id="org.eclipse.jet"
-         version="0.0.0"
-         search-location="self"/>
-
-   <includes
          id="org.be.textbe.dependencies"
          version="0.0.0"/>
 
