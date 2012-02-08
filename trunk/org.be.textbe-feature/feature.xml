@@ -36,11 +36,6 @@ feature into your product.
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.emf"
-         version="0.0.0"
-         search-location="self"/>
-
-   <includes
          id="org.be.textbe.bt.model"
          version="0.0.0"/>
 
