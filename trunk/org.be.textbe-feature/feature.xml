@@ -27,11 +27,6 @@ feature into your product.
    </url>
 
    <includes
-         id="com.abstratt.eclipsegraphviz"
-         version="0.0.0"
-         search-location="self"/>
-
-   <includes
          id="org.be.textbe.dependencies"
          version="0.0.0"/>
 
