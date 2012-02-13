@@ -33,7 +33,6 @@
 
 	<target name="checkLocalMaps">
 		<available property="skipMaps" file="${buildDirectory}/maps" />
-
 	</target>
 
 	<target name="tagMapFiles" if="tagMaps">
@@ -88,24 +87,47 @@
 	<!-- ===================================================================== -->
 	<!-- Steps to do before the repositories are being processed -->
 	<!-- ===================================================================== -->
+	<!-- To be replaced by a target read -->
 	<target name="preProcessRepos">
-		<!--
-		<p2.mirror verbose="true" destination="file:${repoBaseLocation}/mirrored">
+		<p2.mirror verbose="true">
+			<!-- copy these features-->
+			<!-- the platform-->
+			<iu id="org.eclipse.platform.feature.group" />
+			<iu id="org.eclipse.rcp.feature.group" />
+			<iu id="org.eclipse.jdt.feature.group" />
+			<!-- EMF -->
+			<iu id="org.eclipse.emf.sdk.feature.group" />
+			<iu id="org.eclipse.emf.transaction.sdk.feature.group" />
+			<iu id="org.eclipse.emf.validation.sdk.feature.group" />
+			<!-- EMFText -->
+			<iu id="org.emftext.access.feature.group" />
+			<iu id="org.emftext.sdk.feature.group" />
+			<iu id="org.emftext.commons.antlr3_3_0.feature.group" />
+			<!-- ATL -->
+			<iu id="org.eclipse.m2m.atl.sdk.feature.group" />
+			<!-- JET -->
+			<iu id="org.eclipse.jet.sdk.feature.group" />
+			<!-- Graphviz -->
+			<iu id="com.abstratt.eclipsegraphviz.feature.group" />
+			<!-- Batik -->
+			<iu id="org.apache.batik.util" />
+			<iu id="org.apache.batik.util.gui" />
+			<iu id="org.apache.batik.css" />
+			<iu id="org.apache.batik.xml" />			
+			<!-- from these repositories -->
 			<source>
+				<!-- Eclipse releases -->
 				<repository location="http://download.eclipse.org/releases/indigo" />
 				<repository location="http://abstratt.com/update/" />
+				<repository location="http://emftext.org/update" />
+				<repository location="http://download.eclipse.org/tools/orbit/downloads/drops/repository/" />
 			</source>
+			<!-- into this repository -->
 			<destination location="file:${repoBaseLocation}/mirrored" />
-			<iu id="org.eclipse.rcp.feature.group" version="3.7.1.r37x_v20110729-9DB5FmNFnFLSFCtLxnRfMqt15A4A" />
-			<iu id="org.eclipse.jdt.feature.group" version="3.7.1.r371_v20110810-0800-7z8gFcoFMLfTabvKsR5Qm9rBGEBK" />
-			<iu id="org.eclipse.m2m.atl.sdk.feature.group" version="3.2.1.v20110914-0724" />
-			<iu id="org.eclipse.emf.sdk.feature.group" version="2.7.1.v20110913-1526" />
-			<iu id="org.eclipse.jet.sdk.feature.group" version="1.1.1.v201101271243-42186A5NsKEQPHRQeFaJS4A35" />
-			<iu id="org.eclipse.emf.transaction.sdk.feature.group" version="1.5.1.v20110823-1800-777T19A_WsXmjNatPxcrPm1rOKlH" />
-			<iu id="org.eclipse.emf.validation.sdk.feature.group" version="1.5.0.v20110502-1600-67O-96SGR55YJeZPedcQnghI6uFA" />
-			<iu id="com.abstratt.eclipsegraphviz.feature.group" version="1.7.0.201102121434" />
+			<!-- get only the latest -->
+			<!-- do not download optional items -->
+			<slicingoptions latestversiononly="true" includeoptional="false" includeNonGreedy="false" />
 		</p2.mirror>
-		-->
 	</target>
 
 	<!-- ===================================================================== -->

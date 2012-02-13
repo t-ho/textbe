@@ -15,12 +15,12 @@
 	<!-- ================================= 
           target: default              
          ================================= -->
-	<target name="default" depends="depends" description="description">
+	<target name="default" description="description">
 		<!-- set path to eclipse folder. 
 		If local folder, use '.'; 
 		otherwise, use c:\path\to\eclipse or /path/to/eclipse/
 		-->
-		<property name="eclipse.home" value="E:\Program Files\" />
+		<property name="eclipse.home" value="E:\eclipse_build_host\eclipse-SDK-3.7.1-win32\" />
 
 		<!-- store path to newest launcher JAR in path id 'newest.equinox.launcher.path.id' -->
 		<path id="newest.equinox.launcher.path.id">
@@ -49,15 +49,9 @@
 		<java fork="true" jar="${equinox.launcher.jar.location}">
 			<arg line="-application org.eclipse.ant.core.antRunner" />
 			<arg line="-buildfile '${eclipse.home}/eclipse/plugins/org.eclipse.pde.build_3.7.0.v20110512-1320/scripts/build.xml'" />
-			<arg line="-data ${user.home}/eclipse.build/plugins" />
+			<arg line="-data ${java.io.tmpdir}" />
 			<arg line="-Dbuilder='E:\textbe_workspace\org.textbe.releng'" />
 		</java>
-	</target>
-
-	<!-- - - - - - - - - - - - - - - - - - 
-          target: depends                      
-         - - - - - - - - - - - - - - - - - -->
-	<target name="depends">
 	</target>
 
 </project>
