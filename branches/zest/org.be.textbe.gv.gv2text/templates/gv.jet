@@ -1,0 +1,10 @@
+<%-- Graphviz M2T --%>
+<%-- File: gv.jet --%>
+<%-- Date: 23/07/09 --%>
+<c:get select="/Graph/@type"/> structs {
+<c:iterate var="s" select="//statement">
+	<c:if test="$s/@left"><c:get select="$s/@left"/>=<c:get select="$s/@right"/></c:if
+	><c:if test="$s/@context"><c:get select="$s/@context"/> [<c:setVariable var="first" select="'true'"/><c:iterate var="a" select="$s//attribute"
+		><c:if test="$first='false'">, </c:if><c:if test="$first='true'"><c:setVariable var="first" select="'false'"/></c:if><c:get select="$a/@key"/>=<c:get select="$a/@value"/></c:iterate>];</c:if
+	><c:if test="$s/source"><c:get select="$s/source/@id"/>:<c:get select="$s/source/port/@id"/>:<c:get select="$s/source/port/@compass"/> -> <c:get select="$s/target/target/@id"/>:<c:get select="$s/target/target/port/@id"/>:n;</c:if> 
+</c:iterate>}

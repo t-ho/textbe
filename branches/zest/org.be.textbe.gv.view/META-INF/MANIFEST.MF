@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Behaviour Tree View
+Bundle-SymbolicName: org.be.textbe.gv.bt_view; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.be.textbe.gv.view.Activator
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: org.eclipse.zest.dot.core;bundle-version="2.0.0",
+ org.eclipse.ui;bundle-version="3.7.0"
