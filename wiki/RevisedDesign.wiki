@@ -1,0 +1,7 @@
+#summary Revised Design of TextBE
+
+JGS has been working on a revised design of TextBE: See [http://code.google.com/p/textbe/downloads/detail?name=TextBe%20Project%20and%20Issues.pptx&can=2&q= Presentation Slides]
+
+= Revised Metamodel =
+
+= Zest Visualisation =
