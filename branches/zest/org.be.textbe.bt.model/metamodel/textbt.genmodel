@@ -15,31 +15,18 @@
       <genEnumLiterals ecoreEnumLiteral="textbt.ecore#//TraceabilityStatus/Deleted"/>
       <genEnumLiterals ecoreEnumLiteral="textbt.ecore#//TraceabilityStatus/Refined"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="textbt.ecore#//NodeType">
-      <genEnumLiterals ecoreEnumLiteral="textbt.ecore#//NodeType/Normal"/>
-      <genEnumLiterals ecoreEnumLiteral="textbt.ecore#//NodeType/Reversion"/>
-      <genEnumLiterals ecoreEnumLiteral="textbt.ecore#//NodeType/Synchronization"/>
-      <genEnumLiterals ecoreEnumLiteral="textbt.ecore#//NodeType/Reference"/>
-      <genEnumLiterals ecoreEnumLiteral="textbt.ecore#//NodeType/BranchKill"/>
-      <genEnumLiterals ecoreEnumLiteral="textbt.ecore#//NodeType/May"/>
-      <genEnumLiterals ecoreEnumLiteral="textbt.ecore#//NodeType/StartNew"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="textbt.ecore#//ComponentMarker">
-      <genEnumLiterals ecoreEnumLiteral="textbt.ecore#//ComponentMarker/NONE"/>
-      <genEnumLiterals ecoreEnumLiteral="textbt.ecore#//ComponentMarker/ASTERISK"/>
-      <genEnumLiterals ecoreEnumLiteral="textbt.ecore#//ComponentMarker/HASH"/>
-    </genEnums>
     <genClasses ecoreClass="textbt.ecore#//Specification">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textbt.ecore#//Specification/components"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textbt.ecore#//Specification/requirements"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textbt.ecore#//Specification/root"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textbt.ecore#//Specification/componentSets"/>
     </genClasses>
     <genClasses ecoreClass="textbt.ecore#//Requirement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textbt.ecore#//Requirement/id"/>
     </genClasses>
-    <genClasses ecoreClass="textbt.ecore#//Component">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textbt.ecore#//Component/behavior"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textbt.ecore#//Component/id"/>
+    <genClasses ecoreClass="textbt.ecore#//ComponentType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textbt.ecore#//ComponentType/behavior"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textbt.ecore#//ComponentType/id"/>
     </genClasses>
     <genClasses image="false" ecoreClass="textbt.ecore#//Behavior">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textbt.ecore#//Behavior/number"/>
@@ -56,12 +43,10 @@
     <genClasses ecoreClass="textbt.ecore#//InternalOutput"/>
     <genClasses ecoreClass="textbt.ecore#//ExternalInput"/>
     <genClasses ecoreClass="textbt.ecore#//ExternalOutput"/>
-    <genClasses ecoreClass="textbt.ecore#//Node">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textbt.ecore#//Node/traceability"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textbt.ecore#//Node/label"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textbt.ecore#//Node/behavior"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textbt.ecore#//Node/showTag"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textbt.ecore#//Node/operator"/>
+    <genClasses ecoreClass="textbt.ecore#//BehavioralNode">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textbt.ecore#//BehavioralNode/traceability"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textbt.ecore#//BehavioralNode/behavior"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textbt.ecore#//BehavioralNode/actor"/>
     </genClasses>
     <genClasses image="false" ecoreClass="textbt.ecore#//Input"/>
     <genClasses image="false" ecoreClass="textbt.ecore#//Output"/>
@@ -69,20 +54,22 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textbt.ecore#//TraceabilityLink/status"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textbt.ecore#//TraceabilityLink/requirement"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference textbt.ecore#//TraceabilityLink/node"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textbt.ecore#//TraceabilityLink/updatedInVersion"/>
     </genClasses>
     <genClasses ecoreClass="textbt.ecore#//BehaviorTree"/>
     <genClasses image="false" ecoreClass="textbt.ecore#//Sequence">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textbt.ecore#//Sequence/steps"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textbt.ecore#//Sequence/child"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textbt.ecore#//Sequence/step"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="textbt.ecore#//Branch"/>
+    <genClasses image="false" ecoreClass="textbt.ecore#//Branch">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textbt.ecore#//Branch/gotoDestination"/>
+    </genClasses>
     <genClasses ecoreClass="textbt.ecore#//Parallel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textbt.ecore#//Parallel/processes"/>
     </genClasses>
     <genClasses ecoreClass="textbt.ecore#//Alternative">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textbt.ecore#//Alternative/choices"/>
     </genClasses>
-    <genClasses ecoreClass="textbt.ecore#//Transaction"/>
+    <genClasses ecoreClass="textbt.ecore#//Atomic"/>
     <genClasses ecoreClass="textbt.ecore#//Interleaving"/>
     <genClasses ecoreClass="textbt.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textbt.ecore#//NamedElement/name"/>
@@ -111,7 +98,59 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textbt.ecore#//How/means"/>
     </genClasses>
     <genClasses ecoreClass="textbt.ecore#//AttributeRealization"/>
-    <genClasses ecoreClass="textbt.ecore#//NamedBehavior"/>
     <genClasses ecoreClass="textbt.ecore#//SystemComponent"/>
+    <genClasses ecoreClass="textbt.ecore#//ComponentSet">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textbt.ecore#//ComponentSet/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textbt.ecore#//ComponentSet/variables"/>
+    </genClasses>
+    <genClasses ecoreClass="textbt.ecore#//Reference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textbt.ecore#//Reference/continueLike"/>
+    </genClasses>
+    <genClasses ecoreClass="textbt.ecore#//Reversion">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textbt.ecore#//Reversion/revertTo"/>
+    </genClasses>
+    <genClasses ecoreClass="textbt.ecore#//BranchKill">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textbt.ecore#//BranchKill/stop"/>
+    </genClasses>
+    <genClasses ecoreClass="textbt.ecore#//Synchronisation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textbt.ecore#//Synchronisation/waitFor"/>
+    </genClasses>
+    <genClasses ecoreClass="textbt.ecore#//StartNewNode"/>
+    <genClasses ecoreClass="textbt.ecore#//Node">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textbt.ecore#//Node/label"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textbt.ecore#//Node/operation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textbt.ecore#//Node/parent"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textbt.ecore#//Node/parents"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textbt.ecore#//Node/siblings"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textbt.ecore#//Node/children"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textbt.ecore#//Node/descendants"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textbt.ecore#//Node/siblingBranches"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textbt.ecore#//Node/isRoot"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textbt.ecore#//Node/isLeaf"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textbt.ecore#//Node/subtrees"/>
+    </genClasses>
+    <genClasses ecoreClass="textbt.ecore#//NoOperationNode"/>
+    <genClasses image="false" ecoreClass="textbt.ecore#//Operation"/>
+    <genClasses ecoreClass="textbt.ecore#//May"/>
+    <genClasses ecoreClass="textbt.ecore#//VariableName"/>
+    <genClasses image="false" ecoreClass="textbt.ecore#//ComponentSetNode">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textbt.ecore#//ComponentSetNode/componentSet"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textbt.ecore#//ComponentSetNode/variable"/>
+    </genClasses>
+    <genClasses ecoreClass="textbt.ecore#//ComponentInstance"/>
+    <genClasses ecoreClass="textbt.ecore#//ForAll"/>
+    <genClasses ecoreClass="textbt.ecore#//ForSome"/>
+    <genClasses ecoreClass="textbt.ecore#//AtLeastOne"/>
+    <genClasses ecoreClass="textbt.ecore#//ForOneArbitrary"/>
+    <genClasses ecoreClass="textbt.ecore#//Component"/>
+    <genClasses image="false" ecoreClass="textbt.ecore#//Gate">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textbt.ecore#//Gate/triggers"/>
+    </genClasses>
+    <genClasses ecoreClass="textbt.ecore#//Conjunction"/>
+    <genClasses ecoreClass="textbt.ecore#//Disjunction"/>
+    <genClasses ecoreClass="textbt.ecore#//MutualExclusion"/>
+    <genClasses image="false" ecoreClass="textbt.ecore#//Activity">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textbt.ecore#//Activity/child"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>
