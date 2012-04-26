@@ -1,6 +1,6 @@
 #summary Revised Design of TextBE
 
-JGS has been working on a revised design of TextBE: See [http://code.google.com/p/textbe/downloads/detail?name=TextBe%20Project%20and%20Issues.pptx&can=2&q= Presentation Slides]
+JGS has been working on a revised design of TextBE: See [http://textbe.googlecode.com/files/TextBe%20Project%20and%20Issues.pptx Presentation Slides]
 
 = Revised Metamodel =
 
