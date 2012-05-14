@@ -1,0 +1,97 @@
+grammar org.be.textbe.Expressions with org.eclipse.xtext.common.Terminals
+
+generate expressions "http://www.be.org/textbe/Expressions"
+
+Node:
+	(BehaviorNode | MultipleComponentInstance);
+
+BehaviorNode:
+	component=identifier behavior=(StateRealisation | AttributeRealisation | Event | Selection | Guard
+	| InternalOutputEvent | InternalInputEvent | ExternalOutputEvent | ExternalInputEvent);
+
+StateRealisation:
+	'[' state=(negatedCondition | binaryExpression) ']';
+
+AttributeRealisation:
+	'[' attribute=identifier ':=' value=binaryExpression ']';
+
+Condition:
+	binaryRelation | negatedCondition;
+
+Selection:
+	'?' functionApplication '?';
+
+Event:
+	'??' functionApplication '??';
+
+Guard:
+	'???' state=(negatedCondition | binaryExpression) '???';
+
+InternalOutputEvent:
+	'<' functionApplication '>';
+
+InternalInputEvent:
+	'>' functionApplication '<';
+
+ExternalOutputEvent:
+	'<<' functionApplication '>>';
+
+ExternalInputEvent:
+	'>>' functionApplication '<<';
+
+MultipleComponentInstance:
+	forAll | forSome | atLeastOne | forOneArbitrary;
+
+forAll:
+	'|' '|' componentInstantiation;
+
+forSome:
+	'%' componentInstantiation;
+
+atLeastOne:
+	'%' '+' componentInstantiation;
+
+forOneArbitrary:
+	'[' ']' componentInstantiation;
+
+componentInstantiation:
+	component=identifier '#' ':' componentSet=binaryExpression;
+
+binaryRelation:
+	left=binaryExpression (operator=binarySymbol right=binaryExpression)?;
+
+binarySymbol:
+	symbol=('<' | '>' | '=' | '=<' | '>=' | ':' | '<:');
+
+negatedCondition:
+	'NOT' condition=Condition;
+
+binaryExpression:
+	leftExpression=Value (binaryOperator=binaryOperator rightExpression=binaryExpression)?;
+
+Value:
+	(identifier | Number | functionApplication | bracketedExpression | cardinality | enumeratedSet | FuzzyExp);
+
+identifier:
+	major=ID | major=ID '.' minor=ID | major=ID '.' minor=ID '.' micro=ID;
+
+Number:
+	value=INT;
+
+functionApplication:
+	functionName=identifier '(' parameter+=binaryExpression ')';
+
+bracketedExpression:
+	'(' expression=binaryExpression ')';
+
+cardinality:
+	'|' expression=binaryExpression '|';
+
+enumeratedSet:
+	'{' expressions+=binaryExpression '}';
+
+FuzzyExp:
+	'[' expression=binaryExpression ']';
+
+binaryOperator:
+	operator=('+' | '-' | '><');
