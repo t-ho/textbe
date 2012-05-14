@@ -1,0 +1,55 @@
+Num = {Number}+
+Name = {Letter}{AlphaNumeric}*
+Not = NOT
+! ------------------------------------------------- Terminals
+OpenCurly = ’{’
+CloseCurly = ’}’
+Plus = ’+’
+Minus = ’-’
+Intersect = ’><’
+LessThan = ’<’
+GreaterThan = ’>’
+EqualTo = ’=’
+Colon = ’:’
+Pipe = ’|’
+OpenSquare = ’[’
+CloseSquare =’]’
+OpenRound = ’(’
+CloseRound = ’)’
+Comma = ’,’
+LessThanOrEqual=’=<’
+GreaterThanOrEqual=’>=’
+AssignExp = ’:=’
+SubsetExp = ’<:’
+EventDelim = ’??’
+! ------------------------------------------------- Rules
+<BhvExp> ::= <StateRealisation> | <AttributeRealisation> | <Condition>
+| <Event>
+| <forAll> | <forSome>
+<StateRealisation> ::= <Exp>
+<AttributeRealisation> ::= <ident> AssignExp <Exp>
+<Exp> ::= <ident> | <Number> | <fnapp> | <bracketedexp> | <binaryexp>
+| <card> | <enumeratedset> | <empty> | <FuzzyExp>
+<FuzzyExp> ::= CloseSquare <Exp> OpenSquare
+<binaryexp> ::= <Exp> <binaryop> <Exp>
+<binaryop> ::= Plus | Minus | Intersect
+<card> ::= Pipe <Exp> Pipe
+<enumeratedset> ::= OpenCurly <Explist> CloseCurly
+<empty> ::= OpenCurly CloseCurly
+<fnapp> ::= <ident> OpenRound <Explist> CloseRound
+| <ident> OpenRound CloseRound
+<Condition> ::= <binaryreln> | <notcondition> | <bracketedcondition>
+<binaryreln> ::= <Exp> <binarysym> <Exp>
+<binarysym> ::= LessThan | GreaterThan | EqualTo | LessThanOrEqual
+| GreaterThanOrEqual | Colon | SubsetExp
+<notcondition> ::= Not <Condition>
+<bracketedcondition> ::= OpenRound <Condition> CloseRound
+<bracketedexp> ::= OpenRound <Exp> CloseRound
+<Event> ::= EventDelim <fnapp> EventDelim
+<forAll> ::= Pipe Pipe <ident> Colon <Exp>
+<forSome> ::= OpenSquare CloseSquare <ident> Colon <Exp>
+<ident> ::= Name | Name . Name | Name . Name . Name
+<Number> ::= Num
+<Explist>
+::= <Exp>
+| <Exp> Comma <Explist>
