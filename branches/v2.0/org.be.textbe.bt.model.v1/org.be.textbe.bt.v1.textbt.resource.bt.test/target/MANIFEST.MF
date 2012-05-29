@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Require-Bundle: org.eclipse.core.runtime,org.junit,org.be.textbe.bt.v1
+ .textbt.resource.bt;bundle-version="1.0.0",org.eclipse.emf;bundle-ver
+ sion="2.6.0",org.eclipse.emf.ecore;bundle-version="2.7.0"
+Bundle-Version: 1.0.0.201205290417
+Bundle-Name: Test
+Bundle-ManifestVersion: 2
+Import-Package: org.eclipse.core.resources
+Bundle-SymbolicName: org.be.textbe.bt.v1.textbt.resource.bt.test
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+

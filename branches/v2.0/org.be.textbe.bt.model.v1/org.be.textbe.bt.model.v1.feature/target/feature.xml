@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.be.textbe.bt.model.v1.feature"
+      label="Feature"
+      version="1.0.0.201205290403">
+
+   <description url="http://www.example.com/description">
+      [Enter Feature Description here.]
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <plugin
+         id="org.be.textbe.bt.model.v1"
+         download-size="98"
+         install-size="218"
+         version="1.0.0.201205290403"
+         unpack="false"/>
+
+   <plugin
+         id="org.be.textbe.bt.model.v1.editor"
+         download-size="63"
+         install-size="121"
+         version="1.0.0.201205290403"
+         unpack="false"/>
+
+   <plugin
+         id="org.be.textbe.bt.v1.textbt.resource.bt"
+         download-size="359"
+         install-size="1190"
+         version="1.0.0.201205290403"
+         unpack="false"/>
+
+   <plugin
+         id="org.be.textbe.bt.v1.textbt.resource.bt.ui"
+         download-size="210"
+         install-size="441"
+         version="1.0.0.201205290403"
+         unpack="false"/>
+
+   <plugin
+         id="org.emftext.commons.antlr3_3_0"
+         download-size="155"
+         install-size="298"
+         version="1.0.0"
+         unpack="false"/>
+
+</feature>
