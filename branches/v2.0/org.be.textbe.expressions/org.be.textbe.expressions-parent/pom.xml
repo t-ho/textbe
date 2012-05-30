@@ -84,5 +84,6 @@
 		<module>../org.be.textbe.expressions</module>
 		<module>../org.be.textbe.expressions.tests</module>
 		<module>../org.be.textbe.expressions.ui</module>
+		<module>../org.be.textbe.expressions.feature</module>
 	</modules>
 </project>
