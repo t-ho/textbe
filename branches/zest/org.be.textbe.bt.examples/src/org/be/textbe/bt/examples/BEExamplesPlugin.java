@@ -7,13 +7,10 @@
 
 package org.be.textbe.bt.examples;
 
-import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.core.runtime.Plugin;
 
+public class BEExamplesPlugin extends Plugin {
 
-public class BEExamplesPlugin extends AbstractUIPlugin {
-
-	public static final String PLUGIN_ID = "org.be.textBT.examples";
-	
 	private static BEExamplesPlugin instance;
 
 	public BEExamplesPlugin() {
