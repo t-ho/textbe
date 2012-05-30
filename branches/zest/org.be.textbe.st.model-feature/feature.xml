@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.be.textbe.st.model"
+      id="org.be.textbe.st.model.feature"
       label="Model-feature"
       version="1.0.0.qualifier">
 

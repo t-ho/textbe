@@ -8,10 +8,10 @@ package org.be.textbe.st.examples;
 
 
 
-import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.core.runtime.Plugin;
 
 
-public class STExamplesPlugin extends AbstractUIPlugin {
+public class STExamplesPlugin extends Plugin {
 
 	public static final String PLUGIN_ID = "org.be.textbe.st.examples";
 	

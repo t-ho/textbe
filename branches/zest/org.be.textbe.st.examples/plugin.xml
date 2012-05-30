@@ -13,7 +13,7 @@
             category="org.eclipse.ui.Examples/org.be.textbe.st.examples.category"
             class="org.be.textbe.st.examples.OCLComparisonExampleWizard"
             hasPages="false"
-            icon="icons/beicon.gif"
+            icon="$nl$/icons/beicon.gif"
             id="org.be.textbe.st.examples.ocl"
             name="OCL Comparison Example"
             project="true">
@@ -26,7 +26,7 @@
             category="org.eclipse.ui.Examples/org.be.textbe.st.examples.category"
             class="org.be.textbe.st.examples.STNotationExampleWizard"
             hasPages="false"
-            icon="icons/beicon.gif"
+            icon="$nl$/icons/beicon.gif"
             id="org.be.textbe.st.examples.notation"
             name="Structure Trees Notation Example"
             project="true">
