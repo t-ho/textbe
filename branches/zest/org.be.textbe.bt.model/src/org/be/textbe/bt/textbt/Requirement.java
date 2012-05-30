@@ -6,6 +6,7 @@
  */
 package org.be.textbe.bt.textbt;
 
+import org.eclipse.emf.ecore.EObject;
 import java.net.URI;
 
 /**
@@ -16,7 +17,8 @@ import java.net.URI;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.be.textbe.bt.textbt.Requirement#getId <em>Id</em>}</li>
+ *   <li>{@link org.be.textbe.bt.textbt.Requirement#getRef <em>Ref</em>}</li>
+ *   <li>{@link org.be.textbe.bt.textbt.Requirement#getVal <em>Val</em>}</li>
  * </ul>
  * </p>
  *
@@ -24,32 +26,58 @@ import java.net.URI;
  * @model
  * @generated
  */
-public interface Requirement extends NamedElement
+public interface Requirement extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Id</b></em>' attribute.
+   * Returns the value of the '<em><b>Ref</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Id</em>' attribute isn't clear,
+   * If the meaning of the '<em>Ref</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Id</em>' attribute.
-   * @see #setId(String)
-   * @see org.be.textbe.bt.textbt.TextbtPackage#getRequirement_Id()
-   * @model id="true" required="true"
+   * @return the value of the '<em>Ref</em>' attribute.
+   * @see #setRef(String)
+   * @see org.be.textbe.bt.textbt.TextbtPackage#getRequirement_Ref()
+   * @model required="true"
    * @generated
    */
-  String getId();
+  String getRef();
 
   /**
-   * Sets the value of the '{@link org.be.textbe.bt.textbt.Requirement#getId <em>Id</em>}' attribute.
+   * Sets the value of the '{@link org.be.textbe.bt.textbt.Requirement#getRef <em>Ref</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Id</em>' attribute.
-   * @see #getId()
+   * @param value the new value of the '<em>Ref</em>' attribute.
+   * @see #getRef()
    * @generated
    */
-  void setId(String value);
+  void setRef(String value);
+
+  /**
+   * Returns the value of the '<em><b>Val</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Val</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Val</em>' attribute.
+   * @see #setVal(String)
+   * @see org.be.textbe.bt.textbt.TextbtPackage#getRequirement_Val()
+   * @model required="true"
+   * @generated
+   */
+  String getVal();
+
+  /**
+   * Sets the value of the '{@link org.be.textbe.bt.textbt.Requirement#getVal <em>Val</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Val</em>' attribute.
+   * @see #getVal()
+   * @generated
+   */
+  void setVal(String value);
 
 } // Requirement

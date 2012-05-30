@@ -10,6 +10,7 @@ import java.util.Collection;
 
 import org.be.textbe.bt.textbt.Behavior;
 import org.be.textbe.bt.textbt.Relation;
+import org.be.textbe.bt.textbt.RelationalBehavior;
 import org.be.textbe.bt.textbt.TextbtPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -27,60 +28,29 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Behavior</b></em>'.
+ * An implementation of the model object '<em><b>Relational Behavior</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.be.textbe.bt.textbt.impl.BehaviorImpl#getRef <em>Ref</em>}</li>
- *   <li>{@link org.be.textbe.bt.textbt.impl.BehaviorImpl#getVal <em>Val</em>}</li>
- *   <li>{@link org.be.textbe.bt.textbt.impl.BehaviorImpl#getRelations <em>Relations</em>}</li>
+ *   <li>{@link org.be.textbe.bt.textbt.impl.RelationalBehaviorImpl#getBehavior <em>Behavior</em>}</li>
+ *   <li>{@link org.be.textbe.bt.textbt.impl.RelationalBehaviorImpl#getRelations <em>Relations</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class BehaviorImpl extends AbstractBehaviorImpl implements Behavior
+public class RelationalBehaviorImpl extends AbstractBehaviorImpl implements RelationalBehavior
 {
   /**
-   * The default value of the '{@link #getRef() <em>Ref</em>}' attribute.
+   * The cached value of the '{@link #getBehavior() <em>Behavior</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getRef()
+   * @see #getBehavior()
    * @generated
    * @ordered
    */
-  protected static final String REF_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getRef() <em>Ref</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getRef()
-   * @generated
-   * @ordered
-   */
-  protected String ref = REF_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getVal() <em>Val</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getVal()
-   * @generated
-   * @ordered
-   */
-  protected static final String VAL_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getVal() <em>Val</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getVal()
-   * @generated
-   * @ordered
-   */
-  protected String val = VAL_EDEFAULT;
+  protected Behavior behavior;
 
   /**
    * The cached value of the '{@link #getRelations() <em>Relations</em>}' containment reference list.
@@ -97,7 +67,7 @@ public abstract class BehaviorImpl extends AbstractBehaviorImpl implements Behav
    * <!-- end-user-doc -->
    * @generated
    */
-  protected BehaviorImpl()
+  protected RelationalBehaviorImpl()
   {
     super();
   }
@@ -110,7 +80,7 @@ public abstract class BehaviorImpl extends AbstractBehaviorImpl implements Behav
   @Override
   protected EClass eStaticClass()
   {
-    return TextbtPackage.Literals.BEHAVIOR;
+    return TextbtPackage.Literals.RELATIONAL_BEHAVIOR;
   }
 
   /**
@@ -118,9 +88,9 @@ public abstract class BehaviorImpl extends AbstractBehaviorImpl implements Behav
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getRef()
+  public Behavior getBehavior()
   {
-    return ref;
+    return behavior;
   }
 
   /**
@@ -128,12 +98,16 @@ public abstract class BehaviorImpl extends AbstractBehaviorImpl implements Behav
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRef(String newRef)
+  public NotificationChain basicSetBehavior(Behavior newBehavior, NotificationChain msgs)
   {
-    String oldRef = ref;
-    ref = newRef;
+    Behavior oldBehavior = behavior;
+    behavior = newBehavior;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TextbtPackage.BEHAVIOR__REF, oldRef, ref));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR, oldBehavior, newBehavior);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -141,22 +115,20 @@ public abstract class BehaviorImpl extends AbstractBehaviorImpl implements Behav
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getVal()
+  public void setBehavior(Behavior newBehavior)
   {
-    return val;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setVal(String newVal)
-  {
-    String oldVal = val;
-    val = newVal;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TextbtPackage.BEHAVIOR__VAL, oldVal, val));
+    if (newBehavior != behavior)
+    {
+      NotificationChain msgs = null;
+      if (behavior != null)
+        msgs = ((InternalEObject)behavior).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR, null, msgs);
+      if (newBehavior != null)
+        msgs = ((InternalEObject)newBehavior).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR, null, msgs);
+      msgs = basicSetBehavior(newBehavior, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR, newBehavior, newBehavior));
   }
 
   /**
@@ -168,7 +140,7 @@ public abstract class BehaviorImpl extends AbstractBehaviorImpl implements Behav
   {
     if (relations == null)
     {
-      relations = new EObjectContainmentEList<Relation>(Relation.class, this, TextbtPackage.BEHAVIOR__RELATIONS);
+      relations = new EObjectContainmentEList<Relation>(Relation.class, this, TextbtPackage.RELATIONAL_BEHAVIOR__RELATIONS);
     }
     return relations;
   }
@@ -183,7 +155,9 @@ public abstract class BehaviorImpl extends AbstractBehaviorImpl implements Behav
   {
     switch (featureID)
     {
-      case TextbtPackage.BEHAVIOR__RELATIONS:
+      case TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR:
+        return basicSetBehavior(null, msgs);
+      case TextbtPackage.RELATIONAL_BEHAVIOR__RELATIONS:
         return ((InternalEList<?>)getRelations()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -199,11 +173,9 @@ public abstract class BehaviorImpl extends AbstractBehaviorImpl implements Behav
   {
     switch (featureID)
     {
-      case TextbtPackage.BEHAVIOR__REF:
-        return getRef();
-      case TextbtPackage.BEHAVIOR__VAL:
-        return getVal();
-      case TextbtPackage.BEHAVIOR__RELATIONS:
+      case TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR:
+        return getBehavior();
+      case TextbtPackage.RELATIONAL_BEHAVIOR__RELATIONS:
         return getRelations();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -220,13 +192,10 @@ public abstract class BehaviorImpl extends AbstractBehaviorImpl implements Behav
   {
     switch (featureID)
     {
-      case TextbtPackage.BEHAVIOR__REF:
-        setRef((String)newValue);
+      case TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR:
+        setBehavior((Behavior)newValue);
         return;
-      case TextbtPackage.BEHAVIOR__VAL:
-        setVal((String)newValue);
-        return;
-      case TextbtPackage.BEHAVIOR__RELATIONS:
+      case TextbtPackage.RELATIONAL_BEHAVIOR__RELATIONS:
         getRelations().clear();
         getRelations().addAll((Collection<? extends Relation>)newValue);
         return;
@@ -244,13 +213,10 @@ public abstract class BehaviorImpl extends AbstractBehaviorImpl implements Behav
   {
     switch (featureID)
     {
-      case TextbtPackage.BEHAVIOR__REF:
-        setRef(REF_EDEFAULT);
+      case TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR:
+        setBehavior((Behavior)null);
         return;
-      case TextbtPackage.BEHAVIOR__VAL:
-        setVal(VAL_EDEFAULT);
-        return;
-      case TextbtPackage.BEHAVIOR__RELATIONS:
+      case TextbtPackage.RELATIONAL_BEHAVIOR__RELATIONS:
         getRelations().clear();
         return;
     }
@@ -267,33 +233,12 @@ public abstract class BehaviorImpl extends AbstractBehaviorImpl implements Behav
   {
     switch (featureID)
     {
-      case TextbtPackage.BEHAVIOR__REF:
-        return REF_EDEFAULT == null ? ref != null : !REF_EDEFAULT.equals(ref);
-      case TextbtPackage.BEHAVIOR__VAL:
-        return VAL_EDEFAULT == null ? val != null : !VAL_EDEFAULT.equals(val);
-      case TextbtPackage.BEHAVIOR__RELATIONS:
+      case TextbtPackage.RELATIONAL_BEHAVIOR__BEHAVIOR:
+        return behavior != null;
+      case TextbtPackage.RELATIONAL_BEHAVIOR__RELATIONS:
         return relations != null && !relations.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (ref: ");
-    result.append(ref);
-    result.append(", val: ");
-    result.append(val);
-    result.append(')');
-    return result.toString();
-  }
-
-} //BehaviorImpl
+} //RelationalBehaviorImpl

@@ -76,10 +76,17 @@ public class TextbtSwitch<T> extends Switch<T>
   {
     switch (classifierID)
     {
-      case TextbtPackage.SPECIFICATION:
+      case TextbtPackage.TEXT_BT:
       {
-        Specification specification = (Specification)theEObject;
-        T result = caseSpecification(specification);
+        TextBT textBT = (TextBT)theEObject;
+        T result = caseTextBT(textBT);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TextbtPackage.REQUIREMENT_LIST:
+      {
+        RequirementList requirementList = (RequirementList)theEObject;
+        T result = caseRequirementList(requirementList);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -87,7 +94,13 @@ public class TextbtSwitch<T> extends Switch<T>
       {
         Requirement requirement = (Requirement)theEObject;
         T result = caseRequirement(requirement);
-        if (result == null) result = caseNamedElement(requirement);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TextbtPackage.COMPONENT_LIST:
+      {
+        ComponentList componentList = (ComponentList)theEObject;
+        T result = caseComponentList(componentList);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -95,134 +108,28 @@ public class TextbtSwitch<T> extends Switch<T>
       {
         Component component = (Component)theEObject;
         T result = caseComponent(component);
-        if (result == null) result = caseNamedElement(component);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TextbtPackage.BEHAVIOR:
+      case TextbtPackage.SYSTEM_COMPONENT:
       {
-        Behavior behavior = (Behavior)theEObject;
-        T result = caseBehavior(behavior);
+        SystemComponent systemComponent = (SystemComponent)theEObject;
+        T result = caseSystemComponent(systemComponent);
+        if (result == null) result = caseComponent(systemComponent);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TextbtPackage.STATE_REALIZATION:
+      case TextbtPackage.OPTION_LIST:
       {
-        StateRealization stateRealization = (StateRealization)theEObject;
-        T result = caseStateRealization(stateRealization);
-        if (result == null) result = caseNamedBehavior(stateRealization);
-        if (result == null) result = caseBehavior(stateRealization);
-        if (result == null) result = caseNamedElement(stateRealization);
+        OptionList optionList = (OptionList)theEObject;
+        T result = caseOptionList(optionList);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TextbtPackage.SELECTION:
+      case TextbtPackage.OPTION:
       {
-        Selection selection = (Selection)theEObject;
-        T result = caseSelection(selection);
-        if (result == null) result = caseBehavior(selection);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case TextbtPackage.EVENT:
-      {
-        Event event = (Event)theEObject;
-        T result = caseEvent(event);
-        if (result == null) result = caseNamedBehavior(event);
-        if (result == null) result = caseBehavior(event);
-        if (result == null) result = caseNamedElement(event);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case TextbtPackage.GUARD:
-      {
-        Guard guard = (Guard)theEObject;
-        T result = caseGuard(guard);
-        if (result == null) result = caseBehavior(guard);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case TextbtPackage.INTERNAL_INPUT:
-      {
-        InternalInput internalInput = (InternalInput)theEObject;
-        T result = caseInternalInput(internalInput);
-        if (result == null) result = caseInput(internalInput);
-        if (result == null) result = caseEvent(internalInput);
-        if (result == null) result = caseNamedBehavior(internalInput);
-        if (result == null) result = caseBehavior(internalInput);
-        if (result == null) result = caseNamedElement(internalInput);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case TextbtPackage.INTERNAL_OUTPUT:
-      {
-        InternalOutput internalOutput = (InternalOutput)theEObject;
-        T result = caseInternalOutput(internalOutput);
-        if (result == null) result = caseOutput(internalOutput);
-        if (result == null) result = caseEvent(internalOutput);
-        if (result == null) result = caseNamedBehavior(internalOutput);
-        if (result == null) result = caseBehavior(internalOutput);
-        if (result == null) result = caseNamedElement(internalOutput);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case TextbtPackage.EXTERNAL_INPUT:
-      {
-        ExternalInput externalInput = (ExternalInput)theEObject;
-        T result = caseExternalInput(externalInput);
-        if (result == null) result = caseInput(externalInput);
-        if (result == null) result = caseEvent(externalInput);
-        if (result == null) result = caseNamedBehavior(externalInput);
-        if (result == null) result = caseBehavior(externalInput);
-        if (result == null) result = caseNamedElement(externalInput);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case TextbtPackage.EXTERNAL_OUTPUT:
-      {
-        ExternalOutput externalOutput = (ExternalOutput)theEObject;
-        T result = caseExternalOutput(externalOutput);
-        if (result == null) result = caseOutput(externalOutput);
-        if (result == null) result = caseEvent(externalOutput);
-        if (result == null) result = caseNamedBehavior(externalOutput);
-        if (result == null) result = caseBehavior(externalOutput);
-        if (result == null) result = caseNamedElement(externalOutput);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case TextbtPackage.NODE:
-      {
-        Node node = (Node)theEObject;
-        T result = caseNode(node);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case TextbtPackage.INPUT:
-      {
-        Input input = (Input)theEObject;
-        T result = caseInput(input);
-        if (result == null) result = caseEvent(input);
-        if (result == null) result = caseNamedBehavior(input);
-        if (result == null) result = caseBehavior(input);
-        if (result == null) result = caseNamedElement(input);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case TextbtPackage.OUTPUT:
-      {
-        Output output = (Output)theEObject;
-        T result = caseOutput(output);
-        if (result == null) result = caseEvent(output);
-        if (result == null) result = caseNamedBehavior(output);
-        if (result == null) result = caseBehavior(output);
-        if (result == null) result = caseNamedElement(output);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case TextbtPackage.TRACEABILITY_LINK:
-      {
-        TraceabilityLink traceabilityLink = (TraceabilityLink)theEObject;
-        T result = caseTraceabilityLink(traceabilityLink);
+        Option option = (Option)theEObject;
+        T result = caseOption(option);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -233,70 +140,18 @@ public class TextbtSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TextbtPackage.SEQUENCE:
+      case TextbtPackage.ABSTRACT_BEHAVIOR:
       {
-        Sequence sequence = (Sequence)theEObject;
-        T result = caseSequence(sequence);
-        if (result == null) result = caseBehaviorTree(sequence);
+        AbstractBehavior abstractBehavior = (AbstractBehavior)theEObject;
+        T result = caseAbstractBehavior(abstractBehavior);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TextbtPackage.BRANCH:
+      case TextbtPackage.RELATIONAL_BEHAVIOR:
       {
-        Branch branch = (Branch)theEObject;
-        T result = caseBranch(branch);
-        if (result == null) result = caseBehaviorTree(branch);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case TextbtPackage.PARALLEL:
-      {
-        Parallel parallel = (Parallel)theEObject;
-        T result = caseParallel(parallel);
-        if (result == null) result = caseBranch(parallel);
-        if (result == null) result = caseBehaviorTree(parallel);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case TextbtPackage.ALTERNATIVE:
-      {
-        Alternative alternative = (Alternative)theEObject;
-        T result = caseAlternative(alternative);
-        if (result == null) result = caseBranch(alternative);
-        if (result == null) result = caseBehaviorTree(alternative);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case TextbtPackage.TRANSACTION:
-      {
-        Transaction transaction = (Transaction)theEObject;
-        T result = caseTransaction(transaction);
-        if (result == null) result = caseSequence(transaction);
-        if (result == null) result = caseBehaviorTree(transaction);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case TextbtPackage.INTERLEAVING:
-      {
-        Interleaving interleaving = (Interleaving)theEObject;
-        T result = caseInterleaving(interleaving);
-        if (result == null) result = caseSequence(interleaving);
-        if (result == null) result = caseBehaviorTree(interleaving);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case TextbtPackage.NAMED_ELEMENT:
-      {
-        NamedElement namedElement = (NamedElement)theEObject;
-        T result = caseNamedElement(namedElement);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case TextbtPackage.ASSERTION:
-      {
-        Assertion assertion = (Assertion)theEObject;
-        T result = caseAssertion(assertion);
-        if (result == null) result = caseBehavior(assertion);
+        RelationalBehavior relationalBehavior = (RelationalBehavior)theEObject;
+        T result = caseRelationalBehavior(relationalBehavior);
+        if (result == null) result = caseAbstractBehavior(relationalBehavior);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -307,93 +162,158 @@ public class TextbtSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TextbtPackage.WHO:
+      case TextbtPackage.BEHAVIOR:
       {
-        Who who = (Who)theEObject;
-        T result = caseWho(who);
-        if (result == null) result = caseFreeTextRelation(who);
-        if (result == null) result = caseRelation(who);
+        Behavior behavior = (Behavior)theEObject;
+        T result = caseBehavior(behavior);
+        if (result == null) result = caseAbstractBehavior(behavior);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TextbtPackage.WHAT:
+      case TextbtPackage.STATE:
       {
-        What what = (What)theEObject;
-        T result = caseWhat(what);
-        if (result == null) result = caseFreeTextRelation(what);
-        if (result == null) result = caseRelation(what);
+        State state = (State)theEObject;
+        T result = caseState(state);
+        if (result == null) result = caseBehavior(state);
+        if (result == null) result = caseAbstractBehavior(state);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TextbtPackage.WHERE:
+      case TextbtPackage.SELECTION:
       {
-        Where where = (Where)theEObject;
-        T result = caseWhere(where);
-        if (result == null) result = caseFreeTextRelation(where);
-        if (result == null) result = caseRelation(where);
+        Selection selection = (Selection)theEObject;
+        T result = caseSelection(selection);
+        if (result == null) result = caseBehavior(selection);
+        if (result == null) result = caseAbstractBehavior(selection);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TextbtPackage.WHEN:
+      case TextbtPackage.EVENT:
       {
-        When when = (When)theEObject;
-        T result = caseWhen(when);
-        if (result == null) result = caseFreeTextRelation(when);
-        if (result == null) result = caseRelation(when);
+        Event event = (Event)theEObject;
+        T result = caseEvent(event);
+        if (result == null) result = caseBehavior(event);
+        if (result == null) result = caseAbstractBehavior(event);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TextbtPackage.WHY:
+      case TextbtPackage.GUARD:
       {
-        Why why = (Why)theEObject;
-        T result = caseWhy(why);
-        if (result == null) result = caseFreeTextRelation(why);
-        if (result == null) result = caseRelation(why);
+        Guard guard = (Guard)theEObject;
+        T result = caseGuard(guard);
+        if (result == null) result = caseBehavior(guard);
+        if (result == null) result = caseAbstractBehavior(guard);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TextbtPackage.FREE_TEXT_RELATION:
+      case TextbtPackage.INTERNAL_INPUT:
       {
-        FreeTextRelation freeTextRelation = (FreeTextRelation)theEObject;
-        T result = caseFreeTextRelation(freeTextRelation);
-        if (result == null) result = caseRelation(freeTextRelation);
+        InternalInput internalInput = (InternalInput)theEObject;
+        T result = caseInternalInput(internalInput);
+        if (result == null) result = caseBehavior(internalInput);
+        if (result == null) result = caseAbstractBehavior(internalInput);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TextbtPackage.HOW:
+      case TextbtPackage.INTERNAL_OUTPUT:
       {
-        How how = (How)theEObject;
-        T result = caseHow(how);
-        if (result == null) result = caseFreeTextRelation(how);
-        if (result == null) result = caseRelation(how);
+        InternalOutput internalOutput = (InternalOutput)theEObject;
+        T result = caseInternalOutput(internalOutput);
+        if (result == null) result = caseBehavior(internalOutput);
+        if (result == null) result = caseAbstractBehavior(internalOutput);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TextbtPackage.ATTRIBUTE_REALIZATION:
+      case TextbtPackage.EXTERNAL_INPUT:
       {
-        AttributeRealization attributeRealization = (AttributeRealization)theEObject;
-        T result = caseAttributeRealization(attributeRealization);
-        if (result == null) result = caseNamedBehavior(attributeRealization);
-        if (result == null) result = caseNamedElement(attributeRealization);
-        if (result == null) result = caseBehavior(attributeRealization);
+        ExternalInput externalInput = (ExternalInput)theEObject;
+        T result = caseExternalInput(externalInput);
+        if (result == null) result = caseBehavior(externalInput);
+        if (result == null) result = caseAbstractBehavior(externalInput);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TextbtPackage.NAMED_BEHAVIOR:
+      case TextbtPackage.EXTERNAL_OUTPUT:
       {
-        NamedBehavior namedBehavior = (NamedBehavior)theEObject;
-        T result = caseNamedBehavior(namedBehavior);
-        if (result == null) result = caseNamedElement(namedBehavior);
-        if (result == null) result = caseBehavior(namedBehavior);
+        ExternalOutput externalOutput = (ExternalOutput)theEObject;
+        T result = caseExternalOutput(externalOutput);
+        if (result == null) result = caseBehavior(externalOutput);
+        if (result == null) result = caseAbstractBehavior(externalOutput);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TextbtPackage.SYSTEM_COMPONENT:
+      case TextbtPackage.ASSERTION:
       {
-        SystemComponent systemComponent = (SystemComponent)theEObject;
-        T result = caseSystemComponent(systemComponent);
-        if (result == null) result = caseComponent(systemComponent);
-        if (result == null) result = caseNamedElement(systemComponent);
+        Assertion assertion = (Assertion)theEObject;
+        T result = caseAssertion(assertion);
+        if (result == null) result = caseBehavior(assertion);
+        if (result == null) result = caseAbstractBehavior(assertion);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TextbtPackage.ABSTRACT_BLOCK_OR_NODE:
+      {
+        AbstractBlockOrNode abstractBlockOrNode = (AbstractBlockOrNode)theEObject;
+        T result = caseAbstractBlockOrNode(abstractBlockOrNode);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TextbtPackage.ABSTRACT_BLOCK:
+      {
+        AbstractBlock abstractBlock = (AbstractBlock)theEObject;
+        T result = caseAbstractBlock(abstractBlock);
+        if (result == null) result = caseAbstractBlockOrNode(abstractBlock);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TextbtPackage.ABSTRACT_NODE:
+      {
+        AbstractNode abstractNode = (AbstractNode)theEObject;
+        T result = caseAbstractNode(abstractNode);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TextbtPackage.NODE:
+      {
+        Node node = (Node)theEObject;
+        T result = caseNode(node);
+        if (result == null) result = caseAbstractNode(node);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TextbtPackage.SEQUENTIAL_NODE:
+      {
+        SequentialNode sequentialNode = (SequentialNode)theEObject;
+        T result = caseSequentialNode(sequentialNode);
+        if (result == null) result = caseAbstractNode(sequentialNode);
+        if (result == null) result = caseAbstractBlockOrNode(sequentialNode);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TextbtPackage.ATOMIC_NODE:
+      {
+        AtomicNode atomicNode = (AtomicNode)theEObject;
+        T result = caseAtomicNode(atomicNode);
+        if (result == null) result = caseAbstractNode(atomicNode);
+        if (result == null) result = caseAbstractBlockOrNode(atomicNode);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TextbtPackage.PARALLEL_BLOCK:
+      {
+        ParallelBlock parallelBlock = (ParallelBlock)theEObject;
+        T result = caseParallelBlock(parallelBlock);
+        if (result == null) result = caseAbstractBlock(parallelBlock);
+        if (result == null) result = caseAbstractBlockOrNode(parallelBlock);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TextbtPackage.ALTERNATIVE_BLOCK:
+      {
+        AlternativeBlock alternativeBlock = (AlternativeBlock)theEObject;
+        T result = caseAlternativeBlock(alternativeBlock);
+        if (result == null) result = caseAbstractBlock(alternativeBlock);
+        if (result == null) result = caseAbstractBlockOrNode(alternativeBlock);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -402,17 +322,33 @@ public class TextbtSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Specification</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Text BT</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Specification</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Text BT</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseSpecification(Specification object)
+  public T caseTextBT(TextBT object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Requirement List</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Requirement List</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRequirementList(RequirementList object)
   {
     return null;
   }
@@ -429,6 +365,22 @@ public class TextbtSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseRequirement(Requirement object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Component List</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Component List</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseComponentList(ComponentList object)
   {
     return null;
   }
@@ -466,17 +418,17 @@ public class TextbtSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>State Realization</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>State</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>State Realization</em>'.
+   * @return the result of interpreting the object as an instance of '<em>State</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseStateRealization(StateRealization object)
+  public T caseState(State object)
   {
     return null;
   }
@@ -610,49 +562,65 @@ public class TextbtSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Input</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Sequential Node</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Input</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Sequential Node</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseInput(Input object)
+  public T caseSequentialNode(SequentialNode object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Output</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Atomic Node</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Output</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Atomic Node</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseOutput(Output object)
+  public T caseAtomicNode(AtomicNode object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Traceability Link</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Parallel Block</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Traceability Link</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Parallel Block</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseTraceabilityLink(TraceabilityLink object)
+  public T caseParallelBlock(ParallelBlock object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Alternative Block</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Alternative Block</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAlternativeBlock(AlternativeBlock object)
   {
     return null;
   }
@@ -674,113 +642,33 @@ public class TextbtSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Sequence</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Abstract Behavior</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Sequence</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Abstract Behavior</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseSequence(Sequence object)
+  public T caseAbstractBehavior(AbstractBehavior object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Branch</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Relational Behavior</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Branch</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Relational Behavior</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseBranch(Branch object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Parallel</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Parallel</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseParallel(Parallel object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Alternative</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Alternative</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseAlternative(Alternative object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Transaction</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Transaction</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseTransaction(Transaction object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Interleaving</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Interleaving</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseInterleaving(Interleaving object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Named Element</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseNamedElement(NamedElement object)
+  public T caseRelationalBehavior(RelationalBehavior object)
   {
     return null;
   }
@@ -802,6 +690,54 @@ public class TextbtSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Abstract Block Or Node</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Abstract Block Or Node</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAbstractBlockOrNode(AbstractBlockOrNode object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Abstract Block</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Abstract Block</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAbstractBlock(AbstractBlock object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Abstract Node</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Abstract Node</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAbstractNode(AbstractNode object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Relation</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -818,150 +754,6 @@ public class TextbtSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Who</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Who</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseWho(Who object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>What</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>What</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseWhat(What object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Where</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Where</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseWhere(Where object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>When</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>When</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseWhen(When object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Why</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Why</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseWhy(Why object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Free Text Relation</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Free Text Relation</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseFreeTextRelation(FreeTextRelation object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>How</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>How</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseHow(How object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Attribute Realization</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Attribute Realization</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseAttributeRealization(AttributeRealization object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Named Behavior</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Named Behavior</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseNamedBehavior(NamedBehavior object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>System Component</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -973,6 +765,38 @@ public class TextbtSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseSystemComponent(SystemComponent object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Option List</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Option List</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseOptionList(OptionList object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Option</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Option</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseOption(Option object)
   {
     return null;
   }

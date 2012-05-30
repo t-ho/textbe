@@ -18,9 +18,9 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.be.textbe.bt.textbt.Behavior#getNumber <em>Number</em>}</li>
+ *   <li>{@link org.be.textbe.bt.textbt.Behavior#getRef <em>Ref</em>}</li>
+ *   <li>{@link org.be.textbe.bt.textbt.Behavior#getVal <em>Val</em>}</li>
  *   <li>{@link org.be.textbe.bt.textbt.Behavior#getRelations <em>Relations</em>}</li>
- *   <li>{@link org.be.textbe.bt.textbt.Behavior#getId <em>Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -28,33 +28,59 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface Behavior extends EObject
+public interface Behavior extends AbstractBehavior
 {
   /**
-   * Returns the value of the '<em><b>Number</b></em>' attribute.
+   * Returns the value of the '<em><b>Ref</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Number</em>' attribute isn't clear,
+   * If the meaning of the '<em>Ref</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Number</em>' attribute.
-   * @see #setNumber(int)
-   * @see org.be.textbe.bt.textbt.TextbtPackage#getBehavior_Number()
-   * @model required="true" transient="true"
+   * @return the value of the '<em>Ref</em>' attribute.
+   * @see #setRef(String)
+   * @see org.be.textbe.bt.textbt.TextbtPackage#getBehavior_Ref()
+   * @model required="true"
    * @generated
    */
-  int getNumber();
+  String getRef();
 
   /**
-   * Sets the value of the '{@link org.be.textbe.bt.textbt.Behavior#getNumber <em>Number</em>}' attribute.
+   * Sets the value of the '{@link org.be.textbe.bt.textbt.Behavior#getRef <em>Ref</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Number</em>' attribute.
-   * @see #getNumber()
+   * @param value the new value of the '<em>Ref</em>' attribute.
+   * @see #getRef()
    * @generated
    */
-  void setNumber(int value);
+  void setRef(String value);
+
+  /**
+   * Returns the value of the '<em><b>Val</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Val</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Val</em>' attribute.
+   * @see #setVal(String)
+   * @see org.be.textbe.bt.textbt.TextbtPackage#getBehavior_Val()
+   * @model required="true"
+   * @generated
+   */
+  String getVal();
+
+  /**
+   * Sets the value of the '{@link org.be.textbe.bt.textbt.Behavior#getVal <em>Val</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Val</em>' attribute.
+   * @see #getVal()
+   * @generated
+   */
+  void setVal(String value);
 
   /**
    * Returns the value of the '<em><b>Relations</b></em>' containment reference list.
@@ -71,21 +97,5 @@ public interface Behavior extends EObject
    * @generated
    */
   EList<Relation> getRelations();
-
-  /**
-   * Returns the value of the '<em><b>Id</b></em>' attribute.
-   * The default value is <code>""</code>.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Id</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Id</em>' attribute.
-   * @see org.be.textbe.bt.textbt.TextbtPackage#getBehavior_Id()
-   * @model default="" id="true" required="true" transient="true" changeable="false" derived="true"
-   * @generated
-   */
-  String getId();
 
 } // Behavior

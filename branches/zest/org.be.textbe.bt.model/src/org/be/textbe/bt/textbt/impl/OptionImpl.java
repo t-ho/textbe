@@ -6,7 +6,7 @@
  */
 package org.be.textbe.bt.textbt.impl;
 
-import org.be.textbe.bt.textbt.NamedElement;
+import org.be.textbe.bt.textbt.Option;
 import org.be.textbe.bt.textbt.TextbtPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -18,18 +18,19 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Named Element</b></em>'.
+ * An implementation of the model object '<em><b>Option</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.be.textbe.bt.textbt.impl.NamedElementImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.be.textbe.bt.textbt.impl.OptionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.be.textbe.bt.textbt.impl.OptionImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class NamedElementImpl extends EObjectImpl implements NamedElement
+public class OptionImpl extends EObjectImpl implements Option
 {
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -52,11 +53,31 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
   protected String name = NAME_EDEFAULT;
 
   /**
+   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getValue()
+   * @generated
+   * @ordered
+   */
+  protected static final String VALUE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getValue()
+   * @generated
+   * @ordered
+   */
+  protected String value = VALUE_EDEFAULT;
+
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected NamedElementImpl()
+  protected OptionImpl()
   {
     super();
   }
@@ -69,7 +90,7 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
   @Override
   protected EClass eStaticClass()
   {
-    return TextbtPackage.Literals.NAMED_ELEMENT;
+    return TextbtPackage.Literals.OPTION;
   }
 
   /**
@@ -92,7 +113,30 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
     String oldName = name;
     name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TextbtPackage.NAMED_ELEMENT__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, TextbtPackage.OPTION__NAME, oldName, name));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getValue()
+  {
+    return value;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setValue(String newValue)
+  {
+    String oldValue = value;
+    value = newValue;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TextbtPackage.OPTION__VALUE, oldValue, value));
   }
 
   /**
@@ -105,8 +149,10 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
   {
     switch (featureID)
     {
-      case TextbtPackage.NAMED_ELEMENT__NAME:
+      case TextbtPackage.OPTION__NAME:
         return getName();
+      case TextbtPackage.OPTION__VALUE:
+        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -121,8 +167,11 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
   {
     switch (featureID)
     {
-      case TextbtPackage.NAMED_ELEMENT__NAME:
+      case TextbtPackage.OPTION__NAME:
         setName((String)newValue);
+        return;
+      case TextbtPackage.OPTION__VALUE:
+        setValue((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -138,8 +187,11 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
   {
     switch (featureID)
     {
-      case TextbtPackage.NAMED_ELEMENT__NAME:
+      case TextbtPackage.OPTION__NAME:
         setName(NAME_EDEFAULT);
+        return;
+      case TextbtPackage.OPTION__VALUE:
+        setValue(VALUE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -155,8 +207,10 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
   {
     switch (featureID)
     {
-      case TextbtPackage.NAMED_ELEMENT__NAME:
+      case TextbtPackage.OPTION__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case TextbtPackage.OPTION__VALUE:
+        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
     }
     return super.eIsSet(featureID);
   }
@@ -174,8 +228,10 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
+    result.append(", value: ");
+    result.append(value);
     result.append(')');
     return result.toString();
   }
 
-} //NamedElementImpl
+} //OptionImpl

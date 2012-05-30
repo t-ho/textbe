@@ -79,9 +79,14 @@ public class TextbtAdapterFactory extends AdapterFactoryImpl
     new TextbtSwitch<Adapter>()
     {
       @Override
-      public Adapter caseSpecification(Specification object)
+      public Adapter caseTextBT(TextBT object)
       {
-        return createSpecificationAdapter();
+        return createTextBTAdapter();
+      }
+      @Override
+      public Adapter caseRequirementList(RequirementList object)
+      {
+        return createRequirementListAdapter();
       }
       @Override
       public Adapter caseRequirement(Requirement object)
@@ -89,9 +94,49 @@ public class TextbtAdapterFactory extends AdapterFactoryImpl
         return createRequirementAdapter();
       }
       @Override
+      public Adapter caseComponentList(ComponentList object)
+      {
+        return createComponentListAdapter();
+      }
+      @Override
       public Adapter caseComponent(Component object)
       {
         return createComponentAdapter();
+      }
+      @Override
+      public Adapter caseSystemComponent(SystemComponent object)
+      {
+        return createSystemComponentAdapter();
+      }
+      @Override
+      public Adapter caseOptionList(OptionList object)
+      {
+        return createOptionListAdapter();
+      }
+      @Override
+      public Adapter caseOption(Option object)
+      {
+        return createOptionAdapter();
+      }
+      @Override
+      public Adapter caseBehaviorTree(BehaviorTree object)
+      {
+        return createBehaviorTreeAdapter();
+      }
+      @Override
+      public Adapter caseAbstractBehavior(AbstractBehavior object)
+      {
+        return createAbstractBehaviorAdapter();
+      }
+      @Override
+      public Adapter caseRelationalBehavior(RelationalBehavior object)
+      {
+        return createRelationalBehaviorAdapter();
+      }
+      @Override
+      public Adapter caseRelation(Relation object)
+      {
+        return createRelationAdapter();
       }
       @Override
       public Adapter caseBehavior(Behavior object)
@@ -99,9 +144,9 @@ public class TextbtAdapterFactory extends AdapterFactoryImpl
         return createBehaviorAdapter();
       }
       @Override
-      public Adapter caseStateRealization(StateRealization object)
+      public Adapter caseState(State object)
       {
-        return createStateRealizationAdapter();
+        return createStateAdapter();
       }
       @Override
       public Adapter caseSelection(Selection object)
@@ -139,124 +184,49 @@ public class TextbtAdapterFactory extends AdapterFactoryImpl
         return createExternalOutputAdapter();
       }
       @Override
-      public Adapter caseNode(Node object)
-      {
-        return createNodeAdapter();
-      }
-      @Override
-      public Adapter caseInput(Input object)
-      {
-        return createInputAdapter();
-      }
-      @Override
-      public Adapter caseOutput(Output object)
-      {
-        return createOutputAdapter();
-      }
-      @Override
-      public Adapter caseTraceabilityLink(TraceabilityLink object)
-      {
-        return createTraceabilityLinkAdapter();
-      }
-      @Override
-      public Adapter caseBehaviorTree(BehaviorTree object)
-      {
-        return createBehaviorTreeAdapter();
-      }
-      @Override
-      public Adapter caseSequence(Sequence object)
-      {
-        return createSequenceAdapter();
-      }
-      @Override
-      public Adapter caseBranch(Branch object)
-      {
-        return createBranchAdapter();
-      }
-      @Override
-      public Adapter caseParallel(Parallel object)
-      {
-        return createParallelAdapter();
-      }
-      @Override
-      public Adapter caseAlternative(Alternative object)
-      {
-        return createAlternativeAdapter();
-      }
-      @Override
-      public Adapter caseTransaction(Transaction object)
-      {
-        return createTransactionAdapter();
-      }
-      @Override
-      public Adapter caseInterleaving(Interleaving object)
-      {
-        return createInterleavingAdapter();
-      }
-      @Override
-      public Adapter caseNamedElement(NamedElement object)
-      {
-        return createNamedElementAdapter();
-      }
-      @Override
       public Adapter caseAssertion(Assertion object)
       {
         return createAssertionAdapter();
       }
       @Override
-      public Adapter caseRelation(Relation object)
+      public Adapter caseAbstractBlockOrNode(AbstractBlockOrNode object)
       {
-        return createRelationAdapter();
+        return createAbstractBlockOrNodeAdapter();
       }
       @Override
-      public Adapter caseWho(Who object)
+      public Adapter caseAbstractBlock(AbstractBlock object)
       {
-        return createWhoAdapter();
+        return createAbstractBlockAdapter();
       }
       @Override
-      public Adapter caseWhat(What object)
+      public Adapter caseAbstractNode(AbstractNode object)
       {
-        return createWhatAdapter();
+        return createAbstractNodeAdapter();
       }
       @Override
-      public Adapter caseWhere(Where object)
+      public Adapter caseNode(Node object)
       {
-        return createWhereAdapter();
+        return createNodeAdapter();
       }
       @Override
-      public Adapter caseWhen(When object)
+      public Adapter caseSequentialNode(SequentialNode object)
       {
-        return createWhenAdapter();
+        return createSequentialNodeAdapter();
       }
       @Override
-      public Adapter caseWhy(Why object)
+      public Adapter caseAtomicNode(AtomicNode object)
       {
-        return createWhyAdapter();
+        return createAtomicNodeAdapter();
       }
       @Override
-      public Adapter caseFreeTextRelation(FreeTextRelation object)
+      public Adapter caseParallelBlock(ParallelBlock object)
       {
-        return createFreeTextRelationAdapter();
+        return createParallelBlockAdapter();
       }
       @Override
-      public Adapter caseHow(How object)
+      public Adapter caseAlternativeBlock(AlternativeBlock object)
       {
-        return createHowAdapter();
-      }
-      @Override
-      public Adapter caseAttributeRealization(AttributeRealization object)
-      {
-        return createAttributeRealizationAdapter();
-      }
-      @Override
-      public Adapter caseNamedBehavior(NamedBehavior object)
-      {
-        return createNamedBehaviorAdapter();
-      }
-      @Override
-      public Adapter caseSystemComponent(SystemComponent object)
-      {
-        return createSystemComponentAdapter();
+        return createAlternativeBlockAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -281,16 +251,31 @@ public class TextbtAdapterFactory extends AdapterFactoryImpl
 
 
   /**
-   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.Specification <em>Specification</em>}'.
+   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.TextBT <em>Text BT</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.be.textbe.bt.textbt.Specification
+   * @see org.be.textbe.bt.textbt.TextBT
    * @generated
    */
-  public Adapter createSpecificationAdapter()
+  public Adapter createTextBTAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.RequirementList <em>Requirement List</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.be.textbe.bt.textbt.RequirementList
+   * @generated
+   */
+  public Adapter createRequirementListAdapter()
   {
     return null;
   }
@@ -306,6 +291,21 @@ public class TextbtAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createRequirementAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.ComponentList <em>Component List</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.be.textbe.bt.textbt.ComponentList
+   * @generated
+   */
+  public Adapter createComponentListAdapter()
   {
     return null;
   }
@@ -341,16 +341,16 @@ public class TextbtAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.StateRealization <em>State Realization</em>}'.
+   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.State <em>State</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.be.textbe.bt.textbt.StateRealization
+   * @see org.be.textbe.bt.textbt.State
    * @generated
    */
-  public Adapter createStateRealizationAdapter()
+  public Adapter createStateAdapter()
   {
     return null;
   }
@@ -476,46 +476,61 @@ public class TextbtAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.Input <em>Input</em>}'.
+   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.SequentialNode <em>Sequential Node</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.be.textbe.bt.textbt.Input
+   * @see org.be.textbe.bt.textbt.SequentialNode
    * @generated
    */
-  public Adapter createInputAdapter()
+  public Adapter createSequentialNodeAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.Output <em>Output</em>}'.
+   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.AtomicNode <em>Atomic Node</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.be.textbe.bt.textbt.Output
+   * @see org.be.textbe.bt.textbt.AtomicNode
    * @generated
    */
-  public Adapter createOutputAdapter()
+  public Adapter createAtomicNodeAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.TraceabilityLink <em>Traceability Link</em>}'.
+   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.ParallelBlock <em>Parallel Block</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.be.textbe.bt.textbt.TraceabilityLink
+   * @see org.be.textbe.bt.textbt.ParallelBlock
    * @generated
    */
-  public Adapter createTraceabilityLinkAdapter()
+  public Adapter createParallelBlockAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.AlternativeBlock <em>Alternative Block</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.be.textbe.bt.textbt.AlternativeBlock
+   * @generated
+   */
+  public Adapter createAlternativeBlockAdapter()
   {
     return null;
   }
@@ -536,106 +551,31 @@ public class TextbtAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.Sequence <em>Sequence</em>}'.
+   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.AbstractBehavior <em>Abstract Behavior</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.be.textbe.bt.textbt.Sequence
+   * @see org.be.textbe.bt.textbt.AbstractBehavior
    * @generated
    */
-  public Adapter createSequenceAdapter()
+  public Adapter createAbstractBehaviorAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.Branch <em>Branch</em>}'.
+   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.RelationalBehavior <em>Relational Behavior</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.be.textbe.bt.textbt.Branch
+   * @see org.be.textbe.bt.textbt.RelationalBehavior
    * @generated
    */
-  public Adapter createBranchAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.Parallel <em>Parallel</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.be.textbe.bt.textbt.Parallel
-   * @generated
-   */
-  public Adapter createParallelAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.Alternative <em>Alternative</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.be.textbe.bt.textbt.Alternative
-   * @generated
-   */
-  public Adapter createAlternativeAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.Transaction <em>Transaction</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.be.textbe.bt.textbt.Transaction
-   * @generated
-   */
-  public Adapter createTransactionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.Interleaving <em>Interleaving</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.be.textbe.bt.textbt.Interleaving
-   * @generated
-   */
-  public Adapter createInterleavingAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.NamedElement <em>Named Element</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.be.textbe.bt.textbt.NamedElement
-   * @generated
-   */
-  public Adapter createNamedElementAdapter()
+  public Adapter createRelationalBehaviorAdapter()
   {
     return null;
   }
@@ -656,6 +596,51 @@ public class TextbtAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.AbstractBlockOrNode <em>Abstract Block Or Node</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.be.textbe.bt.textbt.AbstractBlockOrNode
+   * @generated
+   */
+  public Adapter createAbstractBlockOrNodeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.AbstractBlock <em>Abstract Block</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.be.textbe.bt.textbt.AbstractBlock
+   * @generated
+   */
+  public Adapter createAbstractBlockAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.AbstractNode <em>Abstract Node</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.be.textbe.bt.textbt.AbstractNode
+   * @generated
+   */
+  public Adapter createAbstractNodeAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.Relation <em>Relation</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -671,141 +656,6 @@ public class TextbtAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.Who <em>Who</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.be.textbe.bt.textbt.Who
-   * @generated
-   */
-  public Adapter createWhoAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.What <em>What</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.be.textbe.bt.textbt.What
-   * @generated
-   */
-  public Adapter createWhatAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.Where <em>Where</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.be.textbe.bt.textbt.Where
-   * @generated
-   */
-  public Adapter createWhereAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.When <em>When</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.be.textbe.bt.textbt.When
-   * @generated
-   */
-  public Adapter createWhenAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.Why <em>Why</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.be.textbe.bt.textbt.Why
-   * @generated
-   */
-  public Adapter createWhyAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.FreeTextRelation <em>Free Text Relation</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.be.textbe.bt.textbt.FreeTextRelation
-   * @generated
-   */
-  public Adapter createFreeTextRelationAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.How <em>How</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.be.textbe.bt.textbt.How
-   * @generated
-   */
-  public Adapter createHowAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.AttributeRealization <em>Attribute Realization</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.be.textbe.bt.textbt.AttributeRealization
-   * @generated
-   */
-  public Adapter createAttributeRealizationAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.NamedBehavior <em>Named Behavior</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.be.textbe.bt.textbt.NamedBehavior
-   * @generated
-   */
-  public Adapter createNamedBehaviorAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.SystemComponent <em>System Component</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -816,6 +666,36 @@ public class TextbtAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createSystemComponentAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.OptionList <em>Option List</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.be.textbe.bt.textbt.OptionList
+   * @generated
+   */
+  public Adapter createOptionListAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.be.textbe.bt.textbt.Option <em>Option</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.be.textbe.bt.textbt.Option
+   * @generated
+   */
+  public Adapter createOptionAdapter()
   {
     return null;
   }

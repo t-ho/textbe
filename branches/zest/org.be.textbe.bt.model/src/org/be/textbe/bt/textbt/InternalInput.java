@@ -17,6 +17,6 @@ package org.be.textbe.bt.textbt;
  * @model
  * @generated
  */
-public interface InternalInput extends Input
+public interface InternalInput extends Behavior
 {
 } // InternalInput

@@ -27,13 +27,22 @@ public interface TextbtFactory extends EFactory
   TextbtFactory eINSTANCE = org.be.textbe.bt.textbt.impl.TextbtFactoryImpl.init();
 
   /**
-   * Returns a new object of class '<em>Specification</em>'.
+   * Returns a new object of class '<em>Text BT</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Specification</em>'.
+   * @return a new object of class '<em>Text BT</em>'.
    * @generated
    */
-  Specification createSpecification();
+  TextBT createTextBT();
+
+  /**
+   * Returns a new object of class '<em>Requirement List</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Requirement List</em>'.
+   * @generated
+   */
+  RequirementList createRequirementList();
 
   /**
    * Returns a new object of class '<em>Requirement</em>'.
@@ -45,6 +54,15 @@ public interface TextbtFactory extends EFactory
   Requirement createRequirement();
 
   /**
+   * Returns a new object of class '<em>Component List</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Component List</em>'.
+   * @generated
+   */
+  ComponentList createComponentList();
+
+  /**
    * Returns a new object of class '<em>Component</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -52,15 +70,6 @@ public interface TextbtFactory extends EFactory
    * @generated
    */
   Component createComponent();
-
-  /**
-   * Returns a new object of class '<em>State Realization</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>State Realization</em>'.
-   * @generated
-   */
-  StateRealization createStateRealization();
 
   /**
    * Returns a new object of class '<em>Selection</em>'.
@@ -135,49 +144,40 @@ public interface TextbtFactory extends EFactory
   Node createNode();
 
   /**
-   * Returns a new object of class '<em>Traceability Link</em>'.
+   * Returns a new object of class '<em>Sequential Node</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Traceability Link</em>'.
+   * @return a new object of class '<em>Sequential Node</em>'.
    * @generated
    */
-  TraceabilityLink createTraceabilityLink();
+  SequentialNode createSequentialNode();
 
   /**
-   * Returns a new object of class '<em>Parallel</em>'.
+   * Returns a new object of class '<em>Atomic Node</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Parallel</em>'.
+   * @return a new object of class '<em>Atomic Node</em>'.
    * @generated
    */
-  Parallel createParallel();
+  AtomicNode createAtomicNode();
 
   /**
-   * Returns a new object of class '<em>Alternative</em>'.
+   * Returns a new object of class '<em>Parallel Block</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Alternative</em>'.
+   * @return a new object of class '<em>Parallel Block</em>'.
    * @generated
    */
-  Alternative createAlternative();
+  ParallelBlock createParallelBlock();
 
   /**
-   * Returns a new object of class '<em>Transaction</em>'.
+   * Returns a new object of class '<em>Alternative Block</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Transaction</em>'.
+   * @return a new object of class '<em>Alternative Block</em>'.
    * @generated
    */
-  Transaction createTransaction();
-
-  /**
-   * Returns a new object of class '<em>Interleaving</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Interleaving</em>'.
-   * @generated
-   */
-  Interleaving createInterleaving();
+  AlternativeBlock createAlternativeBlock();
 
   /**
    * Returns a new object of class '<em>Assertion</em>'.
@@ -189,69 +189,6 @@ public interface TextbtFactory extends EFactory
   Assertion createAssertion();
 
   /**
-   * Returns a new object of class '<em>Who</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Who</em>'.
-   * @generated
-   */
-  Who createWho();
-
-  /**
-   * Returns a new object of class '<em>What</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>What</em>'.
-   * @generated
-   */
-  What createWhat();
-
-  /**
-   * Returns a new object of class '<em>Where</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Where</em>'.
-   * @generated
-   */
-  Where createWhere();
-
-  /**
-   * Returns a new object of class '<em>When</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>When</em>'.
-   * @generated
-   */
-  When createWhen();
-
-  /**
-   * Returns a new object of class '<em>Why</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Why</em>'.
-   * @generated
-   */
-  Why createWhy();
-
-  /**
-   * Returns a new object of class '<em>How</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>How</em>'.
-   * @generated
-   */
-  How createHow();
-
-  /**
-   * Returns a new object of class '<em>Attribute Realization</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Attribute Realization</em>'.
-   * @generated
-   */
-  AttributeRealization createAttributeRealization();
-
-  /**
    * Returns a new object of class '<em>System Component</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -259,6 +196,60 @@ public interface TextbtFactory extends EFactory
    * @generated
    */
   SystemComponent createSystemComponent();
+
+  /**
+   * Returns a new object of class '<em>Option List</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Option List</em>'.
+   * @generated
+   */
+  OptionList createOptionList();
+
+  /**
+   * Returns a new object of class '<em>Option</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Option</em>'.
+   * @generated
+   */
+  Option createOption();
+
+  /**
+   * Returns a new object of class '<em>Behavior Tree</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Behavior Tree</em>'.
+   * @generated
+   */
+  BehaviorTree createBehaviorTree();
+
+  /**
+   * Returns a new object of class '<em>Relational Behavior</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Relational Behavior</em>'.
+   * @generated
+   */
+  RelationalBehavior createRelationalBehavior();
+
+  /**
+   * Returns a new object of class '<em>Relation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Relation</em>'.
+   * @generated
+   */
+  Relation createRelation();
+
+  /**
+   * Returns a new object of class '<em>State</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>State</em>'.
+   * @generated
+   */
+  State createState();
 
   /**
    * Returns the package supported by this factory.

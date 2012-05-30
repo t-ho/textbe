@@ -9,14 +9,14 @@ package org.be.textbe.bt.textbt;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Assertion</b></em>'.
+ * A representation of the model object '<em><b>State</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.be.textbe.bt.textbt.TextbtPackage#getAssertion()
+ * @see org.be.textbe.bt.textbt.TextbtPackage#getState()
  * @model
  * @generated
  */
-public interface Assertion extends Behavior
+public interface State extends Behavior
 {
-} // Assertion
+} // State

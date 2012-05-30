@@ -6,8 +6,8 @@
  */
 package org.be.textbe.bt.textbt.impl;
 
-import org.be.textbe.bt.textbt.BehaviorTree;
-import org.be.textbe.bt.textbt.Node;
+import org.be.textbe.bt.textbt.AbstractBlockOrNode;
+import org.be.textbe.bt.textbt.SequentialNode;
 import org.be.textbe.bt.textbt.TextbtPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -17,39 +17,38 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Behavior Tree</b></em>'.
+ * An implementation of the model object '<em><b>Sequential Node</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.be.textbe.bt.textbt.impl.BehaviorTreeImpl#getRootNode <em>Root Node</em>}</li>
+ *   <li>{@link org.be.textbe.bt.textbt.impl.SequentialNodeImpl#getChildNode <em>Child Node</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class BehaviorTreeImpl extends EObjectImpl implements BehaviorTree
+public class SequentialNodeImpl extends AbstractNodeImpl implements SequentialNode
 {
   /**
-   * The cached value of the '{@link #getRootNode() <em>Root Node</em>}' containment reference.
+   * The cached value of the '{@link #getChildNode() <em>Child Node</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getRootNode()
+   * @see #getChildNode()
    * @generated
    * @ordered
    */
-  protected Node rootNode;
+  protected AbstractBlockOrNode childNode;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected BehaviorTreeImpl()
+  protected SequentialNodeImpl()
   {
     super();
   }
@@ -62,7 +61,7 @@ public class BehaviorTreeImpl extends EObjectImpl implements BehaviorTree
   @Override
   protected EClass eStaticClass()
   {
-    return TextbtPackage.Literals.BEHAVIOR_TREE;
+    return TextbtPackage.Literals.SEQUENTIAL_NODE;
   }
 
   /**
@@ -70,9 +69,9 @@ public class BehaviorTreeImpl extends EObjectImpl implements BehaviorTree
    * <!-- end-user-doc -->
    * @generated
    */
-  public Node getRootNode()
+  public AbstractBlockOrNode getChildNode()
   {
-    return rootNode;
+    return childNode;
   }
 
   /**
@@ -80,13 +79,13 @@ public class BehaviorTreeImpl extends EObjectImpl implements BehaviorTree
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetRootNode(Node newRootNode, NotificationChain msgs)
+  public NotificationChain basicSetChildNode(AbstractBlockOrNode newChildNode, NotificationChain msgs)
   {
-    Node oldRootNode = rootNode;
-    rootNode = newRootNode;
+    AbstractBlockOrNode oldChildNode = childNode;
+    childNode = newChildNode;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TextbtPackage.BEHAVIOR_TREE__ROOT_NODE, oldRootNode, newRootNode);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TextbtPackage.SEQUENTIAL_NODE__CHILD_NODE, oldChildNode, newChildNode);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -97,20 +96,20 @@ public class BehaviorTreeImpl extends EObjectImpl implements BehaviorTree
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRootNode(Node newRootNode)
+  public void setChildNode(AbstractBlockOrNode newChildNode)
   {
-    if (newRootNode != rootNode)
+    if (newChildNode != childNode)
     {
       NotificationChain msgs = null;
-      if (rootNode != null)
-        msgs = ((InternalEObject)rootNode).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TextbtPackage.BEHAVIOR_TREE__ROOT_NODE, null, msgs);
-      if (newRootNode != null)
-        msgs = ((InternalEObject)newRootNode).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TextbtPackage.BEHAVIOR_TREE__ROOT_NODE, null, msgs);
-      msgs = basicSetRootNode(newRootNode, msgs);
+      if (childNode != null)
+        msgs = ((InternalEObject)childNode).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TextbtPackage.SEQUENTIAL_NODE__CHILD_NODE, null, msgs);
+      if (newChildNode != null)
+        msgs = ((InternalEObject)newChildNode).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TextbtPackage.SEQUENTIAL_NODE__CHILD_NODE, null, msgs);
+      msgs = basicSetChildNode(newChildNode, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TextbtPackage.BEHAVIOR_TREE__ROOT_NODE, newRootNode, newRootNode));
+      eNotify(new ENotificationImpl(this, Notification.SET, TextbtPackage.SEQUENTIAL_NODE__CHILD_NODE, newChildNode, newChildNode));
   }
 
   /**
@@ -123,8 +122,8 @@ public class BehaviorTreeImpl extends EObjectImpl implements BehaviorTree
   {
     switch (featureID)
     {
-      case TextbtPackage.BEHAVIOR_TREE__ROOT_NODE:
-        return basicSetRootNode(null, msgs);
+      case TextbtPackage.SEQUENTIAL_NODE__CHILD_NODE:
+        return basicSetChildNode(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -139,8 +138,8 @@ public class BehaviorTreeImpl extends EObjectImpl implements BehaviorTree
   {
     switch (featureID)
     {
-      case TextbtPackage.BEHAVIOR_TREE__ROOT_NODE:
-        return getRootNode();
+      case TextbtPackage.SEQUENTIAL_NODE__CHILD_NODE:
+        return getChildNode();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -155,8 +154,8 @@ public class BehaviorTreeImpl extends EObjectImpl implements BehaviorTree
   {
     switch (featureID)
     {
-      case TextbtPackage.BEHAVIOR_TREE__ROOT_NODE:
-        setRootNode((Node)newValue);
+      case TextbtPackage.SEQUENTIAL_NODE__CHILD_NODE:
+        setChildNode((AbstractBlockOrNode)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -172,8 +171,8 @@ public class BehaviorTreeImpl extends EObjectImpl implements BehaviorTree
   {
     switch (featureID)
     {
-      case TextbtPackage.BEHAVIOR_TREE__ROOT_NODE:
-        setRootNode((Node)null);
+      case TextbtPackage.SEQUENTIAL_NODE__CHILD_NODE:
+        setChildNode((AbstractBlockOrNode)null);
         return;
     }
     super.eUnset(featureID);
@@ -189,10 +188,10 @@ public class BehaviorTreeImpl extends EObjectImpl implements BehaviorTree
   {
     switch (featureID)
     {
-      case TextbtPackage.BEHAVIOR_TREE__ROOT_NODE:
-        return rootNode != null;
+      case TextbtPackage.SEQUENTIAL_NODE__CHILD_NODE:
+        return childNode != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //BehaviorTreeImpl
+} //SequentialNodeImpl

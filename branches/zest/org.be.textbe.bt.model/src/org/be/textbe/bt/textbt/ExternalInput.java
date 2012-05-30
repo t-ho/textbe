@@ -17,6 +17,6 @@ package org.be.textbe.bt.textbt;
  * @model
  * @generated
  */
-public interface ExternalInput extends Input
+public interface ExternalInput extends Behavior
 {
 } // ExternalInput

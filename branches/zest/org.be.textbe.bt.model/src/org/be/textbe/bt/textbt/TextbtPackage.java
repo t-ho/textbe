@@ -63,23 +63,69 @@ public interface TextbtPackage extends EPackage
   TextbtPackage eINSTANCE = org.be.textbe.bt.textbt.impl.TextbtPackageImpl.init();
 
   /**
-   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.SpecificationImpl <em>Specification</em>}' class.
+   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.TextBTImpl <em>Text BT</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.be.textbe.bt.textbt.impl.SpecificationImpl
-   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getSpecification()
+   * @see org.be.textbe.bt.textbt.impl.TextBTImpl
+   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getTextBT()
    * @generated
    */
-  int SPECIFICATION = 0;
+  int TEXT_BT = 0;
 
   /**
-   * The feature id for the '<em><b>Components</b></em>' containment reference list.
+   * The feature id for the '<em><b>Options</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SPECIFICATION__COMPONENTS = 0;
+  int TEXT_BT__OPTIONS = 0;
+
+  /**
+   * The feature id for the '<em><b>Requirements</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEXT_BT__REQUIREMENTS = 1;
+
+  /**
+   * The feature id for the '<em><b>Components</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEXT_BT__COMPONENTS = 2;
+
+  /**
+   * The feature id for the '<em><b>Behavior Tree</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEXT_BT__BEHAVIOR_TREE = 3;
+
+  /**
+   * The number of structural features of the '<em>Text BT</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEXT_BT_FEATURE_COUNT = 4;
+
+  /**
+   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.RequirementListImpl <em>Requirement List</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.be.textbe.bt.textbt.impl.RequirementListImpl
+   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getRequirementList()
+   * @generated
+   */
+  int REQUIREMENT_LIST = 1;
 
   /**
    * The feature id for the '<em><b>Requirements</b></em>' containment reference list.
@@ -88,53 +134,16 @@ public interface TextbtPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SPECIFICATION__REQUIREMENTS = 1;
+  int REQUIREMENT_LIST__REQUIREMENTS = 0;
 
   /**
-   * The feature id for the '<em><b>Root</b></em>' containment reference.
+   * The number of structural features of the '<em>Requirement List</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SPECIFICATION__ROOT = 2;
-
-  /**
-   * The number of structural features of the '<em>Specification</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SPECIFICATION_FEATURE_COUNT = 3;
-
-  /**
-   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.NamedElementImpl <em>Named Element</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.be.textbe.bt.textbt.impl.NamedElementImpl
-   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getNamedElement()
-   * @generated
-   */
-  int NAMED_ELEMENT = 23;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NAMED_ELEMENT__NAME = 0;
-
-  /**
-   * The number of structural features of the '<em>Named Element</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NAMED_ELEMENT_FEATURE_COUNT = 1;
+  int REQUIREMENT_LIST_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.RequirementImpl <em>Requirement</em>}' class.
@@ -144,25 +153,25 @@ public interface TextbtPackage extends EPackage
    * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getRequirement()
    * @generated
    */
-  int REQUIREMENT = 1;
+  int REQUIREMENT = 2;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Ref</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int REQUIREMENT__NAME = NAMED_ELEMENT__NAME;
+  int REQUIREMENT__REF = 0;
 
   /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
+   * The feature id for the '<em><b>Val</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int REQUIREMENT__ID = NAMED_ELEMENT_FEATURE_COUNT + 0;
+  int REQUIREMENT__VAL = 1;
 
   /**
    * The number of structural features of the '<em>Requirement</em>' class.
@@ -171,7 +180,35 @@ public interface TextbtPackage extends EPackage
    * @generated
    * @ordered
    */
-  int REQUIREMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+  int REQUIREMENT_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.ComponentListImpl <em>Component List</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.be.textbe.bt.textbt.impl.ComponentListImpl
+   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getComponentList()
+   * @generated
+   */
+  int COMPONENT_LIST = 3;
+
+  /**
+   * The feature id for the '<em><b>Components</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMPONENT_LIST__COMPONENTS = 0;
+
+  /**
+   * The number of structural features of the '<em>Component List</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMPONENT_LIST_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.ComponentImpl <em>Component</em>}' class.
@@ -181,34 +218,43 @@ public interface TextbtPackage extends EPackage
    * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getComponent()
    * @generated
    */
-  int COMPONENT = 2;
+  int COMPONENT = 4;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Ref</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int COMPONENT__NAME = NAMED_ELEMENT__NAME;
+  int COMPONENT__REF = 0;
 
   /**
-   * The feature id for the '<em><b>Behavior</b></em>' containment reference list.
+   * The feature id for the '<em><b>Val</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int COMPONENT__BEHAVIOR = NAMED_ELEMENT_FEATURE_COUNT + 0;
+  int COMPONENT__VAL = 1;
 
   /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
+   * The feature id for the '<em><b>Behaviors</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int COMPONENT__ID = NAMED_ELEMENT_FEATURE_COUNT + 1;
+  int COMPONENT__BEHAVIORS = 2;
+
+  /**
+   * The feature id for the '<em><b>Quantifier</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMPONENT__QUANTIFIER = 3;
 
   /**
    * The number of structural features of the '<em>Component</em>' class.
@@ -217,7 +263,7 @@ public interface TextbtPackage extends EPackage
    * @generated
    * @ordered
    */
-  int COMPONENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+  int COMPONENT_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.BehaviorImpl <em>Behavior</em>}' class.
@@ -227,107 +273,17 @@ public interface TextbtPackage extends EPackage
    * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getBehavior()
    * @generated
    */
-  int BEHAVIOR = 3;
+  int BEHAVIOR = 12;
 
   /**
-   * The feature id for the '<em><b>Number</b></em>' attribute.
+   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.StateImpl <em>State</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BEHAVIOR__NUMBER = 0;
-
-  /**
-   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BEHAVIOR__RELATIONS = 1;
-
-  /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BEHAVIOR__ID = 2;
-
-  /**
-   * The number of structural features of the '<em>Behavior</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BEHAVIOR_FEATURE_COUNT = 3;
-
-  /**
-   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.StateRealizationImpl <em>State Realization</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.be.textbe.bt.textbt.impl.StateRealizationImpl
-   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getStateRealization()
+   * @see org.be.textbe.bt.textbt.impl.StateImpl
+   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getState()
    * @generated
    */
-  int STATE_REALIZATION = 4;
-
-  /**
-   * The feature id for the '<em><b>Number</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STATE_REALIZATION__NUMBER = BEHAVIOR__NUMBER;
-
-  /**
-   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STATE_REALIZATION__RELATIONS = BEHAVIOR__RELATIONS;
-
-  /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STATE_REALIZATION__ID = BEHAVIOR__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STATE_REALIZATION__NAME = BEHAVIOR_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Qualifier</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STATE_REALIZATION__QUALIFIER = BEHAVIOR_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>State Realization</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STATE_REALIZATION_FEATURE_COUNT = BEHAVIOR_FEATURE_COUNT + 2;
+  int STATE = 13;
 
   /**
    * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.SelectionImpl <em>Selection</em>}' class.
@@ -337,43 +293,7 @@ public interface TextbtPackage extends EPackage
    * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getSelection()
    * @generated
    */
-  int SELECTION = 5;
-
-  /**
-   * The feature id for the '<em><b>Number</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SELECTION__NUMBER = BEHAVIOR__NUMBER;
-
-  /**
-   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SELECTION__RELATIONS = BEHAVIOR__RELATIONS;
-
-  /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SELECTION__ID = BEHAVIOR__ID;
-
-  /**
-   * The number of structural features of the '<em>Selection</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SELECTION_FEATURE_COUNT = BEHAVIOR_FEATURE_COUNT + 0;
+  int SELECTION = 14;
 
   /**
    * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.EventImpl <em>Event</em>}' class.
@@ -383,52 +303,7 @@ public interface TextbtPackage extends EPackage
    * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getEvent()
    * @generated
    */
-  int EVENT = 6;
-
-  /**
-   * The feature id for the '<em><b>Number</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EVENT__NUMBER = BEHAVIOR__NUMBER;
-
-  /**
-   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EVENT__RELATIONS = BEHAVIOR__RELATIONS;
-
-  /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EVENT__ID = BEHAVIOR__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EVENT__NAME = BEHAVIOR_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Event</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EVENT_FEATURE_COUNT = BEHAVIOR_FEATURE_COUNT + 1;
+  int EVENT = 15;
 
   /**
    * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.GuardImpl <em>Guard</em>}' class.
@@ -438,98 +313,7 @@ public interface TextbtPackage extends EPackage
    * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getGuard()
    * @generated
    */
-  int GUARD = 7;
-
-  /**
-   * The feature id for the '<em><b>Number</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int GUARD__NUMBER = BEHAVIOR__NUMBER;
-
-  /**
-   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int GUARD__RELATIONS = BEHAVIOR__RELATIONS;
-
-  /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int GUARD__ID = BEHAVIOR__ID;
-
-  /**
-   * The number of structural features of the '<em>Guard</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int GUARD_FEATURE_COUNT = BEHAVIOR_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.InputImpl <em>Input</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.be.textbe.bt.textbt.impl.InputImpl
-   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getInput()
-   * @generated
-   */
-  int INPUT = 13;
-
-  /**
-   * The feature id for the '<em><b>Number</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INPUT__NUMBER = EVENT__NUMBER;
-
-  /**
-   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INPUT__RELATIONS = EVENT__RELATIONS;
-
-  /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INPUT__ID = EVENT__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INPUT__NAME = EVENT__NAME;
-
-  /**
-   * The number of structural features of the '<em>Input</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INPUT_FEATURE_COUNT = EVENT_FEATURE_COUNT + 0;
+  int GUARD = 16;
 
   /**
    * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.InternalInputImpl <em>Internal Input</em>}' class.
@@ -539,107 +323,7 @@ public interface TextbtPackage extends EPackage
    * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getInternalInput()
    * @generated
    */
-  int INTERNAL_INPUT = 8;
-
-  /**
-   * The feature id for the '<em><b>Number</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INTERNAL_INPUT__NUMBER = INPUT__NUMBER;
-
-  /**
-   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INTERNAL_INPUT__RELATIONS = INPUT__RELATIONS;
-
-  /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INTERNAL_INPUT__ID = INPUT__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INTERNAL_INPUT__NAME = INPUT__NAME;
-
-  /**
-   * The number of structural features of the '<em>Internal Input</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INTERNAL_INPUT_FEATURE_COUNT = INPUT_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.OutputImpl <em>Output</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.be.textbe.bt.textbt.impl.OutputImpl
-   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getOutput()
-   * @generated
-   */
-  int OUTPUT = 14;
-
-  /**
-   * The feature id for the '<em><b>Number</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OUTPUT__NUMBER = EVENT__NUMBER;
-
-  /**
-   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OUTPUT__RELATIONS = EVENT__RELATIONS;
-
-  /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OUTPUT__ID = EVENT__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OUTPUT__NAME = EVENT__NAME;
-
-  /**
-   * The number of structural features of the '<em>Output</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OUTPUT_FEATURE_COUNT = EVENT_FEATURE_COUNT + 0;
+  int INTERNAL_INPUT = 17;
 
   /**
    * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.InternalOutputImpl <em>Internal Output</em>}' class.
@@ -649,52 +333,7 @@ public interface TextbtPackage extends EPackage
    * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getInternalOutput()
    * @generated
    */
-  int INTERNAL_OUTPUT = 9;
-
-  /**
-   * The feature id for the '<em><b>Number</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INTERNAL_OUTPUT__NUMBER = OUTPUT__NUMBER;
-
-  /**
-   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INTERNAL_OUTPUT__RELATIONS = OUTPUT__RELATIONS;
-
-  /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INTERNAL_OUTPUT__ID = OUTPUT__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INTERNAL_OUTPUT__NAME = OUTPUT__NAME;
-
-  /**
-   * The number of structural features of the '<em>Internal Output</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INTERNAL_OUTPUT_FEATURE_COUNT = OUTPUT_FEATURE_COUNT + 0;
+  int INTERNAL_OUTPUT = 18;
 
   /**
    * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.ExternalInputImpl <em>External Input</em>}' class.
@@ -704,52 +343,7 @@ public interface TextbtPackage extends EPackage
    * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getExternalInput()
    * @generated
    */
-  int EXTERNAL_INPUT = 10;
-
-  /**
-   * The feature id for the '<em><b>Number</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXTERNAL_INPUT__NUMBER = INPUT__NUMBER;
-
-  /**
-   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXTERNAL_INPUT__RELATIONS = INPUT__RELATIONS;
-
-  /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXTERNAL_INPUT__ID = INPUT__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXTERNAL_INPUT__NAME = INPUT__NAME;
-
-  /**
-   * The number of structural features of the '<em>External Input</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXTERNAL_INPUT_FEATURE_COUNT = INPUT_FEATURE_COUNT + 0;
+  int EXTERNAL_INPUT = 19;
 
   /**
    * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.ExternalOutputImpl <em>External Output</em>}' class.
@@ -759,52 +353,7 @@ public interface TextbtPackage extends EPackage
    * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getExternalOutput()
    * @generated
    */
-  int EXTERNAL_OUTPUT = 11;
-
-  /**
-   * The feature id for the '<em><b>Number</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXTERNAL_OUTPUT__NUMBER = OUTPUT__NUMBER;
-
-  /**
-   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXTERNAL_OUTPUT__RELATIONS = OUTPUT__RELATIONS;
-
-  /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXTERNAL_OUTPUT__ID = OUTPUT__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXTERNAL_OUTPUT__NAME = OUTPUT__NAME;
-
-  /**
-   * The number of structural features of the '<em>External Output</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXTERNAL_OUTPUT_FEATURE_COUNT = OUTPUT_FEATURE_COUNT + 0;
+  int EXTERNAL_OUTPUT = 20;
 
   /**
    * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.NodeImpl <em>Node</em>}' class.
@@ -814,98 +363,142 @@ public interface TextbtPackage extends EPackage
    * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getNode()
    * @generated
    */
-  int NODE = 12;
+  int NODE = 25;
 
   /**
-   * The feature id for the '<em><b>Traceability</b></em>' containment reference.
+   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.SequentialNodeImpl <em>Sequential Node</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * @see org.be.textbe.bt.textbt.impl.SequentialNodeImpl
+   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getSequentialNode()
    * @generated
-   * @ordered
    */
-  int NODE__TRACEABILITY = 0;
+  int SEQUENTIAL_NODE = 26;
 
   /**
-   * The feature id for the '<em><b>Label</b></em>' attribute.
+   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.AtomicNodeImpl <em>Atomic Node</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * @see org.be.textbe.bt.textbt.impl.AtomicNodeImpl
+   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getAtomicNode()
    * @generated
-   * @ordered
    */
-  int NODE__LABEL = 1;
+  int ATOMIC_NODE = 27;
 
   /**
-   * The feature id for the '<em><b>Behavior</b></em>' reference.
+   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.ParallelBlockImpl <em>Parallel Block</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * @see org.be.textbe.bt.textbt.impl.ParallelBlockImpl
+   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getParallelBlock()
    * @generated
-   * @ordered
    */
-  int NODE__BEHAVIOR = 2;
+  int PARALLEL_BLOCK = 28;
 
   /**
-   * The feature id for the '<em><b>Show Tag</b></em>' attribute.
+   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.AlternativeBlockImpl <em>Alternative Block</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * @see org.be.textbe.bt.textbt.impl.AlternativeBlockImpl
+   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getAlternativeBlock()
    * @generated
-   * @ordered
    */
-  int NODE__SHOW_TAG = 3;
+  int ALTERNATIVE_BLOCK = 29;
 
   /**
-   * The feature id for the '<em><b>Operator</b></em>' attribute.
+   * The meta object id for the '{@link org.be.textbe.bt.textbt.FiveWs <em>Five Ws</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * @see org.be.textbe.bt.textbt.FiveWs
+   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getFiveWs()
    * @generated
-   * @ordered
    */
-  int NODE__OPERATOR = 4;
+  int FIVE_WS = 30;
 
   /**
-   * The number of structural features of the '<em>Node</em>' class.
+   * The meta object id for the '{@link org.be.textbe.bt.textbt.Validity <em>Validity</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * @see org.be.textbe.bt.textbt.Validity
+   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getValidity()
    * @generated
-   * @ordered
    */
-  int NODE_FEATURE_COUNT = 5;
+  int VALIDITY = 31;
 
   /**
-   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.TraceabilityLinkImpl <em>Traceability Link</em>}' class.
+   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.TextBT <em>Text BT</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.be.textbe.bt.textbt.impl.TraceabilityLinkImpl
-   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getTraceabilityLink()
+   * @return the meta object for class '<em>Text BT</em>'.
+   * @see org.be.textbe.bt.textbt.TextBT
    * @generated
    */
-  int TRACEABILITY_LINK = 15;
+  EClass getTextBT();
 
   /**
-   * The feature id for the '<em><b>Status</b></em>' attribute.
+   * Returns the meta object for the containment reference '{@link org.be.textbe.bt.textbt.TextBT#getOptions <em>Options</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Options</em>'.
+   * @see org.be.textbe.bt.textbt.TextBT#getOptions()
+   * @see #getTextBT()
    * @generated
-   * @ordered
    */
-  int TRACEABILITY_LINK__STATUS = 0;
+  EReference getTextBT_Options();
 
   /**
-   * The feature id for the '<em><b>Requirement</b></em>' reference list.
+   * Returns the meta object for the containment reference '{@link org.be.textbe.bt.textbt.TextBT#getRequirements <em>Requirements</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Requirements</em>'.
+   * @see org.be.textbe.bt.textbt.TextBT#getRequirements()
+   * @see #getTextBT()
    * @generated
-   * @ordered
    */
-  int TRACEABILITY_LINK__REQUIREMENT = 1;
+  EReference getTextBT_Requirements();
 
   /**
-   * The number of structural features of the '<em>Traceability Link</em>' class.
+   * Returns the meta object for the containment reference '{@link org.be.textbe.bt.textbt.TextBT#getComponents <em>Components</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Components</em>'.
+   * @see org.be.textbe.bt.textbt.TextBT#getComponents()
+   * @see #getTextBT()
    * @generated
-   * @ordered
    */
-  int TRACEABILITY_LINK_FEATURE_COUNT = 2;
+  EReference getTextBT_Components();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.be.textbe.bt.textbt.TextBT#getBehaviorTree <em>Behavior Tree</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Behavior Tree</em>'.
+   * @see org.be.textbe.bt.textbt.TextBT#getBehaviorTree()
+   * @see #getTextBT()
+   * @generated
+   */
+  EReference getTextBT_BehaviorTree();
+
+  /**
+   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.RequirementList <em>Requirement List</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Requirement List</em>'.
+   * @see org.be.textbe.bt.textbt.RequirementList
+   * @generated
+   */
+  EClass getRequirementList();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.be.textbe.bt.textbt.RequirementList#getRequirements <em>Requirements</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Requirements</em>'.
+   * @see org.be.textbe.bt.textbt.RequirementList#getRequirements()
+   * @see #getRequirementList()
+   * @generated
+   */
+  EReference getRequirementList_Requirements();
 
   /**
    * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.BehaviorTreeImpl <em>Behavior Tree</em>}' class.
@@ -915,202 +508,27 @@ public interface TextbtPackage extends EPackage
    * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getBehaviorTree()
    * @generated
    */
-  int BEHAVIOR_TREE = 16;
+  int BEHAVIOR_TREE = 8;
 
   /**
-   * The number of structural features of the '<em>Behavior Tree</em>' class.
+   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.AbstractBehaviorImpl <em>Abstract Behavior</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * @see org.be.textbe.bt.textbt.impl.AbstractBehaviorImpl
+   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getAbstractBehavior()
    * @generated
-   * @ordered
    */
-  int BEHAVIOR_TREE_FEATURE_COUNT = 0;
+  int ABSTRACT_BEHAVIOR = 9;
 
   /**
-   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.SequenceImpl <em>Sequence</em>}' class.
+   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.RelationalBehaviorImpl <em>Relational Behavior</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.be.textbe.bt.textbt.impl.SequenceImpl
-   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getSequence()
+   * @see org.be.textbe.bt.textbt.impl.RelationalBehaviorImpl
+   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getRelationalBehavior()
    * @generated
    */
-  int SEQUENCE = 17;
-
-  /**
-   * The feature id for the '<em><b>Steps</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SEQUENCE__STEPS = BEHAVIOR_TREE_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Child</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SEQUENCE__CHILD = BEHAVIOR_TREE_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Sequence</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SEQUENCE_FEATURE_COUNT = BEHAVIOR_TREE_FEATURE_COUNT + 2;
-
-  /**
-   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.BranchImpl <em>Branch</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.be.textbe.bt.textbt.impl.BranchImpl
-   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getBranch()
-   * @generated
-   */
-  int BRANCH = 18;
-
-  /**
-   * The number of structural features of the '<em>Branch</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BRANCH_FEATURE_COUNT = BEHAVIOR_TREE_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.ParallelImpl <em>Parallel</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.be.textbe.bt.textbt.impl.ParallelImpl
-   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getParallel()
-   * @generated
-   */
-  int PARALLEL = 19;
-
-  /**
-   * The feature id for the '<em><b>Processes</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PARALLEL__PROCESSES = BRANCH_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Parallel</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PARALLEL_FEATURE_COUNT = BRANCH_FEATURE_COUNT + 1;
-
-  /**
-   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.AlternativeImpl <em>Alternative</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.be.textbe.bt.textbt.impl.AlternativeImpl
-   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getAlternative()
-   * @generated
-   */
-  int ALTERNATIVE = 20;
-
-  /**
-   * The feature id for the '<em><b>Choices</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ALTERNATIVE__CHOICES = BRANCH_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Alternative</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ALTERNATIVE_FEATURE_COUNT = BRANCH_FEATURE_COUNT + 1;
-
-  /**
-   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.TransactionImpl <em>Transaction</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.be.textbe.bt.textbt.impl.TransactionImpl
-   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getTransaction()
-   * @generated
-   */
-  int TRANSACTION = 21;
-
-  /**
-   * The feature id for the '<em><b>Steps</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TRANSACTION__STEPS = SEQUENCE__STEPS;
-
-  /**
-   * The feature id for the '<em><b>Child</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TRANSACTION__CHILD = SEQUENCE__CHILD;
-
-  /**
-   * The number of structural features of the '<em>Transaction</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TRANSACTION_FEATURE_COUNT = SEQUENCE_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.InterleavingImpl <em>Interleaving</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.be.textbe.bt.textbt.impl.InterleavingImpl
-   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getInterleaving()
-   * @generated
-   */
-  int INTERLEAVING = 22;
-
-  /**
-   * The feature id for the '<em><b>Steps</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INTERLEAVING__STEPS = SEQUENCE__STEPS;
-
-  /**
-   * The feature id for the '<em><b>Child</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INTERLEAVING__CHILD = SEQUENCE__CHILD;
-
-  /**
-   * The number of structural features of the '<em>Interleaving</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INTERLEAVING_FEATURE_COUNT = SEQUENCE_FEATURE_COUNT + 0;
+  int RELATIONAL_BEHAVIOR = 10;
 
   /**
    * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.AssertionImpl <em>Assertion</em>}' class.
@@ -1120,43 +538,37 @@ public interface TextbtPackage extends EPackage
    * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getAssertion()
    * @generated
    */
-  int ASSERTION = 24;
+  int ASSERTION = 21;
 
   /**
-   * The feature id for the '<em><b>Number</b></em>' attribute.
+   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.AbstractBlockOrNodeImpl <em>Abstract Block Or Node</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * @see org.be.textbe.bt.textbt.impl.AbstractBlockOrNodeImpl
+   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getAbstractBlockOrNode()
    * @generated
-   * @ordered
    */
-  int ASSERTION__NUMBER = BEHAVIOR__NUMBER;
+  int ABSTRACT_BLOCK_OR_NODE = 22;
 
   /**
-   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
+   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.AbstractBlockImpl <em>Abstract Block</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * @see org.be.textbe.bt.textbt.impl.AbstractBlockImpl
+   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getAbstractBlock()
    * @generated
-   * @ordered
    */
-  int ASSERTION__RELATIONS = BEHAVIOR__RELATIONS;
+  int ABSTRACT_BLOCK = 23;
 
   /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
+   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.AbstractNodeImpl <em>Abstract Node</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * @see org.be.textbe.bt.textbt.impl.AbstractNodeImpl
+   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getAbstractNode()
    * @generated
-   * @ordered
    */
-  int ASSERTION__ID = BEHAVIOR__ID;
-
-  /**
-   * The number of structural features of the '<em>Assertion</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASSERTION_FEATURE_COUNT = BEHAVIOR_FEATURE_COUNT + 0;
+  int ABSTRACT_NODE = 24;
 
   /**
    * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.RelationImpl <em>Relation</em>}' class.
@@ -1166,385 +578,7 @@ public interface TextbtPackage extends EPackage
    * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getRelation()
    * @generated
    */
-  int RELATION = 25;
-
-  /**
-   * The feature id for the '<em><b>Multi Level</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RELATION__MULTI_LEVEL = 0;
-
-  /**
-   * The number of structural features of the '<em>Relation</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RELATION_FEATURE_COUNT = 1;
-
-  /**
-   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.FreeTextRelationImpl <em>Free Text Relation</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.be.textbe.bt.textbt.impl.FreeTextRelationImpl
-   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getFreeTextRelation()
-   * @generated
-   */
-  int FREE_TEXT_RELATION = 31;
-
-  /**
-   * The feature id for the '<em><b>Multi Level</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FREE_TEXT_RELATION__MULTI_LEVEL = RELATION__MULTI_LEVEL;
-
-  /**
-   * The number of structural features of the '<em>Free Text Relation</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FREE_TEXT_RELATION_FEATURE_COUNT = RELATION_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.WhoImpl <em>Who</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.be.textbe.bt.textbt.impl.WhoImpl
-   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getWho()
-   * @generated
-   */
-  int WHO = 26;
-
-  /**
-   * The feature id for the '<em><b>Multi Level</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int WHO__MULTI_LEVEL = FREE_TEXT_RELATION__MULTI_LEVEL;
-
-  /**
-   * The feature id for the '<em><b>Person</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int WHO__PERSON = FREE_TEXT_RELATION_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Who</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int WHO_FEATURE_COUNT = FREE_TEXT_RELATION_FEATURE_COUNT + 1;
-
-  /**
-   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.WhatImpl <em>What</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.be.textbe.bt.textbt.impl.WhatImpl
-   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getWhat()
-   * @generated
-   */
-  int WHAT = 27;
-
-  /**
-   * The feature id for the '<em><b>Multi Level</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int WHAT__MULTI_LEVEL = FREE_TEXT_RELATION__MULTI_LEVEL;
-
-  /**
-   * The feature id for the '<em><b>Observation</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int WHAT__OBSERVATION = FREE_TEXT_RELATION_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>What</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int WHAT_FEATURE_COUNT = FREE_TEXT_RELATION_FEATURE_COUNT + 1;
-
-  /**
-   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.WhereImpl <em>Where</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.be.textbe.bt.textbt.impl.WhereImpl
-   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getWhere()
-   * @generated
-   */
-  int WHERE = 28;
-
-  /**
-   * The feature id for the '<em><b>Multi Level</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int WHERE__MULTI_LEVEL = FREE_TEXT_RELATION__MULTI_LEVEL;
-
-  /**
-   * The feature id for the '<em><b>Place</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int WHERE__PLACE = FREE_TEXT_RELATION_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Where</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int WHERE_FEATURE_COUNT = FREE_TEXT_RELATION_FEATURE_COUNT + 1;
-
-  /**
-   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.WhenImpl <em>When</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.be.textbe.bt.textbt.impl.WhenImpl
-   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getWhen()
-   * @generated
-   */
-  int WHEN = 29;
-
-  /**
-   * The feature id for the '<em><b>Multi Level</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int WHEN__MULTI_LEVEL = FREE_TEXT_RELATION__MULTI_LEVEL;
-
-  /**
-   * The feature id for the '<em><b>Time</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int WHEN__TIME = FREE_TEXT_RELATION_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>When</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int WHEN_FEATURE_COUNT = FREE_TEXT_RELATION_FEATURE_COUNT + 1;
-
-  /**
-   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.WhyImpl <em>Why</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.be.textbe.bt.textbt.impl.WhyImpl
-   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getWhy()
-   * @generated
-   */
-  int WHY = 30;
-
-  /**
-   * The feature id for the '<em><b>Multi Level</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int WHY__MULTI_LEVEL = FREE_TEXT_RELATION__MULTI_LEVEL;
-
-  /**
-   * The feature id for the '<em><b>Reason</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int WHY__REASON = FREE_TEXT_RELATION_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Why</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int WHY_FEATURE_COUNT = FREE_TEXT_RELATION_FEATURE_COUNT + 1;
-
-  /**
-   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.HowImpl <em>How</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.be.textbe.bt.textbt.impl.HowImpl
-   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getHow()
-   * @generated
-   */
-  int HOW = 32;
-
-  /**
-   * The feature id for the '<em><b>Multi Level</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HOW__MULTI_LEVEL = FREE_TEXT_RELATION__MULTI_LEVEL;
-
-  /**
-   * The feature id for the '<em><b>Means</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HOW__MEANS = FREE_TEXT_RELATION_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>How</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HOW_FEATURE_COUNT = FREE_TEXT_RELATION_FEATURE_COUNT + 1;
-
-  /**
-   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.NamedBehaviorImpl <em>Named Behavior</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.be.textbe.bt.textbt.impl.NamedBehaviorImpl
-   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getNamedBehavior()
-   * @generated
-   */
-  int NAMED_BEHAVIOR = 34;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NAMED_BEHAVIOR__NAME = NAMED_ELEMENT__NAME;
-
-  /**
-   * The feature id for the '<em><b>Number</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NAMED_BEHAVIOR__NUMBER = NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NAMED_BEHAVIOR__RELATIONS = NAMED_ELEMENT_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NAMED_BEHAVIOR__ID = NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-  /**
-   * The number of structural features of the '<em>Named Behavior</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NAMED_BEHAVIOR_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
-
-  /**
-   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.AttributeRealizationImpl <em>Attribute Realization</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.be.textbe.bt.textbt.impl.AttributeRealizationImpl
-   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getAttributeRealization()
-   * @generated
-   */
-  int ATTRIBUTE_REALIZATION = 33;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ATTRIBUTE_REALIZATION__NAME = NAMED_BEHAVIOR__NAME;
-
-  /**
-   * The feature id for the '<em><b>Number</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ATTRIBUTE_REALIZATION__NUMBER = NAMED_BEHAVIOR__NUMBER;
-
-  /**
-   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ATTRIBUTE_REALIZATION__RELATIONS = NAMED_BEHAVIOR__RELATIONS;
-
-  /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ATTRIBUTE_REALIZATION__ID = NAMED_BEHAVIOR__ID;
-
-  /**
-   * The number of structural features of the '<em>Attribute Realization</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ATTRIBUTE_REALIZATION_FEATURE_COUNT = NAMED_BEHAVIOR_FEATURE_COUNT + 0;
+  int RELATION = 11;
 
   /**
    * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.SystemComponentImpl <em>System Component</em>}' class.
@@ -1554,34 +588,43 @@ public interface TextbtPackage extends EPackage
    * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getSystemComponent()
    * @generated
    */
-  int SYSTEM_COMPONENT = 35;
+  int SYSTEM_COMPONENT = 5;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Ref</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SYSTEM_COMPONENT__NAME = COMPONENT__NAME;
+  int SYSTEM_COMPONENT__REF = COMPONENT__REF;
 
   /**
-   * The feature id for the '<em><b>Behavior</b></em>' containment reference list.
+   * The feature id for the '<em><b>Val</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SYSTEM_COMPONENT__BEHAVIOR = COMPONENT__BEHAVIOR;
+  int SYSTEM_COMPONENT__VAL = COMPONENT__VAL;
 
   /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
+   * The feature id for the '<em><b>Behaviors</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SYSTEM_COMPONENT__ID = COMPONENT__ID;
+  int SYSTEM_COMPONENT__BEHAVIORS = COMPONENT__BEHAVIORS;
+
+  /**
+   * The feature id for the '<em><b>Quantifier</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SYSTEM_COMPONENT__QUANTIFIER = COMPONENT__QUANTIFIER;
 
   /**
    * The number of structural features of the '<em>System Component</em>' class.
@@ -1593,77 +636,978 @@ public interface TextbtPackage extends EPackage
   int SYSTEM_COMPONENT_FEATURE_COUNT = COMPONENT_FEATURE_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link org.be.textbe.bt.textbt.TraceabilityStatus <em>Traceability Status</em>}' enum.
+   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.OptionListImpl <em>Option List</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.be.textbe.bt.textbt.TraceabilityStatus
-   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getTraceabilityStatus()
+   * @see org.be.textbe.bt.textbt.impl.OptionListImpl
+   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getOptionList()
    * @generated
    */
-  int TRACEABILITY_STATUS = 36;
+  int OPTION_LIST = 6;
 
   /**
-   * The meta object id for the '{@link org.be.textbe.bt.textbt.NodeType <em>Node Type</em>}' enum.
+   * The feature id for the '<em><b>Options</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.be.textbe.bt.textbt.NodeType
-   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getNodeType()
    * @generated
+   * @ordered
    */
-  int NODE_TYPE = 37;
+  int OPTION_LIST__OPTIONS = 0;
 
   /**
-   * The meta object id for the '{@link org.be.textbe.bt.textbt.ComponentMarker <em>Component Marker</em>}' enum.
+   * The number of structural features of the '<em>Option List</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.be.textbe.bt.textbt.ComponentMarker
-   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getComponentMarker()
    * @generated
+   * @ordered
    */
-  int COMPONENT_MARKER = 38;
+  int OPTION_LIST_FEATURE_COUNT = 1;
 
   /**
-   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.Specification <em>Specification</em>}'.
+   * The meta object id for the '{@link org.be.textbe.bt.textbt.impl.OptionImpl <em>Option</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Specification</em>'.
-   * @see org.be.textbe.bt.textbt.Specification
+   * @see org.be.textbe.bt.textbt.impl.OptionImpl
+   * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getOption()
    * @generated
    */
-  EClass getSpecification();
+  int OPTION = 7;
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.be.textbe.bt.textbt.Specification#getComponents <em>Components</em>}'.
+   * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Components</em>'.
-   * @see org.be.textbe.bt.textbt.Specification#getComponents()
-   * @see #getSpecification()
    * @generated
+   * @ordered
    */
-  EReference getSpecification_Components();
+  int OPTION__NAME = 0;
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.be.textbe.bt.textbt.Specification#getRequirements <em>Requirements</em>}'.
+   * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Requirements</em>'.
-   * @see org.be.textbe.bt.textbt.Specification#getRequirements()
-   * @see #getSpecification()
    * @generated
+   * @ordered
    */
-  EReference getSpecification_Requirements();
+  int OPTION__VALUE = 1;
 
   /**
-   * Returns the meta object for the containment reference '{@link org.be.textbe.bt.textbt.Specification#getRoot <em>Root</em>}'.
+   * The number of structural features of the '<em>Option</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Root</em>'.
-   * @see org.be.textbe.bt.textbt.Specification#getRoot()
-   * @see #getSpecification()
    * @generated
+   * @ordered
    */
-  EReference getSpecification_Root();
+  int OPTION_FEATURE_COUNT = 2;
+
+  /**
+   * The feature id for the '<em><b>Root Node</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BEHAVIOR_TREE__ROOT_NODE = 0;
+
+  /**
+   * The number of structural features of the '<em>Behavior Tree</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BEHAVIOR_TREE_FEATURE_COUNT = 1;
+
+  /**
+   * The number of structural features of the '<em>Abstract Behavior</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_BEHAVIOR_FEATURE_COUNT = 0;
+
+  /**
+   * The feature id for the '<em><b>Behavior</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIONAL_BEHAVIOR__BEHAVIOR = ABSTRACT_BEHAVIOR_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIONAL_BEHAVIOR__RELATIONS = ABSTRACT_BEHAVIOR_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Relational Behavior</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIONAL_BEHAVIOR_FEATURE_COUNT = ABSTRACT_BEHAVIOR_FEATURE_COUNT + 2;
+
+  /**
+   * The feature id for the '<em><b>Question</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATION__QUESTION = 0;
+
+  /**
+   * The feature id for the '<em><b>Preposition</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATION__PREPOSITION = 1;
+
+  /**
+   * The feature id for the '<em><b>Component Ref</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATION__COMPONENT_REF = 2;
+
+  /**
+   * The feature id for the '<em><b>Behavior Ref</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATION__BEHAVIOR_REF = 3;
+
+  /**
+   * The feature id for the '<em><b>Level</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATION__LEVEL = 4;
+
+  /**
+   * The feature id for the '<em><b>Component Level</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATION__COMPONENT_LEVEL = 5;
+
+  /**
+   * The feature id for the '<em><b>Component Set</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATION__COMPONENT_SET = 6;
+
+  /**
+   * The feature id for the '<em><b>Mci</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATION__MCI = 7;
+
+  /**
+   * The number of structural features of the '<em>Relation</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATION_FEATURE_COUNT = 8;
+
+  /**
+   * The feature id for the '<em><b>Ref</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BEHAVIOR__REF = ABSTRACT_BEHAVIOR_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Val</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BEHAVIOR__VAL = ABSTRACT_BEHAVIOR_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BEHAVIOR__RELATIONS = ABSTRACT_BEHAVIOR_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Behavior</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BEHAVIOR_FEATURE_COUNT = ABSTRACT_BEHAVIOR_FEATURE_COUNT + 3;
+
+  /**
+   * The feature id for the '<em><b>Ref</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STATE__REF = BEHAVIOR__REF;
+
+  /**
+   * The feature id for the '<em><b>Val</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STATE__VAL = BEHAVIOR__VAL;
+
+  /**
+   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STATE__RELATIONS = BEHAVIOR__RELATIONS;
+
+  /**
+   * The number of structural features of the '<em>State</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STATE_FEATURE_COUNT = BEHAVIOR_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Ref</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SELECTION__REF = BEHAVIOR__REF;
+
+  /**
+   * The feature id for the '<em><b>Val</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SELECTION__VAL = BEHAVIOR__VAL;
+
+  /**
+   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SELECTION__RELATIONS = BEHAVIOR__RELATIONS;
+
+  /**
+   * The number of structural features of the '<em>Selection</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SELECTION_FEATURE_COUNT = BEHAVIOR_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Ref</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EVENT__REF = BEHAVIOR__REF;
+
+  /**
+   * The feature id for the '<em><b>Val</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EVENT__VAL = BEHAVIOR__VAL;
+
+  /**
+   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EVENT__RELATIONS = BEHAVIOR__RELATIONS;
+
+  /**
+   * The number of structural features of the '<em>Event</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EVENT_FEATURE_COUNT = BEHAVIOR_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Ref</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GUARD__REF = BEHAVIOR__REF;
+
+  /**
+   * The feature id for the '<em><b>Val</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GUARD__VAL = BEHAVIOR__VAL;
+
+  /**
+   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GUARD__RELATIONS = BEHAVIOR__RELATIONS;
+
+  /**
+   * The number of structural features of the '<em>Guard</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GUARD_FEATURE_COUNT = BEHAVIOR_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Ref</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTERNAL_INPUT__REF = BEHAVIOR__REF;
+
+  /**
+   * The feature id for the '<em><b>Val</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTERNAL_INPUT__VAL = BEHAVIOR__VAL;
+
+  /**
+   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTERNAL_INPUT__RELATIONS = BEHAVIOR__RELATIONS;
+
+  /**
+   * The number of structural features of the '<em>Internal Input</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTERNAL_INPUT_FEATURE_COUNT = BEHAVIOR_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Ref</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTERNAL_OUTPUT__REF = BEHAVIOR__REF;
+
+  /**
+   * The feature id for the '<em><b>Val</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTERNAL_OUTPUT__VAL = BEHAVIOR__VAL;
+
+  /**
+   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTERNAL_OUTPUT__RELATIONS = BEHAVIOR__RELATIONS;
+
+  /**
+   * The number of structural features of the '<em>Internal Output</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTERNAL_OUTPUT_FEATURE_COUNT = BEHAVIOR_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Ref</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTERNAL_INPUT__REF = BEHAVIOR__REF;
+
+  /**
+   * The feature id for the '<em><b>Val</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTERNAL_INPUT__VAL = BEHAVIOR__VAL;
+
+  /**
+   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTERNAL_INPUT__RELATIONS = BEHAVIOR__RELATIONS;
+
+  /**
+   * The number of structural features of the '<em>External Input</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTERNAL_INPUT_FEATURE_COUNT = BEHAVIOR_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Ref</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTERNAL_OUTPUT__REF = BEHAVIOR__REF;
+
+  /**
+   * The feature id for the '<em><b>Val</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTERNAL_OUTPUT__VAL = BEHAVIOR__VAL;
+
+  /**
+   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTERNAL_OUTPUT__RELATIONS = BEHAVIOR__RELATIONS;
+
+  /**
+   * The number of structural features of the '<em>External Output</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTERNAL_OUTPUT_FEATURE_COUNT = BEHAVIOR_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Ref</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSERTION__REF = BEHAVIOR__REF;
+
+  /**
+   * The feature id for the '<em><b>Val</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSERTION__VAL = BEHAVIOR__VAL;
+
+  /**
+   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSERTION__RELATIONS = BEHAVIOR__RELATIONS;
+
+  /**
+   * The number of structural features of the '<em>Assertion</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSERTION_FEATURE_COUNT = BEHAVIOR_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Abstract Block Or Node</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_BLOCK_OR_NODE_FEATURE_COUNT = 0;
+
+  /**
+   * The feature id for the '<em><b>Child Node</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_BLOCK__CHILD_NODE = ABSTRACT_BLOCK_OR_NODE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Abstract Block</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_BLOCK_FEATURE_COUNT = ABSTRACT_BLOCK_OR_NODE_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Component Ref</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_NODE__COMPONENT_REF = 0;
+
+  /**
+   * The feature id for the '<em><b>Behavior Ref</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_NODE__BEHAVIOR_REF = 1;
+
+  /**
+   * The feature id for the '<em><b>Requirement Ref</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_NODE__REQUIREMENT_REF = 2;
+
+  /**
+   * The feature id for the '<em><b>Traceability Status</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_NODE__TRACEABILITY_STATUS = 3;
+
+  /**
+   * The feature id for the '<em><b>Label</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_NODE__LABEL = 4;
+
+  /**
+   * The feature id for the '<em><b>Operator</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_NODE__OPERATOR = 5;
+
+  /**
+   * The feature id for the '<em><b>Component Set</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_NODE__COMPONENT_SET = 6;
+
+  /**
+   * The feature id for the '<em><b>Mci</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_NODE__MCI = 7;
+
+  /**
+   * The number of structural features of the '<em>Abstract Node</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_NODE_FEATURE_COUNT = 8;
+
+  /**
+   * The feature id for the '<em><b>Component Ref</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NODE__COMPONENT_REF = ABSTRACT_NODE__COMPONENT_REF;
+
+  /**
+   * The feature id for the '<em><b>Behavior Ref</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NODE__BEHAVIOR_REF = ABSTRACT_NODE__BEHAVIOR_REF;
+
+  /**
+   * The feature id for the '<em><b>Requirement Ref</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NODE__REQUIREMENT_REF = ABSTRACT_NODE__REQUIREMENT_REF;
+
+  /**
+   * The feature id for the '<em><b>Traceability Status</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NODE__TRACEABILITY_STATUS = ABSTRACT_NODE__TRACEABILITY_STATUS;
+
+  /**
+   * The feature id for the '<em><b>Label</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NODE__LABEL = ABSTRACT_NODE__LABEL;
+
+  /**
+   * The feature id for the '<em><b>Operator</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NODE__OPERATOR = ABSTRACT_NODE__OPERATOR;
+
+  /**
+   * The feature id for the '<em><b>Component Set</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NODE__COMPONENT_SET = ABSTRACT_NODE__COMPONENT_SET;
+
+  /**
+   * The feature id for the '<em><b>Mci</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NODE__MCI = ABSTRACT_NODE__MCI;
+
+  /**
+   * The feature id for the '<em><b>Child Node</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NODE__CHILD_NODE = ABSTRACT_NODE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Node</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NODE_FEATURE_COUNT = ABSTRACT_NODE_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Component Ref</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SEQUENTIAL_NODE__COMPONENT_REF = ABSTRACT_NODE__COMPONENT_REF;
+
+  /**
+   * The feature id for the '<em><b>Behavior Ref</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SEQUENTIAL_NODE__BEHAVIOR_REF = ABSTRACT_NODE__BEHAVIOR_REF;
+
+  /**
+   * The feature id for the '<em><b>Requirement Ref</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SEQUENTIAL_NODE__REQUIREMENT_REF = ABSTRACT_NODE__REQUIREMENT_REF;
+
+  /**
+   * The feature id for the '<em><b>Traceability Status</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SEQUENTIAL_NODE__TRACEABILITY_STATUS = ABSTRACT_NODE__TRACEABILITY_STATUS;
+
+  /**
+   * The feature id for the '<em><b>Label</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SEQUENTIAL_NODE__LABEL = ABSTRACT_NODE__LABEL;
+
+  /**
+   * The feature id for the '<em><b>Operator</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SEQUENTIAL_NODE__OPERATOR = ABSTRACT_NODE__OPERATOR;
+
+  /**
+   * The feature id for the '<em><b>Component Set</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SEQUENTIAL_NODE__COMPONENT_SET = ABSTRACT_NODE__COMPONENT_SET;
+
+  /**
+   * The feature id for the '<em><b>Mci</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SEQUENTIAL_NODE__MCI = ABSTRACT_NODE__MCI;
+
+  /**
+   * The feature id for the '<em><b>Child Node</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SEQUENTIAL_NODE__CHILD_NODE = ABSTRACT_NODE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Sequential Node</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SEQUENTIAL_NODE_FEATURE_COUNT = ABSTRACT_NODE_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Component Ref</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATOMIC_NODE__COMPONENT_REF = ABSTRACT_NODE__COMPONENT_REF;
+
+  /**
+   * The feature id for the '<em><b>Behavior Ref</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATOMIC_NODE__BEHAVIOR_REF = ABSTRACT_NODE__BEHAVIOR_REF;
+
+  /**
+   * The feature id for the '<em><b>Requirement Ref</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATOMIC_NODE__REQUIREMENT_REF = ABSTRACT_NODE__REQUIREMENT_REF;
+
+  /**
+   * The feature id for the '<em><b>Traceability Status</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATOMIC_NODE__TRACEABILITY_STATUS = ABSTRACT_NODE__TRACEABILITY_STATUS;
+
+  /**
+   * The feature id for the '<em><b>Label</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATOMIC_NODE__LABEL = ABSTRACT_NODE__LABEL;
+
+  /**
+   * The feature id for the '<em><b>Operator</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATOMIC_NODE__OPERATOR = ABSTRACT_NODE__OPERATOR;
+
+  /**
+   * The feature id for the '<em><b>Component Set</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATOMIC_NODE__COMPONENT_SET = ABSTRACT_NODE__COMPONENT_SET;
+
+  /**
+   * The feature id for the '<em><b>Mci</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATOMIC_NODE__MCI = ABSTRACT_NODE__MCI;
+
+  /**
+   * The feature id for the '<em><b>Child Node</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATOMIC_NODE__CHILD_NODE = ABSTRACT_NODE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Atomic Node</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATOMIC_NODE_FEATURE_COUNT = ABSTRACT_NODE_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Child Node</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PARALLEL_BLOCK__CHILD_NODE = ABSTRACT_BLOCK__CHILD_NODE;
+
+  /**
+   * The number of structural features of the '<em>Parallel Block</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PARALLEL_BLOCK_FEATURE_COUNT = ABSTRACT_BLOCK_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Child Node</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ALTERNATIVE_BLOCK__CHILD_NODE = ABSTRACT_BLOCK__CHILD_NODE;
+
+  /**
+   * The number of structural features of the '<em>Alternative Block</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ALTERNATIVE_BLOCK_FEATURE_COUNT = ABSTRACT_BLOCK_FEATURE_COUNT + 0;
 
   /**
    * Returns the meta object for class '{@link org.be.textbe.bt.textbt.Requirement <em>Requirement</em>}'.
@@ -1676,15 +1620,47 @@ public interface TextbtPackage extends EPackage
   EClass getRequirement();
 
   /**
-   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.Requirement#getId <em>Id</em>}'.
+   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.Requirement#getRef <em>Ref</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Id</em>'.
-   * @see org.be.textbe.bt.textbt.Requirement#getId()
+   * @return the meta object for the attribute '<em>Ref</em>'.
+   * @see org.be.textbe.bt.textbt.Requirement#getRef()
    * @see #getRequirement()
    * @generated
    */
-  EAttribute getRequirement_Id();
+  EAttribute getRequirement_Ref();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.Requirement#getVal <em>Val</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Val</em>'.
+   * @see org.be.textbe.bt.textbt.Requirement#getVal()
+   * @see #getRequirement()
+   * @generated
+   */
+  EAttribute getRequirement_Val();
+
+  /**
+   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.ComponentList <em>Component List</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Component List</em>'.
+   * @see org.be.textbe.bt.textbt.ComponentList
+   * @generated
+   */
+  EClass getComponentList();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.be.textbe.bt.textbt.ComponentList#getComponents <em>Components</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Components</em>'.
+   * @see org.be.textbe.bt.textbt.ComponentList#getComponents()
+   * @see #getComponentList()
+   * @generated
+   */
+  EReference getComponentList_Components();
 
   /**
    * Returns the meta object for class '{@link org.be.textbe.bt.textbt.Component <em>Component</em>}'.
@@ -1697,26 +1673,48 @@ public interface TextbtPackage extends EPackage
   EClass getComponent();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.be.textbe.bt.textbt.Component#getBehavior <em>Behavior</em>}'.
+   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.Component#getRef <em>Ref</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Behavior</em>'.
-   * @see org.be.textbe.bt.textbt.Component#getBehavior()
+   * @return the meta object for the attribute '<em>Ref</em>'.
+   * @see org.be.textbe.bt.textbt.Component#getRef()
    * @see #getComponent()
    * @generated
    */
-  EReference getComponent_Behavior();
+  EAttribute getComponent_Ref();
 
   /**
-   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.Component#getId <em>Id</em>}'.
+   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.Component#getVal <em>Val</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Id</em>'.
-   * @see org.be.textbe.bt.textbt.Component#getId()
+   * @return the meta object for the attribute '<em>Val</em>'.
+   * @see org.be.textbe.bt.textbt.Component#getVal()
    * @see #getComponent()
    * @generated
    */
-  EAttribute getComponent_Id();
+  EAttribute getComponent_Val();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.be.textbe.bt.textbt.Component#getBehaviors <em>Behaviors</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Behaviors</em>'.
+   * @see org.be.textbe.bt.textbt.Component#getBehaviors()
+   * @see #getComponent()
+   * @generated
+   */
+  EReference getComponent_Behaviors();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.Component#getQuantifier <em>Quantifier</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Quantifier</em>'.
+   * @see org.be.textbe.bt.textbt.Component#getQuantifier()
+   * @see #getComponent()
+   * @generated
+   */
+  EAttribute getComponent_Quantifier();
 
   /**
    * Returns the meta object for class '{@link org.be.textbe.bt.textbt.Behavior <em>Behavior</em>}'.
@@ -1729,15 +1727,26 @@ public interface TextbtPackage extends EPackage
   EClass getBehavior();
 
   /**
-   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.Behavior#getNumber <em>Number</em>}'.
+   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.Behavior#getRef <em>Ref</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Number</em>'.
-   * @see org.be.textbe.bt.textbt.Behavior#getNumber()
+   * @return the meta object for the attribute '<em>Ref</em>'.
+   * @see org.be.textbe.bt.textbt.Behavior#getRef()
    * @see #getBehavior()
    * @generated
    */
-  EAttribute getBehavior_Number();
+  EAttribute getBehavior_Ref();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.Behavior#getVal <em>Val</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Val</em>'.
+   * @see org.be.textbe.bt.textbt.Behavior#getVal()
+   * @see #getBehavior()
+   * @generated
+   */
+  EAttribute getBehavior_Val();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.be.textbe.bt.textbt.Behavior#getRelations <em>Relations</em>}'.
@@ -1751,36 +1760,14 @@ public interface TextbtPackage extends EPackage
   EReference getBehavior_Relations();
 
   /**
-   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.Behavior#getId <em>Id</em>}'.
+   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.State <em>State</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Id</em>'.
-   * @see org.be.textbe.bt.textbt.Behavior#getId()
-   * @see #getBehavior()
+   * @return the meta object for class '<em>State</em>'.
+   * @see org.be.textbe.bt.textbt.State
    * @generated
    */
-  EAttribute getBehavior_Id();
-
-  /**
-   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.StateRealization <em>State Realization</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>State Realization</em>'.
-   * @see org.be.textbe.bt.textbt.StateRealization
-   * @generated
-   */
-  EClass getStateRealization();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.StateRealization#getQualifier <em>Qualifier</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Qualifier</em>'.
-   * @see org.be.textbe.bt.textbt.StateRealization#getQualifier()
-   * @see #getStateRealization()
-   * @generated
-   */
-  EAttribute getStateRealization_Qualifier();
+  EClass getState();
 
   /**
    * Returns the meta object for class '{@link org.be.textbe.bt.textbt.Selection <em>Selection</em>}'.
@@ -1863,111 +1850,97 @@ public interface TextbtPackage extends EPackage
   EClass getNode();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.be.textbe.bt.textbt.Node#getTraceability <em>Traceability</em>}'.
+   * Returns the meta object for the containment reference '{@link org.be.textbe.bt.textbt.Node#getChildNode <em>Child Node</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Traceability</em>'.
-   * @see org.be.textbe.bt.textbt.Node#getTraceability()
+   * @return the meta object for the containment reference '<em>Child Node</em>'.
+   * @see org.be.textbe.bt.textbt.Node#getChildNode()
    * @see #getNode()
    * @generated
    */
-  EReference getNode_Traceability();
+  EReference getNode_ChildNode();
 
   /**
-   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.Node#getLabel <em>Label</em>}'.
+   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.SequentialNode <em>Sequential Node</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Label</em>'.
-   * @see org.be.textbe.bt.textbt.Node#getLabel()
-   * @see #getNode()
+   * @return the meta object for class '<em>Sequential Node</em>'.
+   * @see org.be.textbe.bt.textbt.SequentialNode
    * @generated
    */
-  EAttribute getNode_Label();
+  EClass getSequentialNode();
 
   /**
-   * Returns the meta object for the reference '{@link org.be.textbe.bt.textbt.Node#getBehavior <em>Behavior</em>}'.
+   * Returns the meta object for the containment reference '{@link org.be.textbe.bt.textbt.SequentialNode#getChildNode <em>Child Node</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Behavior</em>'.
-   * @see org.be.textbe.bt.textbt.Node#getBehavior()
-   * @see #getNode()
+   * @return the meta object for the containment reference '<em>Child Node</em>'.
+   * @see org.be.textbe.bt.textbt.SequentialNode#getChildNode()
+   * @see #getSequentialNode()
    * @generated
    */
-  EReference getNode_Behavior();
+  EReference getSequentialNode_ChildNode();
 
   /**
-   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.Node#isShowTag <em>Show Tag</em>}'.
+   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.AtomicNode <em>Atomic Node</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Show Tag</em>'.
-   * @see org.be.textbe.bt.textbt.Node#isShowTag()
-   * @see #getNode()
+   * @return the meta object for class '<em>Atomic Node</em>'.
+   * @see org.be.textbe.bt.textbt.AtomicNode
    * @generated
    */
-  EAttribute getNode_ShowTag();
+  EClass getAtomicNode();
 
   /**
-   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.Node#getOperator <em>Operator</em>}'.
+   * Returns the meta object for the containment reference '{@link org.be.textbe.bt.textbt.AtomicNode#getChildNode <em>Child Node</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Operator</em>'.
-   * @see org.be.textbe.bt.textbt.Node#getOperator()
-   * @see #getNode()
+   * @return the meta object for the containment reference '<em>Child Node</em>'.
+   * @see org.be.textbe.bt.textbt.AtomicNode#getChildNode()
+   * @see #getAtomicNode()
    * @generated
    */
-  EAttribute getNode_Operator();
+  EReference getAtomicNode_ChildNode();
 
   /**
-   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.Input <em>Input</em>}'.
+   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.ParallelBlock <em>Parallel Block</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Input</em>'.
-   * @see org.be.textbe.bt.textbt.Input
+   * @return the meta object for class '<em>Parallel Block</em>'.
+   * @see org.be.textbe.bt.textbt.ParallelBlock
    * @generated
    */
-  EClass getInput();
+  EClass getParallelBlock();
 
   /**
-   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.Output <em>Output</em>}'.
+   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.AlternativeBlock <em>Alternative Block</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Output</em>'.
-   * @see org.be.textbe.bt.textbt.Output
+   * @return the meta object for class '<em>Alternative Block</em>'.
+   * @see org.be.textbe.bt.textbt.AlternativeBlock
    * @generated
    */
-  EClass getOutput();
+  EClass getAlternativeBlock();
 
   /**
-   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.TraceabilityLink <em>Traceability Link</em>}'.
+   * Returns the meta object for enum '{@link org.be.textbe.bt.textbt.FiveWs <em>Five Ws</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Traceability Link</em>'.
-   * @see org.be.textbe.bt.textbt.TraceabilityLink
+   * @return the meta object for enum '<em>Five Ws</em>'.
+   * @see org.be.textbe.bt.textbt.FiveWs
    * @generated
    */
-  EClass getTraceabilityLink();
+  EEnum getFiveWs();
 
   /**
-   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.TraceabilityLink#getStatus <em>Status</em>}'.
+   * Returns the meta object for enum '{@link org.be.textbe.bt.textbt.Validity <em>Validity</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Status</em>'.
-   * @see org.be.textbe.bt.textbt.TraceabilityLink#getStatus()
-   * @see #getTraceabilityLink()
+   * @return the meta object for enum '<em>Validity</em>'.
+   * @see org.be.textbe.bt.textbt.Validity
    * @generated
    */
-  EAttribute getTraceabilityLink_Status();
-
-  /**
-   * Returns the meta object for the reference list '{@link org.be.textbe.bt.textbt.TraceabilityLink#getRequirement <em>Requirement</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Requirement</em>'.
-   * @see org.be.textbe.bt.textbt.TraceabilityLink#getRequirement()
-   * @see #getTraceabilityLink()
-   * @generated
-   */
-  EReference getTraceabilityLink_Requirement();
+  EEnum getValidity();
 
   /**
    * Returns the meta object for class '{@link org.be.textbe.bt.textbt.BehaviorTree <em>Behavior Tree</em>}'.
@@ -1980,129 +1953,57 @@ public interface TextbtPackage extends EPackage
   EClass getBehaviorTree();
 
   /**
-   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.Sequence <em>Sequence</em>}'.
+   * Returns the meta object for the containment reference '{@link org.be.textbe.bt.textbt.BehaviorTree#getRootNode <em>Root Node</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Sequence</em>'.
-   * @see org.be.textbe.bt.textbt.Sequence
+   * @return the meta object for the containment reference '<em>Root Node</em>'.
+   * @see org.be.textbe.bt.textbt.BehaviorTree#getRootNode()
+   * @see #getBehaviorTree()
    * @generated
    */
-  EClass getSequence();
+  EReference getBehaviorTree_RootNode();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.be.textbe.bt.textbt.Sequence#getSteps <em>Steps</em>}'.
+   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.AbstractBehavior <em>Abstract Behavior</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Steps</em>'.
-   * @see org.be.textbe.bt.textbt.Sequence#getSteps()
-   * @see #getSequence()
+   * @return the meta object for class '<em>Abstract Behavior</em>'.
+   * @see org.be.textbe.bt.textbt.AbstractBehavior
    * @generated
    */
-  EReference getSequence_Steps();
+  EClass getAbstractBehavior();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.be.textbe.bt.textbt.Sequence#getChild <em>Child</em>}'.
+   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.RelationalBehavior <em>Relational Behavior</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Child</em>'.
-   * @see org.be.textbe.bt.textbt.Sequence#getChild()
-   * @see #getSequence()
+   * @return the meta object for class '<em>Relational Behavior</em>'.
+   * @see org.be.textbe.bt.textbt.RelationalBehavior
    * @generated
    */
-  EReference getSequence_Child();
+  EClass getRelationalBehavior();
 
   /**
-   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.Branch <em>Branch</em>}'.
+   * Returns the meta object for the containment reference '{@link org.be.textbe.bt.textbt.RelationalBehavior#getBehavior <em>Behavior</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Branch</em>'.
-   * @see org.be.textbe.bt.textbt.Branch
+   * @return the meta object for the containment reference '<em>Behavior</em>'.
+   * @see org.be.textbe.bt.textbt.RelationalBehavior#getBehavior()
+   * @see #getRelationalBehavior()
    * @generated
    */
-  EClass getBranch();
+  EReference getRelationalBehavior_Behavior();
 
   /**
-   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.Parallel <em>Parallel</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.be.textbe.bt.textbt.RelationalBehavior#getRelations <em>Relations</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Parallel</em>'.
-   * @see org.be.textbe.bt.textbt.Parallel
+   * @return the meta object for the containment reference list '<em>Relations</em>'.
+   * @see org.be.textbe.bt.textbt.RelationalBehavior#getRelations()
+   * @see #getRelationalBehavior()
    * @generated
    */
-  EClass getParallel();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.be.textbe.bt.textbt.Parallel#getProcesses <em>Processes</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Processes</em>'.
-   * @see org.be.textbe.bt.textbt.Parallel#getProcesses()
-   * @see #getParallel()
-   * @generated
-   */
-  EReference getParallel_Processes();
-
-  /**
-   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.Alternative <em>Alternative</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Alternative</em>'.
-   * @see org.be.textbe.bt.textbt.Alternative
-   * @generated
-   */
-  EClass getAlternative();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.be.textbe.bt.textbt.Alternative#getChoices <em>Choices</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Choices</em>'.
-   * @see org.be.textbe.bt.textbt.Alternative#getChoices()
-   * @see #getAlternative()
-   * @generated
-   */
-  EReference getAlternative_Choices();
-
-  /**
-   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.Transaction <em>Transaction</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Transaction</em>'.
-   * @see org.be.textbe.bt.textbt.Transaction
-   * @generated
-   */
-  EClass getTransaction();
-
-  /**
-   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.Interleaving <em>Interleaving</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Interleaving</em>'.
-   * @see org.be.textbe.bt.textbt.Interleaving
-   * @generated
-   */
-  EClass getInterleaving();
-
-  /**
-   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.NamedElement <em>Named Element</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Named Element</em>'.
-   * @see org.be.textbe.bt.textbt.NamedElement
-   * @generated
-   */
-  EClass getNamedElement();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.NamedElement#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.be.textbe.bt.textbt.NamedElement#getName()
-   * @see #getNamedElement()
-   * @generated
-   */
-  EAttribute getNamedElement_Name();
+  EReference getRelationalBehavior_Relations();
 
   /**
    * Returns the meta object for class '{@link org.be.textbe.bt.textbt.Assertion <em>Assertion</em>}'.
@@ -2115,6 +2016,135 @@ public interface TextbtPackage extends EPackage
   EClass getAssertion();
 
   /**
+   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.AbstractBlockOrNode <em>Abstract Block Or Node</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Abstract Block Or Node</em>'.
+   * @see org.be.textbe.bt.textbt.AbstractBlockOrNode
+   * @generated
+   */
+  EClass getAbstractBlockOrNode();
+
+  /**
+   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.AbstractBlock <em>Abstract Block</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Abstract Block</em>'.
+   * @see org.be.textbe.bt.textbt.AbstractBlock
+   * @generated
+   */
+  EClass getAbstractBlock();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.be.textbe.bt.textbt.AbstractBlock#getChildNode <em>Child Node</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Child Node</em>'.
+   * @see org.be.textbe.bt.textbt.AbstractBlock#getChildNode()
+   * @see #getAbstractBlock()
+   * @generated
+   */
+  EReference getAbstractBlock_ChildNode();
+
+  /**
+   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.AbstractNode <em>Abstract Node</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Abstract Node</em>'.
+   * @see org.be.textbe.bt.textbt.AbstractNode
+   * @generated
+   */
+  EClass getAbstractNode();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.AbstractNode#getComponentRef <em>Component Ref</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Component Ref</em>'.
+   * @see org.be.textbe.bt.textbt.AbstractNode#getComponentRef()
+   * @see #getAbstractNode()
+   * @generated
+   */
+  EAttribute getAbstractNode_ComponentRef();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.AbstractNode#getBehaviorRef <em>Behavior Ref</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Behavior Ref</em>'.
+   * @see org.be.textbe.bt.textbt.AbstractNode#getBehaviorRef()
+   * @see #getAbstractNode()
+   * @generated
+   */
+  EAttribute getAbstractNode_BehaviorRef();
+
+  /**
+   * Returns the meta object for the attribute list '{@link org.be.textbe.bt.textbt.AbstractNode#getRequirementRef <em>Requirement Ref</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Requirement Ref</em>'.
+   * @see org.be.textbe.bt.textbt.AbstractNode#getRequirementRef()
+   * @see #getAbstractNode()
+   * @generated
+   */
+  EAttribute getAbstractNode_RequirementRef();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.AbstractNode#getTraceabilityStatus <em>Traceability Status</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Traceability Status</em>'.
+   * @see org.be.textbe.bt.textbt.AbstractNode#getTraceabilityStatus()
+   * @see #getAbstractNode()
+   * @generated
+   */
+  EAttribute getAbstractNode_TraceabilityStatus();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.AbstractNode#getLabel <em>Label</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Label</em>'.
+   * @see org.be.textbe.bt.textbt.AbstractNode#getLabel()
+   * @see #getAbstractNode()
+   * @generated
+   */
+  EAttribute getAbstractNode_Label();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.AbstractNode#getOperator <em>Operator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Operator</em>'.
+   * @see org.be.textbe.bt.textbt.AbstractNode#getOperator()
+   * @see #getAbstractNode()
+   * @generated
+   */
+  EAttribute getAbstractNode_Operator();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.AbstractNode#getComponentSet <em>Component Set</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Component Set</em>'.
+   * @see org.be.textbe.bt.textbt.AbstractNode#getComponentSet()
+   * @see #getAbstractNode()
+   * @generated
+   */
+  EAttribute getAbstractNode_ComponentSet();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.AbstractNode#getMci <em>Mci</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Mci</em>'.
+   * @see org.be.textbe.bt.textbt.AbstractNode#getMci()
+   * @see #getAbstractNode()
+   * @generated
+   */
+  EAttribute getAbstractNode_Mci();
+
+  /**
    * Returns the meta object for class '{@link org.be.textbe.bt.textbt.Relation <em>Relation</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2125,171 +2155,92 @@ public interface TextbtPackage extends EPackage
   EClass getRelation();
 
   /**
-   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.Relation#isMultiLevel <em>Multi Level</em>}'.
+   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.Relation#getQuestion <em>Question</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Multi Level</em>'.
-   * @see org.be.textbe.bt.textbt.Relation#isMultiLevel()
+   * @return the meta object for the attribute '<em>Question</em>'.
+   * @see org.be.textbe.bt.textbt.Relation#getQuestion()
    * @see #getRelation()
    * @generated
    */
-  EAttribute getRelation_MultiLevel();
+  EAttribute getRelation_Question();
 
   /**
-   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.Who <em>Who</em>}'.
+   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.Relation#getPreposition <em>Preposition</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Who</em>'.
-   * @see org.be.textbe.bt.textbt.Who
+   * @return the meta object for the attribute '<em>Preposition</em>'.
+   * @see org.be.textbe.bt.textbt.Relation#getPreposition()
+   * @see #getRelation()
    * @generated
    */
-  EClass getWho();
+  EAttribute getRelation_Preposition();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.be.textbe.bt.textbt.Who#getPerson <em>Person</em>}'.
+   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.Relation#getComponentRef <em>Component Ref</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Person</em>'.
-   * @see org.be.textbe.bt.textbt.Who#getPerson()
-   * @see #getWho()
+   * @return the meta object for the attribute '<em>Component Ref</em>'.
+   * @see org.be.textbe.bt.textbt.Relation#getComponentRef()
+   * @see #getRelation()
    * @generated
    */
-  EAttribute getWho_Person();
+  EAttribute getRelation_ComponentRef();
 
   /**
-   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.What <em>What</em>}'.
+   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.Relation#getBehaviorRef <em>Behavior Ref</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>What</em>'.
-   * @see org.be.textbe.bt.textbt.What
+   * @return the meta object for the attribute '<em>Behavior Ref</em>'.
+   * @see org.be.textbe.bt.textbt.Relation#getBehaviorRef()
+   * @see #getRelation()
    * @generated
    */
-  EClass getWhat();
+  EAttribute getRelation_BehaviorRef();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.be.textbe.bt.textbt.What#getObservation <em>Observation</em>}'.
+   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.Relation#getLevel <em>Level</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Observation</em>'.
-   * @see org.be.textbe.bt.textbt.What#getObservation()
-   * @see #getWhat()
+   * @return the meta object for the attribute '<em>Level</em>'.
+   * @see org.be.textbe.bt.textbt.Relation#getLevel()
+   * @see #getRelation()
    * @generated
    */
-  EAttribute getWhat_Observation();
+  EAttribute getRelation_Level();
 
   /**
-   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.Where <em>Where</em>}'.
+   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.Relation#getComponentLevel <em>Component Level</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Where</em>'.
-   * @see org.be.textbe.bt.textbt.Where
+   * @return the meta object for the attribute '<em>Component Level</em>'.
+   * @see org.be.textbe.bt.textbt.Relation#getComponentLevel()
+   * @see #getRelation()
    * @generated
    */
-  EClass getWhere();
+  EAttribute getRelation_ComponentLevel();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.be.textbe.bt.textbt.Where#getPlace <em>Place</em>}'.
+   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.Relation#getComponentSet <em>Component Set</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Place</em>'.
-   * @see org.be.textbe.bt.textbt.Where#getPlace()
-   * @see #getWhere()
+   * @return the meta object for the attribute '<em>Component Set</em>'.
+   * @see org.be.textbe.bt.textbt.Relation#getComponentSet()
+   * @see #getRelation()
    * @generated
    */
-  EAttribute getWhere_Place();
+  EAttribute getRelation_ComponentSet();
 
   /**
-   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.When <em>When</em>}'.
+   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.Relation#getMci <em>Mci</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>When</em>'.
-   * @see org.be.textbe.bt.textbt.When
+   * @return the meta object for the attribute '<em>Mci</em>'.
+   * @see org.be.textbe.bt.textbt.Relation#getMci()
+   * @see #getRelation()
    * @generated
    */
-  EClass getWhen();
-
-  /**
-   * Returns the meta object for the attribute list '{@link org.be.textbe.bt.textbt.When#getTime <em>Time</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Time</em>'.
-   * @see org.be.textbe.bt.textbt.When#getTime()
-   * @see #getWhen()
-   * @generated
-   */
-  EAttribute getWhen_Time();
-
-  /**
-   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.Why <em>Why</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Why</em>'.
-   * @see org.be.textbe.bt.textbt.Why
-   * @generated
-   */
-  EClass getWhy();
-
-  /**
-   * Returns the meta object for the attribute list '{@link org.be.textbe.bt.textbt.Why#getReason <em>Reason</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Reason</em>'.
-   * @see org.be.textbe.bt.textbt.Why#getReason()
-   * @see #getWhy()
-   * @generated
-   */
-  EAttribute getWhy_Reason();
-
-  /**
-   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.FreeTextRelation <em>Free Text Relation</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Free Text Relation</em>'.
-   * @see org.be.textbe.bt.textbt.FreeTextRelation
-   * @generated
-   */
-  EClass getFreeTextRelation();
-
-  /**
-   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.How <em>How</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>How</em>'.
-   * @see org.be.textbe.bt.textbt.How
-   * @generated
-   */
-  EClass getHow();
-
-  /**
-   * Returns the meta object for the attribute list '{@link org.be.textbe.bt.textbt.How#getMeans <em>Means</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Means</em>'.
-   * @see org.be.textbe.bt.textbt.How#getMeans()
-   * @see #getHow()
-   * @generated
-   */
-  EAttribute getHow_Means();
-
-  /**
-   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.AttributeRealization <em>Attribute Realization</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Attribute Realization</em>'.
-   * @see org.be.textbe.bt.textbt.AttributeRealization
-   * @generated
-   */
-  EClass getAttributeRealization();
-
-  /**
-   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.NamedBehavior <em>Named Behavior</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Named Behavior</em>'.
-   * @see org.be.textbe.bt.textbt.NamedBehavior
-   * @generated
-   */
-  EClass getNamedBehavior();
+  EAttribute getRelation_Mci();
 
   /**
    * Returns the meta object for class '{@link org.be.textbe.bt.textbt.SystemComponent <em>System Component</em>}'.
@@ -2302,34 +2253,57 @@ public interface TextbtPackage extends EPackage
   EClass getSystemComponent();
 
   /**
-   * Returns the meta object for enum '{@link org.be.textbe.bt.textbt.TraceabilityStatus <em>Traceability Status</em>}'.
+   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.OptionList <em>Option List</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for enum '<em>Traceability Status</em>'.
-   * @see org.be.textbe.bt.textbt.TraceabilityStatus
+   * @return the meta object for class '<em>Option List</em>'.
+   * @see org.be.textbe.bt.textbt.OptionList
    * @generated
    */
-  EEnum getTraceabilityStatus();
+  EClass getOptionList();
 
   /**
-   * Returns the meta object for enum '{@link org.be.textbe.bt.textbt.NodeType <em>Node Type</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.be.textbe.bt.textbt.OptionList#getOptions <em>Options</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for enum '<em>Node Type</em>'.
-   * @see org.be.textbe.bt.textbt.NodeType
+   * @return the meta object for the containment reference list '<em>Options</em>'.
+   * @see org.be.textbe.bt.textbt.OptionList#getOptions()
+   * @see #getOptionList()
    * @generated
    */
-  EEnum getNodeType();
+  EReference getOptionList_Options();
 
   /**
-   * Returns the meta object for enum '{@link org.be.textbe.bt.textbt.ComponentMarker <em>Component Marker</em>}'.
+   * Returns the meta object for class '{@link org.be.textbe.bt.textbt.Option <em>Option</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for enum '<em>Component Marker</em>'.
-   * @see org.be.textbe.bt.textbt.ComponentMarker
+   * @return the meta object for class '<em>Option</em>'.
+   * @see org.be.textbe.bt.textbt.Option
    * @generated
    */
-  EEnum getComponentMarker();
+  EClass getOption();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.Option#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.be.textbe.bt.textbt.Option#getName()
+   * @see #getOption()
+   * @generated
+   */
+  EAttribute getOption_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.be.textbe.bt.textbt.Option#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.be.textbe.bt.textbt.Option#getValue()
+   * @see #getOption()
+   * @generated
+   */
+  EAttribute getOption_Value();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -2355,22 +2329,56 @@ public interface TextbtPackage extends EPackage
   interface Literals
   {
     /**
-     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.SpecificationImpl <em>Specification</em>}' class.
+     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.TextBTImpl <em>Text BT</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.be.textbe.bt.textbt.impl.SpecificationImpl
-     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getSpecification()
+     * @see org.be.textbe.bt.textbt.impl.TextBTImpl
+     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getTextBT()
      * @generated
      */
-    EClass SPECIFICATION = eINSTANCE.getSpecification();
+    EClass TEXT_BT = eINSTANCE.getTextBT();
 
     /**
-     * The meta object literal for the '<em><b>Components</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Options</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SPECIFICATION__COMPONENTS = eINSTANCE.getSpecification_Components();
+    EReference TEXT_BT__OPTIONS = eINSTANCE.getTextBT_Options();
+
+    /**
+     * The meta object literal for the '<em><b>Requirements</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TEXT_BT__REQUIREMENTS = eINSTANCE.getTextBT_Requirements();
+
+    /**
+     * The meta object literal for the '<em><b>Components</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TEXT_BT__COMPONENTS = eINSTANCE.getTextBT_Components();
+
+    /**
+     * The meta object literal for the '<em><b>Behavior Tree</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TEXT_BT__BEHAVIOR_TREE = eINSTANCE.getTextBT_BehaviorTree();
+
+    /**
+     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.RequirementListImpl <em>Requirement List</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.be.textbe.bt.textbt.impl.RequirementListImpl
+     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getRequirementList()
+     * @generated
+     */
+    EClass REQUIREMENT_LIST = eINSTANCE.getRequirementList();
 
     /**
      * The meta object literal for the '<em><b>Requirements</b></em>' containment reference list feature.
@@ -2378,15 +2386,7 @@ public interface TextbtPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SPECIFICATION__REQUIREMENTS = eINSTANCE.getSpecification_Requirements();
-
-    /**
-     * The meta object literal for the '<em><b>Root</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SPECIFICATION__ROOT = eINSTANCE.getSpecification_Root();
+    EReference REQUIREMENT_LIST__REQUIREMENTS = eINSTANCE.getRequirementList_Requirements();
 
     /**
      * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.RequirementImpl <em>Requirement</em>}' class.
@@ -2399,12 +2399,38 @@ public interface TextbtPackage extends EPackage
     EClass REQUIREMENT = eINSTANCE.getRequirement();
 
     /**
-     * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Ref</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute REQUIREMENT__ID = eINSTANCE.getRequirement_Id();
+    EAttribute REQUIREMENT__REF = eINSTANCE.getRequirement_Ref();
+
+    /**
+     * The meta object literal for the '<em><b>Val</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute REQUIREMENT__VAL = eINSTANCE.getRequirement_Val();
+
+    /**
+     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.ComponentListImpl <em>Component List</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.be.textbe.bt.textbt.impl.ComponentListImpl
+     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getComponentList()
+     * @generated
+     */
+    EClass COMPONENT_LIST = eINSTANCE.getComponentList();
+
+    /**
+     * The meta object literal for the '<em><b>Components</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference COMPONENT_LIST__COMPONENTS = eINSTANCE.getComponentList_Components();
 
     /**
      * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.ComponentImpl <em>Component</em>}' class.
@@ -2417,20 +2443,36 @@ public interface TextbtPackage extends EPackage
     EClass COMPONENT = eINSTANCE.getComponent();
 
     /**
-     * The meta object literal for the '<em><b>Behavior</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Ref</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference COMPONENT__BEHAVIOR = eINSTANCE.getComponent_Behavior();
+    EAttribute COMPONENT__REF = eINSTANCE.getComponent_Ref();
 
     /**
-     * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Val</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute COMPONENT__ID = eINSTANCE.getComponent_Id();
+    EAttribute COMPONENT__VAL = eINSTANCE.getComponent_Val();
+
+    /**
+     * The meta object literal for the '<em><b>Behaviors</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference COMPONENT__BEHAVIORS = eINSTANCE.getComponent_Behaviors();
+
+    /**
+     * The meta object literal for the '<em><b>Quantifier</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute COMPONENT__QUANTIFIER = eINSTANCE.getComponent_Quantifier();
 
     /**
      * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.BehaviorImpl <em>Behavior</em>}' class.
@@ -2443,12 +2485,20 @@ public interface TextbtPackage extends EPackage
     EClass BEHAVIOR = eINSTANCE.getBehavior();
 
     /**
-     * The meta object literal for the '<em><b>Number</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Ref</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute BEHAVIOR__NUMBER = eINSTANCE.getBehavior_Number();
+    EAttribute BEHAVIOR__REF = eINSTANCE.getBehavior_Ref();
+
+    /**
+     * The meta object literal for the '<em><b>Val</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BEHAVIOR__VAL = eINSTANCE.getBehavior_Val();
 
     /**
      * The meta object literal for the '<em><b>Relations</b></em>' containment reference list feature.
@@ -2459,30 +2509,14 @@ public interface TextbtPackage extends EPackage
     EReference BEHAVIOR__RELATIONS = eINSTANCE.getBehavior_Relations();
 
     /**
-     * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.StateImpl <em>State</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see org.be.textbe.bt.textbt.impl.StateImpl
+     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getState()
      * @generated
      */
-    EAttribute BEHAVIOR__ID = eINSTANCE.getBehavior_Id();
-
-    /**
-     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.StateRealizationImpl <em>State Realization</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.be.textbe.bt.textbt.impl.StateRealizationImpl
-     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getStateRealization()
-     * @generated
-     */
-    EClass STATE_REALIZATION = eINSTANCE.getStateRealization();
-
-    /**
-     * The meta object literal for the '<em><b>Qualifier</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute STATE_REALIZATION__QUALIFIER = eINSTANCE.getStateRealization_Qualifier();
+    EClass STATE = eINSTANCE.getState();
 
     /**
      * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.SelectionImpl <em>Selection</em>}' class.
@@ -2565,90 +2599,88 @@ public interface TextbtPackage extends EPackage
     EClass NODE = eINSTANCE.getNode();
 
     /**
-     * The meta object literal for the '<em><b>Traceability</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Child Node</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference NODE__TRACEABILITY = eINSTANCE.getNode_Traceability();
+    EReference NODE__CHILD_NODE = eINSTANCE.getNode_ChildNode();
 
     /**
-     * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
+     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.SequentialNodeImpl <em>Sequential Node</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see org.be.textbe.bt.textbt.impl.SequentialNodeImpl
+     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getSequentialNode()
      * @generated
      */
-    EAttribute NODE__LABEL = eINSTANCE.getNode_Label();
+    EClass SEQUENTIAL_NODE = eINSTANCE.getSequentialNode();
 
     /**
-     * The meta object literal for the '<em><b>Behavior</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Child Node</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference NODE__BEHAVIOR = eINSTANCE.getNode_Behavior();
+    EReference SEQUENTIAL_NODE__CHILD_NODE = eINSTANCE.getSequentialNode_ChildNode();
 
     /**
-     * The meta object literal for the '<em><b>Show Tag</b></em>' attribute feature.
+     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.AtomicNodeImpl <em>Atomic Node</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see org.be.textbe.bt.textbt.impl.AtomicNodeImpl
+     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getAtomicNode()
      * @generated
      */
-    EAttribute NODE__SHOW_TAG = eINSTANCE.getNode_ShowTag();
+    EClass ATOMIC_NODE = eINSTANCE.getAtomicNode();
 
     /**
-     * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Child Node</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute NODE__OPERATOR = eINSTANCE.getNode_Operator();
+    EReference ATOMIC_NODE__CHILD_NODE = eINSTANCE.getAtomicNode_ChildNode();
 
     /**
-     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.InputImpl <em>Input</em>}' class.
+     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.ParallelBlockImpl <em>Parallel Block</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.be.textbe.bt.textbt.impl.InputImpl
-     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getInput()
+     * @see org.be.textbe.bt.textbt.impl.ParallelBlockImpl
+     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getParallelBlock()
      * @generated
      */
-    EClass INPUT = eINSTANCE.getInput();
+    EClass PARALLEL_BLOCK = eINSTANCE.getParallelBlock();
 
     /**
-     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.OutputImpl <em>Output</em>}' class.
+     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.AlternativeBlockImpl <em>Alternative Block</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.be.textbe.bt.textbt.impl.OutputImpl
-     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getOutput()
+     * @see org.be.textbe.bt.textbt.impl.AlternativeBlockImpl
+     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getAlternativeBlock()
      * @generated
      */
-    EClass OUTPUT = eINSTANCE.getOutput();
+    EClass ALTERNATIVE_BLOCK = eINSTANCE.getAlternativeBlock();
 
     /**
-     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.TraceabilityLinkImpl <em>Traceability Link</em>}' class.
+     * The meta object literal for the '{@link org.be.textbe.bt.textbt.FiveWs <em>Five Ws</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.be.textbe.bt.textbt.impl.TraceabilityLinkImpl
-     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getTraceabilityLink()
+     * @see org.be.textbe.bt.textbt.FiveWs
+     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getFiveWs()
      * @generated
      */
-    EClass TRACEABILITY_LINK = eINSTANCE.getTraceabilityLink();
+    EEnum FIVE_WS = eINSTANCE.getFiveWs();
 
     /**
-     * The meta object literal for the '<em><b>Status</b></em>' attribute feature.
+     * The meta object literal for the '{@link org.be.textbe.bt.textbt.Validity <em>Validity</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see org.be.textbe.bt.textbt.Validity
+     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getValidity()
      * @generated
      */
-    EAttribute TRACEABILITY_LINK__STATUS = eINSTANCE.getTraceabilityLink_Status();
-
-    /**
-     * The meta object literal for the '<em><b>Requirement</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference TRACEABILITY_LINK__REQUIREMENT = eINSTANCE.getTraceabilityLink_Requirement();
+    EEnum VALIDITY = eINSTANCE.getValidity();
 
     /**
      * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.BehaviorTreeImpl <em>Behavior Tree</em>}' class.
@@ -2661,114 +2693,48 @@ public interface TextbtPackage extends EPackage
     EClass BEHAVIOR_TREE = eINSTANCE.getBehaviorTree();
 
     /**
-     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.SequenceImpl <em>Sequence</em>}' class.
+     * The meta object literal for the '<em><b>Root Node</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.be.textbe.bt.textbt.impl.SequenceImpl
-     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getSequence()
      * @generated
      */
-    EClass SEQUENCE = eINSTANCE.getSequence();
+    EReference BEHAVIOR_TREE__ROOT_NODE = eINSTANCE.getBehaviorTree_RootNode();
 
     /**
-     * The meta object literal for the '<em><b>Steps</b></em>' containment reference list feature.
+     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.AbstractBehaviorImpl <em>Abstract Behavior</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see org.be.textbe.bt.textbt.impl.AbstractBehaviorImpl
+     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getAbstractBehavior()
      * @generated
      */
-    EReference SEQUENCE__STEPS = eINSTANCE.getSequence_Steps();
+    EClass ABSTRACT_BEHAVIOR = eINSTANCE.getAbstractBehavior();
 
     /**
-     * The meta object literal for the '<em><b>Child</b></em>' containment reference feature.
+     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.RelationalBehaviorImpl <em>Relational Behavior</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see org.be.textbe.bt.textbt.impl.RelationalBehaviorImpl
+     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getRelationalBehavior()
      * @generated
      */
-    EReference SEQUENCE__CHILD = eINSTANCE.getSequence_Child();
+    EClass RELATIONAL_BEHAVIOR = eINSTANCE.getRelationalBehavior();
 
     /**
-     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.BranchImpl <em>Branch</em>}' class.
+     * The meta object literal for the '<em><b>Behavior</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.be.textbe.bt.textbt.impl.BranchImpl
-     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getBranch()
      * @generated
      */
-    EClass BRANCH = eINSTANCE.getBranch();
+    EReference RELATIONAL_BEHAVIOR__BEHAVIOR = eINSTANCE.getRelationalBehavior_Behavior();
 
     /**
-     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.ParallelImpl <em>Parallel</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.be.textbe.bt.textbt.impl.ParallelImpl
-     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getParallel()
-     * @generated
-     */
-    EClass PARALLEL = eINSTANCE.getParallel();
-
-    /**
-     * The meta object literal for the '<em><b>Processes</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Relations</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PARALLEL__PROCESSES = eINSTANCE.getParallel_Processes();
-
-    /**
-     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.AlternativeImpl <em>Alternative</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.be.textbe.bt.textbt.impl.AlternativeImpl
-     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getAlternative()
-     * @generated
-     */
-    EClass ALTERNATIVE = eINSTANCE.getAlternative();
-
-    /**
-     * The meta object literal for the '<em><b>Choices</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ALTERNATIVE__CHOICES = eINSTANCE.getAlternative_Choices();
-
-    /**
-     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.TransactionImpl <em>Transaction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.be.textbe.bt.textbt.impl.TransactionImpl
-     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getTransaction()
-     * @generated
-     */
-    EClass TRANSACTION = eINSTANCE.getTransaction();
-
-    /**
-     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.InterleavingImpl <em>Interleaving</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.be.textbe.bt.textbt.impl.InterleavingImpl
-     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getInterleaving()
-     * @generated
-     */
-    EClass INTERLEAVING = eINSTANCE.getInterleaving();
-
-    /**
-     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.NamedElementImpl <em>Named Element</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.be.textbe.bt.textbt.impl.NamedElementImpl
-     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getNamedElement()
-     * @generated
-     */
-    EClass NAMED_ELEMENT = eINSTANCE.getNamedElement();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute NAMED_ELEMENT__NAME = eINSTANCE.getNamedElement_Name();
+    EReference RELATIONAL_BEHAVIOR__RELATIONS = eINSTANCE.getRelationalBehavior_Relations();
 
     /**
      * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.AssertionImpl <em>Assertion</em>}' class.
@@ -2781,6 +2747,108 @@ public interface TextbtPackage extends EPackage
     EClass ASSERTION = eINSTANCE.getAssertion();
 
     /**
+     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.AbstractBlockOrNodeImpl <em>Abstract Block Or Node</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.be.textbe.bt.textbt.impl.AbstractBlockOrNodeImpl
+     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getAbstractBlockOrNode()
+     * @generated
+     */
+    EClass ABSTRACT_BLOCK_OR_NODE = eINSTANCE.getAbstractBlockOrNode();
+
+    /**
+     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.AbstractBlockImpl <em>Abstract Block</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.be.textbe.bt.textbt.impl.AbstractBlockImpl
+     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getAbstractBlock()
+     * @generated
+     */
+    EClass ABSTRACT_BLOCK = eINSTANCE.getAbstractBlock();
+
+    /**
+     * The meta object literal for the '<em><b>Child Node</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ABSTRACT_BLOCK__CHILD_NODE = eINSTANCE.getAbstractBlock_ChildNode();
+
+    /**
+     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.AbstractNodeImpl <em>Abstract Node</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.be.textbe.bt.textbt.impl.AbstractNodeImpl
+     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getAbstractNode()
+     * @generated
+     */
+    EClass ABSTRACT_NODE = eINSTANCE.getAbstractNode();
+
+    /**
+     * The meta object literal for the '<em><b>Component Ref</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ABSTRACT_NODE__COMPONENT_REF = eINSTANCE.getAbstractNode_ComponentRef();
+
+    /**
+     * The meta object literal for the '<em><b>Behavior Ref</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ABSTRACT_NODE__BEHAVIOR_REF = eINSTANCE.getAbstractNode_BehaviorRef();
+
+    /**
+     * The meta object literal for the '<em><b>Requirement Ref</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ABSTRACT_NODE__REQUIREMENT_REF = eINSTANCE.getAbstractNode_RequirementRef();
+
+    /**
+     * The meta object literal for the '<em><b>Traceability Status</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ABSTRACT_NODE__TRACEABILITY_STATUS = eINSTANCE.getAbstractNode_TraceabilityStatus();
+
+    /**
+     * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ABSTRACT_NODE__LABEL = eINSTANCE.getAbstractNode_Label();
+
+    /**
+     * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ABSTRACT_NODE__OPERATOR = eINSTANCE.getAbstractNode_Operator();
+
+    /**
+     * The meta object literal for the '<em><b>Component Set</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ABSTRACT_NODE__COMPONENT_SET = eINSTANCE.getAbstractNode_ComponentSet();
+
+    /**
+     * The meta object literal for the '<em><b>Mci</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ABSTRACT_NODE__MCI = eINSTANCE.getAbstractNode_Mci();
+
+    /**
      * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.RelationImpl <em>Relation</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2791,150 +2859,68 @@ public interface TextbtPackage extends EPackage
     EClass RELATION = eINSTANCE.getRelation();
 
     /**
-     * The meta object literal for the '<em><b>Multi Level</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Question</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute RELATION__MULTI_LEVEL = eINSTANCE.getRelation_MultiLevel();
+    EAttribute RELATION__QUESTION = eINSTANCE.getRelation_Question();
 
     /**
-     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.WhoImpl <em>Who</em>}' class.
+     * The meta object literal for the '<em><b>Preposition</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.be.textbe.bt.textbt.impl.WhoImpl
-     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getWho()
      * @generated
      */
-    EClass WHO = eINSTANCE.getWho();
+    EAttribute RELATION__PREPOSITION = eINSTANCE.getRelation_Preposition();
 
     /**
-     * The meta object literal for the '<em><b>Person</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Component Ref</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute WHO__PERSON = eINSTANCE.getWho_Person();
+    EAttribute RELATION__COMPONENT_REF = eINSTANCE.getRelation_ComponentRef();
 
     /**
-     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.WhatImpl <em>What</em>}' class.
+     * The meta object literal for the '<em><b>Behavior Ref</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.be.textbe.bt.textbt.impl.WhatImpl
-     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getWhat()
      * @generated
      */
-    EClass WHAT = eINSTANCE.getWhat();
+    EAttribute RELATION__BEHAVIOR_REF = eINSTANCE.getRelation_BehaviorRef();
 
     /**
-     * The meta object literal for the '<em><b>Observation</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Level</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute WHAT__OBSERVATION = eINSTANCE.getWhat_Observation();
+    EAttribute RELATION__LEVEL = eINSTANCE.getRelation_Level();
 
     /**
-     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.WhereImpl <em>Where</em>}' class.
+     * The meta object literal for the '<em><b>Component Level</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.be.textbe.bt.textbt.impl.WhereImpl
-     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getWhere()
      * @generated
      */
-    EClass WHERE = eINSTANCE.getWhere();
+    EAttribute RELATION__COMPONENT_LEVEL = eINSTANCE.getRelation_ComponentLevel();
 
     /**
-     * The meta object literal for the '<em><b>Place</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Component Set</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute WHERE__PLACE = eINSTANCE.getWhere_Place();
+    EAttribute RELATION__COMPONENT_SET = eINSTANCE.getRelation_ComponentSet();
 
     /**
-     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.WhenImpl <em>When</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.be.textbe.bt.textbt.impl.WhenImpl
-     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getWhen()
-     * @generated
-     */
-    EClass WHEN = eINSTANCE.getWhen();
-
-    /**
-     * The meta object literal for the '<em><b>Time</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Mci</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute WHEN__TIME = eINSTANCE.getWhen_Time();
-
-    /**
-     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.WhyImpl <em>Why</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.be.textbe.bt.textbt.impl.WhyImpl
-     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getWhy()
-     * @generated
-     */
-    EClass WHY = eINSTANCE.getWhy();
-
-    /**
-     * The meta object literal for the '<em><b>Reason</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute WHY__REASON = eINSTANCE.getWhy_Reason();
-
-    /**
-     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.FreeTextRelationImpl <em>Free Text Relation</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.be.textbe.bt.textbt.impl.FreeTextRelationImpl
-     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getFreeTextRelation()
-     * @generated
-     */
-    EClass FREE_TEXT_RELATION = eINSTANCE.getFreeTextRelation();
-
-    /**
-     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.HowImpl <em>How</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.be.textbe.bt.textbt.impl.HowImpl
-     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getHow()
-     * @generated
-     */
-    EClass HOW = eINSTANCE.getHow();
-
-    /**
-     * The meta object literal for the '<em><b>Means</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute HOW__MEANS = eINSTANCE.getHow_Means();
-
-    /**
-     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.AttributeRealizationImpl <em>Attribute Realization</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.be.textbe.bt.textbt.impl.AttributeRealizationImpl
-     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getAttributeRealization()
-     * @generated
-     */
-    EClass ATTRIBUTE_REALIZATION = eINSTANCE.getAttributeRealization();
-
-    /**
-     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.NamedBehaviorImpl <em>Named Behavior</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.be.textbe.bt.textbt.impl.NamedBehaviorImpl
-     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getNamedBehavior()
-     * @generated
-     */
-    EClass NAMED_BEHAVIOR = eINSTANCE.getNamedBehavior();
+    EAttribute RELATION__MCI = eINSTANCE.getRelation_Mci();
 
     /**
      * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.SystemComponentImpl <em>System Component</em>}' class.
@@ -2947,34 +2933,48 @@ public interface TextbtPackage extends EPackage
     EClass SYSTEM_COMPONENT = eINSTANCE.getSystemComponent();
 
     /**
-     * The meta object literal for the '{@link org.be.textbe.bt.textbt.TraceabilityStatus <em>Traceability Status</em>}' enum.
+     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.OptionListImpl <em>Option List</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.be.textbe.bt.textbt.TraceabilityStatus
-     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getTraceabilityStatus()
+     * @see org.be.textbe.bt.textbt.impl.OptionListImpl
+     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getOptionList()
      * @generated
      */
-    EEnum TRACEABILITY_STATUS = eINSTANCE.getTraceabilityStatus();
+    EClass OPTION_LIST = eINSTANCE.getOptionList();
 
     /**
-     * The meta object literal for the '{@link org.be.textbe.bt.textbt.NodeType <em>Node Type</em>}' enum.
+     * The meta object literal for the '<em><b>Options</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.be.textbe.bt.textbt.NodeType
-     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getNodeType()
      * @generated
      */
-    EEnum NODE_TYPE = eINSTANCE.getNodeType();
+    EReference OPTION_LIST__OPTIONS = eINSTANCE.getOptionList_Options();
 
     /**
-     * The meta object literal for the '{@link org.be.textbe.bt.textbt.ComponentMarker <em>Component Marker</em>}' enum.
+     * The meta object literal for the '{@link org.be.textbe.bt.textbt.impl.OptionImpl <em>Option</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.be.textbe.bt.textbt.ComponentMarker
-     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getComponentMarker()
+     * @see org.be.textbe.bt.textbt.impl.OptionImpl
+     * @see org.be.textbe.bt.textbt.impl.TextbtPackageImpl#getOption()
      * @generated
      */
-    EEnum COMPONENT_MARKER = eINSTANCE.getComponentMarker();
+    EClass OPTION = eINSTANCE.getOption();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute OPTION__NAME = eINSTANCE.getOption_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute OPTION__VALUE = eINSTANCE.getOption_Value();
 
   }
 

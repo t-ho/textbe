@@ -6,28 +6,30 @@
  */
 package org.be.textbe.bt.textbt.impl;
 
-import org.be.textbe.bt.textbt.AttributeRealization;
+import org.be.textbe.bt.textbt.AbstractBehavior;
 import org.be.textbe.bt.textbt.TextbtPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Attribute Realization</b></em>'.
+ * An implementation of the model object '<em><b>Abstract Behavior</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class AttributeRealizationImpl extends NamedBehaviorImpl implements AttributeRealization
+public abstract class AbstractBehaviorImpl extends EObjectImpl implements AbstractBehavior
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected AttributeRealizationImpl()
+  protected AbstractBehaviorImpl()
   {
     super();
   }
@@ -40,7 +42,7 @@ public class AttributeRealizationImpl extends NamedBehaviorImpl implements Attri
   @Override
   protected EClass eStaticClass()
   {
-    return TextbtPackage.Literals.ATTRIBUTE_REALIZATION;
+    return TextbtPackage.Literals.ABSTRACT_BEHAVIOR;
   }
 
-} //AttributeRealizationImpl
+} //AbstractBehaviorImpl

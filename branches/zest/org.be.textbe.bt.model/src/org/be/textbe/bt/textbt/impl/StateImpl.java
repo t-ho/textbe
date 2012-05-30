@@ -6,28 +6,28 @@
  */
 package org.be.textbe.bt.textbt.impl;
 
-import org.be.textbe.bt.textbt.Output;
+import org.be.textbe.bt.textbt.State;
 import org.be.textbe.bt.textbt.TextbtPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Output</b></em>'.
+ * An implementation of the model object '<em><b>State</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public abstract class OutputImpl extends EventImpl implements Output
+public class StateImpl extends BehaviorImpl implements State
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected OutputImpl()
+  protected StateImpl()
   {
     super();
   }
@@ -40,7 +40,7 @@ public abstract class OutputImpl extends EventImpl implements Output
   @Override
   protected EClass eStaticClass()
   {
-    return TextbtPackage.Literals.OUTPUT;
+    return TextbtPackage.Literals.STATE;
   }
 
-} //OutputImpl
+} //StateImpl

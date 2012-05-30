@@ -8,9 +8,8 @@ package org.be.textbe.bt.textbt.impl;
 
 import java.util.Collection;
 
-import org.be.textbe.bt.textbt.Behavior;
+import org.be.textbe.bt.textbt.AbstractBehavior;
 import org.be.textbe.bt.textbt.Component;
-import org.be.textbe.bt.textbt.ComponentMarker;
 import org.be.textbe.bt.textbt.TextbtPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -22,6 +21,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -33,44 +33,86 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.be.textbe.bt.textbt.impl.ComponentImpl#getBehavior <em>Behavior</em>}</li>
- *   <li>{@link org.be.textbe.bt.textbt.impl.ComponentImpl#getId <em>Id</em>}</li>
+ *   <li>{@link org.be.textbe.bt.textbt.impl.ComponentImpl#getRef <em>Ref</em>}</li>
+ *   <li>{@link org.be.textbe.bt.textbt.impl.ComponentImpl#getVal <em>Val</em>}</li>
+ *   <li>{@link org.be.textbe.bt.textbt.impl.ComponentImpl#getBehaviors <em>Behaviors</em>}</li>
+ *   <li>{@link org.be.textbe.bt.textbt.impl.ComponentImpl#getQuantifier <em>Quantifier</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ComponentImpl extends NamedElementImpl implements Component
+public class ComponentImpl extends EObjectImpl implements Component
 {
   /**
-   * The cached value of the '{@link #getBehavior() <em>Behavior</em>}' containment reference list.
+   * The default value of the '{@link #getRef() <em>Ref</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getBehavior()
+   * @see #getRef()
    * @generated
    * @ordered
    */
-  protected EList<Behavior> behavior;
+  protected static final String REF_EDEFAULT = null;
 
   /**
-   * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+   * The cached value of the '{@link #getRef() <em>Ref</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getId()
+   * @see #getRef()
    * @generated
    * @ordered
    */
-  protected static final String ID_EDEFAULT = null;
+  protected String ref = REF_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+   * The default value of the '{@link #getVal() <em>Val</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getId()
+   * @see #getVal()
    * @generated
    * @ordered
    */
-  protected String id = ID_EDEFAULT;
+  protected static final String VAL_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getVal() <em>Val</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getVal()
+   * @generated
+   * @ordered
+   */
+  protected String val = VAL_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getBehaviors() <em>Behaviors</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getBehaviors()
+   * @generated
+   * @ordered
+   */
+  protected EList<AbstractBehavior> behaviors;
+
+  /**
+   * The default value of the '{@link #getQuantifier() <em>Quantifier</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getQuantifier()
+   * @generated
+   * @ordered
+   */
+  protected static final String QUANTIFIER_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getQuantifier() <em>Quantifier</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getQuantifier()
+   * @generated
+   * @ordered
+   */
+  protected String quantifier = QUANTIFIER_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -98,13 +140,9 @@ public class ComponentImpl extends NamedElementImpl implements Component
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Behavior> getBehavior()
+  public String getRef()
   {
-    if (behavior == null)
-    {
-      behavior = new EObjectContainmentEList<Behavior>(Behavior.class, this, TextbtPackage.COMPONENT__BEHAVIOR);
-    }
-    return behavior;
+    return ref;
   }
 
   /**
@@ -112,22 +150,72 @@ public class ComponentImpl extends NamedElementImpl implements Component
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getId()
+  public void setRef(String newRef)
   {
-    return id;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setId(String newId)
-  {
-    String oldId = id;
-    id = newId;
+    String oldRef = ref;
+    ref = newRef;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TextbtPackage.COMPONENT__ID, oldId, id));
+      eNotify(new ENotificationImpl(this, Notification.SET, TextbtPackage.COMPONENT__REF, oldRef, ref));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getVal()
+  {
+    return val;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setVal(String newVal)
+  {
+    String oldVal = val;
+    val = newVal;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TextbtPackage.COMPONENT__VAL, oldVal, val));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<AbstractBehavior> getBehaviors()
+  {
+    if (behaviors == null)
+    {
+      behaviors = new EObjectContainmentEList<AbstractBehavior>(AbstractBehavior.class, this, TextbtPackage.COMPONENT__BEHAVIORS);
+    }
+    return behaviors;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getQuantifier()
+  {
+    return quantifier;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setQuantifier(String newQuantifier)
+  {
+    String oldQuantifier = quantifier;
+    quantifier = newQuantifier;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TextbtPackage.COMPONENT__QUANTIFIER, oldQuantifier, quantifier));
   }
 
   /**
@@ -140,8 +228,8 @@ public class ComponentImpl extends NamedElementImpl implements Component
   {
     switch (featureID)
     {
-      case TextbtPackage.COMPONENT__BEHAVIOR:
-        return ((InternalEList<?>)getBehavior()).basicRemove(otherEnd, msgs);
+      case TextbtPackage.COMPONENT__BEHAVIORS:
+        return ((InternalEList<?>)getBehaviors()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -156,10 +244,14 @@ public class ComponentImpl extends NamedElementImpl implements Component
   {
     switch (featureID)
     {
-      case TextbtPackage.COMPONENT__BEHAVIOR:
-        return getBehavior();
-      case TextbtPackage.COMPONENT__ID:
-        return getId();
+      case TextbtPackage.COMPONENT__REF:
+        return getRef();
+      case TextbtPackage.COMPONENT__VAL:
+        return getVal();
+      case TextbtPackage.COMPONENT__BEHAVIORS:
+        return getBehaviors();
+      case TextbtPackage.COMPONENT__QUANTIFIER:
+        return getQuantifier();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -175,12 +267,18 @@ public class ComponentImpl extends NamedElementImpl implements Component
   {
     switch (featureID)
     {
-      case TextbtPackage.COMPONENT__BEHAVIOR:
-        getBehavior().clear();
-        getBehavior().addAll((Collection<? extends Behavior>)newValue);
+      case TextbtPackage.COMPONENT__REF:
+        setRef((String)newValue);
         return;
-      case TextbtPackage.COMPONENT__ID:
-        setId((String)newValue);
+      case TextbtPackage.COMPONENT__VAL:
+        setVal((String)newValue);
+        return;
+      case TextbtPackage.COMPONENT__BEHAVIORS:
+        getBehaviors().clear();
+        getBehaviors().addAll((Collection<? extends AbstractBehavior>)newValue);
+        return;
+      case TextbtPackage.COMPONENT__QUANTIFIER:
+        setQuantifier((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -196,11 +294,17 @@ public class ComponentImpl extends NamedElementImpl implements Component
   {
     switch (featureID)
     {
-      case TextbtPackage.COMPONENT__BEHAVIOR:
-        getBehavior().clear();
+      case TextbtPackage.COMPONENT__REF:
+        setRef(REF_EDEFAULT);
         return;
-      case TextbtPackage.COMPONENT__ID:
-        setId(ID_EDEFAULT);
+      case TextbtPackage.COMPONENT__VAL:
+        setVal(VAL_EDEFAULT);
+        return;
+      case TextbtPackage.COMPONENT__BEHAVIORS:
+        getBehaviors().clear();
+        return;
+      case TextbtPackage.COMPONENT__QUANTIFIER:
+        setQuantifier(QUANTIFIER_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -216,10 +320,14 @@ public class ComponentImpl extends NamedElementImpl implements Component
   {
     switch (featureID)
     {
-      case TextbtPackage.COMPONENT__BEHAVIOR:
-        return behavior != null && !behavior.isEmpty();
-      case TextbtPackage.COMPONENT__ID:
-        return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+      case TextbtPackage.COMPONENT__REF:
+        return REF_EDEFAULT == null ? ref != null : !REF_EDEFAULT.equals(ref);
+      case TextbtPackage.COMPONENT__VAL:
+        return VAL_EDEFAULT == null ? val != null : !VAL_EDEFAULT.equals(val);
+      case TextbtPackage.COMPONENT__BEHAVIORS:
+        return behaviors != null && !behaviors.isEmpty();
+      case TextbtPackage.COMPONENT__QUANTIFIER:
+        return QUANTIFIER_EDEFAULT == null ? quantifier != null : !QUANTIFIER_EDEFAULT.equals(quantifier);
     }
     return super.eIsSet(featureID);
   }
@@ -235,8 +343,12 @@ public class ComponentImpl extends NamedElementImpl implements Component
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (id: ");
-    result.append(id);
+    result.append(" (ref: ");
+    result.append(ref);
+    result.append(", val: ");
+    result.append(val);
+    result.append(", quantifier: ");
+    result.append(quantifier);
     result.append(')');
     return result.toString();
   }

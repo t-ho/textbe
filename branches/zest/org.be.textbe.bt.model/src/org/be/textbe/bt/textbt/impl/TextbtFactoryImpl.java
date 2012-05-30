@@ -6,8 +6,6 @@
  */
 package org.be.textbe.bt.textbt.impl;
 
-import java.net.URI;
-
 import org.be.textbe.bt.textbt.*;
 
 import org.eclipse.emf.ecore.EClass;
@@ -71,10 +69,18 @@ public class TextbtFactoryImpl extends EFactoryImpl implements TextbtFactory
   {
     switch (eClass.getClassifierID())
     {
-      case TextbtPackage.SPECIFICATION: return createSpecification();
+      case TextbtPackage.TEXT_BT: return createTextBT();
+      case TextbtPackage.REQUIREMENT_LIST: return createRequirementList();
       case TextbtPackage.REQUIREMENT: return createRequirement();
+      case TextbtPackage.COMPONENT_LIST: return createComponentList();
       case TextbtPackage.COMPONENT: return createComponent();
-      case TextbtPackage.STATE_REALIZATION: return createStateRealization();
+      case TextbtPackage.SYSTEM_COMPONENT: return createSystemComponent();
+      case TextbtPackage.OPTION_LIST: return createOptionList();
+      case TextbtPackage.OPTION: return createOption();
+      case TextbtPackage.BEHAVIOR_TREE: return createBehaviorTree();
+      case TextbtPackage.RELATIONAL_BEHAVIOR: return createRelationalBehavior();
+      case TextbtPackage.RELATION: return createRelation();
+      case TextbtPackage.STATE: return createState();
       case TextbtPackage.SELECTION: return createSelection();
       case TextbtPackage.EVENT: return createEvent();
       case TextbtPackage.GUARD: return createGuard();
@@ -82,21 +88,12 @@ public class TextbtFactoryImpl extends EFactoryImpl implements TextbtFactory
       case TextbtPackage.INTERNAL_OUTPUT: return createInternalOutput();
       case TextbtPackage.EXTERNAL_INPUT: return createExternalInput();
       case TextbtPackage.EXTERNAL_OUTPUT: return createExternalOutput();
-      case TextbtPackage.NODE: return createNode();
-      case TextbtPackage.TRACEABILITY_LINK: return createTraceabilityLink();
-      case TextbtPackage.PARALLEL: return createParallel();
-      case TextbtPackage.ALTERNATIVE: return createAlternative();
-      case TextbtPackage.TRANSACTION: return createTransaction();
-      case TextbtPackage.INTERLEAVING: return createInterleaving();
       case TextbtPackage.ASSERTION: return createAssertion();
-      case TextbtPackage.WHO: return createWho();
-      case TextbtPackage.WHAT: return createWhat();
-      case TextbtPackage.WHERE: return createWhere();
-      case TextbtPackage.WHEN: return createWhen();
-      case TextbtPackage.WHY: return createWhy();
-      case TextbtPackage.HOW: return createHow();
-      case TextbtPackage.ATTRIBUTE_REALIZATION: return createAttributeRealization();
-      case TextbtPackage.SYSTEM_COMPONENT: return createSystemComponent();
+      case TextbtPackage.NODE: return createNode();
+      case TextbtPackage.SEQUENTIAL_NODE: return createSequentialNode();
+      case TextbtPackage.ATOMIC_NODE: return createAtomicNode();
+      case TextbtPackage.PARALLEL_BLOCK: return createParallelBlock();
+      case TextbtPackage.ALTERNATIVE_BLOCK: return createAlternativeBlock();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -112,12 +109,10 @@ public class TextbtFactoryImpl extends EFactoryImpl implements TextbtFactory
   {
     switch (eDataType.getClassifierID())
     {
-      case TextbtPackage.TRACEABILITY_STATUS:
-        return createTraceabilityStatusFromString(eDataType, initialValue);
-      case TextbtPackage.NODE_TYPE:
-        return createNodeTypeFromString(eDataType, initialValue);
-      case TextbtPackage.COMPONENT_MARKER:
-        return createComponentMarkerFromString(eDataType, initialValue);
+      case TextbtPackage.FIVE_WS:
+        return createFiveWsFromString(eDataType, initialValue);
+      case TextbtPackage.VALIDITY:
+        return createValidityFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -133,12 +128,10 @@ public class TextbtFactoryImpl extends EFactoryImpl implements TextbtFactory
   {
     switch (eDataType.getClassifierID())
     {
-      case TextbtPackage.TRACEABILITY_STATUS:
-        return convertTraceabilityStatusToString(eDataType, instanceValue);
-      case TextbtPackage.NODE_TYPE:
-        return convertNodeTypeToString(eDataType, instanceValue);
-      case TextbtPackage.COMPONENT_MARKER:
-        return convertComponentMarkerToString(eDataType, instanceValue);
+      case TextbtPackage.FIVE_WS:
+        return convertFiveWsToString(eDataType, instanceValue);
+      case TextbtPackage.VALIDITY:
+        return convertValidityToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -149,10 +142,21 @@ public class TextbtFactoryImpl extends EFactoryImpl implements TextbtFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Specification createSpecification()
+  public TextBT createTextBT()
   {
-    SpecificationImpl specification = new SpecificationImpl();
-    return specification;
+    TextBTImpl textBT = new TextBTImpl();
+    return textBT;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public RequirementList createRequirementList()
+  {
+    RequirementListImpl requirementList = new RequirementListImpl();
+    return requirementList;
   }
 
   /**
@@ -171,6 +175,17 @@ public class TextbtFactoryImpl extends EFactoryImpl implements TextbtFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public ComponentList createComponentList()
+  {
+    ComponentListImpl componentList = new ComponentListImpl();
+    return componentList;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Component createComponent()
   {
     ComponentImpl component = new ComponentImpl();
@@ -182,10 +197,76 @@ public class TextbtFactoryImpl extends EFactoryImpl implements TextbtFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public StateRealization createStateRealization()
+  public SystemComponent createSystemComponent()
   {
-    StateRealizationImpl stateRealization = new StateRealizationImpl();
-    return stateRealization;
+    SystemComponentImpl systemComponent = new SystemComponentImpl();
+    return systemComponent;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public OptionList createOptionList()
+  {
+    OptionListImpl optionList = new OptionListImpl();
+    return optionList;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Option createOption()
+  {
+    OptionImpl option = new OptionImpl();
+    return option;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BehaviorTree createBehaviorTree()
+  {
+    BehaviorTreeImpl behaviorTree = new BehaviorTreeImpl();
+    return behaviorTree;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public RelationalBehavior createRelationalBehavior()
+  {
+    RelationalBehaviorImpl relationalBehavior = new RelationalBehaviorImpl();
+    return relationalBehavior;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Relation createRelation()
+  {
+    RelationImpl relation = new RelationImpl();
+    return relation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public State createState()
+  {
+    StateImpl state = new StateImpl();
+    return state;
   }
 
   /**
@@ -270,72 +351,6 @@ public class TextbtFactoryImpl extends EFactoryImpl implements TextbtFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Node createNode()
-  {
-    NodeImpl node = new NodeImpl();
-    return node;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public TraceabilityLink createTraceabilityLink()
-  {
-    TraceabilityLinkImpl traceabilityLink = new TraceabilityLinkImpl();
-    return traceabilityLink;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Parallel createParallel()
-  {
-    ParallelImpl parallel = new ParallelImpl();
-    return parallel;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Alternative createAlternative()
-  {
-    AlternativeImpl alternative = new AlternativeImpl();
-    return alternative;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Transaction createTransaction()
-  {
-    TransactionImpl transaction = new TransactionImpl();
-    return transaction;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Interleaving createInterleaving()
-  {
-    InterleavingImpl interleaving = new InterleavingImpl();
-    return interleaving;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public Assertion createAssertion()
   {
     AssertionImpl assertion = new AssertionImpl();
@@ -347,10 +362,10 @@ public class TextbtFactoryImpl extends EFactoryImpl implements TextbtFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Who createWho()
+  public Node createNode()
   {
-    WhoImpl who = new WhoImpl();
-    return who;
+    NodeImpl node = new NodeImpl();
+    return node;
   }
 
   /**
@@ -358,10 +373,10 @@ public class TextbtFactoryImpl extends EFactoryImpl implements TextbtFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public What createWhat()
+  public SequentialNode createSequentialNode()
   {
-    WhatImpl what = new WhatImpl();
-    return what;
+    SequentialNodeImpl sequentialNode = new SequentialNodeImpl();
+    return sequentialNode;
   }
 
   /**
@@ -369,10 +384,10 @@ public class TextbtFactoryImpl extends EFactoryImpl implements TextbtFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Where createWhere()
+  public AtomicNode createAtomicNode()
   {
-    WhereImpl where = new WhereImpl();
-    return where;
+    AtomicNodeImpl atomicNode = new AtomicNodeImpl();
+    return atomicNode;
   }
 
   /**
@@ -380,10 +395,10 @@ public class TextbtFactoryImpl extends EFactoryImpl implements TextbtFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public When createWhen()
+  public ParallelBlock createParallelBlock()
   {
-    WhenImpl when = new WhenImpl();
-    return when;
+    ParallelBlockImpl parallelBlock = new ParallelBlockImpl();
+    return parallelBlock;
   }
 
   /**
@@ -391,10 +406,10 @@ public class TextbtFactoryImpl extends EFactoryImpl implements TextbtFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Why createWhy()
+  public AlternativeBlock createAlternativeBlock()
   {
-    WhyImpl why = new WhyImpl();
-    return why;
+    AlternativeBlockImpl alternativeBlock = new AlternativeBlockImpl();
+    return alternativeBlock;
   }
 
   /**
@@ -402,42 +417,9 @@ public class TextbtFactoryImpl extends EFactoryImpl implements TextbtFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public How createHow()
+  public FiveWs createFiveWsFromString(EDataType eDataType, String initialValue)
   {
-    HowImpl how = new HowImpl();
-    return how;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public AttributeRealization createAttributeRealization()
-  {
-    AttributeRealizationImpl attributeRealization = new AttributeRealizationImpl();
-    return attributeRealization;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public SystemComponent createSystemComponent()
-  {
-    SystemComponentImpl systemComponent = new SystemComponentImpl();
-    return systemComponent;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public TraceabilityStatus createTraceabilityStatusFromString(EDataType eDataType, String initialValue)
-  {
-    TraceabilityStatus result = TraceabilityStatus.get(initialValue);
+    FiveWs result = FiveWs.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
@@ -447,7 +429,7 @@ public class TextbtFactoryImpl extends EFactoryImpl implements TextbtFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public String convertTraceabilityStatusToString(EDataType eDataType, Object instanceValue)
+  public String convertFiveWsToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }
@@ -457,9 +439,9 @@ public class TextbtFactoryImpl extends EFactoryImpl implements TextbtFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public NodeType createNodeTypeFromString(EDataType eDataType, String initialValue)
+  public Validity createValidityFromString(EDataType eDataType, String initialValue)
   {
-    NodeType result = NodeType.get(initialValue);
+    Validity result = Validity.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
@@ -469,29 +451,7 @@ public class TextbtFactoryImpl extends EFactoryImpl implements TextbtFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public String convertNodeTypeToString(EDataType eDataType, Object instanceValue)
-  {
-    return instanceValue == null ? null : instanceValue.toString();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ComponentMarker createComponentMarkerFromString(EDataType eDataType, String initialValue)
-  {
-    ComponentMarker result = ComponentMarker.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-    return result;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String convertComponentMarkerToString(EDataType eDataType, Object instanceValue)
+  public String convertValidityToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

@@ -6,28 +6,28 @@
  */
 package org.be.textbe.bt.textbt.impl;
 
-import org.be.textbe.bt.textbt.FreeTextRelation;
+import org.be.textbe.bt.textbt.AlternativeBlock;
 import org.be.textbe.bt.textbt.TextbtPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Free Text Relation</b></em>'.
+ * An implementation of the model object '<em><b>Alternative Block</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public abstract class FreeTextRelationImpl extends RelationImpl implements FreeTextRelation
+public class AlternativeBlockImpl extends AbstractBlockImpl implements AlternativeBlock
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected FreeTextRelationImpl()
+  protected AlternativeBlockImpl()
   {
     super();
   }
@@ -40,7 +40,7 @@ public abstract class FreeTextRelationImpl extends RelationImpl implements FreeT
   @Override
   protected EClass eStaticClass()
   {
-    return TextbtPackage.Literals.FREE_TEXT_RELATION;
+    return TextbtPackage.Literals.ALTERNATIVE_BLOCK;
   }
 
-} //FreeTextRelationImpl
+} //AlternativeBlockImpl

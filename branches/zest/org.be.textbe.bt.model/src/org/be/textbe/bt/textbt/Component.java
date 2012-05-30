@@ -7,6 +7,7 @@
 package org.be.textbe.bt.textbt;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,8 +17,10 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.be.textbe.bt.textbt.Component#getBehavior <em>Behavior</em>}</li>
- *   <li>{@link org.be.textbe.bt.textbt.Component#getId <em>Id</em>}</li>
+ *   <li>{@link org.be.textbe.bt.textbt.Component#getRef <em>Ref</em>}</li>
+ *   <li>{@link org.be.textbe.bt.textbt.Component#getVal <em>Val</em>}</li>
+ *   <li>{@link org.be.textbe.bt.textbt.Component#getBehaviors <em>Behaviors</em>}</li>
+ *   <li>{@link org.be.textbe.bt.textbt.Component#getQuantifier <em>Quantifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -25,48 +28,100 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Component extends NamedElement
+public interface Component extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Behavior</b></em>' containment reference list.
-   * The list contents are of type {@link org.be.textbe.bt.textbt.Behavior}.
+   * Returns the value of the '<em><b>Ref</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Behavior</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Ref</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Behavior</em>' containment reference list.
-   * @see org.be.textbe.bt.textbt.TextbtPackage#getComponent_Behavior()
+   * @return the value of the '<em>Ref</em>' attribute.
+   * @see #setRef(String)
+   * @see org.be.textbe.bt.textbt.TextbtPackage#getComponent_Ref()
+   * @model required="true"
+   * @generated
+   */
+  String getRef();
+
+  /**
+   * Sets the value of the '{@link org.be.textbe.bt.textbt.Component#getRef <em>Ref</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Ref</em>' attribute.
+   * @see #getRef()
+   * @generated
+   */
+  void setRef(String value);
+
+  /**
+   * Returns the value of the '<em><b>Val</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Val</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Val</em>' attribute.
+   * @see #setVal(String)
+   * @see org.be.textbe.bt.textbt.TextbtPackage#getComponent_Val()
+   * @model required="true"
+   * @generated
+   */
+  String getVal();
+
+  /**
+   * Sets the value of the '{@link org.be.textbe.bt.textbt.Component#getVal <em>Val</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Val</em>' attribute.
+   * @see #getVal()
+   * @generated
+   */
+  void setVal(String value);
+
+  /**
+   * Returns the value of the '<em><b>Behaviors</b></em>' containment reference list.
+   * The list contents are of type {@link org.be.textbe.bt.textbt.AbstractBehavior}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Behaviors</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Behaviors</em>' containment reference list.
+   * @see org.be.textbe.bt.textbt.TextbtPackage#getComponent_Behaviors()
    * @model containment="true"
    * @generated
    */
-  EList<Behavior> getBehavior();
+  EList<AbstractBehavior> getBehaviors();
 
   /**
-   * Returns the value of the '<em><b>Id</b></em>' attribute.
+   * Returns the value of the '<em><b>Quantifier</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Id</em>' attribute isn't clear,
+   * If the meaning of the '<em>Quantifier</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Id</em>' attribute.
-   * @see #setId(String)
-   * @see org.be.textbe.bt.textbt.TextbtPackage#getComponent_Id()
-   * @model id="true" required="true"
+   * @return the value of the '<em>Quantifier</em>' attribute.
+   * @see #setQuantifier(String)
+   * @see org.be.textbe.bt.textbt.TextbtPackage#getComponent_Quantifier()
+   * @model
    * @generated
    */
-  String getId();
+  String getQuantifier();
 
   /**
-   * Sets the value of the '{@link org.be.textbe.bt.textbt.Component#getId <em>Id</em>}' attribute.
+   * Sets the value of the '{@link org.be.textbe.bt.textbt.Component#getQuantifier <em>Quantifier</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Id</em>' attribute.
-   * @see #getId()
+   * @param value the new value of the '<em>Quantifier</em>' attribute.
+   * @see #getQuantifier()
    * @generated
    */
-  void setId(String value);
+  void setQuantifier(String value);
 
 } // Component

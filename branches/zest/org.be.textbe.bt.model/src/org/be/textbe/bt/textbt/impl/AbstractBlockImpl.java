@@ -8,8 +8,8 @@ package org.be.textbe.bt.textbt.impl;
 
 import java.util.Collection;
 
-import org.be.textbe.bt.textbt.Alternative;
-import org.be.textbe.bt.textbt.BehaviorTree;
+import org.be.textbe.bt.textbt.AbstractBlock;
+import org.be.textbe.bt.textbt.Node;
 import org.be.textbe.bt.textbt.TextbtPackage;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -24,35 +24,35 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Alternative</b></em>'.
+ * An implementation of the model object '<em><b>Abstract Block</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.be.textbe.bt.textbt.impl.AlternativeImpl#getChoices <em>Choices</em>}</li>
+ *   <li>{@link org.be.textbe.bt.textbt.impl.AbstractBlockImpl#getChildNode <em>Child Node</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class AlternativeImpl extends BranchImpl implements Alternative
+public abstract class AbstractBlockImpl extends AbstractBlockOrNodeImpl implements AbstractBlock
 {
   /**
-   * The cached value of the '{@link #getChoices() <em>Choices</em>}' containment reference list.
+   * The cached value of the '{@link #getChildNode() <em>Child Node</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getChoices()
+   * @see #getChildNode()
    * @generated
    * @ordered
    */
-  protected EList<BehaviorTree> choices;
+  protected EList<Node> childNode;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected AlternativeImpl()
+  protected AbstractBlockImpl()
   {
     super();
   }
@@ -65,7 +65,7 @@ public class AlternativeImpl extends BranchImpl implements Alternative
   @Override
   protected EClass eStaticClass()
   {
-    return TextbtPackage.Literals.ALTERNATIVE;
+    return TextbtPackage.Literals.ABSTRACT_BLOCK;
   }
 
   /**
@@ -73,13 +73,13 @@ public class AlternativeImpl extends BranchImpl implements Alternative
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<BehaviorTree> getChoices()
+  public EList<Node> getChildNode()
   {
-    if (choices == null)
+    if (childNode == null)
     {
-      choices = new EObjectContainmentEList<BehaviorTree>(BehaviorTree.class, this, TextbtPackage.ALTERNATIVE__CHOICES);
+      childNode = new EObjectContainmentEList<Node>(Node.class, this, TextbtPackage.ABSTRACT_BLOCK__CHILD_NODE);
     }
-    return choices;
+    return childNode;
   }
 
   /**
@@ -92,8 +92,8 @@ public class AlternativeImpl extends BranchImpl implements Alternative
   {
     switch (featureID)
     {
-      case TextbtPackage.ALTERNATIVE__CHOICES:
-        return ((InternalEList<?>)getChoices()).basicRemove(otherEnd, msgs);
+      case TextbtPackage.ABSTRACT_BLOCK__CHILD_NODE:
+        return ((InternalEList<?>)getChildNode()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -108,8 +108,8 @@ public class AlternativeImpl extends BranchImpl implements Alternative
   {
     switch (featureID)
     {
-      case TextbtPackage.ALTERNATIVE__CHOICES:
-        return getChoices();
+      case TextbtPackage.ABSTRACT_BLOCK__CHILD_NODE:
+        return getChildNode();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -125,9 +125,9 @@ public class AlternativeImpl extends BranchImpl implements Alternative
   {
     switch (featureID)
     {
-      case TextbtPackage.ALTERNATIVE__CHOICES:
-        getChoices().clear();
-        getChoices().addAll((Collection<? extends BehaviorTree>)newValue);
+      case TextbtPackage.ABSTRACT_BLOCK__CHILD_NODE:
+        getChildNode().clear();
+        getChildNode().addAll((Collection<? extends Node>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -143,8 +143,8 @@ public class AlternativeImpl extends BranchImpl implements Alternative
   {
     switch (featureID)
     {
-      case TextbtPackage.ALTERNATIVE__CHOICES:
-        getChoices().clear();
+      case TextbtPackage.ABSTRACT_BLOCK__CHILD_NODE:
+        getChildNode().clear();
         return;
     }
     super.eUnset(featureID);
@@ -160,10 +160,10 @@ public class AlternativeImpl extends BranchImpl implements Alternative
   {
     switch (featureID)
     {
-      case TextbtPackage.ALTERNATIVE__CHOICES:
-        return choices != null && !choices.isEmpty();
+      case TextbtPackage.ABSTRACT_BLOCK__CHILD_NODE:
+        return childNode != null && !childNode.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-} //AlternativeImpl
+} //AbstractBlockImpl

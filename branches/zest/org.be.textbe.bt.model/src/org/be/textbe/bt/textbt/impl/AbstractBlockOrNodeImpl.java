@@ -6,28 +6,30 @@
  */
 package org.be.textbe.bt.textbt.impl;
 
-import org.be.textbe.bt.textbt.Input;
+import org.be.textbe.bt.textbt.AbstractBlockOrNode;
 import org.be.textbe.bt.textbt.TextbtPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Input</b></em>'.
+ * An implementation of the model object '<em><b>Abstract Block Or Node</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public abstract class InputImpl extends EventImpl implements Input
+public abstract class AbstractBlockOrNodeImpl extends EObjectImpl implements AbstractBlockOrNode
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected InputImpl()
+  protected AbstractBlockOrNodeImpl()
   {
     super();
   }
@@ -40,7 +42,7 @@ public abstract class InputImpl extends EventImpl implements Input
   @Override
   protected EClass eStaticClass()
   {
-    return TextbtPackage.Literals.INPUT;
+    return TextbtPackage.Literals.ABSTRACT_BLOCK_OR_NODE;
   }
 
-} //InputImpl
+} //AbstractBlockOrNodeImpl

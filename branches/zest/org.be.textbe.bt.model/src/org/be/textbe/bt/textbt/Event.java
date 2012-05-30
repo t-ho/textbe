@@ -17,6 +17,6 @@ package org.be.textbe.bt.textbt;
  * @model
  * @generated
  */
-public interface Event extends Behavior, NamedBehavior
+public interface Event extends Behavior
 {
 } // Event

@@ -7,48 +7,54 @@
 package org.be.textbe.bt.textbt.impl;
 
 import java.util.Collection;
+
+import org.be.textbe.bt.textbt.Option;
+import org.be.textbe.bt.textbt.OptionList;
 import org.be.textbe.bt.textbt.TextbtPackage;
-import org.be.textbe.bt.textbt.Who;
+
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Who</b></em>'.
+ * An implementation of the model object '<em><b>Option List</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.be.textbe.bt.textbt.impl.WhoImpl#getPerson <em>Person</em>}</li>
+ *   <li>{@link org.be.textbe.bt.textbt.impl.OptionListImpl#getOptions <em>Options</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class WhoImpl extends FreeTextRelationImpl implements Who
+public class OptionListImpl extends EObjectImpl implements OptionList
 {
   /**
-   * The cached value of the '{@link #getPerson() <em>Person</em>}' attribute list.
+   * The cached value of the '{@link #getOptions() <em>Options</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getPerson()
+   * @see #getOptions()
    * @generated
    * @ordered
    */
-  protected EList<String> person;
+  protected EList<Option> options;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected WhoImpl()
+  protected OptionListImpl()
   {
     super();
   }
@@ -61,7 +67,7 @@ public class WhoImpl extends FreeTextRelationImpl implements Who
   @Override
   protected EClass eStaticClass()
   {
-    return TextbtPackage.Literals.WHO;
+    return TextbtPackage.Literals.OPTION_LIST;
   }
 
   /**
@@ -69,13 +75,29 @@ public class WhoImpl extends FreeTextRelationImpl implements Who
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getPerson()
+  public EList<Option> getOptions()
   {
-    if (person == null)
+    if (options == null)
     {
-      person = new EDataTypeUniqueEList<String>(String.class, this, TextbtPackage.WHO__PERSON);
+      options = new EObjectContainmentEList<Option>(Option.class, this, TextbtPackage.OPTION_LIST__OPTIONS);
     }
-    return person;
+    return options;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case TextbtPackage.OPTION_LIST__OPTIONS:
+        return ((InternalEList<?>)getOptions()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -88,8 +110,8 @@ public class WhoImpl extends FreeTextRelationImpl implements Who
   {
     switch (featureID)
     {
-      case TextbtPackage.WHO__PERSON:
-        return getPerson();
+      case TextbtPackage.OPTION_LIST__OPTIONS:
+        return getOptions();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -105,9 +127,9 @@ public class WhoImpl extends FreeTextRelationImpl implements Who
   {
     switch (featureID)
     {
-      case TextbtPackage.WHO__PERSON:
-        getPerson().clear();
-        getPerson().addAll((Collection<? extends String>)newValue);
+      case TextbtPackage.OPTION_LIST__OPTIONS:
+        getOptions().clear();
+        getOptions().addAll((Collection<? extends Option>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -123,8 +145,8 @@ public class WhoImpl extends FreeTextRelationImpl implements Who
   {
     switch (featureID)
     {
-      case TextbtPackage.WHO__PERSON:
-        getPerson().clear();
+      case TextbtPackage.OPTION_LIST__OPTIONS:
+        getOptions().clear();
         return;
     }
     super.eUnset(featureID);
@@ -140,27 +162,10 @@ public class WhoImpl extends FreeTextRelationImpl implements Who
   {
     switch (featureID)
     {
-      case TextbtPackage.WHO__PERSON:
-        return person != null && !person.isEmpty();
+      case TextbtPackage.OPTION_LIST__OPTIONS:
+        return options != null && !options.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (person: ");
-    result.append(person);
-    result.append(')');
-    return result.toString();
-  }
-
-} //WhoImpl
+} //OptionListImpl

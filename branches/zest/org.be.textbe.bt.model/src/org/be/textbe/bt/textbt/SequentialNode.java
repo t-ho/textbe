@@ -6,25 +6,24 @@
  */
 package org.be.textbe.bt.textbt;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Node</b></em>'.
+ * A representation of the model object '<em><b>Sequential Node</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.be.textbe.bt.textbt.Node#getChildNode <em>Child Node</em>}</li>
+ *   <li>{@link org.be.textbe.bt.textbt.SequentialNode#getChildNode <em>Child Node</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.be.textbe.bt.textbt.TextbtPackage#getNode()
+ * @see org.be.textbe.bt.textbt.TextbtPackage#getSequentialNode()
  * @model
  * @generated
  */
-public interface Node extends AbstractNode
+public interface SequentialNode extends AbstractNode, AbstractBlockOrNode
 {
   /**
    * Returns the value of the '<em><b>Child Node</b></em>' containment reference.
@@ -36,14 +35,14 @@ public interface Node extends AbstractNode
    * <!-- end-user-doc -->
    * @return the value of the '<em>Child Node</em>' containment reference.
    * @see #setChildNode(AbstractBlockOrNode)
-   * @see org.be.textbe.bt.textbt.TextbtPackage#getNode_ChildNode()
+   * @see org.be.textbe.bt.textbt.TextbtPackage#getSequentialNode_ChildNode()
    * @model containment="true"
    * @generated
    */
   AbstractBlockOrNode getChildNode();
 
   /**
-   * Sets the value of the '{@link org.be.textbe.bt.textbt.Node#getChildNode <em>Child Node</em>}' containment reference.
+   * Sets the value of the '{@link org.be.textbe.bt.textbt.SequentialNode#getChildNode <em>Child Node</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Child Node</em>' containment reference.
@@ -52,4 +51,4 @@ public interface Node extends AbstractNode
    */
   void setChildNode(AbstractBlockOrNode value);
 
-} // Node
+} // SequentialNode

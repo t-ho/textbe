@@ -6,11 +6,9 @@
  */
 package org.be.textbe.bt.textbt.impl;
 
-import org.be.textbe.bt.textbt.Behavior;
+import org.be.textbe.bt.textbt.AbstractBlockOrNode;
 import org.be.textbe.bt.textbt.Node;
-import org.be.textbe.bt.textbt.NodeType;
 import org.be.textbe.bt.textbt.TextbtPackage;
-import org.be.textbe.bt.textbt.TraceabilityLink;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -19,7 +17,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,97 +25,23 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.be.textbe.bt.textbt.impl.NodeImpl#getTraceability <em>Traceability</em>}</li>
- *   <li>{@link org.be.textbe.bt.textbt.impl.NodeImpl#getLabel <em>Label</em>}</li>
- *   <li>{@link org.be.textbe.bt.textbt.impl.NodeImpl#getBehavior <em>Behavior</em>}</li>
- *   <li>{@link org.be.textbe.bt.textbt.impl.NodeImpl#isShowTag <em>Show Tag</em>}</li>
- *   <li>{@link org.be.textbe.bt.textbt.impl.NodeImpl#getOperator <em>Operator</em>}</li>
+ *   <li>{@link org.be.textbe.bt.textbt.impl.NodeImpl#getChildNode <em>Child Node</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class NodeImpl extends EObjectImpl implements Node
+public class NodeImpl extends AbstractNodeImpl implements Node
 {
   /**
-   * The cached value of the '{@link #getTraceability() <em>Traceability</em>}' containment reference.
+   * The cached value of the '{@link #getChildNode() <em>Child Node</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getTraceability()
+   * @see #getChildNode()
    * @generated
    * @ordered
    */
-  protected TraceabilityLink traceability;
-
-  /**
-   * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getLabel()
-   * @generated
-   * @ordered
-   */
-  protected static final String LABEL_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getLabel()
-   * @generated
-   * @ordered
-   */
-  protected String label = LABEL_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getBehavior() <em>Behavior</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getBehavior()
-   * @generated
-   * @ordered
-   */
-  protected Behavior behavior;
-
-  /**
-   * The default value of the '{@link #isShowTag() <em>Show Tag</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isShowTag()
-   * @generated
-   * @ordered
-   */
-  protected static final boolean SHOW_TAG_EDEFAULT = true;
-
-  /**
-   * The cached value of the '{@link #isShowTag() <em>Show Tag</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isShowTag()
-   * @generated
-   * @ordered
-   */
-  protected boolean showTag = SHOW_TAG_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getOperator() <em>Operator</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getOperator()
-   * @generated
-   * @ordered
-   */
-  protected static final NodeType OPERATOR_EDEFAULT = NodeType.NORMAL;
-
-  /**
-   * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getOperator()
-   * @generated
-   * @ordered
-   */
-  protected NodeType operator = OPERATOR_EDEFAULT;
+  protected AbstractBlockOrNode childNode;
 
   /**
    * <!-- begin-user-doc -->
@@ -146,9 +69,9 @@ public class NodeImpl extends EObjectImpl implements Node
    * <!-- end-user-doc -->
    * @generated
    */
-  public TraceabilityLink getTraceability()
+  public AbstractBlockOrNode getChildNode()
   {
-    return traceability;
+    return childNode;
   }
 
   /**
@@ -156,13 +79,13 @@ public class NodeImpl extends EObjectImpl implements Node
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetTraceability(TraceabilityLink newTraceability, NotificationChain msgs)
+  public NotificationChain basicSetChildNode(AbstractBlockOrNode newChildNode, NotificationChain msgs)
   {
-    TraceabilityLink oldTraceability = traceability;
-    traceability = newTraceability;
+    AbstractBlockOrNode oldChildNode = childNode;
+    childNode = newChildNode;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TextbtPackage.NODE__TRACEABILITY, oldTraceability, newTraceability);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TextbtPackage.NODE__CHILD_NODE, oldChildNode, newChildNode);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -173,132 +96,20 @@ public class NodeImpl extends EObjectImpl implements Node
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setTraceability(TraceabilityLink newTraceability)
+  public void setChildNode(AbstractBlockOrNode newChildNode)
   {
-    if (newTraceability != traceability)
+    if (newChildNode != childNode)
     {
       NotificationChain msgs = null;
-      if (traceability != null)
-        msgs = ((InternalEObject)traceability).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TextbtPackage.NODE__TRACEABILITY, null, msgs);
-      if (newTraceability != null)
-        msgs = ((InternalEObject)newTraceability).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TextbtPackage.NODE__TRACEABILITY, null, msgs);
-      msgs = basicSetTraceability(newTraceability, msgs);
+      if (childNode != null)
+        msgs = ((InternalEObject)childNode).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TextbtPackage.NODE__CHILD_NODE, null, msgs);
+      if (newChildNode != null)
+        msgs = ((InternalEObject)newChildNode).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TextbtPackage.NODE__CHILD_NODE, null, msgs);
+      msgs = basicSetChildNode(newChildNode, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TextbtPackage.NODE__TRACEABILITY, newTraceability, newTraceability));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getLabel()
-  {
-    return label;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setLabel(String newLabel)
-  {
-    String oldLabel = label;
-    label = newLabel;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TextbtPackage.NODE__LABEL, oldLabel, label));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Behavior getBehavior()
-  {
-    if (behavior != null && behavior.eIsProxy())
-    {
-      InternalEObject oldBehavior = (InternalEObject)behavior;
-      behavior = (Behavior)eResolveProxy(oldBehavior);
-      if (behavior != oldBehavior)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextbtPackage.NODE__BEHAVIOR, oldBehavior, behavior));
-      }
-    }
-    return behavior;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Behavior basicGetBehavior()
-  {
-    return behavior;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setBehavior(Behavior newBehavior)
-  {
-    Behavior oldBehavior = behavior;
-    behavior = newBehavior;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TextbtPackage.NODE__BEHAVIOR, oldBehavior, behavior));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public boolean isShowTag()
-  {
-    return showTag;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setShowTag(boolean newShowTag)
-  {
-    boolean oldShowTag = showTag;
-    showTag = newShowTag;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TextbtPackage.NODE__SHOW_TAG, oldShowTag, showTag));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NodeType getOperator()
-  {
-    return operator;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setOperator(NodeType newOperator)
-  {
-    NodeType oldOperator = operator;
-    operator = newOperator == null ? OPERATOR_EDEFAULT : newOperator;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TextbtPackage.NODE__OPERATOR, oldOperator, operator));
+      eNotify(new ENotificationImpl(this, Notification.SET, TextbtPackage.NODE__CHILD_NODE, newChildNode, newChildNode));
   }
 
   /**
@@ -311,8 +122,8 @@ public class NodeImpl extends EObjectImpl implements Node
   {
     switch (featureID)
     {
-      case TextbtPackage.NODE__TRACEABILITY:
-        return basicSetTraceability(null, msgs);
+      case TextbtPackage.NODE__CHILD_NODE:
+        return basicSetChildNode(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -327,17 +138,8 @@ public class NodeImpl extends EObjectImpl implements Node
   {
     switch (featureID)
     {
-      case TextbtPackage.NODE__TRACEABILITY:
-        return getTraceability();
-      case TextbtPackage.NODE__LABEL:
-        return getLabel();
-      case TextbtPackage.NODE__BEHAVIOR:
-        if (resolve) return getBehavior();
-        return basicGetBehavior();
-      case TextbtPackage.NODE__SHOW_TAG:
-        return isShowTag();
-      case TextbtPackage.NODE__OPERATOR:
-        return getOperator();
+      case TextbtPackage.NODE__CHILD_NODE:
+        return getChildNode();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -352,20 +154,8 @@ public class NodeImpl extends EObjectImpl implements Node
   {
     switch (featureID)
     {
-      case TextbtPackage.NODE__TRACEABILITY:
-        setTraceability((TraceabilityLink)newValue);
-        return;
-      case TextbtPackage.NODE__LABEL:
-        setLabel((String)newValue);
-        return;
-      case TextbtPackage.NODE__BEHAVIOR:
-        setBehavior((Behavior)newValue);
-        return;
-      case TextbtPackage.NODE__SHOW_TAG:
-        setShowTag((Boolean)newValue);
-        return;
-      case TextbtPackage.NODE__OPERATOR:
-        setOperator((NodeType)newValue);
+      case TextbtPackage.NODE__CHILD_NODE:
+        setChildNode((AbstractBlockOrNode)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -381,20 +171,8 @@ public class NodeImpl extends EObjectImpl implements Node
   {
     switch (featureID)
     {
-      case TextbtPackage.NODE__TRACEABILITY:
-        setTraceability((TraceabilityLink)null);
-        return;
-      case TextbtPackage.NODE__LABEL:
-        setLabel(LABEL_EDEFAULT);
-        return;
-      case TextbtPackage.NODE__BEHAVIOR:
-        setBehavior((Behavior)null);
-        return;
-      case TextbtPackage.NODE__SHOW_TAG:
-        setShowTag(SHOW_TAG_EDEFAULT);
-        return;
-      case TextbtPackage.NODE__OPERATOR:
-        setOperator(OPERATOR_EDEFAULT);
+      case TextbtPackage.NODE__CHILD_NODE:
+        setChildNode((AbstractBlockOrNode)null);
         return;
     }
     super.eUnset(featureID);
@@ -410,39 +188,10 @@ public class NodeImpl extends EObjectImpl implements Node
   {
     switch (featureID)
     {
-      case TextbtPackage.NODE__TRACEABILITY:
-        return traceability != null;
-      case TextbtPackage.NODE__LABEL:
-        return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-      case TextbtPackage.NODE__BEHAVIOR:
-        return behavior != null;
-      case TextbtPackage.NODE__SHOW_TAG:
-        return showTag != SHOW_TAG_EDEFAULT;
-      case TextbtPackage.NODE__OPERATOR:
-        return operator != OPERATOR_EDEFAULT;
+      case TextbtPackage.NODE__CHILD_NODE:
+        return childNode != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (label: ");
-    result.append(label);
-    result.append(", showTag: ");
-    result.append(showTag);
-    result.append(", operator: ");
-    result.append(operator);
-    result.append(')');
-    return result.toString();
   }
 
 } //NodeImpl

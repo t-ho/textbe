@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ExternalOutputImpl extends OutputImpl implements ExternalOutput
+public class ExternalOutputImpl extends BehaviorImpl implements ExternalOutput
 {
   /**
    * <!-- begin-user-doc -->

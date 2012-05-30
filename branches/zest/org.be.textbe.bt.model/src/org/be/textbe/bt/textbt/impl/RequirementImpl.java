@@ -6,8 +6,6 @@
  */
 package org.be.textbe.bt.textbt.impl;
 
-import java.net.URI;
-
 import org.be.textbe.bt.textbt.Requirement;
 import org.be.textbe.bt.textbt.TextbtPackage;
 
@@ -16,6 +14,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,33 +23,54 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.be.textbe.bt.textbt.impl.RequirementImpl#getId <em>Id</em>}</li>
+ *   <li>{@link org.be.textbe.bt.textbt.impl.RequirementImpl#getRef <em>Ref</em>}</li>
+ *   <li>{@link org.be.textbe.bt.textbt.impl.RequirementImpl#getVal <em>Val</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class RequirementImpl extends NamedElementImpl implements Requirement
+public class RequirementImpl extends EObjectImpl implements Requirement
 {
   /**
-   * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+   * The default value of the '{@link #getRef() <em>Ref</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getId()
+   * @see #getRef()
    * @generated
    * @ordered
    */
-  protected static final String ID_EDEFAULT = null;
+  protected static final String REF_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+   * The cached value of the '{@link #getRef() <em>Ref</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getId()
+   * @see #getRef()
    * @generated
    * @ordered
    */
-  protected String id = ID_EDEFAULT;
+  protected String ref = REF_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getVal() <em>Val</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getVal()
+   * @generated
+   * @ordered
+   */
+  protected static final String VAL_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getVal() <em>Val</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getVal()
+   * @generated
+   * @ordered
+   */
+  protected String val = VAL_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -78,9 +98,9 @@ public class RequirementImpl extends NamedElementImpl implements Requirement
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getId()
+  public String getRef()
   {
-    return id;
+    return ref;
   }
 
   /**
@@ -88,12 +108,35 @@ public class RequirementImpl extends NamedElementImpl implements Requirement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setId(String newId)
+  public void setRef(String newRef)
   {
-    String oldId = id;
-    id = newId;
+    String oldRef = ref;
+    ref = newRef;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TextbtPackage.REQUIREMENT__ID, oldId, id));
+      eNotify(new ENotificationImpl(this, Notification.SET, TextbtPackage.REQUIREMENT__REF, oldRef, ref));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getVal()
+  {
+    return val;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setVal(String newVal)
+  {
+    String oldVal = val;
+    val = newVal;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TextbtPackage.REQUIREMENT__VAL, oldVal, val));
   }
 
   /**
@@ -106,8 +149,10 @@ public class RequirementImpl extends NamedElementImpl implements Requirement
   {
     switch (featureID)
     {
-      case TextbtPackage.REQUIREMENT__ID:
-        return getId();
+      case TextbtPackage.REQUIREMENT__REF:
+        return getRef();
+      case TextbtPackage.REQUIREMENT__VAL:
+        return getVal();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -122,8 +167,11 @@ public class RequirementImpl extends NamedElementImpl implements Requirement
   {
     switch (featureID)
     {
-      case TextbtPackage.REQUIREMENT__ID:
-        setId((String)newValue);
+      case TextbtPackage.REQUIREMENT__REF:
+        setRef((String)newValue);
+        return;
+      case TextbtPackage.REQUIREMENT__VAL:
+        setVal((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -139,8 +187,11 @@ public class RequirementImpl extends NamedElementImpl implements Requirement
   {
     switch (featureID)
     {
-      case TextbtPackage.REQUIREMENT__ID:
-        setId(ID_EDEFAULT);
+      case TextbtPackage.REQUIREMENT__REF:
+        setRef(REF_EDEFAULT);
+        return;
+      case TextbtPackage.REQUIREMENT__VAL:
+        setVal(VAL_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -156,8 +207,10 @@ public class RequirementImpl extends NamedElementImpl implements Requirement
   {
     switch (featureID)
     {
-      case TextbtPackage.REQUIREMENT__ID:
-        return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+      case TextbtPackage.REQUIREMENT__REF:
+        return REF_EDEFAULT == null ? ref != null : !REF_EDEFAULT.equals(ref);
+      case TextbtPackage.REQUIREMENT__VAL:
+        return VAL_EDEFAULT == null ? val != null : !VAL_EDEFAULT.equals(val);
     }
     return super.eIsSet(featureID);
   }
@@ -173,8 +226,10 @@ public class RequirementImpl extends NamedElementImpl implements Requirement
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (id: ");
-    result.append(id);
+    result.append(" (ref: ");
+    result.append(ref);
+    result.append(", val: ");
+    result.append(val);
     result.append(')');
     return result.toString();
   }
