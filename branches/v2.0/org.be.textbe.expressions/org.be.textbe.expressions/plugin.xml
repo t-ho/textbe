@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.be.org/textbe/Expressions" 
+       class = "org.be.textbe.expressions.ExpressionsPackage"
+       genModel = "org/be/textbe/Expressions.genmodel" /> 
+	
+  </extension>
+
+
+
+
+
+</plugin>

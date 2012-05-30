@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.be.textbe.expressions/src-gen"
+    editDirectory="/org.be.textbe.expressions.edit/src" editorDirectory="/org.be.textbe.expressions.editor/src"
+    modelPluginID="org.be.textbe.expressions" forceOverwrite="true" modelName="Expressions"
+    updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.be.textbe.expressions.edit"
+    editorPluginID="org.be.textbe.expressions.editor">
+  <genPackages prefix="Expressions" basePackage="org.be.textbe" disposableProviderFactory="true"
+      ecorePackage="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//binarySymbol">
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//binarySymbol/LESS_THAN"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//binarySymbol/GREATER_THAN"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//binarySymbol/EQUAL_TO"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//binarySymbol/LESS_THAN_OR_EQUAL"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//binarySymbol/GREATER_THAN_OR_EQUAL"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//binarySymbol/COLON"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//binarySymbol/SUBSET_EXP"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//BinaryOperator">
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//BinaryOperator/PLUS"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//BinaryOperator/MINUS"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//BinaryOperator/INTERSECT"/>
+    </genEnums>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//Node"/>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//BehaviorNode">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//BehaviorNode/component"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//BehaviorNode/behavior"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//Behavior"/>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//StateRealisation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//StateRealisation/state"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//AttributeRealisation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//AttributeRealisation/attribute"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//AttributeRealisation/value"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//Selection"/>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//Event"/>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//Guard">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//Guard/state"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//InternalOutputEvent"/>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//InternalInputEvent"/>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//ExternalOutputEvent"/>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//ExternalInputEvent"/>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//ComponentInstantiationNode"/>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//ForAll"/>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//ForSome"/>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//AtLeastOne"/>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//ForOneArbitrary"/>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//ComponentInstantiation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//ComponentInstantiation/component"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//ComponentInstantiation/componentSet"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//BinaryRelation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//BinaryRelation/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//BinaryRelation/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//BinaryRelation/right"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//BinaryExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//BinaryExpression/leftExpression"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//BinaryExpression/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//BinaryExpression/rightExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//Value"/>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//Reference">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//Reference/object"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//Number">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//Number/value"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//FunctionApplication">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//FunctionApplication/functionName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//FunctionApplication/parameter"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//BracketedExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//BracketedExpression/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//Cardinality">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//Cardinality/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//EnumeratedSet">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//EnumeratedSet/expressions"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//FuzzyExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.be.textbe.expressions/src-gen/org/be/textbe/Expressions.ecore#//FuzzyExp/expression"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

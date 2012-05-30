@@ -3,95 +3,96 @@ grammar org.be.textbe.Expressions with org.eclipse.xtext.common.Terminals
 generate expressions "http://www.be.org/textbe/Expressions"
 
 Node:
-	(BehaviorNode | MultipleComponentInstance);
+	(BehaviorNode | ComponentInstantiationNode);
 
 BehaviorNode:
-	component=identifier behavior=(StateRealisation | AttributeRealisation | Event | Selection | Guard
-	| InternalOutputEvent | InternalInputEvent | ExternalOutputEvent | ExternalInputEvent);
+	component=Identifier behavior=Behavior;
+
+Behavior:
+	StateRealisation | AttributeRealisation | Event | Selection | Guard
+	| InternalOutputEvent | InternalInputEvent | ExternalOutputEvent | ExternalInputEvent;
 
 StateRealisation:
-	'[' state=(negatedCondition | binaryExpression) ']';
+	'[' state=(BinaryExpression) ']';
 
 AttributeRealisation:
-	'[' attribute=identifier ':=' value=binaryExpression ']';
-
-Condition:
-	binaryRelation | negatedCondition;
+	'[' attribute=Identifier ':=' value=BinaryExpression ']';
 
 Selection:
-	'?' functionApplication '?';
+	'?' FunctionApplication '?';
 
 Event:
-	'??' functionApplication '??';
+	'??' FunctionApplication '??';
 
 Guard:
-	'???' state=(negatedCondition | binaryExpression) '???';
+	'???' state=BinaryExpression '???';
 
 InternalOutputEvent:
-	'<' functionApplication '>';
+	'<' FunctionApplication '>';
 
 InternalInputEvent:
-	'>' functionApplication '<';
+	'>' FunctionApplication '<';
 
 ExternalOutputEvent:
-	'<<' functionApplication '>>';
+	'<<' FunctionApplication '>>';
 
 ExternalInputEvent:
-	'>>' functionApplication '<<';
+	'>>' FunctionApplication '<<';
 
-MultipleComponentInstance:
-	forAll | forSome | atLeastOne | forOneArbitrary;
+ComponentInstantiationNode:
+	ForAll | ForSome | AtLeastOne | ForOneArbitrary;
 
-forAll:
-	'|' '|' componentInstantiation;
+ForAll:
+	'||' ComponentInstantiation;
 
-forSome:
-	'%' componentInstantiation;
+ForSome:
+	'%' ComponentInstantiation;
 
-atLeastOne:
-	'%' '+' componentInstantiation;
+AtLeastOne:
+	'%+' ComponentInstantiation;
 
-forOneArbitrary:
-	'[' ']' componentInstantiation;
+ForOneArbitrary:
+	'[]' ComponentInstantiation;
 
-componentInstantiation:
-	component=identifier '#' ':' componentSet=binaryExpression;
+ComponentInstantiation:
+	component=Identifier '#' ':' componentSet=BinaryExpression;
 
-binaryRelation:
-	left=binaryExpression (operator=binarySymbol right=binaryExpression)?;
+BinaryRelation:
+	'NOT'? left=BinaryExpression (operator=binarySymbol right=BinaryExpression)?;
 
-binarySymbol:
-	symbol=('<' | '>' | '=' | '=<' | '>=' | ':' | '<:');
+enum binarySymbol:
+	LESS_THAN='<' | GREATER_THAN='>' | EQUAL_TO='=' | LESS_THAN_OR_EQUAL='=<' | GREATER_THAN_OR_EQUAL='>=' | COLON=':' |
+	SUBSET_EXP='<:';
 
-negatedCondition:
-	'NOT' condition=Condition;
+BinaryExpression:
+	leftExpression=Value (operator=BinaryOperator rightExpression=BinaryExpression)?;
 
-binaryExpression:
-	leftExpression=Value (binaryOperator=binaryOperator rightExpression=binaryExpression)?;
+enum BinaryOperator:
+	PLUS='+' | MINUS='-' | INTERSECT='><';
 
 Value:
-	(identifier | Number | functionApplication | bracketedExpression | cardinality | enumeratedSet | FuzzyExp);
+	(Reference | Number | FunctionApplication | BracketedExpression | Cardinality | EnumeratedSet | FuzzyExp);
 
-identifier:
-	major=ID | major=ID '.' minor=ID | major=ID '.' minor=ID '.' micro=ID;
+Reference:
+	object=Identifier;
+
+Identifier:
+	ID ('.' ID)*;
 
 Number:
 	value=INT;
 
-functionApplication:
-	functionName=identifier '(' parameter+=binaryExpression ')';
+FunctionApplication:
+	functionName=Identifier '(' parameter+=BinaryExpression ')';
 
-bracketedExpression:
-	'(' expression=binaryExpression ')';
+BracketedExpression:
+	'(' expression=BinaryRelation ')';
 
-cardinality:
-	'|' expression=binaryExpression '|';
+Cardinality:
+	'|' expression=BinaryExpression '|';
 
-enumeratedSet:
-	'{' expressions+=binaryExpression '}';
+EnumeratedSet:
+	'{' expressions+=BinaryExpression '}';
 
 FuzzyExp:
-	'[' expression=binaryExpression ']';
-
-binaryOperator:
-	operator=('+' | '-' | '><');
+	'[' expression=BinaryExpression ']';
