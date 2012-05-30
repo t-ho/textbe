@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.be.textbe"
+      id="org.be.textbe.feature"
       label="TextBE Feature"
       version="1.0.0.qualifier"
       provider-name="Behavior Engineering">
@@ -27,15 +27,16 @@ feature into your product.
    </url>
 
    <includes
-         id="org.be.textbe.dependencies"
+         id="org.be.textbe.bt.model.feature"
+         version="0.0.0"
+         search-location="self"/>
+
+   <includes
+         id="org.be.textbe.ct.model.feature"
          version="0.0.0"/>
 
    <includes
-         id="org.be.textbe.bt.model"
-         version="0.0.0"/>
-
-   <includes
-         id="org.be.textbe.ct.model"
+         id="org.be.textbe.dependencies.feature"
          version="0.0.0"/>
 
    <requires>

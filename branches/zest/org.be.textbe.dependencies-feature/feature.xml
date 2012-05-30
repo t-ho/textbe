@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.be.textbe.dependencies"
+      id="org.be.textbe.dependencies.feature"
       label="Dependencies-feature"
       version="1.0.0.qualifier">
 
