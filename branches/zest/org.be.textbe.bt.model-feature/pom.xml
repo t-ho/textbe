@@ -7,7 +7,7 @@
 		<artifactId>org.be.textbe-parent</artifactId>
 		<groupId>org.be.textbe</groupId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../org.be.textbe-parent</relativePath>
+		<relativePath>../org.be.textbe-parent/pom.xml</relativePath>
 	</parent>
 	<artifactId>org.be.textbe.bt.model.feature</artifactId>
 	<version>1.0.0.qualifier</version>
