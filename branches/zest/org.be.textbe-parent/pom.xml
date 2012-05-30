@@ -101,28 +101,29 @@
 		</plugins>
 	</build>
 	<modules>
-		<module>../org.be.textbe.ct.model</module>
-		<module>../org.be.textbe.ct.textct.resource.ct</module>
-		<module>../org.be.textbe.ct.textct.resource.ct.ui</module>
-		<module>../org.be.textbe.ct.model.feature</module>
-		<module>../org.be.textbe.gv.model</module>
-		<module>../org.be.textbe.gv.gv2text</module>
-		<module>../org.be.textbe.st.examples</module>
-		<module>../org.be.textbe.st.model</module>
-		<module>../org.be.textbe.st.model.feature</module>
-		<module>../org.be.textbe.st.textst.resource.st</module>
-		<module>../org.be.textbe.st.textst.resource.st.ui</module>
-		<module>../org.be.textbe.dependencies.feature</module>
-		<module>../org.be.textbe.bt.examples</module>
-		<module>../org.be.textbe.bt.model</module>
-		<module>../org.be.textbe.bt.model.feature</module>
-		<module>../org.be.textbe.bt.textbt.resource.bt</module>
-		<module>../org.be.textbe.bt.textbt.resource.bt.ui</module>
-		<module>../org.be.textbe.beviz.be2gv</module>
-		<module>../org.be.textbe.beviz.be2gv.test</module>
-		<module>../org.be.textbe.beviz</module>
-		<module>../org.be.textbe.feature</module>
-		<module>../org.emftext.commons.antlr3_3_0</module>
-		<module>../org.be.textbe.repository</module>
+
+	<module>../org.be.textbe.beviz</module>
+	<module>../org.be.textbe.beviz.be2gv</module>
+	<module>../org.be.textbe.beviz.be2gv.test</module>
+	<module>../org.be.textbe.bt.examples</module>
+	<module>../org.be.textbe.bt.model</module>
+	<module>../org.be.textbe.bt.model.feature</module>
+	<module>../org.be.textbe.bt.textbt.resource.bt</module>
+	<module>../org.be.textbe.bt.textbt.resource.bt.ui</module>
+	<module>../org.be.textbe.ct.model</module>
+	<module>../org.be.textbe.ct.model.feature</module>
+	<module>../org.be.textbe.ct.textct.resource.ct</module>
+	<module>../org.be.textbe.ct.textct.resource.ct.ui</module>
+	<module>../org.be.textbe.dependencies.feature</module>
+	<module>../org.be.textbe.feature</module>
+	<module>../org.be.textbe.gv.gv2text</module>
+	<module>../org.be.textbe.gv.model</module>
+	<module>../org.be.textbe.repository</module>
+	<module>../org.be.textbe.st.examples</module>
+	<module>../org.be.textbe.st.model</module>
+	<module>../org.be.textbe.st.model.feature</module>
+	<module>../org.be.textbe.st.textst.resource.st</module>
+	<module>../org.be.textbe.st.textst.resource.st.ui</module>
+	<module>../org.emftext.commons.antlr3_3_0</module>
 	</modules>
 </project>

@@ -7,7 +7,7 @@
 		<groupId>org.be.textbe</groupId>
 		<artifactId>org.be.textbe-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../org.be.textbe.parent</relativePath>
+		<relativePath>../org.be.textbe-parent</relativePath>
 	</parent>
 	<artifactId>org.be.textbe.bt.textbt.resource.bt</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
