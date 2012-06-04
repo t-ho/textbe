@@ -125,5 +125,8 @@
 	<module>../org.be.textbe.st.textst.resource.st</module>
 	<module>../org.be.textbe.st.textst.resource.st.ui</module>
 	<module>../org.emftext.commons.antlr3_3_0</module>
+	<module>../org.be.textbe.beviz.gvBuilder</module>
+	<module>../org.be.textbe.beviz.gvRender</module>
+	<module>../org.be.textbe.beviz.gvRender.systemTest</module>
 	</modules>
 </project>
