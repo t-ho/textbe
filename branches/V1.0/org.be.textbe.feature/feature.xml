@@ -93,4 +93,25 @@ feature into your product.
          version="0.0.0"
          unpack="false"/>
 
+   <plugin
+         id="org.be.textbe.svg.view"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.be.textbe.beviz.gvBuilder"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.be.textbe.beviz.gvRender"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>
