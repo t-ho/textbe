@@ -12,13 +12,10 @@ import org.be.textbe.bt.textbt.OptionList;
 import org.be.textbe.bt.textbt.RequirementList;
 import org.be.textbe.bt.textbt.TextBT;
 import org.be.textbe.bt.textbt.TextbtPackage;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 

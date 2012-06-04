@@ -8,7 +8,6 @@ package org.be.textbe.bt.textbt.impl;
 
 import org.be.textbe.bt.textbt.InternalInput;
 import org.be.textbe.bt.textbt.TextbtPackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

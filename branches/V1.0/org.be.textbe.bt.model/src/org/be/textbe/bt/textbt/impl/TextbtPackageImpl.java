@@ -40,13 +40,11 @@ import org.be.textbe.bt.textbt.TextBT;
 import org.be.textbe.bt.textbt.TextbtFactory;
 import org.be.textbe.bt.textbt.TextbtPackage;
 import org.be.textbe.bt.textbt.Validity;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**

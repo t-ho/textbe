@@ -7,7 +7,6 @@
 package org.be.textbe.bt.textbt;
 
 import org.eclipse.emf.ecore.EObject;
-import java.net.URI;
 
 /**
  * <!-- begin-user-doc -->

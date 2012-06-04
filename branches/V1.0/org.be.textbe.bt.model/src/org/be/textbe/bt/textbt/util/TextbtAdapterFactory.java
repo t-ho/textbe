@@ -6,13 +6,40 @@
  */
 package org.be.textbe.bt.textbt.util;
 
-import org.be.textbe.bt.textbt.*;
-
+import org.be.textbe.bt.textbt.AbstractBehavior;
+import org.be.textbe.bt.textbt.AbstractBlock;
+import org.be.textbe.bt.textbt.AbstractBlockOrNode;
+import org.be.textbe.bt.textbt.AbstractNode;
+import org.be.textbe.bt.textbt.AlternativeBlock;
+import org.be.textbe.bt.textbt.Assertion;
+import org.be.textbe.bt.textbt.AtomicNode;
+import org.be.textbe.bt.textbt.Behavior;
+import org.be.textbe.bt.textbt.BehaviorTree;
+import org.be.textbe.bt.textbt.Component;
+import org.be.textbe.bt.textbt.ComponentList;
+import org.be.textbe.bt.textbt.Event;
+import org.be.textbe.bt.textbt.ExternalInput;
+import org.be.textbe.bt.textbt.ExternalOutput;
+import org.be.textbe.bt.textbt.Guard;
+import org.be.textbe.bt.textbt.InternalInput;
+import org.be.textbe.bt.textbt.InternalOutput;
+import org.be.textbe.bt.textbt.Node;
+import org.be.textbe.bt.textbt.Option;
+import org.be.textbe.bt.textbt.OptionList;
+import org.be.textbe.bt.textbt.ParallelBlock;
+import org.be.textbe.bt.textbt.Relation;
+import org.be.textbe.bt.textbt.RelationalBehavior;
+import org.be.textbe.bt.textbt.Requirement;
+import org.be.textbe.bt.textbt.RequirementList;
+import org.be.textbe.bt.textbt.Selection;
+import org.be.textbe.bt.textbt.SequentialNode;
+import org.be.textbe.bt.textbt.State;
+import org.be.textbe.bt.textbt.SystemComponent;
+import org.be.textbe.bt.textbt.TextBT;
+import org.be.textbe.bt.textbt.TextbtPackage;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**

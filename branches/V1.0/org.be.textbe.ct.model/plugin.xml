@@ -13,7 +13,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://org.be.textbe/textct"
-            class="textct.TextctPackage"
+            class="org.be.textbe.ct.textct.TextctPackage"
             genModel="metamodel/textCT.genmodel"/>
    </extension>
 

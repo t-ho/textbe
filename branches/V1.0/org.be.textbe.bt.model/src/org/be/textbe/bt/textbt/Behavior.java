@@ -8,8 +8,6 @@ package org.be.textbe.bt.textbt;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Behavior</b></em>'.

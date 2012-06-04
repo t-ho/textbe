@@ -6,7 +6,6 @@
  */
 package org.be.textbe.bt.textbt;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
