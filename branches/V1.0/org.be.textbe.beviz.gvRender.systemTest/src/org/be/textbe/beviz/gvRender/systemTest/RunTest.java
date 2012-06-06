@@ -1,44 +1,31 @@
 package org.be.textbe.beviz.gvRender.systemTest;
 
-import java.util.Map;
+import java.io.InputStream;
+import java.io.PrintStream;
+import java.net.URL;
 
-import org.be.textbe.beviz.gvRender.GVOutputType;
+import junit.framework.Assert;
 
-public class RunTest {
+import org.be.textbe.beviz.gvRender.ProcessBuilderRunner;
+import org.junit.Test;
 
+public class RunTest
+
+{
+	@Test
 	public void testBuildProcess() throws Exception {
 
-		GVOutputType outputFormat = null;
-		boolean quiet = false;
-		int dotsPerInch = 72;
-		boolean verbose = false;
-		boolean swapAxis = false;
+		URL input = new URL(
+				"platform:/plugin/org.be.textbe.beviz.gvRender.systemTest/testfiles/"
+						+ "RBT1.dot");
 
-		
-		String executable = "/usr/local/bin/dot";
-		String optionOutputFormat = String.format("-T", outputFormat.getExtension());
-		String optionQuiet = quiet ? "-q" : "";
-		String optionScale = Integer.toString(dotsPerInch);
-		String optionVerbose = verbose ? "-v" : "";
-		String optionSwapAxis = swapAxis ? "-y" : "";
-		
-		
-		ProcessBuilder pb = new ProcessBuilder(executable, optionOutputFormat,
-				optionQuiet, optionScale, optionVerbose, optionSwapAxis);
-		Map<String, String> env = pb.environment();
-		
-//		env.put("GDFONTPATH", "");
-//		env.put("DOTFONTPATH", "");
-//		env.put("SERVER_NAME", "");
-//		env.put("GV_FILE_PATH", "");
-//		env.put("GVBINDIR", "");
+		InputStream source = input.openStream();
+		PrintStream target = System.out;
+		PrintStream error = System.err;
 
-		Process p = pb.start();
-		p.getInputStream();
-		p.getOutputStream();
-		p.getErrorStream();
-		p.wait(1000);
-		p.exitValue();
+		int exitCode = new ProcessBuilderRunner().runDotWithStreams(source, target, error);
+		
+		Assert.assertTrue(exitCode==0);
 
 	}
 

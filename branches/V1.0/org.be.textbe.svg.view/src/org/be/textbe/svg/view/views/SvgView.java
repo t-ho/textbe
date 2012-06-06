@@ -7,6 +7,12 @@ import java.util.List;
 
 import org.apache.batik.swing.JSVGCanvas;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IResourceChangeEvent;
+import org.eclipse.core.resources.IResourceChangeListener;
+import org.eclipse.core.resources.IResourceDelta;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -18,21 +24,42 @@ import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.part.ViewPart;
 
-public class SampleView extends ViewPart {
+public class SvgView extends ViewPart {
+	
+	class UpdateListener implements IResourceChangeListener{
+
+		@Override
+		public void resourceChanged(IResourceChangeEvent event) {
+			if(currentFile!=null){
+				IResourceDelta delta = event.getDelta();
+				IResourceDelta currentFileDelta = delta.findMember(currentFile.getFullPath());
+				if(currentFileDelta!=null){
+					if(currentFileDelta.getKind()==IResourceDelta.CHANGED){
+						displayFile(currentFile);
+					}
+				}
+			}
+			
+			
+		}
+		
+	}
 
 	/**
 	 * The ID of the view as specified by the extension.
 	 */
-	public static final String ID = "org.be.textbe.svg.view.views.SampleView";
+	public static final String ID = "org.be.textbe.svg.view.views.SvgView";
 	private JSVGCanvas jsvgCanvas;
 	private static ISelectionService SELECTION_SERVICE;
 	private ISelectionListener selectionListener;
 	private Frame frame;
+	private IFile currentFile;
+	private UpdateListener updateListener;
 
 	/**
 	 * The constructor.
 	 */
-	public SampleView() {
+	public SvgView() {
 	}
 
 	/**
@@ -46,13 +73,19 @@ public class SampleView extends ViewPart {
 
 		jsvgCanvas = new JSVGCanvas();
 		frame.add(jsvgCanvas);
+		
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		
+		updateListener = new UpdateListener();
+		
+		workspace.addResourceChangeListener(updateListener);
 
 		selectionListener = new ISelectionListener() {
 
 			@Override
 			public void selectionChanged(IWorkbenchPart part,
 					ISelection selection) {
-				if (part != SampleView.this
+				if (part != SvgView.this
 						&& selection instanceof IStructuredSelection) {
 					showFirst(((IStructuredSelection) selection).toList());
 				}
@@ -86,6 +119,8 @@ public class SampleView extends ViewPart {
 					 * Adapted successfully?
 					 */
 					if (file != null && file.getFileExtension().equals("svg")) {
+						
+						currentFile = file;
 						/**
 						 * Try to display
 						 */
@@ -98,40 +133,7 @@ public class SampleView extends ViewPart {
 						 * viewer on every change. This is not costly, only
 						 * ugly.
 						 */
-						try {
-							/**
-							 * Remove the old canvas
-							 */
-							frame.remove(jsvgCanvas);
-							/**
-							 * Create a new canvas
-							 */
-							jsvgCanvas = new JSVGCanvas();
-							/**
-							 * Add the canvas to the frame
-							 */
-							frame.add(jsvgCanvas);
-							/**
-							 * Have the frame check for repaint
-							 */
-							frame.validate();
-							/**
-							 * Get the absolute path of the file
-							 */
-							final URI locationURI = file.getLocationURI();
-							/**
-							 * Convert it to a URL encoded in a String
-							 */
-							final String resourceUrlAsString = locationURI
-									.toURL().toExternalForm();
-							/**
-							 * Load the document for display
-							 */
-							jsvgCanvas.loadSVGDocument(resourceUrlAsString);
-						} catch (MalformedURLException e) {
-							assert false : "This is impossible";
-							e.printStackTrace();
-						}
+						displayFile(file);
 
 					}
 
@@ -141,11 +143,54 @@ public class SampleView extends ViewPart {
 		}
 	}
 
+	private void displayFile(IFile file) {
+		try {
+			/**
+			 * Remove the old canvas
+			 */
+			frame.remove(jsvgCanvas);
+			/**
+			 * Create a new canvas
+			 */
+			jsvgCanvas = new JSVGCanvas();
+			/**
+			 * Add the canvas to the frame
+			 */
+			frame.add(jsvgCanvas);
+			/**
+			 * Have the frame check for repaint
+			 */
+			frame.validate();
+			/**
+			 * Get the absolute path of the file
+			 */
+			final URI locationURI = file.getLocationURI();
+			/**
+			 * Convert it to a URL encoded in a String
+			 */
+			final String resourceUrlAsString = locationURI
+					.toURL().toExternalForm();
+			/**
+			 * Load the document for display
+			 */
+			jsvgCanvas.loadSVGDocument(resourceUrlAsString);
+		} catch (MalformedURLException e) {
+			assert false : "This is impossible";
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * Passing the focus request to the viewer's control.
 	 */
 	public void setFocus() {
 
+	}
+	
+	@Override
+	public void dispose() {
+		ResourcesPlugin.getWorkspace().removeResourceChangeListener(updateListener);
+		super.dispose();
 	}
 
 }
