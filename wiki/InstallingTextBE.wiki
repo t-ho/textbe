@@ -15,8 +15,8 @@
     * Restart Eclipse when prompted
   # Install EMFText using the Reuseware Update Site
     * Help => Install new software ... => Add
-      * Name: Reuseware Update Site
-      * Location: http://reuseware.org/update
+      * Name: EMFText Update Site
+      * Location: http://emftext.org/update
     * Select EMFText Access
     * Choose okay to security warning when prompted
     * Restart Eclipse when prompted
