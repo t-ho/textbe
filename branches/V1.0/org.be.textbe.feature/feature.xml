@@ -114,4 +114,18 @@ feature into your product.
          version="0.0.0"
          unpack="false"/>
 
+   <plugin
+         id="org.be.textbe.beviz.be2gv"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.be.textbe.beviz.be2gv.builder"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>
