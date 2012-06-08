@@ -128,5 +128,7 @@
 	<module>../org.be.textbe.beviz.gvBuilder</module>
 	<module>../org.be.textbe.beviz.gvRender</module>
 	<module>../org.be.textbe.beviz.gvRender.systemTest</module>
+	<module>../org.be.textbe.svg.view</module>
+	<module>../org.be.textbe.beviz.be2gv.builder</module>
 	</modules>
 </project>

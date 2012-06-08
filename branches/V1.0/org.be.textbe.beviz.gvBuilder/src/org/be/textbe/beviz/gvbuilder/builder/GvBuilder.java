@@ -30,6 +30,7 @@ public class GvBuilder extends IncrementalProjectBuilder {
 		 */
 		public boolean visit(IResourceDelta delta) throws CoreException {
 			IResource resource = delta.getResource();
+
 			switch (delta.getKind()) {
 			case IResourceDelta.ADDED:
 				// handle added resource
@@ -48,7 +49,7 @@ public class GvBuilder extends IncrementalProjectBuilder {
 		}
 	}
 
-	class SampleResourceVisitor implements IResourceVisitor {
+	class GvResourceVisitor implements IResourceVisitor {
 		public boolean visit(IResource resource) {
 			translateGv(resource);
 			// return true to continue visiting children.
@@ -80,9 +81,8 @@ public class GvBuilder extends IncrementalProjectBuilder {
 	 * @see org.eclipse.core.internal.events.InternalBuilder#build(int,
 	 * java.util.Map, org.eclipse.core.runtime.IProgressMonitor)
 	 */
-	protected IProject[] build(int kind,
-			@SuppressWarnings("rawtypes") Map args, IProgressMonitor monitor)
-			throws CoreException {
+	protected IProject[] build(int kind, Map<String, String> args,
+			IProgressMonitor monitor) throws CoreException {
 		if (kind == FULL_BUILD) {
 			fullBuild(monitor);
 		} else {
@@ -98,6 +98,7 @@ public class GvBuilder extends IncrementalProjectBuilder {
 
 	void translateGv(IResource resource) {
 		if (resource instanceof IFile && resource.getName().endsWith(".dot")) {
+			System.out.println(resource.getName());
 			IFile file = (IFile) resource;
 			deleteMarkers(file);
 			try {
@@ -115,7 +116,12 @@ public class GvBuilder extends IncrementalProjectBuilder {
 					addMarker(file, status.getMessage(), 0,
 							status.getSeverity());
 				}
+				outputFolder.refreshLocal(IResource.DEPTH_ONE, null);
+
 			} catch (Exception e1) {
+				/**
+				 * TODO manage exception
+				 */
 				e1.printStackTrace();
 			}
 		}
@@ -131,7 +137,7 @@ public class GvBuilder extends IncrementalProjectBuilder {
 	protected void fullBuild(final IProgressMonitor monitor)
 			throws CoreException {
 		try {
-			getProject().accept(new SampleResourceVisitor());
+			getProject().accept(new GvResourceVisitor());
 		} catch (CoreException e) {
 		}
 	}

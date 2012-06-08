@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.apache.batik.swing.JSVGCanvas;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IResourceDelta;
