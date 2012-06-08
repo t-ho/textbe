@@ -8,13 +8,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.be.textbe.gv.Graph;
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jet.BodyContentWriter;
 import org.eclipse.jet.BufferedJET2Writer;
@@ -76,23 +73,8 @@ public class Be2Gv {
 
 	}
 
-	public static final String beFileToGvSource(IFile btModelFile)
-			throws CoreException, IOException {
+	public static String transformBtSource(String resource) throws IOException {
 
-		/**
-		 * Get the contents of the BT model file
-		 */
-
-		String sourceModelUriAsString = btModelFile.getFullPath().toString();
-
-		return transformBtSource(URI
-				.createPlatformResourceURI(sourceModelUriAsString,true));
-
-	}
-
-	public static String transformBtSource(URI sourceModelURI)
-			throws IOException {
-				
 		/**
 		 * Get the transformation program as an input stream. TODO This should
 		 * be refactored to the Activator
@@ -126,11 +108,11 @@ public class Be2Gv {
 		 * Get the model injector
 		 */
 		EMFInjector injector = atlUtils.getInjector();
-	
+
 		/**
 		 * Reset the launcher
 		 */
-		
+
 		try {
 			atlUtils.resetLauncher();
 		} catch (ATLCoreException e) {
@@ -174,9 +156,15 @@ public class Be2Gv {
 			IModel btModel = modelFactory.newModel(btReferenceModel);
 
 			/**
+			 * No other options
+			 */
+			Map<String, Object> options = Collections
+					.<String, Object> emptyMap();
+
+			/**
 			 * Inject the input model
 			 */
-			injector.inject(btModel, sourceModelURI.toString());
+			injector.inject(btModel, resource);
 
 			/**
 			 * Add the input model and variable names to the launcher. This
@@ -215,12 +203,6 @@ public class Be2Gv {
 			String mode = ILauncher.RUN_MODE;
 
 			/**
-			 * No other transformation options
-			 */
-			Map<String, Object> options = Collections
-					.<String, Object> emptyMap();
-
-			/**
 			 * Launch the transformation passing the parameters above
 			 */
 			launcher.launch(mode, monitor, options, transformationProgram);
@@ -231,19 +213,21 @@ public class Be2Gv {
 			EMFModel gvModelInEmf = (EMFModel) gvModel;
 
 			/**
-			 * Store the data in an anonymous resource
-			 */
-			gvModelInEmf.commitToResource();
-
-			/**
 			 * Get the first element of the resource
 			 */
 			EObject eObject = gvModelInEmf.getResource().getContents().get(0);
 
 			/**
+			 * Unload the source model. If this is not done, it will stuck
+			 * around and race conditions occur. Very messy.
+			 */
+			atlUtils.unload(btModel);
+
+			/**
 			 * Cast it to a graph
 			 */
 			graph = (Graph) eObject;
+
 		} catch (ATLCoreException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

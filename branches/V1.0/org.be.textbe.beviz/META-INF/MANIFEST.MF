@@ -15,4 +15,3 @@ Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ClassPath: .
 Bundle-Vendor: Behavior Engineering
-Export-Package: org.be.textbe.beviz
