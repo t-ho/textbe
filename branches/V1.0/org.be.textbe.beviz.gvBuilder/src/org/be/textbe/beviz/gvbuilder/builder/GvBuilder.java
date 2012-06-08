@@ -98,7 +98,6 @@ public class GvBuilder extends IncrementalProjectBuilder {
 
 	void translateGv(IResource resource) {
 		if (resource instanceof IFile && resource.getName().endsWith(".dot")) {
-			System.out.println(resource.getName());
 			IFile file = (IFile) resource;
 			deleteMarkers(file);
 			try {
