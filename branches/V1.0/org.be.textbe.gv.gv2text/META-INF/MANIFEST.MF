@@ -5,4 +5,3 @@ Bundle-SymbolicName: org.be.textbe.gv.gv2text;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Require-Bundle: org.eclipse.jet
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Bundle-ClassPath: .
