@@ -1,33 +1,60 @@
 package org.be.textbe.beviz.be2gv.test;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
+import java.util.Enumeration;
 
-import junit.framework.Assert;
-
-import org.apache.commons.io.IOUtils;
 import org.be.textbe.beviz.be2gv.Be2Gv;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.m2m.atl.engine.emfvm.VMException;
 import org.junit.Test;
 
 public class ConversionTest {
 
 	@Test
 	public void test() throws IOException {
-		for (int i = 1; i < 10; i++) {
 
-			String fileName = "RBT" + i;
-			String pathName = "org.be.textbe.beviz.be2gv.test/testfiles/"
-					+ fileName;
+		final String symbolicName = "org.be.textbe.beviz.be2gv.test";
+		final String testFileFolder = "testfiles";
+		final String btFilePattern = "*.bt";
 
-			String computedDotSource = Be2Gv.transformBtSource("platform:/plugin/" + pathName + ".bt");
+		final Enumeration<URL> btFiles = Platform.getBundle(symbolicName)
+				.findEntries(testFileFolder, btFilePattern, true);
 
-			URL url = new URL("platform:/plugin/" + pathName + ".dot");
+		while (btFiles.hasMoreElements()) {
+			final URL url = (URL) btFiles.nextElement();
 
-			String storedDotSource = IOUtils
-					.toString(url.openStream(), "UTF-8");
+			final Path path = new Path(url.getFile());
+			System.out.println(path);
 
-			Assert.assertEquals(storedDotSource, computedDotSource + '\n');
+			final IPath pathWithoutFileExtension = path.removeFileExtension();
+			recordTransformationResults(url, pathWithoutFileExtension);
 
+		}
+
+	}
+
+	private void recordTransformationResults(final URL url,
+			final IPath pathWithoutFileExtension) throws IOException {
+		final String transformBt2Gv;
+		try {
+			transformBt2Gv = Be2Gv.transformBt2Gv(url.toString());
+			final IPath dotFilePath = pathWithoutFileExtension
+					.addFileExtension("dot");
+			FileWriter fileWriter = new FileWriter("." + dotFilePath.toString());
+			fileWriter.write(transformBt2Gv);
+			fileWriter.close();
+		} catch (VMException e) {
+			final IPath dotFilePath = pathWithoutFileExtension
+					.addFileExtension("error");
+			final PrintWriter s = new PrintWriter(new FileWriter("."
+					+ dotFilePath.toString()));
+			e.printStackTrace(s);
+			s.close();
 		}
 	}
 }

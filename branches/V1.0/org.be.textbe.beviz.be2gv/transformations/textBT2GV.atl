@@ -56,7 +56,7 @@ helper def: validityStatusMap: Map(IN!Validity, String) =
 			'+'),
 			(#"-",
 			'&#8211;'),
-			(#"--",
+			(#"   --",
 			'&#8211; &#8211;'),
 			(#"+-",
 			'+&#8211;'),
@@ -70,7 +70,7 @@ helper def: validityColorMap: Map(IN!Validity, String) =
 			'FBF5AD'),
 			(#"-",
 			'F7A8AA'),
-			(#"--",
+			(#"   --",
 			'DDDDDD'),
 			(#"+-",
 			'FFFFFF'),
@@ -412,8 +412,8 @@ rule Node {
 		)
 	do{
 		if (s.isSystemComponent()){
-			t5.value <- '<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="1"'
-					+ ' CELLPADDING="2" BGCOLOR="#' + s.getColor() + '"'
+			t5.value <- '<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="1"' + '' + '' + ''
+					+ ' CELLPADDING="2" BGCOLOR="#' + s.getColor() + '"' + '' + '' + ''
 					+ ' PORT="p"><TR><TD>' + t5.value.substring(2, t5.value -> size() -
 					1) + '</TD></TR></TABLE>>';
 		}
@@ -421,7 +421,7 @@ rule Node {
 		nextElement <- thisModule.nextElement(s);
 		if (not(nextElement = false))
 			t.tail <- thisModule.resolveTemp(nextElement, 't');
-		if (t.tail.oclIsUndefined())
+		if (t.tail.oclIsUndefÏined())
 			t.tail <- nextElement;
 	}
 }
@@ -431,55 +431,57 @@ rule addNode(node: IN!AbstractNode) {
 		output: String = '';
 	}do {
 		if (thisModule.noTag = true){
-			output <- '<<TABLE BORDER="0" BGCOLOR="#' + node.getColor() + '"'
-					+ ' CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"'
-					+ ' PORT="p"><TR><TD><TABLE BORDER="1" CELLBORDER="0" CELLSPACING="2"'
-					+ ' CELLPADDING="0"><TR><TD  HEIGHT="25" WIDTH="115" PORT="top">' +
-					node.getComponent() + ' </TD><TD  WIDTH="15" HEIGHT="25"><TABLE'
-					+ ' BORDER="0" CELLBORDER="0" CELLSPACING="2"'
-					+ ' CELLPADDING="0"><TR><TD>' + node.getOperator() +
-					'</TD></TR><TR><TD>' + node.getLabel() +
+			output <- '<<TABLE BORDER="0" BGCOLOR="#' + node.getColor() + '"' + '' + '' +
+					' CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"' + '' + '' + ''
+					+ ' PORT="p"><TR><TD><TABLE BORDER="1" CELLBORDER="0"' + '' + ''
+					+ ' CELLSPACING="2"' + ' CELLPADDING="0"><TR><TD  HEIGHT="25"' + '' +
+					' WIDTH="115" PORT="top">' + node.getComponent() + ' </TD><TD ' + ''
+					+ ' WIDTH="15" HEIGHT="25"><TABLE' + ' BORDER="0" CELLBORDER="0"' +
+					'' + ' CELLSPACING="2"' + ' CELLPADDING="0"><TR><TD>' + node.
+					getOperator() + '</TD></TR><TR><TD>' + node.getLabel() +
 					'</TD></TR></TABLE></TD></TR><TR><TD  HEIGHT="25" WIDTH="115"><TABLE'
-					+ ' BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD'
-					+ ' ALIGN="RIGHT">' + node.getBehaviorLeftType() + '</TD><TD>' + node.
-					getBehaviorName() + ' </TD><TD ALIGN="LEFT">' + node.
-					getBehaviorRightType() +
+					+ ' BORDER="0" CELLBORDER="0" CELLSPACING="0"' + '' + ''
+					+ ' CELLPADDING="0"><TR><TD' + ' ALIGN="RIGHT">' + node.
+					getBehaviorLeftType() + '</TD><TD>' + node.getBehaviorName() + '' +
+					'' + ' </TD><TD ALIGN="LEFT">' + node.getBehaviorRightType() +
 					'</TD></TR></TABLE></TD></TR></TABLE></TD></TR>';
 		}else{
 			if (node.mci.oclIsUndefined()){
-				output <- '<<TABLE BORDER="0" BGCOLOR="#' + node.getColor() + '"'
-						+ ' CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"'
-						+ ' PORT="p"><TR><TD><TABLE BORDER="1" CELLBORDER="0"'
-						+ ' CELLSPACING="2" CELLPADDING="0"><TR><TD  WIDTH="50"'
-						+ ' HEIGHT="25">' + node.getRequirement() + ' </TD></TR><TR><TD '
-						+ ' WIDTH="50" HEIGHT="25">' + node.getValidity() + ''
+				output <- '<<TABLE BORDER="0" BGCOLOR="#' + node.getColor() + '"' + '' +
+						' CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"' + '' + '' + ''
+						+ ' PORT="p"><TR><TD><TABLE BORDER="1" CELLBORDER="0"' + '' + ''
+						+ ' CELLSPACING="2" CELLPADDING="0"><TR><TD  WIDTH="50"' + '' +
+						'' + ' HEIGHT="25">' + node.getRequirement() + ''
+						+ ' </TD></TR><TR><TD ' + ' WIDTH="50" HEIGHT="25">' + node.
+						getValidity() + '' + '' + '' + ''
 						+ ' </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0"'
-						+ ' CELLSPACING="2" CELLPADDING="0"><TR><TD  HEIGHT="25"'
-						+ ' WIDTH="115" PORT="top">' + node.getComponent() + ' </TD><TD '
-						+ ' WIDTH="15" HEIGHT="25"><TABLE BORDER="0" CELLBORDER="0"'
-						+ ' CELLSPACING="2" CELLPADDING="0"><TR><TD>' + node.
-						getOperator() + '</TD></TR><TR><TD>' + node.getLabel() +
-						'</TD></TR></TABLE></TD></TR><TR><TD  HEIGHT="25"'
+						+ ' CELLSPACING="2" CELLPADDING="0"><TR><TD  HEIGHT="25"' + '' +
+						' WIDTH="115" PORT="top">' + node.getComponent() + ' </TD><TD ' +
+						' WIDTH="15" HEIGHT="25"><TABLE BORDER="0" CELLBORDER="0"' + '' +
+						' CELLSPACING="2" CELLPADDING="0"><TR><TD>' + node.getOperator()
+						+ '</TD></TR><TR><TD>' + node.getLabel() +
+						'</TD></TR></TABLE></TD></TR><TR><TD  HEIGHT="25"' + '' + '' + ''
 						+ ' WIDTH="115"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"'
 						+ ' CELLPADDING="0"><TR><TD ALIGN="RIGHT">' + node.
 						getBehaviorLeftType() + '</TD><TD>' + node.getBehaviorName() + ''
 						+ ' </TD><TD ALIGN="LEFT">' + node.getBehaviorRightType() +
 						'</TD></TR></TABLE></TD></TR></TABLE></TD></TR>';
 			}else{
-				output <- '<<TABLE BORDER="0" BGCOLOR="#' + node.getColor() + '"'
-						+ ' CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"'
-						+ ' PORT="p"><TR><TD><TABLE BORDER="1" CELLBORDER="0"'
-						+ ' CELLSPACING="2" CELLPADDING="0"><TR><TD  WIDTH="50"'
-						+ ' HEIGHT="25">' + node.getRequirement() + ' </TD></TR><TR><TD '
-						+ ' WIDTH="50" HEIGHT="25">' + node.getValidity() + ''
+				output <- '<<TABLE BORDER="0" BGCOLOR="#' + node.getColor() + '"' + '' +
+						' CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"' + '' + '' + ''
+						+ ' PORT="p"><TR><TD><TABLE BORDER="1" CELLBORDER="0"' + '' + ''
+						+ ' CELLSPACING="2" CELLPADDING="0"><TR><TD  WIDTH="50"' + '' +
+						'' + ' HEIGHT="25">' + node.getRequirement() + ''
+						+ ' </TD></TR><TR><TD ' + ' WIDTH="50" HEIGHT="25">' + node.
+						getValidity() + '' + '' + '' + ''
 						+ ' </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0"'
-						+ ' CELLSPACING="2" CELLPADDING="0"><TR><TD  HEIGHT="25"'
-						+ ' WIDTH="115" PORT="top">' + node.mci + ' ' + node.
-						getComponent() + ':' + node.getComponentSet() + ' </TD><TD '
-						+ ' WIDTH="15" HEIGHT="25"><TABLE BORDER="0" CELLBORDER="0"'
-						+ ' CELLSPACING="2" CELLPADDING="0"><TR><TD>' + node.
+						+ ' CELLSPACING="2" CELLPADDING="0"><TR><TD  HEIGHT="25"' + '' +
+						' WIDTH="115" PORT="top">' + node.mci + ' ' + node.getComponent()
+						+ ':' + node.getComponentSet() + ' </TD><TD ' + '' + ''
+						+ ' WIDTH="15"' + ' HEIGHT="25"><TABLE BORDER="0" CELLBORDER="0"'
+						+ '' + '' + ' CELLSPACING="2" CELLPADDING="0"><TR><TD>' + node.
 						getOperator() + '</TD></TR><TR><TD>' + node.getLabel() +
-						'</TD></TR></TABLE></TD></TR><TR><TD  HEIGHT="25"'
+						'</TD></TR></TABLE></TD></TR><TR><TD  HEIGHT="25"' + '' + '' + ''
 						+ ' WIDTH="115"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"'
 						+ ' CELLPADDING="0"><TR><TD ALIGN="RIGHT">' + node.
 						getBehaviorLeftType() + '</TD><TD>' + node.getBehaviorName() + ''
@@ -488,7 +490,7 @@ rule addNode(node: IN!AbstractNode) {
 			}
 		}
 		
-		 -- Add Relational Behavior
+		    -- Add Relational Behavior
 		for (i in node.getRelations()){
 			output <- output + thisModule.addRelation(i);
 		}
@@ -500,11 +502,11 @@ rule addNode(node: IN!AbstractNode) {
 			
 			if (node.childNode.oclIsTypeOf(IN!AlternativeBlock)){
 				if (thisModule.noTag = true){
-					output <- output + '<TR><TD><TABLE BORDER="1" CELLBORDER="0"'
-							+ ' CELLSPACING="2" CELLPADDING="0" ><TR><TD  WIDTH="0"'
-							+ ' HEIGHT="20">[  ]</TD></TR></TABLE></TD></TR>';
+					output <- output + '<TR><TD><TABLE BORDER="1" CELLBORDER="0"' + '' +
+							' CELLSPACING="2" CELLPADDING="0" ><TR><TD  WIDTH="0"' + '' +
+							' HEIGHT="20">[  ]</TD></TR></TABLE></TD></TR>';
 				}else{
-					output <- output + '<TR><TD COLSPAN="2"><TABLE BORDER="1"'
+					output <- output + '<TR><TD COLSPAN="2"><TABLE BORDER="1"' + '' + ''
 							+ ' CELLBORDER="0" CELLSPACING="2" CELLPADDING="0" ><TR><TD '
 							+ ' WIDTH="0" HEIGHT="20">[  ]</TD></TR></TABLE></TD></TR>';
 				}
@@ -528,92 +530,96 @@ rule addRelation(relation: IN!Relation) {
 		}
 		if (thisModule.noTag = true){
 			if (relation.behaviorRef.oclIsUndefined()){
-				output <- output + '<TR><TD><TABLE BORDER="0" CELLBORDER="0"'
-						+ ' CELLSPACING="0" CELLPADDING="0"><TR><TD><TABLE BORDER="1"'
-						+ ' CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD '
+				output <- output + '<TR><TD><TABLE BORDER="0" CELLBORDER="0"' + '' + '' +
+						' CELLSPACING="0" CELLPADDING="0"><TR><TD><TABLE BORDER="1"' + ''
+						+ ' CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD ' + ''
 						+ ' WIDTH="30" HEIGHT="20">' + relation.getLevel() + ' ' +
-						relation.question.toString() + ' </TD></TR><TR><TD  WIDTH="30"'
-						+ ' HEIGHT="20"> (' + preposition + ')'
+						relation.question.toString() + ' </TD></TR><TR><TD  WIDTH="30"' +
+						'' + ' HEIGHT="20"> (' + preposition + ')' + '' + '' + ''
 						+ ' </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0"'
-						+ ' CELLSPACING="2" CELLPADDING="0"><TR><TD  HEIGHT="40"'
-						+ ' WIDTH="82" PORT="top">' + relation.getComponent() + ' ' +
-						relation.getComponentLevel() + ' </TD><TD  HEIGHT="40" WIDTH="1">'
+						+ ' CELLSPACING="2" CELLPADDING="0"><TR><TD  HEIGHT="40"' + '' +
+						' WIDTH="82" PORT="top">' + relation.getComponent() + ' ' +
+						relation.getComponentLevel() + ' </TD><TD  HEIGHT="40"' + '' + ''
+						+ ' WIDTH="1">' + '' + '' + ''
 						+ ' </TD></TR></TABLE></TD></TR></TABLE></TD></TR>';
 			}else{
-				output <- output + '<TR><TD><TABLE BORDER="0" CELLBORDER="0"'
-						+ ' CELLSPACING="0" CELLPADDING="0"><TR><TD><TABLE BORDER="1"'
-						+ ' CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD '
+				output <- output + '<TR><TD><TABLE BORDER="0" CELLBORDER="0"' + '' + '' +
+						' CELLSPACING="0" CELLPADDING="0"><TR><TD><TABLE BORDER="1"' + ''
+						+ ' CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD ' + ''
 						+ ' WIDTH="30" HEIGHT="20">' + relation.getLevel() + ' ' +
-						relation.question.toString() + ' </TD></TR><TR><TD  WIDTH="30"'
-						+ ' HEIGHT="20"> (' + preposition + ')'
+						relation.question.toString() + ' </TD></TR><TR><TD  WIDTH="30"' +
+						'' + ' HEIGHT="20"> (' + preposition + ')' + '' + '' + ''
 						+ ' </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0"'
-						+ ' CELLSPACING="2" CELLPADDING="0"><TR><TD  HEIGHT="20"'
-						+ ' WIDTH="82" PORT="top">' + relation.getComponent() + ' ' +
-						relation.getComponentLevel() + ' </TD><TD  HEIGHT="20" WIDTH="1">'
-						+ ' </TD></TR><TR><TD  HEIGHT="20" WIDTH="82" PORT="top">' +
-						relation.getBehaviorName() + '</TD><TD  HEIGHT="20" WIDTH="1">'
+						+ ' CELLSPACING="2" CELLPADDING="0"><TR><TD  HEIGHT="20"' + '' +
+						' WIDTH="82" PORT="top">' + relation.getComponent() + ' ' +
+						relation.getComponentLevel() + ' </TD><TD  HEIGHT="20"' + '' + ''
+						+ ' WIDTH="1">' + ' </TD></TR><TR><TD  HEIGHT="20" WIDTH="82"' +
+						' PORT="top">' + relation.getBehaviorName() + '</TD><TD ' + '' +
+						' HEIGHT="20" WIDTH="1">' + '' + '' + ''
 						+ ' </TD></TABLE></TD></TR></TABLE></TD></TR>';
 				
 			}
 		}else{
 			if (relation.behaviorRef.oclIsUndefined()){
 				if (relation.mci.oclIsUndefined()){
-					output <- output + '<TR><TD><TABLE BORDER="1" CELLBORDER="0"'
-							+ ' CELLSPACING="2" CELLPADDING="0"><TR><TD  WIDTH="50"'
-							+ ' HEIGHT="20">' + relation.getLevel() + ' ' + relation.
-							question.toString() + ' </TD></TR><TR><TD  WIDTH="50"'
-							+ ' HEIGHT="20"> (' + preposition + ')'
-							+ ' </TD></TR></TABLE></TD><TD><TABLE BORDER="1"'
-							+ ' CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD '
-							+ ' HEIGHT="40" WIDTH="115" PORT="top">' + relation.
-							getComponent() + ' ' + relation.getComponentLevel() + ''
-							+ ' </TD><TD  HEIGHT="40" WIDTH="15">'
+					output <- output + '<TR><TD><TABLE BORDER="1" CELLBORDER="0"' + '' +
+							' CELLSPACING="2" CELLPADDING="0"><TR><TD  WIDTH="50"' + '' +
+							' HEIGHT="20">' + relation.getLevel() + ' ' + relation.
+							question.toString() + ' </TD></TR><TR><TD  WIDTH="50"' + '' +
+							' HEIGHT="20"> (' + preposition + ')' + '' + '' + ''
+							+ ' </TD></TR></TABLE></TD><TD><TABLE BORDER="1"' + '' + '' +
+							' CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD ' +
+							' HEIGHT="40" WIDTH="115" PORT="top">' + relation.
+							getComponent() + ' ' + relation.getComponentLevel() + '' + ''
+							+ ' </TD><TD  HEIGHT="40" WIDTH="15">' + '' + '' + ''
 							+ ' </TD></TR></TABLE></TD></TR>';
 				}else{
-					output <- output + '<TR><TD><TABLE BORDER="1" CELLBORDER="0"'
-							+ ' CELLSPACING="2" CELLPADDING="0"><TR><TD  WIDTH="50"'
-							+ ' HEIGHT="20">' + relation.getLevel() + ' ' + relation.
-							question.toString() + ' </TD></TR><TR><TD  WIDTH="50"'
-							+ ' HEIGHT="20"> (' + preposition + ')'
-							+ ' </TD></TR></TABLE></TD><TD><TABLE BORDER="1"'
-							+ ' CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD '
-							+ ' HEIGHT="40" WIDTH="115" PORT="top">' + relation.mci + ' '
-							+ relation.getComponent() + ':' + relation.getComponentSet()
-							+ ' </TD><TD  HEIGHT="40" WIDTH="15">'
+					output <- output + '<TR><TD><TABLE BORDER="1" CELLBORDER="0"' + '' +
+							' CELLSPACING="2" CELLPADDING="0"><TR><TD  WIDTH="50"' + '' +
+							' HEIGHT="20">' + relation.getLevel() + ' ' + relation.
+							question.toString() + ' </TD></TR><TR><TD  WIDTH="50"' + '' +
+							' HEIGHT="20"> (' + preposition + ')' + '' + '' + ''
+							+ ' </TD></TR></TABLE></TD><TD><TABLE BORDER="1"' + '' + '' +
+							' CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD ' +
+							' HEIGHT="40" WIDTH="115" PORT="top">' + relation.mci + ' ' +
+							relation.getComponent() + ':' + relation.getComponentSet() +
+							' </TD><TD  HEIGHT="40" WIDTH="15">' + '' + '' + ''
 							+ ' </TD></TR></TABLE></TD></TR>';
 				}
 			}else{
 				if (relation.mci.oclIsUndefined()){
-					output <- output + '<TR><TD><TABLE BORDER="1" CELLBORDER="0"'
-							+ ' CELLSPACING="2" CELLPADDING="0"><TR><TD  WIDTH="50"'
-							+ ' HEIGHT="20">' + relation.getLevel() + ' ' + relation.
-							question.toString() + ' </TD></TR><TR><TD  WIDTH="50"'
-							+ ' HEIGHT="20"> (' + preposition + ')'
-							+ ' </TD></TR></TABLE></TD><TD><TABLE BORDER="1"'
-							+ ' CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD '
-							+ ' HEIGHT="20" WIDTH="115" PORT="top">' + relation.
-							getComponent() + ' ' + relation.getComponentLevel() + ''
-							+ ' </TD><TD  HEIGHT="20" WIDTH="15"> </TD></TR><TR><TD '
-							+ ' HEIGHT="20" WIDTH="115"><TABLE BORDER="0" CELLBORDER="0"'
-							+ ' CELLSPACING="0" CELLPADDING="0"><TR><TD ALIGN="RIGHT">' +
-							relation.getBehaviorLeftType() + '</TD><TD>' + relation.
+					output <- output + '<TR><TD><TABLE BORDER="1" CELLBORDER="0"' + '' +
+							' CELLSPACING="2" CELLPADDING="0"><TR><TD  WIDTH="50"' + '' +
+							' HEIGHT="20">' + relation.getLevel() + ' ' + relation.
+							question.toString() + ' </TD></TR><TR><TD  WIDTH="50"' + '' +
+							' HEIGHT="20"> (' + preposition + ')' + '' + '' + ''
+							+ ' </TD></TR></TABLE></TD><TD><TABLE BORDER="1"' + '' + '' +
+							' CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD ' +
+							' HEIGHT="20" WIDTH="115" PORT="top">' + relation.
+							getComponent() + ' ' + relation.getComponentLevel() + '' + ''
+							+ ' </TD><TD  HEIGHT="20" WIDTH="15"> </TD></TR><TR><TD ' +
+							'' + ' HEIGHT="20" WIDTH="115"><TABLE BORDER="0"' + ''
+							+ ' CELLBORDER="0"' + ' CELLSPACING="0"' + ''
+							+ ' CELLPADDING="0"><TR><TD ALIGN="RIGHT">' + relation.
+							getBehaviorLeftType() + '</TD><TD>' + relation.
 							getBehaviorName() + ' </TD><TD ALIGN="LEFT">' + relation.
 							getBehaviorRightType() +
 							'</TD></TR></TABLE></TD></TR></TABLE></TD></TR>';
 				}else{
-					output <- output + '<TR><TD><TABLE BORDER="1" CELLBORDER="0"'
-							+ ' CELLSPACING="2" CELLPADDING="0"><TR><TD  WIDTH="50"'
-							+ ' HEIGHT="20">' + relation.getLevel() + ' ' + relation.
-							question.toString() + ' </TD></TR><TR><TD  WIDTH="50"'
-							+ ' HEIGHT="20"> (' + preposition + ')'
-							+ ' </TD></TR></TABLE></TD><TD><TABLE BORDER="1"'
-							+ ' CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD '
-							+ ' HEIGHT="20" WIDTH="115" PORT="top">' + relation.mci + ' '
-							+ relation.getComponent() + ':' + relation.getComponentSet()
-							+ ' </TD><TD  HEIGHT="20" WIDTH="15"> </TD></TR><TR><TD '
-							+ ' HEIGHT="20" WIDTH="115"><TABLE BORDER="0" CELLBORDER="0"'
-							+ ' CELLSPACING="0" CELLPADDING="0"><TR><TD ALIGN="RIGHT">' +
-							relation.getBehaviorLeftType() + '</TD><TD>' + relation.
+					output <- output + '<TR><TD><TABLE BORDER="1" CELLBORDER="0"' + '' +
+							' CELLSPACING="2" CELLPADDING="0"><TR><TD  WIDTH="50"' + '' +
+							' HEIGHT="20">' + relation.getLevel() + ' ' + relation.
+							question.toString() + ' </TD></TR><TR><TD  WIDTH="50"' + '' +
+							' HEIGHT="20"> (' + preposition + ')' + '' + '' + ''
+							+ ' </TD></TR></TABLE></TD><TD><TABLE BORDER="1"' + '' + '' +
+							' CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD ' +
+							' HEIGHT="20" WIDTH="115" PORT="top">' + relation.mci + ' ' +
+							relation.getComponent() + ':' + relation.getComponentSet() +
+							' </TD><TD  HEIGHT="20" WIDTH="15"> </TD></TR><TR><TD ' + ''
+							+ ' HEIGHT="20" WIDTH="115"><TABLE BORDER="0"' + ''
+							+ ' CELLBORDER="0"' + ' CELLSPACING="0"' + ''
+							+ ' CELLPADDING="0"><TR><TD ALIGN="RIGHT">' + relation.
+							getBehaviorLeftType() + '</TD><TD>' + relation.
 							getBehaviorName() + ' </TD><TD ALIGN="LEFT">' + relation.
 							getBehaviorRightType() +
 							'</TD></TR></TABLE></TD></TR></TABLE></TD></TR>';
@@ -635,33 +641,34 @@ rule addAtomicNode(node: IN!AbstractNode) {
 		
 		if (thisModule.noTag = true){
 			output <- output + '<TR><TD><TABLE BORDER="1" BGCOLOR="#' + node.getColor() +
-					'" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD '
-					+ ' HEIGHT="25" WIDTH="115" PORT="top">' + node.getComponent() + ''
-					+ ' </TD><TD  WIDTH="10" HEIGHT="25">' + node.getOperator() + ''
-					+ ' </TD></TR><TR><TD  HEIGHT="25" WIDTH="115"><TABLE BORDER="0"'
-					+ ' CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD'
+					'" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD ' + '' + ''
+					+ ' HEIGHT="25" WIDTH="115" PORT="top">' + node.getComponent() + '' +
+					' </TD><TD  WIDTH="10" HEIGHT="25">' + node.getOperator() + '' + '' +
+					' </TD></TR><TR><TD  HEIGHT="25" WIDTH="115"><TABLE BORDER="0"' + ''
+					+ ' CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD' + '' + ''
 					+ ' ALIGN="RIGHT">' + node.getBehaviorLeftType() + '</TD><TD>' + node.
 					getBehaviorName() + ' </TD><TD ALIGN="LEFT">' + node.
 					getBehaviorRightType() +
 					'</TD></TR></TABLE></TD></TR></TABLE></TD></TR>';
 		}else{
 			output <- output + '<TR><TD><TABLE BORDER="1" BGCOLOR="#' + node.getColor() +
-					'" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD  WIDTH="50"'
-					+ ' HEIGHT="25">' + node.getRequirement() + ' </TD></TR><TR><TD '
-					+ ' WIDTH="50" HEIGHT="25">' + node.getValidity() + ''
-					+ ' </TD></TR></TABLE></TD><TD><TABLE BORDER="1" BGCOLOR="#' + node.
-					getColor() + '" CELLBORDER="0" CELLSPACING="2"'
-					+ ' CELLPADDING="0"><TR><TD  HEIGHT="25" WIDTH="115" PORT="top">' +
-					node.getComponent() + ' </TD><TD  WIDTH="10" HEIGHT="25">' + node.
-					getOperator() + ' </TD></TR><TR><TD  HEIGHT="25" WIDTH="115"><TABLE'
-					+ ' BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD'
-					+ ' ALIGN="RIGHT">' + node.getBehaviorLeftType() + '</TD><TD>' + node.
-					getBehaviorName() + ' </TD><TD ALIGN="LEFT">' + node.
-					getBehaviorRightType() +
+					'" CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD ' + '' + ''
+					+ ' WIDTH="50"' + ' HEIGHT="25">' + node.getRequirement() + '' + '' +
+					' </TD></TR><TR><TD ' + ' WIDTH="50" HEIGHT="25">' + node.
+					getValidity() + '' + ' </TD></TR></TABLE></TD><TD><TABLE BORDER="1"'
+					+ ' BGCOLOR="#' + node.getColor() + '" CELLBORDER="0"' + '' + ''
+					+ ' CELLSPACING="2"' + ' CELLPADDING="0"><TR><TD  HEIGHT="25"' + '' +
+					' WIDTH="115" PORT="top">' + node.getComponent() + ' </TD><TD ' + ''
+					+ ' WIDTH="10" HEIGHT="25">' + node.getOperator() + '' + '' + ''
+					+ ' </TD></TR><TR><TD  HEIGHT="25" WIDTH="115"><TABLE' + '' + ''
+					+ ' BORDER="0"' + ' CELLBORDER="0" CELLSPACING="0"' + ''
+					+ ' CELLPADDING="0"><TR><TD' + '' + ' ALIGN="RIGHT">' + node.
+					getBehaviorLeftType() + '</TD><TD>' + node.getBehaviorName() + '' + ''
+					+ ' </TD><TD ALIGN="LEFT">' + node.getBehaviorRightType() +
 					'</TD></TR></TABLE></TD></TR></TABLE></TD></TR>';
 		}
 		
-		 -- Add Relational Behavior
+		    -- Add Relational Behavior
 		for (i in node.getRelations()){
 			output <- output + thisModule.addRelation(i);
 		}
@@ -671,13 +678,13 @@ rule addAtomicNode(node: IN!AbstractNode) {
 				output <- output + thisModule.addAtomicNode(node.childNode);
 			}else if (node.childNode.oclIsTypeOf(IN!AlternativeBlock)){
 				if (thisModule.noTag = true){
-					output <- output + '<TR><TD><TABLE BORDER="1" CELLBORDER="0"'
-							+ ' CELLSPACING="2" CELLPADDING="0" ><TR><TD  WIDTH="0"'
-							+ ' HEIGHT="20">[  ]</TD></TR></TABLE></TD></TR></TABLE>>';
+					output <- output + '<TR><TD><TABLE BORDER="1" CELLBORDER="0"' + '' +
+							' CELLSPACING="2" CELLPADDING="0" ><TR><TD  WIDTH="0"' + '' +
+							' HEIGHT="20">[  ]</TD></TR></TABLE></TD></TR></TABLE>>';
 				}else{
-					output <- output + '<TR><TD COLSPAN="2"><TABLE BORDER="1"'
+					output <- output + '<TR><TD COLSPAN="2"><TABLE BORDER="1"' + '' + ''
 							+ ' CELLBORDER="0" CELLSPACING="2" CELLPADDING="0" ><TR><TD '
-							+ ' WIDTH="0" HEIGHT="20">[ '
+							+ ' WIDTH="0" HEIGHT="20">[ ' + '' + '' + ''
 							+ ' ]</TD></TR></TABLE></TD></TR></TABLE>>';
 				}
 			}
@@ -706,7 +713,7 @@ rule nextElement(node: IN!AbstractNode){
 					if (nextElement = false){
 						foundBranch <- thisModule.findBranch(node);
 						if (foundBranch = false){
-							 -- Add Edges
+							    -- Add Edges
 							thisModule.visitor <- Map{};
 							thisModule.branchNum <- 1;
 							nextElement <- thisModule.findRootNode(node);
@@ -727,7 +734,7 @@ rule nextElement(node: IN!AbstractNode){
 		}else{
 			foundBranch <- thisModule.findBranch(node);
 			if (foundBranch = false){
-				 -- Add Edges
+				    -- Add Edges
 				thisModule.visitor <- Map{};
 				thisModule.branchNum <- 1;
 				nextElement <- thisModule.findRootNode(node);

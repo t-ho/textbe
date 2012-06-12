@@ -5,8 +5,8 @@ import java.util.Map;
 import org.apache.commons.io.FilenameUtils;
 import org.be.textbe.beviz.gvRender.GVOutputType;
 import org.be.textbe.beviz.gvRender.GvRenderer;
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -101,11 +101,7 @@ public class GvBuilder extends IncrementalProjectBuilder {
 			IFile file = (IFile) resource;
 			deleteMarkers(file);
 			try {
-				IFolder outputFolder = resource.getProject().getFolder("out");
-				if (!outputFolder.exists()) {
-					IProgressMonitor monitor = null;
-					outputFolder.create(0, true, monitor);
-				}
+				IContainer outputFolder = resource.getParent();
 				String outputFileBaseName = FilenameUtils
 						.removeExtension(resource.getName());
 				IStatus status = GvRenderer.renderOutput(resource.getLocation()

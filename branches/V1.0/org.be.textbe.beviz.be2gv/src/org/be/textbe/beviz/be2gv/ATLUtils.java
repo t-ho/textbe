@@ -45,12 +45,12 @@ final class ATLUtils {
 
 	private ATLUtils() throws ATLCoreException {
 
-		launcher = CoreService.getLauncher(ATLLaunchConstants.EMF_VM_NAME);
 		options = new HashMap<String, Object>();
-		launcher.initialize(options);
 		modelFactory = CoreService.getModelFactory(EMF);
 		injector = (EMFInjector) CoreService.getInjector(EMF);
 		extractor = (EMFExtractor) CoreService.getExtractor(EMF);
+		
+		resetLauncher();
 	}
 
 	public static final ATLUtils getInstance() throws ATLCoreException {

@@ -23,7 +23,7 @@ feature into your product.
 
    <url>
       <discovery label="EclipseGraphViz" url="http://abstratt.com/update/"/>
-      <discovery label="EMFText" url="http://reuseware.org/update/"/>
+      <discovery label="EMFText" url="http://emftext.org/update"/>
    </url>
 
    <includes
@@ -32,7 +32,7 @@ feature into your product.
          search-location="self"/>
 
    <includes
-         id="org.be.textbe.ct.model.feature"
+         id="org.be.textbe.gv.model.feature"
          version="0.0.0"/>
 
    <includes
@@ -67,20 +67,6 @@ feature into your product.
 
    <plugin
          id="org.be.textbe.bt.examples"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.be.textbe.gv.gv2text"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.be.textbe.gv.model"
          download-size="0"
          install-size="0"
          version="0.0.0"

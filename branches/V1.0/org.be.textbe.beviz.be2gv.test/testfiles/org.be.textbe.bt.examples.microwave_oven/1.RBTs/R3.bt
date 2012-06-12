@@ -1,0 +1,12 @@
+#RT R3 R3
+
+#C C1 DOOR
+ #S 1 Open
+ 
+#C C2 USER
+ #E 1 Push #R What C3
+ #A 2 NoEffect #R What on C3
+ 
+#C C3 BUTTON 
+ 
+#T R3 C1 1; R3 + C2 1; R3 + C2 2
