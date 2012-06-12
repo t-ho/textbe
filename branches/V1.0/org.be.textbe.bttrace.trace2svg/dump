@@ -1,0 +1,104 @@
+<script type = "text/ecmascript"><![CDATA[
+	var activeColor = "orange";
+	var interleaveColor = "blanchedalmond";
+	activateColor = "orange";
+	interleaveColor = "blanchedalmond";
+	function f (groupId, fill) {
+		return function () {
+			var children = document.getElementById(groupId).childNodes;
+			for (var i = 0; i < children.length; ++i) {
+				var child = children.item(i);
+				if (child.nodeName == "polygon") { child.setAttribute("fill", fill); }
+			}
+		};
+	}
+
+ 	function activate (nodeId) {
+ 		return f (nodeId, activeColor);
+	}
+	
+	function whiten (nodeId) {
+		return f (nodeId, "white");
+	}
+	
+	function interleave (nodeId) {
+		return f (nodeId, interleaveColor);
+	}
+	
+	function darken (nodeId) {
+		return f (nodeId, "magenta");
+	}
+	
+	
+	var back = 0;
+	back = 2;
+	var s = [
+		[ 1 ] ,	[ 2 , 3 ] , [ 3 ] , [ 4 ] , [ 5 , 3 ]
+	];
+	var sequence = [];
+	for (var i = 0; i < s.length; i++) {
+		var frame = [];
+		var k = (i == 0) ? (s.length - 1) : (i - 1);
+		
+		for (var j = 0; j < s[k].length; ++j) {
+			if(i == back){
+				frame[frame.length] = whiten("node" + s[s.length-1][j]);
+				frame[frame.length] = whiten("node" + s[k][j]);
+			}
+			else {
+				frame[frame.length] = whiten("node" + s[k][j]);
+			
+			}
+		}
+		frame[frame.length] = activate("node" + s[i][0]);
+		for (var j = 1; j < s[i].length; ++j) {
+			frame[frame.length] = interleave("node" + s[i][j]);
+		}
+		sequence[i] = frame;
+	}
+
+	var loop = -1;
+	function StartAnimation(evt) {
+  		event = evt;  		
+  		delay = setTimeout("run()", 1);
+ 	}
+
+ 	function run () {
+ 		var delay = 1000;
+		delay = 1000;
+ 		
+ 		if (loop != sequence.length - 1) { loop += 1; }
+ 		else { 
+ 			if(back > s.length){
+ 				for(var i = 0 ; i < s.length ; i++){
+ 					for(var j = 0 ; j < s[i].length ; j++){
+ 						whiten("node"+s[i][j])();
+ 					}
+ 				}
+ 			}
+ 			else{
+	 			loop = back; 
+	 		}
+ 		}
+ 		var framerun = sequence[loop];
+ 		for (var i = 0; i < framerun.length; ++i) {
+ 			framerun[i]();
+		}
+		if(back > s.length && loop == s.length - 1){
+			setTimeout("die()", delay);
+		}
+		else {
+	 		setTimeout("run()", delay);
+	 	}
+ 	}
+ 	
+ 	function die(){
+ 		for(var i = 0 ; i < s.length ; i++){
+ 			for(var j = 0 ; j < s[i].length ; j++){
+ 				whiten("node"+s[i][j])();
+ 			}
+ 		}
+ 	}
+
+
+]]></script>
