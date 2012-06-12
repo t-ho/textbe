@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?metadataRepository version='1.1.0'?>
+<repository name='publisher repository' type='org.eclipse.equinox.internal.p2.metadata.repository.LocalMetadataRepository' version='1'>
+  <properties size='2'>
+    <property name='p2.timestamp' value='1339478371170'/>
+    <property name='p2.compressed' value='false'/>
+  </properties>
+  <units size='1'>
+    <unit id='org.be.textbe.v1' version='1.0.0.78--cJQA0l7UEMUEz0MUEsN6'>
+      <properties size='3'>
+        <property name='org.eclipse.equinox.p2.name' value='Textbe V1.0 Components'/>
+        <property name='org.eclipse.equinox.p2.description' value='Components around the initial TextBE developed by Toby Myers'/>
+        <property name='org.eclipse.equinox.p2.type.category' value='true'/>
+      </properties>
+      <provides size='1'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.be.textbe.v1' version='1.0.0.78--cJQA0l7UEMUEz0MUEsN6'/>
+      </provides>
+      <requires size='4'>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.be.textbe.feature.feature.group' range='[1.0.0.201206120517,1.0.0.201206120517]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.be.textbe.st.model.feature.feature.group' range='[1.0.0.201206120517,1.0.0.201206120517]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.be.textbe.bttrace.feature.feature.group' range='[1.0.0.201206120517,1.0.0.201206120517]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.be.textbe.ct.model.feature.feature.group' range='[1.0.0.201206120517,1.0.0.201206120517]'/>
+      </requires>
+      <touchpoint id='null' version='0.0.0'/>
+    </unit>
+  </units>
+</repository>
