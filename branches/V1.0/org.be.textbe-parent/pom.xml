@@ -131,5 +131,13 @@
 	<module>../org.be.textbe.svg.view</module>
 	<module>../org.be.textbe.beviz.be2gv.builder</module>
 	<module>../org.be.textbe.gv.model.feature</module>
+	<module>../org.be.textbe.bttrace.feature</module>
+	<module>../org.be.textbe.bttrace.model</module>
+	<module>../org.be.textbe.bttrace.model.edit</module>
+	<module>../org.be.textbe.bttrace.model.editor</module>
+	<module>../org.be.textbe.bttrace.model.tests</module>
+	<module>../org.be.textbe.bttrace.resource.btt</module>
+	<module>../org.be.textbe.bttrace.resource.btt.ui</module>
+	<module>../org.be.textbe.bttrace.trace2svg</module>
 	</modules>
 </project>
