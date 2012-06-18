@@ -36,7 +36,7 @@
                class="org.be.textbe.beviz.be2gv.builder.builder.ToggleNatureAction"
                enablesFor="+"
                id="org.be.textbe.beviz.be2gv.builder.addRemoveNatureAction"
-               label="Add/Remove Sample Nature"
+               label="Add/Remove BE Nature"
                menubarPath="additions">
          </action>
       </objectContribution>
