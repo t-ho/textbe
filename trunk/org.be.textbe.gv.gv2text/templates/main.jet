@@ -1,8 +1,0 @@
-<%-- Main entry point for org.be.gv.gv2text --%>
-<%-- 
-TODO: find out if this is used anywhere. org.be.textbe.beviz.BEView does not use it.
---%>
-
-<c:if test="isVariableDefined('org.eclipse.jet.resource.project.name')">
-    <ws:file template="templates/gv.jet" path="{$org.eclipse.jet.resource.project.name}/temp.dot"/>
-</c:if>
