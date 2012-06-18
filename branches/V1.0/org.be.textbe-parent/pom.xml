@@ -139,6 +139,7 @@
 	<module>../org.be.textbe.bttrace.resource.btt</module>
 	<module>../org.be.textbe.bttrace.resource.btt.ui</module>
 	<module>../org.be.textbe.bttrace.trace2svg</module>
+	<module>../org.be.textbe.beviz.help</module>
 	</modules>
 	<url>http://code.google.com/p/textbe</url>
 	<description>Behavior Engineering (BE) is an integrated discipline that supports the systems and software engineering of large-scale, dependable software-intensive systems. Behavior Engineering employs a graphical Behavior Modeling Language (BML) that is used to construct complete behavioral, compositional and structural integrated views from natural language descriptions of a large set of requirements for a proposed system.
