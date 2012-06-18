@@ -13,7 +13,6 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.m2m.atl.common.ATLExecutionException;
-import org.eclipse.m2m.atl.engine.emfvm.VMException;
 import org.junit.Test;
 
 public class ConversionTest {
