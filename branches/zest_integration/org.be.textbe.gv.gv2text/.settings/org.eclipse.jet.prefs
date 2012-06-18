@@ -1,6 +1,0 @@
-#Wed Sep 02 11:10:57 EST 2009
-eclipse.preferences.version=1
-org.eclipse.jet.compiledTemplatePackage=org.be.gv.gv2text.compiled
-org.eclipse.jet.compiledTemplateSrcDir=jet2java
-org.eclipse.jet.projectPrefs=true
-org.eclipse.jet.useJava5=true
