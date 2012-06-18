@@ -419,10 +419,10 @@ rule Node {
 		}
 		
 		nextElement <- thisModule.nextElement(s);
-		if (not(nextElement = false))
+		if (not(nextElement = false)){
 			t.tail <- thisModule.resolveTemp(nextElement, 't');
-		if (t.tail.oclIsUndefÏined())
-			t.tail <- nextElement;
+		if (t.tail.oclIsUndefined())
+			t.tail <- nextElement;}
 	}
 }
 

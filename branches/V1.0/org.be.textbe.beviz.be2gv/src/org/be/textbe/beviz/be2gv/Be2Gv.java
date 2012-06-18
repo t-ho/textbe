@@ -15,7 +15,7 @@ public class Be2Gv {
 			final NullProgressMonitor progressMonitor = new NullProgressMonitor();
 			graph = Be2GvModel.transformBt2GvModel2(resource, progressMonitor);
 		} catch (ATLExecutionException e) {
-			throw new RuntimeException("ATL has failed. Internal error. Cannot translate source.");
+			throw new RuntimeException("ATL has failed. Internal error. Cannot translate source.", e);
 		}
 	
 		/**
