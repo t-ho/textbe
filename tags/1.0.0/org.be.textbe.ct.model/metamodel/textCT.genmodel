@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.be.textbe.ct.model/src"
+    modelPluginID="org.be.textbe.ct.model" modelName="TextCT" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false">
+  <foreignModel>textCT.ecore</foreignModel>
+  <genPackages prefix="Textct" basePackage="org.be.textbe.ct" disposableProviderFactory="true"
+      ecorePackage="textCT.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="textCT.ecore#//FiveWs">
+      <genEnumLiterals ecoreEnumLiteral="textCT.ecore#//FiveWs/Who"/>
+      <genEnumLiterals ecoreEnumLiteral="textCT.ecore#//FiveWs/What"/>
+      <genEnumLiterals ecoreEnumLiteral="textCT.ecore#//FiveWs/Where"/>
+      <genEnumLiterals ecoreEnumLiteral="textCT.ecore#//FiveWs/When"/>
+      <genEnumLiterals ecoreEnumLiteral="textCT.ecore#//FiveWs/Why"/>
+      <genEnumLiterals ecoreEnumLiteral="textCT.ecore#//FiveWs/How"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="textCT.ecore#//Validity">
+      <genEnumLiterals ecoreEnumLiteral="textCT.ecore#//Validity/Valid"/>
+      <genEnumLiterals ecoreEnumLiteral="textCT.ecore#//Validity/Implied"/>
+      <genEnumLiterals ecoreEnumLiteral="textCT.ecore#//Validity/Invalid"/>
+      <genEnumLiterals ecoreEnumLiteral="textCT.ecore#//Validity/Deleted"/>
+      <genEnumLiterals ecoreEnumLiteral="textCT.ecore#//Validity/Refined"/>
+      <genEnumLiterals ecoreEnumLiteral="textCT.ecore#//Validity/Updated"/>
+    </genEnums>
+    <genClasses ecoreClass="textCT.ecore#//TextCT">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textCT.ecore#//TextCT/options"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textCT.ecore#//TextCT/requirements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textCT.ecore#//TextCT/components"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textCT.ecore#//TextCT/compositionTree"/>
+    </genClasses>
+    <genClasses ecoreClass="textCT.ecore#//RequirementList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textCT.ecore#//RequirementList/requirements"/>
+    </genClasses>
+    <genClasses ecoreClass="textCT.ecore#//Requirement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textCT.ecore#//Requirement/ref"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textCT.ecore#//Requirement/val"/>
+    </genClasses>
+    <genClasses ecoreClass="textCT.ecore#//ComponentList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textCT.ecore#//ComponentList/components"/>
+    </genClasses>
+    <genClasses ecoreClass="textCT.ecore#//Component">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textCT.ecore#//Component/ref"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textCT.ecore#//Component/val"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textCT.ecore#//Component/behaviors"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textCT.ecore#//Component/quantifier"/>
+    </genClasses>
+    <genClasses ecoreClass="textCT.ecore#//SystemComponent"/>
+    <genClasses ecoreClass="textCT.ecore#//OptionList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textCT.ecore#//OptionList/options"/>
+    </genClasses>
+    <genClasses ecoreClass="textCT.ecore#//Option">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textCT.ecore#//Option/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textCT.ecore#//Option/value"/>
+    </genClasses>
+    <genClasses ecoreClass="textCT.ecore#//CompositionTree">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textCT.ecore#//CompositionTree/rootNode"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="textCT.ecore#//AbstractBehavior"/>
+    <genClasses ecoreClass="textCT.ecore#//RelationalBehavior">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textCT.ecore#//RelationalBehavior/behavior"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textCT.ecore#//RelationalBehavior/relations"/>
+    </genClasses>
+    <genClasses ecoreClass="textCT.ecore#//Relation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textCT.ecore#//Relation/question"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textCT.ecore#//Relation/preposition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textCT.ecore#//Relation/componentRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textCT.ecore#//Relation/behaviorRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textCT.ecore#//Relation/level"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textCT.ecore#//Relation/componentLevel"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textCT.ecore#//Relation/componentSet"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textCT.ecore#//Relation/mci"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="textCT.ecore#//Behavior">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textCT.ecore#//Behavior/ref"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textCT.ecore#//Behavior/val"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textCT.ecore#//Behavior/relations"/>
+    </genClasses>
+    <genClasses ecoreClass="textCT.ecore#//State"/>
+    <genClasses ecoreClass="textCT.ecore#//Selection"/>
+    <genClasses ecoreClass="textCT.ecore#//Event"/>
+    <genClasses ecoreClass="textCT.ecore#//Guard"/>
+    <genClasses ecoreClass="textCT.ecore#//InternalInput"/>
+    <genClasses ecoreClass="textCT.ecore#//InternalOutput"/>
+    <genClasses ecoreClass="textCT.ecore#//ExternalInput"/>
+    <genClasses ecoreClass="textCT.ecore#//ExternalOutput"/>
+    <genClasses ecoreClass="textCT.ecore#//Assertion"/>
+    <genClasses image="false" ecoreClass="textCT.ecore#//AbstractBlockOrNode"/>
+    <genClasses image="false" ecoreClass="textCT.ecore#//AbstractBlock">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textCT.ecore#//AbstractBlock/childNode"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="textCT.ecore#//AbstractNode">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textCT.ecore#//AbstractNode/componentRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textCT.ecore#//AbstractNode/requirementRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textCT.ecore#//AbstractNode/traceabilityStatus"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textCT.ecore#//AbstractNode/label"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textCT.ecore#//AbstractNode/operator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textCT.ecore#//AbstractNode/componentSet"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textCT.ecore#//AbstractNode/mci"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textCT.ecore#//AbstractNode/childNode"/>
+    </genClasses>
+    <genClasses ecoreClass="textCT.ecore#//Node"/>
+    <genClasses ecoreClass="textCT.ecore#//AggregatedNode"/>
+    <genClasses ecoreClass="textCT.ecore#//InheritedNode"/>
+    <genClasses ecoreClass="textCT.ecore#//AssociatedNode"/>
+    <genClasses ecoreClass="textCT.ecore#//AlternativeBlock"/>
+    <genClasses ecoreClass="textCT.ecore#//AggregatedBlock"/>
+    <genClasses ecoreClass="textCT.ecore#//AssociatedBlock"/>
+    <genClasses ecoreClass="textCT.ecore#//InheritedBlock"/>
+  </genPackages>
+</genmodel:GenModel>

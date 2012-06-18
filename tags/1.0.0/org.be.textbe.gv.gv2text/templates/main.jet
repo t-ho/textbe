@@ -1,0 +1,25 @@
+<%@taglib prefix="ws" id="org.eclipse.jet.workspaceTags" %>
+<%-- Main entry point for org.be.gv.gv2text --%>
+<%-- 
+TODO: traverse input model, performing calculations and storing 
+the results as model annotations via c:set tag 
+--%>
+
+
+<%--
+TODO: traverse annotated model, performing text generation actions 
+such as ws:file, ws:folder and ws:project 
+--%>
+   
+
+<%-- For debug purposes, dump the annotated input model in 
+   the root of the project containing the original input model.
+   
+   Note that model formatting may not be identical, and that in
+   the case of non-XML input models, the dump may look quite different.
+--%>
+
+<c:if test="isVariableDefined('org.eclipse.jet.resource.project.name')">
+    <%-- <ws:file template="templates/dump.jet" path="{$org.eclipse.jet.resource.project.name}/dump2.gv"/> --%>
+    <ws:file template="templates/gv.jet" path="{$org.eclipse.jet.resource.project.name}/temp.dot"/>
+</c:if>
