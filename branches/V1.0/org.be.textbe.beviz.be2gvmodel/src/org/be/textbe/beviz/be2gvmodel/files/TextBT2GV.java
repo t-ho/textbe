@@ -13,7 +13,10 @@ package org.be.textbe.beviz.be2gvmodel.files;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Map.Entry;
@@ -94,7 +97,9 @@ public class TextBT2GV {
 	 */
 	public TextBT2GV() throws IOException {
 		properties = new Properties();
-		properties.load(getFileURL("TextBT2GV.properties").openStream());
+		InputStream propertiesInputStream = getFileURL("TextBT2GV.properties").openStream();
+		properties.load(propertiesInputStream);
+		propertiesInputStream.close();
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
 	}
 	
@@ -151,11 +156,18 @@ public class TextBT2GV {
 	 */
 	public Object doTextBT2GV(IProgressMonitor monitor) throws ATLCoreException, IOException, ATLExecutionException {
 		ILauncher launcher = new EMFVMLauncher();
+		List<InputStream> inputStreamsToClose = new ArrayList<InputStream>();
 		Map<String, Object> launcherOptions = getOptions();
 		launcher.initialize(launcherOptions);
 		launcher.addInModel(textbtModel, "TEXTBT", "IN");
 		launcher.addOutModel(gvModel, "GV", "OUT");
-		return launcher.launch("run", monitor, launcherOptions, (Object[]) getModulesList());
+		InputStream[] modulesStreams = getModulesList();
+		inputStreamsToClose.addAll(Arrays.asList(modulesStreams));
+		Object result = launcher.launch("run", monitor, launcherOptions, (Object[]) modulesStreams);
+		for (InputStream inputStream : inputStreamsToClose) {
+			inputStream.close();
+		}
+		return result;
 	}
 	
 	/**
