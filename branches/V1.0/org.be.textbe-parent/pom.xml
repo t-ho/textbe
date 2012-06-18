@@ -7,7 +7,7 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<tycho-version>0.14.1</tycho-version>
+		<tycho-version>0.15.0</tycho-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<repositories>
@@ -140,4 +140,28 @@
 	<module>../org.be.textbe.bttrace.resource.btt.ui</module>
 	<module>../org.be.textbe.bttrace.trace2svg</module>
 	</modules>
+	<url>http://code.google.com/p/textbe</url>
+	<description>Behavior Engineering (BE) is an integrated discipline that supports the systems and software engineering of large-scale, dependable software-intensive systems. Behavior Engineering employs a graphical Behavior Modeling Language (BML) that is used to construct complete behavioral, compositional and structural integrated views from natural language descriptions of a large set of requirements for a proposed system.
+
+TextBE provides a textual editor for defining BE models using textual representations of the three integrated views (Behavior Trees (BT), Composition Trees (CT), Structure Trees (ST)) of the Behavior Modeling Language. TextBE converts the textual representation into a graphical visualisation for use whilst editing that can also be saved into various file formats for use outside of TextBE.</description>
+	<name>Textual Editor for Behavior Engineering</name>
+	<inceptionYear>2006</inceptionYear>
+	<organization>
+		<name>Behavior Engineering</name>
+		<url>http://www.behaviorengineering.org</url>
+	</organization>
+	<scm>
+		<developerConnection>scm:svn:https://textbe.googlecode.com/svn</developerConnection>
+		<connection>scm:svn:https://textbe.googlecode.com/svn</connection>
+		<url>http://code.google.com/p/textbe/source/browse/</url>
+		<tag>HEAD</tag>
+	</scm>
+	<issueManagement>
+		<url>http://code.google.com/p/textbe/issues/list</url>
+		<system>Issue Tracker</system>
+	</issueManagement>
+	<ciManagement>
+		<url>http://emory.eait.uq.edu.au:8080/</url>
+		<system>University of Queensland ITEE Jenkins Server</system>
+	</ciManagement>
 </project>
