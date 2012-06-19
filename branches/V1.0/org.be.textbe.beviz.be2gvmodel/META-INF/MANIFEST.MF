@@ -4,7 +4,7 @@ Bundle-Name: ATL org.be.textbe.textbt2gv Transformation Runtime Plug-in
 Bundle-SymbolicName: org.be.textbe.beviz.be2gvmodel;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.be.textbe.beviz.be2gvmodel.Activator
-Bundle-Vendor: Eclipse Modeling Project
+Bundle-Vendor: Behavior Engineering
 Require-Bundle: org.eclipse.core.runtime, 
  org.eclipse.m2m.atl.engine.emfvm
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
