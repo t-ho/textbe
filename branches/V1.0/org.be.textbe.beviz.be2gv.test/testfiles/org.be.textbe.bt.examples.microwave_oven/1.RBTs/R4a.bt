@@ -1,9 +1,0 @@
-#RT R4 R4
-
-#C C1 OVEN
- #S 1 Cooking
- 
-#C C2 LIGHT
- #A 1 On #R Where in C1
- 
-#T R4 C1 1; R4 C2 1

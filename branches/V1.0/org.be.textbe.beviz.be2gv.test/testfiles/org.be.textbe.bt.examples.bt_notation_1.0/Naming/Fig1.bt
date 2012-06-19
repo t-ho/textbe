@@ -1,6 +1,0 @@
-#RT R1 R1
-
-#C C1 DOOR
- #S 1 Open
- 
-#T R1 + C1 1 lbl ^ 
