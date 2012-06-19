@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.be.textbe.feature_1.0.0.qualifier.jar" id="org.be.textbe.feature" version="1.0.0.qualifier">
+      <category name="org.be.textbe.v1"/>
+   </feature>
+   <feature url="features/org.be.textbe.bttrace.feature_1.0.0.qualifier.jar" id="org.be.textbe.bttrace.feature" version="1.0.0.qualifier">
+      <category name="org.be.textbe.v1"/>
+   </feature>
+   <feature url="features/org.be.textbe.ct.model.feature_1.0.0.qualifier.jar" id="org.be.textbe.ct.model.feature" version="1.0.0.qualifier">
+      <category name="org.be.textbe.v1"/>
+   </feature>
+   <feature url="features/org.be.textbe.st.model.feature_1.0.0.qualifier.jar" id="org.be.textbe.st.model.feature" version="1.0.0.qualifier">
+      <category name="org.be.textbe.v1"/>
+   </feature>
+   <category-def name="org.be.textbe.v1" label="Textbe V1.0 Components">
+      <description>
+         Components around the initial TextBE developed by Toby Myers
+      </description>
+   </category-def>
+</site>

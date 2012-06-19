@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="org.be.textbe.bttrace.model/src-gen"
+    modelPluginID="org.be.textbe.bttrace.model" modelName="bttrace" complianceLevel="5.0"
+    copyrightFields="false">
+  <genPackages prefix="Bttrace" basePackage="org.be.textbe" disposableProviderFactory="true"
+      ecorePackage="bttrace.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="bttrace.ecore#//COLORS">
+      <genEnumLiterals ecoreEnumLiteral="bttrace.ecore#//COLORS/orange"/>
+      <genEnumLiterals ecoreEnumLiteral="bttrace.ecore#//COLORS/blanchedalmond"/>
+    </genEnums>
+    <genClasses ecoreClass="bttrace.ecore#//TextBTTrace">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bttrace.ecore#//TextBTTrace/bt"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bttrace.ecore#//TextBTTrace/delay"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bttrace.ecore#//TextBTTrace/activate"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bttrace.ecore#//TextBTTrace/interleave"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bttrace.ecore#//TextBTTrace/trace"/>
+    </genClasses>
+    <genClasses ecoreClass="bttrace.ecore#//BT">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bttrace.ecore#//BT/value"/>
+    </genClasses>
+    <genClasses ecoreClass="bttrace.ecore#//Delay">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bttrace.ecore#//Delay/value"/>
+    </genClasses>
+    <genClasses ecoreClass="bttrace.ecore#//Activate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bttrace.ecore#//Activate/color"/>
+    </genClasses>
+    <genClasses ecoreClass="bttrace.ecore#//Interleave">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bttrace.ecore#//Interleave/color"/>
+    </genClasses>
+    <genClasses ecoreClass="bttrace.ecore#//Trace">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bttrace.ecore#//Trace/nodeGroup"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bttrace.ecore#//Trace/loopNodeGroup"/>
+    </genClasses>
+    <genClasses ecoreClass="bttrace.ecore#//NodeGroup">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bttrace.ecore#//NodeGroup/activeNode"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bttrace.ecore#//NodeGroup/interleaveNode"/>
+    </genClasses>
+    <genClasses ecoreClass="bttrace.ecore#//Node">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bttrace.ecore#//Node/value"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

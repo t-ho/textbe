@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EMFText Parser Plugin: st
+Bundle-SymbolicName: org.be.textbe.st.textst.resource.st;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Behavior Engineering
+Require-Bundle: org.eclipse.core.resources,
+  org.eclipse.emf,
+  org.eclipse.emf.codegen.ecore,
+  org.eclipse.emf.ecore,
+  org.eclipse.emf.ecore.edit,
+  org.eclipse.emf.validation,
+  org.eclipse.emf.workspace,
+  org.emftext.access;resolution:=optional,
+  org.eclipse.debug.core,
+  org.emftext.commons.antlr3_3_0,
+  org.be.textbe.st.model
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.be.textbe.st.textst.resource.st,
+  org.be.textbe.st.textst.resource.st.analysis,
+  org.be.textbe.st.textst.resource.st.mopp,
+  org.be.textbe.st.textst.resource.st.debug,
+  org.be.textbe.st.textst.resource.st.launch,
+  org.be.textbe.st.textst.resource.st.grammar,
+  org.be.textbe.st.textst.resource.st.util
+Bundle-Activator: org.be.textbe.st.textst.resource.st.mopp.StPlugin

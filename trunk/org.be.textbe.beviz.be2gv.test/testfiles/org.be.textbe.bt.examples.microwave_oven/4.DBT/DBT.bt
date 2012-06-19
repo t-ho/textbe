@@ -1,0 +1,72 @@
+#RT R1 R1 R2 R2 R3 R3 R4 R4 R5 R5 R6 R6 R7 R7 R8 R8 R9 R9 
+           
+#SC C7 OVEN 
+ #S 1 Open 2 Idle 3 Cooking[One_Minute] 4 Cooking 5 Cooking[Stopped] 7 Cooking[Finished] 8 Cooking[Extra_Minute]
+ #EI 6 TimedOut
+ #EI 10 PushButton 11 OpenDoor 12 CloseDoor
+ #EI 13 TimerTimedOut
+ 
+#C C1 BEEPER    
+ #S 1 Idle 2 Emit[Warning_Beep]
+     
+#C C2 LIGHT
+ #S 1 On 3 Off
+ #A 2 On     
+
+#C C3 POWER-TUBE
+ #S 1 Off 2 Energised
+ 
+#C C4 DOOR 
+ #S 1 Open 4 Closed
+ #G 2 Closed 3 Open
+ 
+#C C5 USER
+ #EI 1 Place #R What C6 #R Where in C7
+ #EI 2 Remove #R What C6 #R Where in C7
+ #E 3 Push #R What the C8
+ #EI 13 Push #R What the C8
+ #IO 4 PushButton 
+ #EI 5 Close #R What the C4
+ #IO 6 CloseDoor
+ #EI 7 Open #R What the C4
+ #IO 8 OpenDoor
+ #A 9 No_Effect #R What on C8
+ #II 10 PushButton 11 OpenDoor 12 CloseDoor
+ 
+#C C6 FOOD
+
+#C C8 BUTTON 
+ #S 1 Pushed
+ 
+#C C9 TIMER
+ #S 1 OneMinute 2 ExtraMinute 3 Stopped
+  
+#T -- C1 1;; R4 -- C2 1;; -- C3 1;; R6 -- C4 1 #P{
+	-- _ A #N{
+		R6 -- C5 1; -- _ B #N{
+			-- C5 2; -- _ A.^
+			-- C4 2; -- C4 3; -- _ B.^
+		}
+		-- C4 2; -- C4 3; -- _ A.^   
+	} 
+	-- C2 2 
+	
+	+- C7 1 #P{
+		R3 -- C5 3; R3 -- C5 9; R3 -- C5 3 ^
+		+- C7 12;  -- C4 4; R6 C2 3; R6 + C7 2 #N{
+			+- C7 10; R1 -- C8 1; R1 C3 2; R4 + C2 1; +- C9 1; +- C7 4 #N{
+				R4 -- C2 2
+				+- C7 11; -- C4 1 #P{
+					R4 -- C2 2
+					R3 -- C5 3; R3 -- C5 9; R3 -- C5 3 ^
+					R5 + C3 1; R5 +- C9 3; +- C7 1 ^
+				}
+				R7 +- C7 13; R7 + C2 3; R7 + C3 1; R7 C1 2; -- C1 1; R7 -- C7 7; +- C7 2 ^
+				+- C7 10; R2 -- C8 1; R2 +- C9 2; +- C7 4 ^
+			}
+			+- C7 11; - C2 1; -- C4 1; +- C7 1 ^
+		}
+	}
+	-- C5 13; -- C5 4; -- C5 13 ^
+	R6 -- C5 5; -- C5 6; R5 -- C5 7; -- C5 8; -- C5 5 ^
+}    

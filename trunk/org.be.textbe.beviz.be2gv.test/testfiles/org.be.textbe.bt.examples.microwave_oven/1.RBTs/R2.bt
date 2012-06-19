@@ -1,0 +1,15 @@
+#RT R2 R2
+
+#C C1 OVEN
+ #S 1 Cooking
+ 
+#C C2 USER
+ #E 1 Push #R What C3
+ 
+#C C3 BUTTON
+ #S 1 Pushed
+ 
+#C C4 OVEN
+ #S 1 Cooking[ExtraMinute]
+ 
+#T R2 C1 1; R2 + C2 1; R2 C3 1; R2 C4 1

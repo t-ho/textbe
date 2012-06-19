@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.be.textbe.bttrace.presentation.BttraceModelWizardID"
+            name="%_UI_BttraceModelWizard_label"
+            class="org.be.textbe.bttrace.presentation.BttraceModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/BttraceModelFile.gif">
+         <description>%_UI_BttraceModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="org.be.textbe.bttrace.presentation.BttraceEditorID"
+            name="%_UI_BttraceEditor_label"
+            icon="icons/full/obj16/BttraceModelFile.gif"
+            extensions="bttrace"
+            class="org.be.textbe.bttrace.presentation.BttraceEditor"
+            contributorClass="org.be.textbe.bttrace.presentation.BttraceActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
