@@ -10,7 +10,6 @@
 		<relativePath>../org.be.textbe-parent</relativePath>
 	</parent>
 	<artifactId>org.be.textbe.gv.gv2text</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
 	<packaging>eclipse-plugin</packaging>
 	 <build>
     <sourceDirectory>jet2java</sourceDirectory>
