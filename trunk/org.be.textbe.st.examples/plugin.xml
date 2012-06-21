@@ -5,7 +5,7 @@
          point="org.eclipse.ui.newWizards">
       <category
             id="org.be.textbe.st.examples.category"
-            name="Structure Trees"
+            name="%category.name"
             parentCategory="org.eclipse.ui.Examples">
       </category>
       <wizard
@@ -15,10 +15,10 @@
             hasPages="false"
             icon="$nl$/icons/beicon.gif"
             id="org.be.textbe.st.examples.ocl"
-            name="OCL Comparison Example"
+            name="%wizard.name"
             project="true">
          <description>
-            Insert Description
+            %wizard.description
          </description>
       </wizard>
       <wizard
@@ -28,10 +28,10 @@
             hasPages="false"
             icon="$nl$/icons/beicon.gif"
             id="org.be.textbe.st.examples.notation"
-            name="Structure Trees Notation Example"
+            name="%wizard.name.0"
             project="true">
          <description>
-            Insert Description
+            %wizard.description.0
          </description>
       </wizard>
    </extension>
