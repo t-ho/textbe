@@ -60,13 +60,6 @@ feature into your product.
    </requires>
 
    <plugin
-         id="org.be.textbe.beviz"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.be.textbe.bt.examples"
          download-size="0"
          install-size="0"
@@ -110,6 +103,13 @@ feature into your product.
 
    <plugin
          id="org.be.textbe.beviz.be2gv.builder"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.be.textbe.beviz.help"
          download-size="0"
          install-size="0"
          version="0.0.0"
