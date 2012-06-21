@@ -9,11 +9,11 @@
             class="org.be.textbe.bt.examples.MOvenExampleWizard"
             icon="icons/beicon.gif"
             id="org.be.textbe.bt.examples.moven"
-            name="Microwave Oven Example"
+            name="%wizard.name"
             hasPages="false"
             project="true">
          <description>
-            Insert Description
+            %wizard.description
          </description>
       </wizard>
       <wizard
@@ -22,16 +22,16 @@
             class="org.be.textbe.bt.examples.BTNotationExampleWizard"
             icon="icons/beicon.gif"
             id="org.be.textbe.bt.examples.wizard.btnotation"
-            name="BT Notation v1.0 Example"
+            name="%wizard.name.0"
             hasPages="false"
             project="true">
          <description>
-            Insert Description
+            %wizard.description.0
          </description>
       </wizard>
       <category
             id="org.be.textbe.bt.examples.category"
-            name="Behavior Trees"
+            name="%category.name"
             parentCategory="org.eclipse.ui.Examples">
       </category>
    </extension>

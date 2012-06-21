@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Textbe Behavior Tree Examples
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.be.textbe.bt.examples;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Require-Bundle: org.eclipse.core.runtime,
@@ -9,4 +9,4 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;bundle-version="3.7.101"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Bundle-Vendor: Behavior Engineering
+Bundle-Vendor: %Bundle-Vendor
