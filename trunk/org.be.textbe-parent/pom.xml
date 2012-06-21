@@ -102,7 +102,6 @@
 	</build>
 	<modules>
 
-	<module>../org.be.textbe.beviz</module>
 	<module>../org.be.textbe.beviz.be2gv</module>
 	<module>../org.be.textbe.beviz.be2gv.test</module>
 	<module>../org.be.textbe.bt.examples</module>
