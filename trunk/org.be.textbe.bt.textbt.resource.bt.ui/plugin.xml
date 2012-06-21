@@ -7,7 +7,7 @@
 	</extension>
 	
 	<extension point="org.eclipse.ui.editors">
-		<editor class="org.be.textbe.bt.textbt.resource.bt.ui.BtEditor" contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor" extensions="bt" icon="icons/editor_icon.gif" id="org.be.textbe.bt.textbt.resource.bt.ui.BtEditor" name="EMFText bt Editor">
+		<editor class="org.be.textbe.bt.textbt.resource.bt.ui.BtEditor" contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor" extensions="bt" icon="icons/editor_icon.gif" id="org.be.textbe.bt.textbt.resource.bt.ui.BtEditor" name="%editor.name">
 			<contentTypeBinding contentTypeId="org.be.textbe.bt.textbt.resource.bt">
 			</contentTypeBinding>
 		</editor>
@@ -19,22 +19,22 @@
 	</extension>
 	
 	<extension point="org.eclipse.ui.preferencePages">
-		<page name="Bt Text Editor" id="org.be.textbe.bt.textbt.resource.bt.ui.BtPreferencePage" class="org.be.textbe.bt.textbt.resource.bt.ui.BtPreferencePage" category="org.eclipse.ui.preferencePages.GeneralTextEditor">
+		<page name="%page.name" id="org.be.textbe.bt.textbt.resource.bt.ui.BtPreferencePage" class="org.be.textbe.bt.textbt.resource.bt.ui.BtPreferencePage" category="org.eclipse.ui.preferencePages.GeneralTextEditor">
 		</page>
-		<page name="Syntax Coloring" id="org.be.textbe.bt.textbt.resource.bt.ui.BtSyntaxColoringPreferencePage" class="org.be.textbe.bt.textbt.resource.bt.ui.BtSyntaxColoringPreferencePage" category="org.be.textbe.bt.textbt.resource.bt.ui.BtPreferencePage">
+		<page name="%page.name.0" id="org.be.textbe.bt.textbt.resource.bt.ui.BtSyntaxColoringPreferencePage" class="org.be.textbe.bt.textbt.resource.bt.ui.BtSyntaxColoringPreferencePage" category="org.be.textbe.bt.textbt.resource.bt.ui.BtPreferencePage">
 		</page>
-		<page name="Brackets" id="org.be.textbe.bt.textbt.resource.bt.ui.BtBracketPreferencePage" class="org.be.textbe.bt.textbt.resource.bt.ui.BtBracketPreferencePage" category="org.be.textbe.bt.textbt.resource.bt.ui.BtPreferencePage">
+		<page name="%page.name.1" id="org.be.textbe.bt.textbt.resource.bt.ui.BtBracketPreferencePage" class="org.be.textbe.bt.textbt.resource.bt.ui.BtBracketPreferencePage" category="org.be.textbe.bt.textbt.resource.bt.ui.BtPreferencePage">
 		</page>
 	</extension>
 	
 	<extension point="org.eclipse.ui.newWizards">
-		<category id="org.emftext.runtime.ui.EMFTextFileCategory" name="EMFText File">
+		<category id="org.emftext.runtime.ui.EMFTextFileCategory" name="%category.name">
 		</category>
-		<wizard category="org.emftext.runtime.ui.EMFTextFileCategory" icon="/icons/default_new_icon.gif" class="org.be.textbe.bt.textbt.resource.bt.ui.BtNewFileWizard" id="org.be.textbe.bt.textbt.resource.bt.ui.BtNewFileWizard" name="EMFText .bt file">
+		<wizard category="org.emftext.runtime.ui.EMFTextFileCategory" icon="/icons/default_new_icon.gif" class="org.be.textbe.bt.textbt.resource.bt.ui.BtNewFileWizard" id="org.be.textbe.bt.textbt.resource.bt.ui.BtNewFileWizard" name="%wizard.name">
 		</wizard>
-		<category id="org.emftext.runtime.ui.EMFTextProjectCategory" name="EMFText Project">
+		<category id="org.emftext.runtime.ui.EMFTextProjectCategory" name="%category.name.0">
 		</category>
-		<wizard category="org.emftext.runtime.ui.EMFTextProjectCategory" icon="/icons/default_new_icon.gif" class="org.be.textbe.bt.textbt.resource.bt.ui.BtNewProjectWizard" id="org.be.textbe.bt.textbt.resource.bt.ui.BtNewProjectWizard" name="EMFText bt project" project="true">
+		<wizard category="org.emftext.runtime.ui.EMFTextProjectCategory" icon="/icons/default_new_icon.gif" class="org.be.textbe.bt.textbt.resource.bt.ui.BtNewProjectWizard" id="org.be.textbe.bt.textbt.resource.bt.ui.BtNewProjectWizard" name="%wizard.name.0" project="true">
 		</wizard>
 	</extension>
 	
@@ -49,7 +49,7 @@
 	</extension>
 	
 	<extension point="org.eclipse.core.contenttype.contentTypes">
-		<content-type id="org.be.textbe.bt.textbt.resource.bt" name=".bt File" base-type="org.eclipse.core.runtime.text" file-extensions="bt">
+		<content-type id="org.be.textbe.bt.textbt.resource.bt" name="%content-type.name" base-type="org.eclipse.core.runtime.text" file-extensions="bt">
 		</content-type>
 	</extension>
 	
@@ -66,9 +66,9 @@
 	</extension>
 	
 	<extension point="org.eclipse.ui.editors.markerAnnotationSpecification">
-		<specification annotationType="org.be.textbe.bt.textbt.resource.bt.ui.occurences" label="Occurrences (in .bt files)" icon="/icons/occurrence_icon.gif" textPreferenceKey="bt.occurrenceIndication" textPreferenceValue="false" highlightPreferenceKey="bt.occurrenceHighlighting" highlightPreferenceValue="true" contributesToHeader="false" overviewRulerPreferenceKey="bt.occurrenceIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="bt.occurrenceIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="bt.occurrenceIndicationColor" colorPreferenceValue="212,212,212" presentationLayer="4" showInNextPrevDropdownToolbarActionKey="bt.showOccurrenceInNextPrevDropdownToolbarAction" showInNextPrevDropdownToolbarAction="true" isGoToNextNavigationTargetKey="bt.isOccurrenceGoToNextNavigationTarget" isGoToNextNavigationTarget="false" isGoToPreviousNavigationTargetKey="bt.isOccurrenceGoToPreviousNavigationTarget" isGoToPreviousNavigationTarget="false" textStylePreferenceKey="bt.occurrenceTextStyle" textStylePreferenceValue="NONE">
+		<specification annotationType="org.be.textbe.bt.textbt.resource.bt.ui.occurences" label="%specification.label" icon="/icons/occurrence_icon.gif" textPreferenceKey="bt.occurrenceIndication" textPreferenceValue="false" highlightPreferenceKey="bt.occurrenceHighlighting" highlightPreferenceValue="true" contributesToHeader="false" overviewRulerPreferenceKey="bt.occurrenceIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="bt.occurrenceIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="bt.occurrenceIndicationColor" colorPreferenceValue="212,212,212" presentationLayer="4" showInNextPrevDropdownToolbarActionKey="bt.showOccurrenceInNextPrevDropdownToolbarAction" showInNextPrevDropdownToolbarAction="true" isGoToNextNavigationTargetKey="bt.isOccurrenceGoToNextNavigationTarget" isGoToNextNavigationTarget="false" isGoToPreviousNavigationTargetKey="bt.isOccurrenceGoToPreviousNavigationTarget" isGoToPreviousNavigationTarget="false" textStylePreferenceKey="bt.occurrenceTextStyle" textStylePreferenceValue="NONE">
 		</specification>
-		<specification annotationType="org.be.textbe.bt.textbt.resource.bt.ui.occurences.declaration" label="Declarations (in .bt files)" textPreferenceKey="bt.declarationIndication" textPreferenceValue="false" highlightPreferenceKey="bt.declarationHighlighting" highlightPreferenceValue="true" overviewRulerPreferenceKey="bt.declarationIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="bt.declarationIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="bt.declarationIndicationColor" colorPreferenceValue="240,216,168" presentationLayer="4" textStylePreferenceKey="bt.declarationTextStyle" textStylePreferenceValue="NONE">
+		<specification annotationType="org.be.textbe.bt.textbt.resource.bt.ui.occurences.declaration" label="%specification.label.0" textPreferenceKey="bt.declarationIndication" textPreferenceValue="false" highlightPreferenceKey="bt.declarationHighlighting" highlightPreferenceValue="true" overviewRulerPreferenceKey="bt.declarationIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="bt.declarationIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="bt.declarationIndicationColor" colorPreferenceValue="240,216,168" presentationLayer="4" textStylePreferenceKey="bt.declarationTextStyle" textStylePreferenceValue="NONE">
 		</specification>
 	</extension>
 	
@@ -79,18 +79,18 @@
 	
 	<extension point="org.eclipse.debug.ui.launchConfigurationTabGroups">
 		<launchConfigurationTabGroup type="org.be.textbe.bt.textbt.resource.bt.ui.launchConfigurationType" class="org.be.textbe.bt.textbt.resource.bt.ui.launch.BtLaunchConfigurationTabGroup" id="org.be.textbe.bt.bt.launchConfigurationTabGroup" helpContextId="org.be.textbe.bt.bt.launchConfigHelpContext">
-			<launchMode mode="debug" perspective="org.eclipse.debug.ui.DebugPerspective" description="Debug bt model.">
+			<launchMode mode="debug" perspective="org.eclipse.debug.ui.DebugPerspective" description="%launchMode.description">
 			</launchMode>
-			<launchMode mode="run" description="Run bt model.">
+			<launchMode mode="run" description="%launchMode.description.0">
 			</launchMode>
 		</launchConfigurationTabGroup>
 	</extension>
 	
 	<extension point="org.eclipse.debug.ui.launchShortcuts">
-		<shortcut label="bt Application" icon="/icons/launch_shortcut_icon.gif" helpContextId="org.be.textbe.bt.bt.launch" modes="run,debug" class="org.be.textbe.bt.textbt.resource.bt.ui.launch.BtLaunchShortcut" description="Launch a bt model" id="org.be.textbe.bt.bt.launchShortcut">
-			<description description="Run bt model" mode="run">
+		<shortcut label="%shortcut.label" icon="/icons/launch_shortcut_icon.gif" helpContextId="org.be.textbe.bt.bt.launch" modes="run,debug" class="org.be.textbe.bt.textbt.resource.bt.ui.launch.BtLaunchShortcut" description="%shortcut.description" id="org.be.textbe.bt.bt.launchShortcut">
+			<description description="%description.description" mode="run">
 			</description>
-			<description description="Debug bt model" mode="debug">
+			<description description="%description.description.0" mode="debug">
 			</description>
 			<contextualLaunch>
 				<enablement>
@@ -120,7 +120,7 @@
 	</extension>
 	
 	<extension point="org.eclipse.ui.editors.markerAnnotationSpecification">
-		<specification annotationType="org.be.textbe.bt.textbt.resource.bt.ui.debug.lineBreakpoint" label="Breakpoints (in .bt files)" icon="/icons/breakpoint_icon.gif" textPreferenceKey="org.be.textbe.bt.textbt.resource.bt.ui.lineBreakpoint" textPreferenceValue="false" highlightPreferenceKey="org.be.textbe.bt.textbt.resource.bt.ui.lineBreakpointHighlighting" highlightPreferenceValue="true" contributesToHeader="false" overviewRulerPreferenceKey="org.be.textbe.bt.textbt.resource.bt.ui.lineBreakpointIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="org.be.textbe.bt.textbt.resource.bt.ui.lineBreakpointIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="org.be.textbe.bt.textbt.resource.bt.ui.lineBreakpointColor" colorPreferenceValue="212,212,212" presentationLayer="4" showInNextPrevDropdownToolbarActionKey="org.be.textbe.bt.textbt.resource.bt.ui.showLineBreakpointInNextPrevDropdownToolbarAction" showInNextPrevDropdownToolbarAction="true" isGoToNextNavigationTargetKey="org.be.textbe.bt.textbt.resource.bt.ui.isLineBreakpointGoToNextNavigationTarget" isGoToNextNavigationTarget="false" isGoToPreviousNavigationTargetKey="org.be.textbe.bt.textbt.resource.bt.ui.isLineBreakpointGoToPreviousNavigationTarget" isGoToPreviousNavigationTarget="false" textStylePreferenceKey="org.be.textbe.bt.textbt.resource.bt.ui.lineBreakpointTextStyle" textStylePreferenceValue="NONE">
+		<specification annotationType="org.be.textbe.bt.textbt.resource.bt.ui.debug.lineBreakpoint" label="%specification.label.1" icon="/icons/breakpoint_icon.gif" textPreferenceKey="org.be.textbe.bt.textbt.resource.bt.ui.lineBreakpoint" textPreferenceValue="false" highlightPreferenceKey="org.be.textbe.bt.textbt.resource.bt.ui.lineBreakpointHighlighting" highlightPreferenceValue="true" contributesToHeader="false" overviewRulerPreferenceKey="org.be.textbe.bt.textbt.resource.bt.ui.lineBreakpointIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="org.be.textbe.bt.textbt.resource.bt.ui.lineBreakpointIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="org.be.textbe.bt.textbt.resource.bt.ui.lineBreakpointColor" colorPreferenceValue="212,212,212" presentationLayer="4" showInNextPrevDropdownToolbarActionKey="org.be.textbe.bt.textbt.resource.bt.ui.showLineBreakpointInNextPrevDropdownToolbarAction" showInNextPrevDropdownToolbarAction="true" isGoToNextNavigationTargetKey="org.be.textbe.bt.textbt.resource.bt.ui.isLineBreakpointGoToNextNavigationTarget" isGoToNextNavigationTarget="false" isGoToPreviousNavigationTargetKey="org.be.textbe.bt.textbt.resource.bt.ui.isLineBreakpointGoToPreviousNavigationTarget" isGoToPreviousNavigationTarget="false" textStylePreferenceKey="org.be.textbe.bt.textbt.resource.bt.ui.lineBreakpointTextStyle" textStylePreferenceValue="NONE">
 		</specification>
 	</extension>
 	
@@ -141,14 +141,14 @@
 	
 	<extension point="org.eclipse.ui.popupMenus">
 		<viewerContribution id="org.be.textbe.bt.textbt.resource.bt.ui.RulerPopupActions" targetID="org.be.textbe.bt.textbt.resource.bt.EditorRuler">
-			<action id="org.be.textbe.bt.textbt.resource.bt.ui.toggleBreakpointAction" icon="icons/breakpoint_icon.gif" label="Toggle Breakpoint" class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate" menubarPath="debug">
+			<action id="org.be.textbe.bt.textbt.resource.bt.ui.toggleBreakpointAction" icon="icons/breakpoint_icon.gif" label="%action.label" class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate" menubarPath="debug">
 			</action>
 		</viewerContribution>
 	</extension>
 	
 	<extension point="org.eclipse.ui.editorActions">
 		<editorContribution targetID="org.be.textbe.bt.textbt.resource.bt.ui.BtEditor" id="org.be.textbe.bt.textbt.resource.bt.ui.BreakpointRulerActions">
-			<action id="org.be.textbe.bt.textbt.resource.bt.ui.debug.RulerToggleBreakpointAction" label="Add breakpoint" class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate" actionID="RulerDoubleClick">
+			<action id="org.be.textbe.bt.textbt.resource.bt.ui.debug.RulerToggleBreakpointAction" label="%action.label.0" class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate" actionID="RulerDoubleClick">
 			</action>
 		</editorContribution>
 	</extension>
