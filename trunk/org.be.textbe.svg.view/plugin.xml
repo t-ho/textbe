@@ -7,7 +7,7 @@
             class="org.be.textbe.svg.view.views.SvgView"
             icon="icons/svg-logo-16x16.png"
             id="org.be.textbe.svg.view.views.SvgView"
-            name="SVG View">
+            name="%view.name">
       </view>
    </extension>
 

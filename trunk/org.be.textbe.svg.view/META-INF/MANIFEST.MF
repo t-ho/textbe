@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Svg View
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.be.textbe.svg.view;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.be.textbe.svg.view.Activator
@@ -22,4 +22,4 @@ Require-Bundle: org.eclipse.core.runtime,
  org.apache.batik.css;bundle-version="1.7.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Bundle-Vendor: Behavior Engineering
+Bundle-Vendor: %Bundle-Vendor
