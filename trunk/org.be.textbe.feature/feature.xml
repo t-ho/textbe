@@ -6,20 +6,16 @@
       provider-name="Behavior Engineering"
       plugin="org.be.textbe.beviz.branding">
 
-   <description>
-      This feature is designed to allow us to make the textbe plug-ins
-available for installation using Eclipse Update Manager.
+   <description url="%descriptionURL">
+      %description
    </description>
 
-   <copyright>
-      2011 Behavior Engineering. All rights reserved.
+   <copyright url="%copyrightURL">
+      %copyright
    </copyright>
 
-   <license url="http://www.example.com/license">
-      License Agreement
-
-You must accept this license agreement in order to install this
-feature into your product.
+   <license url="%licenseURL">
+      %license
    </license>
 
    <url>
