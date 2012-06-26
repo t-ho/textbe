@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="beBuilder"
+         name="%extension.name"
+         point="org.eclipse.core.resources.builders">
+      <builder
+            hasNature="true">
+         <run
+               class="org.be.textbe.beviz.be2gv.builder.builder.BeBuilder">
+         </run>
+      </builder>
+   </extension>
+   <extension
+         id="beNature"
+         name="%extension.name.0"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="org.be.textbe.beviz.be2gv.builder.builder.BeNature">
+         </run>
+      </runtime>
+      <builder
+            id="org.be.textbe.beviz.be2gv.builder.beBuilder">
+      </builder>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            id="org.be.textbe.beviz.be2gv.builder.contribution1"
+            nameFilter="*"
+            objectClass="org.eclipse.core.resources.IProject">
+         <action
+               class="org.be.textbe.beviz.be2gv.builder.builder.ToggleNatureAction"
+               enablesFor="+"
+               id="org.be.textbe.beviz.be2gv.builder.addRemoveNatureAction"
+               label="%action.label"
+               menubarPath="additions">
+         </action>
+      </objectContribution>
+   </extension>
+   <extension
+         id="xmlProblem"
+         name="%extension.name.1"
+         point="org.eclipse.core.resources.markers">
+      <super
+            type="org.eclipse.core.resources.problemmarker">
+      </super>
+      <persistent
+            value="true">
+      </persistent>
+   </extension>
+
+</plugin>
