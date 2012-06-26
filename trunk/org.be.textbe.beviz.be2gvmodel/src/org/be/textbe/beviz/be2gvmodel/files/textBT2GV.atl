@@ -4,7 +4,11 @@
 
 -- 0.3: Fixed Atomic Leaf issue
 
+-- @path IN=/org.be.textbe.bt.model/metamodel/textbt.ecore
+-- @path OUT=/org.be.textbe.gv.model/metamodel/gv.ecore
+
 module textBT2GV;
+
 create GV: OUT from TEXTBT: IN;
 
 helper def: nodeCounter: Integer =
