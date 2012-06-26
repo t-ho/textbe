@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+	<extension point="org.emftext.access.syntax">
+		<metaInformationProvider class="org.be.textbe.st.textst.resource.st.mopp.StMetaInformation" id="org.be.textbe.st.textst.resource.st.mopp.StMetaInformation">
+		</metaInformationProvider>
+	</extension>
+	
+	<extension id="org.be.textbe.st.textst.resource.st.problem" name="%extension.name" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.eclipse.core.resources.problemmarker">
+		</super>
+		<super type="org.eclipse.core.resources.textmarker">
+		</super>
+		<super type="org.eclipse.emf.ecore.diagnostic">
+		</super>
+	</extension>
+	
+	<extension id="org.be.textbe.st.textst.resource.st.problem.syntax_error" name="%extension.name.0" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.be.textbe.st.textst.resource.st.problem">
+		</super>
+	</extension>
+	
+	<extension id="org.be.textbe.st.textst.resource.st.problem.print_problem" name="%extension.name.1" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.be.textbe.st.textst.resource.st.problem">
+		</super>
+	</extension>
+	
+	<extension id="org.be.textbe.st.textst.resource.st.problem.unresolved_reference" name="%extension.name.2" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.be.textbe.st.textst.resource.st.problem">
+		</super>
+	</extension>
+	
+	<extension id="org.be.textbe.st.textst.resource.st.problem.analysis_problem" name="%extension.name.3" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.be.textbe.st.textst.resource.st.problem">
+		</super>
+	</extension>
+	
+	<extension id="org.be.textbe.st.textst.resource.st.problem.builder_error" name="%extension.name.4" point="org.eclipse.core.resources.markers">
+		<persistent value="true">
+		</persistent>
+		<super type="org.be.textbe.st.textst.resource.st.problem">
+		</super>
+	</extension>
+	
+	<extension id="org.be.textbe.st.textst.resource.st.nature" name="%extension.name.5" point="org.eclipse.core.resources.natures">
+		<runtime>
+			<run class="org.be.textbe.st.textst.resource.st.mopp.StNature">
+			</run>
+		</runtime>
+		<builder id="org.be.textbe.st.textst.resource.st.builder">
+		</builder>
+	</extension>
+	
+	<extension point="org.eclipse.core.resources.builders" id="org.be.textbe.st.textst.resource.st.builder" name="%extension.name.6">
+		<builder hasNature="true">
+			<run class="org.be.textbe.st.textst.resource.st.mopp.StBuilderAdapter">
+			</run>
+		</builder>
+	</extension>
+	
+	<extension-point id="org.be.textbe.st.textst.resource.st.default_load_options" name="%extension-point.name" schema="schema/default_load_options.exsd">
+	</extension-point>
+	
+	<extension point="org.eclipse.emf.ecore.extension_parser">
+		<parser class="org.be.textbe.st.textst.resource.st.mopp.StResourceFactoryDelegator" type="st">
+		</parser>
+	</extension>
+	
+	<extension-point id="org.be.textbe.st.textst.resource.st.additional_extension_parser" name="%extension-point.name.0" schema="schema/additional_extension_parser.exsd">
+	</extension-point>
+	
+	<extension point="org.eclipse.debug.core.breakpoints">
+		<breakpoint class="org.be.textbe.st.textst.resource.st.debug.StLineBreakpoint" id="org.be.textbe.st.textst.resource.st.debug.breakpoint" markerType="org.be.textbe.st.textst.resource.st.debug.lineBreakpoint.marker" name="%breakpoint.name">
+		</breakpoint>
+	</extension>
+	
+	<extension id="org.be.textbe.st.textst.resource.st.debug.lineBreakpoint.marker" point="org.eclipse.core.resources.markers">
+		<super type="org.eclipse.debug.core.lineBreakpointMarker">
+		</super>
+		<super type="org.eclipse.core.resources.textmarker">
+		</super>
+		<persistent value="true">
+		</persistent>
+	</extension>
+	
+	<extension point="org.eclipse.debug.core.launchConfigurationTypes">
+		<launchConfigurationType id="org.be.textbe.st.textst.resource.st.ui.launchConfigurationType" delegate="org.be.textbe.st.textst.resource.st.launch.StLaunchConfigurationDelegate" modes="run,debug" name="%launchConfigurationType.name" sourceLocatorId="org.be.textbe.st.textst.resource.st.ui.sourceLocator" sourcePathComputerId="org.be.textbe.st.textst.resource.st.ui.sourcePathComputer" delegateName="%launchConfigurationType.delegateName" delegateDescription="%launchConfigurationType.delegateDescription">
+		</launchConfigurationType>
+	</extension>
+	
+	<extension point="org.eclipse.debug.core.sourcePathComputers">
+		<sourcePathComputer class="org.be.textbe.st.textst.resource.st.debug.StSourcePathComputerDelegate" id="org.be.textbe.st.textst.resource.st.ui.sourcePathComputer">
+		</sourcePathComputer>
+	</extension>
+	
+	<extension point="org.eclipse.debug.core.sourceLocators">
+		<sourceLocator id="org.be.textbe.st.textst.resource.st.ui.sourceLocator" class="org.be.textbe.st.textst.resource.st.debug.StSourceLocator" name="%sourceLocator.name">
+		</sourceLocator>
+	</extension>
+	
+</plugin>
