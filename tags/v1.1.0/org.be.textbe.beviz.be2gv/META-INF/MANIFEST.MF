@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.be.textbe.beviz.be2gv;singleton:=true
+Bundle-Version: 1.1.0
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.jet,
+ org.eclipse.m2m.atl.engine.emfvm.launch;bundle-version="3.2.1",
+ org.be.textbe.gv.model;bundle-version="1.0.0",
+ org.be.textbe.bt.model;bundle-version="1.0.0",
+ org.be.textbe.bt.textbt.resource.bt;bundle-version="1.0.0",
+ org.be.textbe.gv.gv2text;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.be.textbe.beviz.be2gv
+Bundle-Vendor: %Bundle-Vendor
+Bundle-Name: %Bundle-Name
