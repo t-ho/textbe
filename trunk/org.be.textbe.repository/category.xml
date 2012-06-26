@@ -14,7 +14,7 @@
    </feature>
    <category-def name="org.be.textbe.v1" label="%org_be_textbe_v1_category_label">
       <description>
-         %%org_be_textbe_v1_category_description
+         %org_be_textbe_v1_category_description
       </description>
    </category-def>
 </site>
