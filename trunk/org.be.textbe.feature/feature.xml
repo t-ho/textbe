@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.be.textbe.feature"
-      label="TextBE Feature"
+      label="%Feature-Name"
       version="1.0.0.qualifier"
-      provider-name="Behavior Engineering"
+      provider-name="%Feature-Vendor"
       plugin="org.be.textbe.beviz.branding">
 
    <description url="%descriptionURL">
