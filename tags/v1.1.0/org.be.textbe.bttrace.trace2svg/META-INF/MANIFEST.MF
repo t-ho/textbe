@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-SymbolicName: org.be.textbe.bttrace.trace2svg;singleton:=true
+Bundle-Version: 1.1.0
+Require-Bundle: org.eclipse.jet
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ClassPath: .
+Bundle-Vendor: %Bundle-Vendor
