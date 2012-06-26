@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="org.be.textbe.beviz.gvBuilder"
+         name="%extension.name"
+         point="org.eclipse.core.resources.builders">
+      <builder
+            hasNature="true">
+         <run
+               class="org.be.textbe.beviz.gvbuilder.builder.GvBuilder">
+         </run>
+      </builder>
+   </extension>
+   <extension
+         id="org.be.textbe.beviz.gvNature"
+         name="%extension.name.0"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="org.be.textbe.beviz.gvbuilder.builder.GvNature">
+         </run>
+      </runtime>
+      <builder
+            id="org.be.textbe.beviz.gvBuilder">
+      </builder>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            id="org.be.textbe.beviz.gvBuilder.contribution1"
+            nameFilter="*"
+            objectClass="org.eclipse.core.resources.IProject">
+         <action
+               class="org.be.textbe.beviz.gvbuilder.builder.ToggleNatureAction"
+               enablesFor="+"
+               id="org.be.textbe.beviz.gvBuilder.addRemoveNatureAction"
+               label="%action.label"
+               menubarPath="additions">
+         </action>
+      </objectContribution>
+   </extension>
+   <extension
+         id="gvProblem"
+         name="%extension.name.1"
+         point="org.eclipse.core.resources.markers">
+      <super
+            type="org.eclipse.core.resources.problemmarker">
+      </super>
+      <persistent
+            value="true">
+      </persistent>
+   </extension>
+
+</plugin>
