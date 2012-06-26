@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<title>Main Topic</title>
+</head>
+
+<body>
+<h1>Main Topic</h1>
+<pre>
+Hello Everyone,
+
+The (long-awaited) release of TextBE 1.1.0 is imminent. This email is to give you a heads up and a play-around with the new version. Be assured that you are not guinea-pigs. This version is tested and stable.
+
+1. What's new?
+
+* First: Not much: TextBE 1.1.0 is a service release. It includes the original TextBe parsers, so all source code written previously works as it always has.
+
+Improvements:
+* Re-written visualizer: The SVG visualizer has been re-written and is now immediately responsive
+* No more hidden files: the translation from .bt to .dot and from .dot to .svg is now performed in your project by two automated builders. You can inspect and change intermediate products at any stage. The intermediate products are marked as derived, so they will not pollute your version control system.
+* No more clunky dependencies: There is only one install site and includes everything you need, except the external Graphviz program. (Version 2.0 will remove that requirement.)
+* Better translations: Toby has fixed some bugs affecting the translation. Out test suite ensures that all examples translate, except for atomics (Major bug!).
+* Mac and Unix support: The new version has been developed tested on the Mac. It includes an update version of the Graphviz plugin that sports a better automated search.
+
+Other:
+* Automated build: new versions are being automatically built and checked at UQ on the build server emory. You can watch as it grows at http://emory.eait.uq.edu.au:8080
+* Internationalization: The plugins have been prepared for translation. Features are still tbd.
+* Compliance: The plugins are partially prepared for compliance with eclipse project standard. They all include EPL about statements.
+* Service Modules: For those wishing to develop Composition Tree or Structure Tree applications, the basic plugins have been published in a stand-alone feature for reuse.
+* Animator: The underlying service code of the animator has been included. The UI is not available, though.
+* Help module: A help module has been included. The content is still missing...
+
+2. What's >NOT< Working
+
+* Atomics. This major bug is still in.
+
+3. How can I get it?
+Install an Eclipse 3.7 version
+for example Eclipse Classic http://www.eclipse.org/downloads/packages/eclipse-classic-372/indigosr2
+Point your eclipse update manager to:
+
+http://itee.uq.edu.au/~jgsuess/updates/textbe
+
+(howto for using the update manager: http://help.eclipse.org/indigo/index.jsp?topic=%2Forg.eclipse.platform.doc.user%2Ftasks%2Ftasks-34.htm )
+
+Under "TextBE V1.0 components" select the "TextBE Feature" and click to accept the license agreements until the installation finishes.
+
+Restart Eclipse when prompted, to allow TextBE to activate.
+
+4. How can I use it?
+
+First, check under Windows->Preferences->Graphviz
+that the 'dot executable to use' points to the location of your locally installed graphviz dot binary.
+Discovery worked well on Mac and Windows. Unix is untested. If necessary, specify by hand
+
+1. Select File->New->Example->Microwave Oven Example and click Finish. This will import the classic Microwave Example
+2. Right-click on the project (it is labelled "org.be.textbe.bt.examples.microwave_oven") This will unfold the context menu.
+3. Click "Add/Remove BE Nature" in the context menu. This will add the BE nature to the project and activate the BE builder. A folder called "out" now appears.
+4. Inspect the contents of the folder. There should be one .dot file corresponding to each .bt file.
+5. Click "Add/Remove Graphviz Nature" in the context menu. This will add the Graphviz nature to the project and activate the Graphviz builder.
+6. For each .dot file, a corresponding .svg file now appears in the 'out' folder
+7. Now open the SVG view via Window->Show View->Other->Other->SVG View. This opens the SVG view (A  sun-shaped icon)
+8. Select one of the SVG files. The viewer displays the file.
+9. Now select the corresponding .bt file and make a few acceptable changes. If the builders are able to accept the changes, both derived files change and the view immediately updates.
+10. Zoom and pan around as follows (see http://wiki.apache.org/xmlgraphics-batik/CanvasInteractors for more)
+Ctrl+LeftButton - Zoom Box
+Shift+RightButton - Zoom (with instant feedback)
+Shift+LeftButton - Pan
+Ctrl+RightButton - Rotate
+Ctrl+Shift+RightButton - Reset transform (also known as "Original View")
+
+You can also use the Graphviz view to show dot files
+
+Caveats, Bugs and Annoyances:
+
+* No atomics
+* Be mindful that the "Add/Remove XX Nature" commands are TOGGLES, but their state is only visible by inspecting the project properties. I know this is clunky :(
+* You can only have one SVG view open at a time.
+* SVG files do not have an SVG icon.
+* No help files in help...
+* Arcane control of the SVG panel
+</pre>
+</body>
+</html>

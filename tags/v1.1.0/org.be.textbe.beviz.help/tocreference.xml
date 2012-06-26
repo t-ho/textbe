@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Reference" link_to="toc.xml#reference"> 
+	<topic label="Behavior-Tree-Notation-1.0"  href="html/reference/BT-notation/document.html"> 
+		<topic label="Sub Topic" href="html/reference/subtopic.html" /> 
+	</topic>
+</toc>
