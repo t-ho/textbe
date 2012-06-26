@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+	<extension point="org.emftext.access.syntax.ui">
+		<metaInformationProvider class="org.be.textbe.ct.textct.resource.ct.ui.CtUIMetaInformation" id="org.be.textbe.ct.textct.resource.ct.ui.CtUIMetaInformation">
+		</metaInformationProvider>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors">
+		<editor class="org.be.textbe.ct.textct.resource.ct.ui.CtEditor" contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor" extensions="ct" icon="icons/editor_icon.gif" id="org.be.textbe.ct.textct.resource.ct.ui.CtEditor" name="%editor.name">
+			<contentTypeBinding contentTypeId="org.be.textbe.ct.textct.resource.ct">
+			</contentTypeBinding>
+		</editor>
+	</extension>
+	
+	<extension point="org.eclipse.core.runtime.preferences">
+		<initializer class="org.be.textbe.ct.textct.resource.ct.ui.CtPreferenceInitializer">
+		</initializer>
+	</extension>
+	
+	<extension point="org.eclipse.ui.preferencePages">
+		<page name="%page.name" id="org.be.textbe.ct.textct.resource.ct.ui.CtPreferencePage" class="org.be.textbe.ct.textct.resource.ct.ui.CtPreferencePage" category="org.eclipse.ui.preferencePages.GeneralTextEditor">
+		</page>
+		<page name="%page.name.0" id="org.be.textbe.ct.textct.resource.ct.ui.CtSyntaxColoringPreferencePage" class="org.be.textbe.ct.textct.resource.ct.ui.CtSyntaxColoringPreferencePage" category="org.be.textbe.ct.textct.resource.ct.ui.CtPreferencePage">
+		</page>
+		<page name="%page.name.1" id="org.be.textbe.ct.textct.resource.ct.ui.CtBracketPreferencePage" class="org.be.textbe.ct.textct.resource.ct.ui.CtBracketPreferencePage" category="org.be.textbe.ct.textct.resource.ct.ui.CtPreferencePage">
+		</page>
+	</extension>
+	
+	<extension point="org.eclipse.ui.newWizards">
+		<category id="org.emftext.runtime.ui.EMFTextFileCategory" name="%category.name">
+		</category>
+		<wizard category="org.emftext.runtime.ui.EMFTextFileCategory" icon="/icons/default_new_icon.gif" class="org.be.textbe.ct.textct.resource.ct.ui.CtNewFileWizard" id="org.be.textbe.ct.textct.resource.ct.ui.CtNewFileWizard" name="%wizard.name">
+		</wizard>
+		<category id="org.emftext.runtime.ui.EMFTextProjectCategory" name="%category.name.0">
+		</category>
+		<wizard category="org.emftext.runtime.ui.EMFTextProjectCategory" icon="/icons/default_new_icon.gif" class="org.be.textbe.ct.textct.resource.ct.ui.CtNewProjectWizard" id="org.be.textbe.ct.textct.resource.ct.ui.CtNewProjectWizard" name="%wizard.name.0" project="true">
+		</wizard>
+	</extension>
+	
+	<extension point="org.eclipse.ui.ide.markerResolution">
+		<markerResolutionGenerator class="org.be.textbe.ct.textct.resource.ct.ui.CtMarkerResolutionGenerator" markerType="org.be.textbe.ct.textct.resource.ct.problem">
+		</markerResolutionGenerator>
+	</extension>
+	
+	<extension point="org.eclipse.core.filebuffers.annotationModelCreation">
+		<factory class="org.be.textbe.ct.textct.resource.ct.ui.CtAnnotationModelFactory" extensions="ct">
+		</factory>
+	</extension>
+	
+	<extension point="org.eclipse.core.contenttype.contentTypes">
+		<content-type id="org.be.textbe.ct.textct.resource.ct" name="%content-type.name" base-type="org.eclipse.core.runtime.text" file-extensions="ct">
+		</content-type>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.documentProviders">
+		<provider class="org.eclipse.ui.editors.text.TextFileDocumentProvider" extensions="ct" id="org.be.textbe.ct.textct.resource.ct.ui.provider">
+		</provider>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.annotationTypes">
+		<type name="org.be.textbe.ct.textct.resource.ct.ui.occurences">
+		</type>
+		<type name="org.be.textbe.ct.textct.resource.ct.ui.occurences.declaration" super="org.be.textbe.ct.textct.resource.ct.ui.occurences">
+		</type>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.markerAnnotationSpecification">
+		<specification annotationType="org.be.textbe.ct.textct.resource.ct.ui.occurences" label="%specification.label" icon="/icons/occurrence_icon.gif" textPreferenceKey="ct.occurrenceIndication" textPreferenceValue="false" highlightPreferenceKey="ct.occurrenceHighlighting" highlightPreferenceValue="true" contributesToHeader="false" overviewRulerPreferenceKey="ct.occurrenceIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="ct.occurrenceIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="ct.occurrenceIndicationColor" colorPreferenceValue="212,212,212" presentationLayer="4" showInNextPrevDropdownToolbarActionKey="ct.showOccurrenceInNextPrevDropdownToolbarAction" showInNextPrevDropdownToolbarAction="true" isGoToNextNavigationTargetKey="ct.isOccurrenceGoToNextNavigationTarget" isGoToNextNavigationTarget="false" isGoToPreviousNavigationTargetKey="ct.isOccurrenceGoToPreviousNavigationTarget" isGoToPreviousNavigationTarget="false" textStylePreferenceKey="ct.occurrenceTextStyle" textStylePreferenceValue="NONE">
+		</specification>
+		<specification annotationType="org.be.textbe.ct.textct.resource.ct.ui.occurences.declaration" label="%specification.label.0" textPreferenceKey="ct.declarationIndication" textPreferenceValue="false" highlightPreferenceKey="ct.declarationHighlighting" highlightPreferenceValue="true" overviewRulerPreferenceKey="ct.declarationIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="ct.declarationIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="ct.declarationIndicationColor" colorPreferenceValue="240,216,168" presentationLayer="4" textStylePreferenceKey="ct.declarationTextStyle" textStylePreferenceValue="NONE">
+		</specification>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+		<launchConfigurationTypeImage icon="/icons/launch_type_icon.gif" configTypeID="org.be.textbe.ct.textct.resource.ct.ui.launchConfigurationType" id="org.be.textbe.ct.ct.launchImage">
+		</launchConfigurationTypeImage>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+		<launchConfigurationTabGroup type="org.be.textbe.ct.textct.resource.ct.ui.launchConfigurationType" class="org.be.textbe.ct.textct.resource.ct.ui.launch.CtLaunchConfigurationTabGroup" id="org.be.textbe.ct.ct.launchConfigurationTabGroup" helpContextId="org.be.textbe.ct.ct.launchConfigHelpContext">
+			<launchMode mode="debug" perspective="org.eclipse.debug.ui.DebugPerspective" description="%launchMode.description">
+			</launchMode>
+			<launchMode mode="run" description="%launchMode.description.0">
+			</launchMode>
+		</launchConfigurationTabGroup>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.launchShortcuts">
+		<shortcut label="%shortcut.label" icon="/icons/launch_shortcut_icon.gif" helpContextId="org.be.textbe.ct.ct.launch" modes="run,debug" class="org.be.textbe.ct.textct.resource.ct.ui.launch.CtLaunchShortcut" description="%shortcut.description" id="org.be.textbe.ct.ct.launchShortcut">
+			<description description="%description.description" mode="run">
+			</description>
+			<description description="%description.description.0" mode="debug">
+			</description>
+			<contextualLaunch>
+				<enablement>
+					<with variable="selection">
+						<count value="1">
+						</count>
+						<iterate>
+							<test property="org.be.textbe.ct.ct.isLaunchable">
+							</test>
+						</iterate>
+					</with>
+				</enablement>
+			</contextualLaunch>
+			<configurationType id="org.be.textbe.ct.textct.resource.ct.ui.launchConfigurationType">
+			</configurationType>
+		</shortcut>
+	</extension>
+	
+	<extension point="org.eclipse.core.expressions.propertyTesters">
+		<propertyTester id="org.be.textbe.ct.ct.PropertyTester" type="java.lang.Object" namespace="org.be.textbe.ct.ct" properties="isLaunchable" class="org.be.textbe.ct.textct.resource.ct.ui.CtPropertyTester">
+		</propertyTester>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.annotationTypes">
+		<type name="org.be.textbe.ct.textct.resource.ct.ui.debug.lineBreakpoint" markerType="org.be.textbe.ct.textct.resource.ct.debug.lineBreakpoint.marker" super="org.eclipse.debug.core.breakpoint">
+		</type>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.markerAnnotationSpecification">
+		<specification annotationType="org.be.textbe.ct.textct.resource.ct.ui.debug.lineBreakpoint" label="%specification.label.1" icon="/icons/breakpoint_icon.gif" textPreferenceKey="org.be.textbe.ct.textct.resource.ct.ui.lineBreakpoint" textPreferenceValue="false" highlightPreferenceKey="org.be.textbe.ct.textct.resource.ct.ui.lineBreakpointHighlighting" highlightPreferenceValue="true" contributesToHeader="false" overviewRulerPreferenceKey="org.be.textbe.ct.textct.resource.ct.ui.lineBreakpointIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="org.be.textbe.ct.textct.resource.ct.ui.lineBreakpointIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="org.be.textbe.ct.textct.resource.ct.ui.lineBreakpointColor" colorPreferenceValue="212,212,212" presentationLayer="4" showInNextPrevDropdownToolbarActionKey="org.be.textbe.ct.textct.resource.ct.ui.showLineBreakpointInNextPrevDropdownToolbarAction" showInNextPrevDropdownToolbarAction="true" isGoToNextNavigationTargetKey="org.be.textbe.ct.textct.resource.ct.ui.isLineBreakpointGoToNextNavigationTarget" isGoToNextNavigationTarget="false" isGoToPreviousNavigationTargetKey="org.be.textbe.ct.textct.resource.ct.ui.isLineBreakpointGoToPreviousNavigationTarget" isGoToPreviousNavigationTarget="false" textStylePreferenceKey="org.be.textbe.ct.textct.resource.ct.ui.lineBreakpointTextStyle" textStylePreferenceValue="NONE">
+		</specification>
+	</extension>
+	
+	<extension point="org.eclipse.core.runtime.adapters">
+		<factory adaptableType="org.be.textbe.ct.textct.resource.ct.ui.CtEditor" class="org.be.textbe.ct.textct.resource.ct.ui.debug.CtAdapterFactory">
+			<adapter type="org.eclipse.debug.ui.actions.IToggleBreakpointsTarget">
+			</adapter>
+		</factory>
+		<factory adaptableType="org.be.textbe.ct.textct.resource.ct.debug.CtDebugVariable" class="org.be.textbe.ct.textct.resource.ct.ui.debug.CtAdapterFactory">
+			<adapter type="org.eclipse.debug.internal.ui.viewers.model.provisional.IElementLabelProvider">
+			</adapter>
+		</factory>
+		<factory adaptableType="org.be.textbe.ct.textct.resource.ct.debug.CtDebugVariable" class="org.be.textbe.ct.textct.resource.ct.ui.debug.CtAdapterFactory">
+			<adapter type="org.eclipse.debug.internal.ui.viewers.model.provisional.IElementContentProvider">
+			</adapter>
+		</factory>
+	</extension>
+	
+	<extension point="org.eclipse.ui.popupMenus">
+		<viewerContribution id="org.be.textbe.ct.textct.resource.ct.ui.RulerPopupActions" targetID="org.be.textbe.ct.textct.resource.ct.EditorRuler">
+			<action id="org.be.textbe.ct.textct.resource.ct.ui.toggleBreakpointAction" icon="icons/breakpoint_icon.gif" label="%action.label" class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate" menubarPath="debug">
+			</action>
+		</viewerContribution>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editorActions">
+		<editorContribution targetID="org.be.textbe.ct.textct.resource.ct.ui.CtEditor" id="org.be.textbe.ct.textct.resource.ct.ui.BreakpointRulerActions">
+			<action id="org.be.textbe.ct.textct.resource.ct.ui.debug.RulerToggleBreakpointAction" label="%action.label.0" class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate" actionID="RulerDoubleClick">
+			</action>
+		</editorContribution>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.debugModelPresentations">
+		<debugModelPresentation id="org.be.textbe.ct.textct.resource.ct.debugModel" class="org.be.textbe.ct.textct.resource.ct.ui.debug.CtDebugModelPresentation">
+		</debugModelPresentation>
+	</extension>
+	
+</plugin>
