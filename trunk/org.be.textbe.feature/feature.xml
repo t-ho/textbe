@@ -2,7 +2,7 @@
 <feature
       id="org.be.textbe.feature"
       label="%Feature-Name"
-      version="1.1.0"
+      version="1.1.0.qualifier"
       provider-name="%Feature-Vendor"
       plugin="org.be.textbe.beviz.branding">
 
@@ -49,7 +49,7 @@
       <import plugin="org.apache.batik.dom.svg" version="1.7.0" match="greaterOrEqual"/>
       <import plugin="org.apache.batik.swing" version="1.7.0" match="greaterOrEqual"/>
       <import plugin="org.apache.batik.util" version="1.7.0" match="greaterOrEqual"/>
-      <import plugin="org.w3c.dom.svg" version="1.1.0" match="greaterOrEqual"/>
+      <import plugin="org.w3c.dom.svg" version="1.1.0.qualifier" match="greaterOrEqual"/>
       <import plugin="org.apache.batik.dom" version="1.7.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.emf.ecore"/>
