@@ -13,3 +13,4 @@ Require-Bundle: org.be.textbe.beviz.be2gv;bundle-version="1.0.0",
  org.apache.commons.io;bundle-version="2.0.1",
  org.eclipse.m2m.atl.engine.emfvm;bundle-version="3.2.1"
 Bundle-Vendor: %Bundle-Vendor
+Bundle-Localization: OSGI-INF/l10n/bundle
