@@ -13,3 +13,4 @@ Export-Package: org.be.textbe.bt.textbt,
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy
+Bundle-Localization: OSGI-INF/l10n/bundle
