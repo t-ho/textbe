@@ -25,3 +25,4 @@ Export-Package: org.be.textbe.bt.textbt.resource.bt,
   org.be.textbe.bt.textbt.resource.bt.grammar,
   org.be.textbe.bt.textbt.resource.bt.util
 Bundle-Activator: org.be.textbe.bt.textbt.resource.bt.mopp.BtPlugin
+Bundle-Localization: OSGI-INF/l10n/bundle
