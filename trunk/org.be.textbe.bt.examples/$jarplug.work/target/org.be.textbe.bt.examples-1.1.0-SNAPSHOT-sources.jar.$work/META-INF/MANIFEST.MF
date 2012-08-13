@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Bundle-Vendor: %bundleVendor
+Eclipse-SourceBundle: org.be.textbe.bt.examples;version="1.1.0.2012072
+ 30109";roots:="."
+Bundle-Version: 1.1.0.201207230109
+Build-Jdk: 1.6.0_30
+Built-By: uqjsuss
+Bundle-Name: %bundleName
+Bundle-Localization: OSGI-INF/l10n/bundle-src
+Bundle-ManifestVersion: 2
+Created-By: Apache Maven
+Bundle-SymbolicName: org.be.textbe.bt.examples.source
+Archiver-Version: Plexus Archiver
+
+Name: org/be/textbe/bt/examples/BEExamplesPlugin.java
+SHA1-Digest: CGWWDGvO6EX+87igXKKlwbTzSJY=
+
+Name: org/be/textbe/bt/examples/AbstractExampleWizard.java
+SHA1-Digest: cEi7d1qTl7PMYvfj314MwCD2cIw=
+
+Name: org/be/textbe/bt/examples/MOvenExampleWizard.java
+SHA1-Digest: eUplfO5nWu3jSMrZjtd5pB5IiJE=
+
+Name: OSGI-INF/l10n/bundle-src.properties
+SHA1-Digest: gjT/FL+xQcnIPoZ9R9HxQrtquYg=
+
+Name: org/be/textbe/bt/examples/BTNotationExampleWizard.java
+SHA1-Digest: Aq/3hgDnrNRZOMSOaASpe0hgeWs=
+
