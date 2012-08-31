@@ -99,26 +99,6 @@
 					</environments>
 				</configuration>
 			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jarsigner-plugin</artifactId>
-				<version>1.2</version>
-				<executions>
-					<execution>
-						<id>sign</id>
-						<goals>
-							<goal>sign</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<keystore>E:\textbe_workspace\keystores\jgsuess.keystore</keystore>
-					<alias>jgsuess</alias>
-					<storepass>yxniwyx</storepass>
-					<keypass>yxniwyx</keypass>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
 	<modules>
@@ -151,14 +131,6 @@
 		<module>../org.be.textbe.svg.view</module>
 		<module>../org.be.textbe.beviz.be2gv.builder</module>
 		<module>../org.be.textbe.gv.model.feature</module>
-		<module>../org.be.textbe.bttrace.feature</module>
-		<module>../org.be.textbe.bttrace.model</module>
-		<module>../org.be.textbe.bttrace.model.edit</module>
-		<module>../org.be.textbe.bttrace.model.editor</module>
-		<module>../org.be.textbe.bttrace.model.tests</module>
-		<module>../org.be.textbe.bttrace.resource.btt</module>
-		<module>../org.be.textbe.bttrace.resource.btt.ui</module>
-		<module>../org.be.textbe.bttrace.trace2svg</module>
 		<module>../org.be.textbe.beviz.help</module>
 		<module>../org.be.textbe.beviz.branding</module>
 	</modules>
