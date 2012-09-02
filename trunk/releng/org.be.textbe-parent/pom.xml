@@ -101,39 +101,6 @@
 			</plugin>
 		</plugins>
 	</build>
-	<modules>
-
-		<module>../org.be.textbe.beviz.be2gv</module>
-		<module>../org.be.textbe.beviz.be2gv.test</module>
-		<module>../org.be.textbe.bt.examples</module>
-		<module>../org.be.textbe.bt.model</module>
-		<module>../org.be.textbe.bt.model.feature</module>
-		<module>../org.be.textbe.bt.textbt.resource.bt</module>
-		<module>../org.be.textbe.bt.textbt.resource.bt.ui</module>
-		<module>../org.be.textbe.ct.model</module>
-		<module>../org.be.textbe.ct.model.feature</module>
-		<module>../org.be.textbe.ct.textct.resource.ct</module>
-		<module>../org.be.textbe.ct.textct.resource.ct.ui</module>
-		<module>../org.be.textbe.dependencies.feature</module>
-		<module>../org.be.textbe.feature</module>
-		<module>../org.be.textbe.gv.gv2text</module>
-		<module>../org.be.textbe.gv.model</module>
-		<module>../org.be.textbe.repository</module>
-		<module>../org.be.textbe.st.examples</module>
-		<module>../org.be.textbe.st.model</module>
-		<module>../org.be.textbe.st.model.feature</module>
-		<module>../org.be.textbe.st.textst.resource.st</module>
-		<module>../org.be.textbe.st.textst.resource.st.ui</module>
-		<module>../org.emftext.commons.antlr3_3_0</module>
-		<module>../org.be.textbe.beviz.gvBuilder</module>
-		<module>../org.be.textbe.beviz.gvRender</module>
-		<module>../org.be.textbe.beviz.gvRender.systemTest</module>
-		<module>../org.be.textbe.svg.view</module>
-		<module>../org.be.textbe.beviz.be2gv.builder</module>
-		<module>../org.be.textbe.gv.model.feature</module>
-		<module>../org.be.textbe.beviz.help</module>
-		<module>../org.be.textbe.beviz.branding</module>
-	</modules>
 	<url>http://code.google.com/p/textbe</url>
 	<description>Behavior Engineering (BE) is an integrated discipline that supports the systems and software engineering of large-scale, dependable software-intensive systems. Behavior Engineering employs a graphical Behavior Modeling Language (BML) that is used to construct complete behavioral, compositional and structural integrated views from natural language descriptions of a large set of requirements for a proposed system.
 
