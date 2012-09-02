@@ -1,0 +1,24 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.be.textbe</groupId>
+	<artifactId>org.be.textbe.bttrace.parent</artifactId>
+	<version>1.1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<modules>
+	<module>../org.be.textbe.bttrace.feature</module>
+	<module>../org.be.textbe.bttrace.model</module>
+	<module>../org.be.textbe.bttrace.model.edit</module>
+	<module>../org.be.textbe.bttrace.model.editor</module>
+	<module>../org.be.textbe.bttrace.model.tests</module>
+	<module>../org.be.textbe.bttrace.repository</module>
+	<module>../org.be.textbe.bttrace.resource.btt</module>
+	<module>../org.be.textbe.bttrace.resource.btt.ui</module>
+	<module>../org.be.textbe.bttrace.trace2svg</module>
+	</modules>
+	<parent>
+		<artifactId>org.be.textbe-parent</artifactId>
+		<version>1.1.0-SNAPSHOT</version>
+		<groupId>org.be.textbe</groupId>
+	</parent>
+</project>
