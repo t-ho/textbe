@@ -22,6 +22,6 @@ public:
 // Overrides
 public:
 	virtual BOOL InitInstance();
-	const wchar_t* Translate(int iPriority, int iBuff, int iWithSets, const wchar_t* strSetsPath, const wchar_t* strInitPath);
+	const wchar_t* Translate(const wchar_t* strTree, int iPriority, int iBuff, int iWithSets, const wchar_t* strSetsPath, const wchar_t* strInitPath);
 	DECLARE_MESSAGE_MAP()
 };
