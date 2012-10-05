@@ -15,9 +15,9 @@
 #include "TranslateMain.h"
 #include "TranslateStep.h"
 #include "TranslateNode.h"
-#include "TranslateRandom.h"
+// #include "TranslateRandom.h"
 #include "NList.h"
-#include <map>
+#include "NMap.h"
 
 class CTranslateSALMain : public CTranslateMain
 {
@@ -104,8 +104,8 @@ public:
 	bool IsStringANumber(CString strNumberString);
 	bool IsInteger(CString strVariable);
 	bool IsUppaal(void);
-	CTranslateNode* CreateTranslateNodesFromRandom(CTranslateRandom* pcRandom, CTranslateNode* pcOriginal);
-	CTranslateNode* ConvertToTranslateNodeFromRandom(CTranslateNode* pcOriginal);
+//	CTranslateNode* CreateTranslateNodesFromRandom(CTranslateRandom* pcRandom, CTranslateNode* pcOriginal);
+//	CTranslateNode* ConvertToTranslateNodeFromRandom(CTranslateNode* pcOriginal);
 	void AddPCToInitialisation(CString strPC);
 	void SetAtomicBlockCount(int iNode, int iCount);
 	int GetAtomicBlockCount(int iNode);
@@ -134,7 +134,7 @@ public:
 	
 
 	// A map from nodes to lists of atomic blocks.
-	std::map<int, NList<CTranslateAtomicBlock*, CTranslateAtomicBlock*>*> m_mNodesToAtomicBlocks;
+	NMap<int, NList<CTranslateAtomicBlock*, CTranslateAtomicBlock*>*> m_mNodesToAtomicBlocks;
 
 	NList<CTranslateStep*, CTranslateStep*> m_lSteps;
 	int m_iHighestTranslateID;
@@ -142,34 +142,34 @@ public:
 	// Mappings from nodes to translation information.
 	
 	// Maps Translate Node ID's to Translate Nodes.
-	std::map<int, CTranslateNode*> m_mTranslateNodes;
+	NMap<int, CTranslateNode*> m_mTranslateNodes;
 
 	// Maps nodes to guard strings.
-	std::map<int, CString> m_cNodesToGuards;
+	NMap<int, CString> m_cNodesToGuards;
 	// Maps nodes to lists of action strings.
-	std::map<int, NList<CString, CString>*> m_cNodesToActions;
+	NMap<int, NList<CString, CString>*> m_cNodesToActions;
 	
 	// Maps atomic nodes to guard strings.
-	std::map<int, CString> m_cAtomicNodesToGuards;
+	NMap<int, CString> m_cAtomicNodesToGuards;
 	// Maps atomic nodes to lists of action strings.
-	std::map<int, NList<CString, CString>*> m_cAtomicNodesToActions;
+	NMap<int, NList<CString, CString>*> m_cAtomicNodesToActions;
 
 	// Maps alternate selection nodes to their opposite guards (the NOT case).
-	std::map<int, CString> m_cAlternateNodesToGuards;
+	NMap<int, CString> m_cAlternateNodesToGuards;
 
 	// A list of guards not associated with any node.
 	NList<CString,CString> m_lExtraGuards;
 	/* Maps the position of extra guards in the list to
 	 * lists of extra actions.
 	 */
-	std::map<int, NList<CString, CString>*> m_cExtraActions; 
+	NMap<int, NList<CString, CString>*> m_cExtraActions; 
 
 	 // A list of the component names for local variables.
 	NList<CString, CString> m_cLocalComponents;
 	 /* A map from the position of local variables
 	  * in the component list to their list of states.
 	  */
-	std::map<int, NList<CString, CString>*> m_cLocalStates; 
+	NMap<int, NList<CString, CString>*> m_cLocalStates; 
 	
 	// A list of variables that are integers (as was declared in the user's information file).
 	NList<CString, CString> m_lIntegers;
@@ -187,7 +187,7 @@ public:
 	 /* A map from the position of set names
 	  * in the list to the position of a set type in the types list.
 	  */
-	std::map<int, int> m_cSetNamesToTypes; 
+	NMap<int, int> m_cSetNamesToTypes; 
 
 	// A list of the set types.
 	NList<CString, CString> m_cSetTypes;
@@ -201,7 +201,7 @@ public:
 	 /* A map from the position of set types
 	  * in the list to their list of elements.
 	  */
-	std::map<int, NList<CString, CString>*> m_cSetElements; 
+	NMap<int, NList<CString, CString>*> m_cSetElements; 
 	
 	 /* A map from the position of set names
 	  * in the list to the position of their unique set type in the types list.
@@ -211,7 +211,7 @@ public:
 	  * In that case, the unique set type for staff has u1 and u2, while the
 	  * unique set type for students has u3 and u4.
 	  */
-	std::map<int, int> m_cSetNamesToUniqueTypes; 
+	NMap<int, int> m_cSetNamesToUniqueTypes; 
 
 	// A list of the unique set types, see above description.
 	NList<CString, CString> m_cUniqueSetTypes;
@@ -219,35 +219,35 @@ public:
 	 /* A map from the position of unique set types
 	  * in the list to their list of elements (see above description).
 	  */
-	std::map<int, NList<CString, CString>*> m_cUniqueSetElements; 
+	NMap<int, NList<CString, CString>*> m_cUniqueSetElements; 
 	
 
 	 /* A map from the position of set names
 	  * in the list to the position of a parent set in the parent set list.
 	  */
-	std::map<int, int> m_cSetsToParentSets; 
+	NMap<int, int> m_cSetsToParentSets; 
 	
 	/* A map from the position of set names
 	  * in the list to their list of initial elements.
 	  */
-	std::map<int, NList<CString, CString>*> m_cInitSetElements; 
+	NMap<int, NList<CString, CString>*> m_cInitSetElements; 
 
 	// A list of user-defined attributes (as obtained from the user-defined information text file).
 	NList<CString, CString> m_lAttributes;
 
 	// A map from the position of attributes in the list to the position of types in the set type list.
 	// (Although these are not set attributes, the set type list is still used).
-	std::map<int, int> m_mAttributesToTypes;
+	NMap<int, int> m_mAttributesToTypes;
 
 	// A list of components that own user-defined attributes.
 	NList<CString, CString> m_lAttributeComponents;
 
 	// A map from the position of attributes in the list to the position of owner components in the component list.
-	std::map<int, int> m_mAttributesToComponents; 
+	NMap<int, int> m_mAttributesToComponents; 
 
 	// A map from the position of alternative names in the list to the position of attributes.
 	// (See TranslateSALMain.cpp, approx. line 1852 for a detailed description).
-	std::map<int, int> m_mAlternativesToAttributes; 
+	NMap<int, int> m_mAlternativesToAttributes; 
 
 	// A list of alternate names used for user-defined attributes.
 	// (See TranslateSALMain.cpp, approx. line 1852 for a detailed description).
@@ -257,27 +257,27 @@ public:
 	NList<CString, CString> m_lUserDefinedAttributes;
 
 	// A map from the position of final user-defined attributes in the list to the position of their type in the types list.
-	std::map<int, int> m_mUserAttributeTypes;
+	NMap<int, int> m_mUserAttributeTypes;
 
 	// Maps ID's of internal output nodes to the ID's of the matching internal 
 	// input nodes.
-	std::map<int, NList<int, int>*> m_cMatchingInternal;
+	NMap<int, NList<int, int>*> m_cMatchingInternal;
 
 	// Maps nodes to PC names.
-	std::map<int, int> m_cNodesToPCs;  
+	NMap<int, int> m_cNodesToPCs;  
 	// Maps nodes to PC values.
-	std::map<int, int> m_cNodesToPCValues;  
+	NMap<int, int> m_cNodesToPCValues;  
 	// Maps nodes to ID values.
-	std::map<int, CString> m_cNodesToIDs;	
+	NMap<int, CString> m_cNodesToIDs;	
 	// The current highest number used for a PC name.
 	int m_iHighestProgramCounter; 	
 	// Maps PC names to their highest value.
-	std::map<int, int> m_cPCRanges;  
+	NMap<int, int> m_cPCRanges;  
 
 	// A list of the ID's of branching nodes.
 	NList<CString, CString> m_lBranchingIDs;
 	// Maps the position of branching nodes in the ID list to their PC's.
-	std::map<int, int> m_cBranchingPCs;
+	NMap<int, int> m_cBranchingPCs;
 
 	// Lists of input and output variables and local Boolean variables.
 	NList<CString, CString> m_cOutputVariables;
@@ -297,7 +297,7 @@ public:
 	// A map from node ID's to a number representing how many atomic blocks are still
 	// using the node. This is to work out whether or not the node's transition can 
 	// be deleted.
-	std::map<int, int> m_mCountOfBlocksUsingNode;
+	NMap<int, int> m_mCountOfBlocksUsingNode;
 
 	// A list of nodes that were created when parsing a TextBE file.
 	NList<CString, CString> m_lTextBEList;
@@ -306,7 +306,7 @@ public:
 	// object that contains its name, type, etc. but could end up being several 
 	// similar nodes in the BT.
 	// This is only used when parsing TextBE files.
-	std::map<int, CTranslateNode*> m_mTextBEMap;
+	NMap<int, CTranslateNode*> m_mTextBEMap;
 
 	// A list of branching nodes. This is only used for parsing TextBE files.
 	NList<CTranslateNode*, CTranslateNode*> m_lBranchingNodes;

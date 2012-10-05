@@ -32,7 +32,7 @@ public:
 		SomeType item;
 		// Note that the blank item is first sent to cPosition, to tell it what type of iterator
 		// is required.
-		std::list<SomeType>::iterator listposition = cPosition.GetPointer(item);
+		typename std::list<SomeType>::iterator listposition = cPosition.GetPointer(item);
 		item = (SomeType) *listposition;
 		cPosition.IncrementPointer();
 		// Get the pointer again now that it was incremented.
@@ -55,6 +55,18 @@ public:
 		return (SomeType) m_list.back();
 	}
 
+	void RemoveTail(){
+
+	}
+
+	void SetAt(NPosition cPosition, SomeType item){
+
+	}
+
+	int GetCount(){
+		return 0;
+	}
+
 	// GetTailPosition and GetPrev in ConBranching's uppaal.
 	
 	NPosition Find(SomeType item){
@@ -62,7 +74,7 @@ public:
 		cPosition.SetPointer(m_list);
 		bool bFoundItem = false;
 		SomeType currentItem;
-		std::list<SomeType>::iterator listposition = cPosition.GetPointer(item);
+		typename std::list<SomeType>::iterator listposition = cPosition.GetPointer(item);
 		currentItem = (SomeType) *listposition;	
 		if (currentItem == item){
 			bFoundItem = true;
@@ -88,20 +100,20 @@ public:
 
 	void InsertAfter(NPosition &cPosition, SomeType item){
 		SomeType emptyItem;
-		std::list<SomeType>::iterator listposition = cPosition.GetPointer(emptyItem);
+		typename std::list<SomeType>::iterator listposition = cPosition.GetPointer(emptyItem);
 		m_list.insert(listposition, item);
 	}
 
 	void RemoveAt(NPosition &cPosition){
 		SomeType item;
-		std::list<SomeType>::iterator listposition = cPosition.GetPointer(item);
+		typename std::list<SomeType>::iterator listposition = cPosition.GetPointer(item);
 		m_list.erase(listposition);
 	}
 
 	// This is not used.
 	bool IsNull(NPosition cPosition){
 		SomeType item;
-		std::list<SomeType>::iterator listposition = cPosition.GetPointer(item);
+		typename std::list<SomeType>::iterator listposition = cPosition.GetPointer(item);
 		if (listposition == m_list.end()){
 			return true;
 		}
@@ -117,6 +129,6 @@ public:
 	//
 
 private:
-	std::list<SomeType> m_list;
+	typename std::list<SomeType> m_list;
 //	std::list<SomeType>::iterator position;
 };

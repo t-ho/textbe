@@ -13,7 +13,7 @@
 #include "TranslateSALMain.h"
 #include "TranslateAtomicBlock.h"
 #include "TranslateParsingRule.h"
-#include "TranslateUPPAAL.h"
+//#include "TranslateUPPAAL.h"
 
 class CTranslateParsingMethods : public CObject
 {
@@ -26,7 +26,7 @@ public:
 public:
 	void StoreNodeTransition(CTranslateSALMain& cTranslateMain, int iNode, CString strGuard, NList<CString, CString>* plActions, int iParent, bool bIsExternal, bool bIsInternalInput);
 	CTranslateParsingRule* GetRule(int iRuleID);
-	void StoreUPPAALTransition(CTranslateUPPAAL& cTranslateMain, int iNode, CString strLabel, int iLabelType);
-	void StoreMultipleUPPAALTransition(CTranslateUPPAAL& cTranslateMain, int iNode, NList<CTranslateUTrans*, CTranslateUTrans*>* plTransitions, bool bDoClocks);
-	void StoreUPPAALManyLabels(CTranslateUPPAAL& cTranslateMain, int iNode, NList<CString, CString>* plLabels, NList<int, int>* plLabelTypes);
+	//void StoreUPPAALTransition(CTranslateUPPAAL& cTranslateMain, int iNode, CString strLabel, int iLabelType);
+	//void StoreMultipleUPPAALTransition(CTranslateUPPAAL& cTranslateMain, int iNode, NList<CTranslateUTrans*, CTranslateUTrans*>* plTransitions, bool bDoClocks);
+	//void StoreUPPAALManyLabels(CTranslateUPPAAL& cTranslateMain, int iNode, NList<CString, CString>* plLabels, NList<int, int>* plLabelTypes);
 };
