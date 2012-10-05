@@ -93,6 +93,25 @@ void CTranslateSALMain::SelectOptions(void)
 	m_strFileName2 = cOptionsDialog.m_strFileName2;
 	m_strCriterion = cOptionsDialog.m_strCriterion;
 	
+		NMap<int,int> maptest;
+		int firstint = 1;
+		int secondint = 2;
+		maptest.SetAt(firstint,secondint);
+		int anotherone = 3;
+		int anotherone2 = 4;
+		maptest.SetAt(anotherone,anotherone2);
+
+		int something;
+		maptest.Lookup(anotherone,something);
+		
+		NPosition position = maptest.GetStartPosition();
+		maptest.GetNextAssoc(position,firstint,secondint);
+		firstint = firstint + 0;
+		secondint = secondint +0;
+		maptest.GetNextAssoc(position,anotherone,anotherone2);
+		anotherone = anotherone + 1;
+		anotherone2 = anotherone2 + 2;
+	
 		NList <int, int> test;
 		test.AddTail(1);
 		test.AddTail(2);
@@ -122,6 +141,22 @@ void CTranslateSALMain::SelectOptions(void)
 			listposition++;
 		}
 	int someint = 4;
+
+	// Converting from const wchar_t* to CString:
+	const wchar_t* hello = _T("hello");
+	CString s = CString(hello); // This is one way to do it.
+	CString anotherone = (LPCTSTR) hello;  // This gives wrong results!!!!
+	CString anotherone2 = (CString) hello; // Correct!! Another way to do it.
+//	AfxMessageBox(anotherone2);
+	m_strPathName = hello; // This works when it's a header-declared variable.
+//	AfxMessageBox(m_strPathName);
+
+	// Converting from CString to const wchar_t* (as LPCTSTR):
+	CString st = _T("hello npy");
+	LPCTSTR test7 = st;
+	wchar_t* test8 = (wchar_t*)test7;
+	// Now convert back to make sure it worked.
+	CString newone = (CString)test8; 
 /*	NList someposition = (NList) someint;
 		std::list<CTranslateNode*> test3;
 NList<int,int> testlist;
@@ -248,7 +283,7 @@ void CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE)
 	cTranslateMain.m_bIsUPPAAL = false;
 	//int iNormalRoot;
 	int iRootNode;
-	CTranslateNode* pcRandomRoot;
+//	CTranslateNode* pcRandomRoot;
 	CTranslateNode* pcTranslateRoot;
 	cTranslateMain.m_bDisplayTimes = m_bDisplayTimes;
 	cTranslateMain.m_bTranslateWithRandomBT = m_bTranslateWithRandomBT;
@@ -381,9 +416,8 @@ void CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE)
 					// Find all the set nodes and parse their expressions.
 					for (int s = 1; s < cTranslateMain.m_iHighestTranslateID; s++){
 						CTranslateNode* pcCurrentSetNode;
-						std::map<int, CTranslateNode*>::iterator iSetSuccess = cTranslateMain.m_mTranslateNodes.find(s);
-						pcCurrentSetNode = iSetSuccess->second;
-						if (iSetSuccess != cTranslateMain.m_mTranslateNodes.end()){
+						int iSetSuccess = cTranslateMain.m_mTranslateNodes.Lookup(s, pcCurrentSetNode);
+						if (iSetSuccess != 0){
 						//	if (pcCurrentSetNode->IsNodeSetOperation() == true){
 								// The node is a set operation.
 				//				lSetNodes.AddTail(pcCurrentSetNode);
@@ -411,9 +445,9 @@ void CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE)
 				}
 	//		}
 	//	}////////////////////// SLICING SECTION STARTS HERE //////////////////////////////////////////////////
-		if (m_bTranslateWithViews){  //////// Change this to a slicing checkbox option.
+	/*	if (m_bTranslateWithViews){  //////// Change this to a slicing checkbox option.
 			// Find the slice of the tree based on the user's given criterion.
-	/*		pcTranslateRoot->SetParent(0);
+			pcTranslateRoot->SetParent(0);
 			CTranslateSlicer cSlicer;
 			iRootNode = pcTranslateRoot->GetNodeID();
 			cTranslateMain.MakeLongIDs(iRootNode);	
@@ -591,8 +625,7 @@ void CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE)
 				+ _T(": TYPE={"));
 			// Get the states for this component.
 			NList<CString,CString>* plStates;
-			std::map<int, NList<CString, CString>*>::iterator iSuccess = cTranslateMain.m_cLocalStates.find(iLocalCounter);
-			plStates = iSuccess->second;
+			int iSuccess = cTranslateMain.m_cLocalStates.Lookup(iLocalCounter,plStates);
 			int iStateCounter = 0;
 			NPosition cStatePosition = plStates->GetHeadPosition();
 			while(cStatePosition.IsNotNull()){
@@ -617,8 +650,7 @@ void CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE)
 				strText.Append(TrimChangeCase(strSetType, true) + _T(": TYPE={"));
 				// Get the possible elements for this set type.
 				NList<CString,CString>* plElements;
-				std::map<int, NList<CString, CString>*>::iterator iSuccess = cTranslateMain.m_cSetElements.find(iSetCounter);
-				plElements = iSuccess->second;
+				int iSuccess = cTranslateMain.m_cSetElements.Lookup(iSetCounter,plElements);
 				int iElementCounter = 0;
 				NPosition cElementPosition = plElements->GetHeadPosition();
 				while(cElementPosition.IsNotNull()){
@@ -706,9 +738,8 @@ void CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE)
 		while(cUserAttributePos.IsNotNull()){
 			CString strAttributeName = cTranslateMain.m_lUserDefinedAttributes.GetNext(cUserAttributePos);
 			int iTypeLocation;
-			std::map<int, int>::iterator iAttributeSuccess = cTranslateMain.m_mUserAttributeTypes.find(iAttributeLocation);
-			iTypeLocation = iAttributeSuccess->second;
-			if (iAttributeSuccess == cTranslateMain.m_mUserAttributeTypes.end()){  // The type could not be found in the map.
+			int iAttributeSuccess = cTranslateMain.m_mUserAttributeTypes.Lookup(iAttributeLocation, iTypeLocation);
+			if (iAttributeSuccess == 0){   // The type could not be found in the map.
 				CString strMessage = _T("Type not defined for the attribute: ");
 				strMessage = strMessage + strAttributeName;
 				CTranslateException cException(strMessage);
@@ -754,8 +785,8 @@ void CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE)
 			while (cSetPosition.IsNotNull()){
 				CString strSetName = cTranslateMain.m_cSetNames.GetNext(cSetPosition);
 				int iSetTypePosition;
-				std::map<int, int>::iterator iSuccess = cTranslateMain.m_cSetNamesToTypes.find(iLocalSetCounter);
-				iSetTypePosition = iSuccess->second;
+				int iSuccess = cTranslateMain.m_cSetNamesToTypes.Lookup(iLocalSetCounter, 
+					iSetTypePosition);
 				CString strSetType = GetListElement(cTranslateMain.m_cSetTypes,iSetTypePosition);
 				// Check if this set is an attribute of another set.
 				NPosition cIsInAttributeList = cTranslateMain.m_cAttributeSets.Find(strSetName);
@@ -763,27 +794,25 @@ void CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE)
 					// The set is an attribute of either an element of another set or a normal component.
 					int iParentPosition;
 					int iAttributePosition = FindListPosition(cTranslateMain.m_cAttributeSets,strSetName);
-					std::map<int, int>::iterator iParentSuccess = cTranslateMain.m_cSetsToParentSets.find(iAttributePosition);
-					iParentPosition = iParentSuccess->second;
-					if (iParentSuccess != cTranslateMain.m_cSetsToParentSets.end()){  
+					int iParentSuccess = cTranslateMain.m_cSetsToParentSets.Lookup(iAttributePosition, iParentPosition);
+					if (iParentSuccess > 0){  
 /////////// Do something if it is 0 as an error occurred.
 						CString strParentSet = GetListElement(cTranslateMain.m_cParentSets,iParentPosition);
 						// Find the location of the parent set in the normal set list.
 						int iParentNameLocation = FindListPosition(cTranslateMain.m_cSetNames,strParentSet);
 						// Find the type of the parent set.
 						int iParentTypeLocation;
-						std::map<int, int>::iterator iParentTypeSuccess = cTranslateMain.m_cSetNamesToTypes.find(iParentNameLocation);
-						iParentTypeLocation = iParentTypeSuccess->second;
-						if (iParentTypeSuccess != cTranslateMain.m_cSetNamesToTypes.end()){ // The set is an attribute of an element of another set, 
+						int iParentTypeSuccess = cTranslateMain.m_cSetNamesToTypes.Lookup(iParentNameLocation, 
+							iParentTypeLocation);
+						if (iParentTypeSuccess > 0){  // The set is an attribute of an element of another set, 
 											  // e.g. if set s is an attribute of each element c of set t, so
 											  // there would be a ||c:t or []c:t and under it, c_s refers to c's attribute s.
 							CString strParentType = GetListElement(cTranslateMain.m_cSetTypes,
 								iParentTypeLocation);
 							// Get the elements of the parent set.
 							NList<CString, CString>* plParentElements;
-							std::map<int, NList<CString, CString>*>::iterator iElementSuccess = cTranslateMain.m_cSetElements.find(iParentTypeLocation);
-							plParentElements = iElementSuccess->second;
-							if (iElementSuccess != cTranslateMain.m_cSetElements.end()){ 
+							int iElementSuccess = cTranslateMain.m_cSetElements.Lookup(iParentTypeLocation, plParentElements);
+							if (iElementSuccess > 0){ 
 	/////////// Do something if it is 0 as an error occurred.
 								NPosition cParentElementPos;
 								cParentElementPos = plParentElements->GetHeadPosition();
@@ -839,8 +868,7 @@ void CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE)
 			strPCText.Format(strPCText + _T("%d"),i);
 			strPCText.Append(_T(": [0.."));
 			int iHighestValue;
-			std::map<int, int>::iterator iSuccess = cTranslateMain.m_cPCRanges.find(i);
-			iHighestValue = iSuccess->second;
+			int iSuccess = cTranslateMain.m_cPCRanges.Lookup(i,iHighestValue);
 			strPCText.Format(strPCText + _T("%d"), iHighestValue);
 			strText.Append(strPCText);
 			strText.Append(_T("]"));
@@ -912,9 +940,8 @@ void CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE)
 						if (plBlock->ContainsExternal() != true){
 							if (UsingViews() != true){
 								CString strGuard;
-								std::map<int, CString>::iterator iSuccess = cTranslateMain.m_cNodesToGuards.find(iNode);
-								strGuard = iSuccess->second;
-								if (iSuccess != cTranslateMain.m_cNodesToGuards.end()){
+								int iSuccess = cTranslateMain.m_cNodesToGuards.Lookup(iNode,strGuard);
+								if (iSuccess > 0){
 									if (iInternalActionCount != 0){
 									// This isn't the first action.
 										strTempText.Append(_T("OR "));
@@ -935,9 +962,8 @@ void CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE)
 					}
 				}else if ((pcNode->GetType() != GSE_T_INPUT) && (pcNode->GetType() != GSE_T_EVENT)){  // If this is not an external input node.
 					CString strGuard;
-					std::map<int, CString>::iterator iSuccess = cTranslateMain.m_cNodesToGuards.find(iNode);
-					strGuard = iSuccess->second;
-					if (iSuccess != cTranslateMain.m_cNodesToGuards.end()){
+					int iSuccess = cTranslateMain.m_cNodesToGuards.Lookup(iNode,strGuard);
+					if (iSuccess != 0){
 						if (iInternalActionCount != 0){ // This is not the first action.
 							strTempText.Append(_T("OR "));
 						}else{
@@ -977,15 +1003,13 @@ void CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE)
 					//	if (plBlock->ContainsExternal() != true){
 							if (UsingViews() != true){
 								CString strGuard;
-								std::map<int, CString>::iterator iSuccess = cTranslateMain.m_cNodesToGuards.find(iNode);
-								strGuard = iSuccess->second;
-								if (iSuccess != cTranslateMain.m_cNodesToGuards.end()){
+								int iSuccess = cTranslateMain.m_cNodesToGuards.Lookup(iNode,strGuard);
+								if (iSuccess > 0){
 									// Add the updates to set all messages back to false.
 									if (!plBlock->ContainsInternalInput()){
 										NList<CString,CString>* plActionList;
-										std::map<int, NList<CString, CString>*>::iterator iSuccess2 = cTranslateMain.m_cNodesToActions.find(iNode);
-										plActionList = iSuccess2->second;
-										if (iSuccess2 != cTranslateMain.m_cNodesToActions.end()){
+										int iSuccess2 = cTranslateMain.m_cNodesToActions.Lookup(iNode,plActionList);
+										if (iSuccess2 != 0){
 											NPosition cBooleanPos = cTranslateMain.m_cLocalBooleans.GetHeadPosition();
 											while (cBooleanPos.IsNotNull()){
 												CString strLocalBoolean = cTranslateMain.m_cLocalBooleans.GetNext(cBooleanPos);
@@ -1004,9 +1028,8 @@ void CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE)
 					}
 				}else if (pcNode->GetType() != GSE_T_INPUT1){
 					NList<CString,CString>* plActionList;
-					std::map<int, NList<CString, CString>*>::iterator iSuccess2 = cTranslateMain.m_cNodesToActions.find(iNode);
-					plActionList = iSuccess2->second;
-					if (iSuccess2 != cTranslateMain.m_cNodesToActions.end()){
+					int iSuccess2 = cTranslateMain.m_cNodesToActions.Lookup(iNode,plActionList);
+					if (iSuccess2 != 0){
 						NPosition cLocalBooleanPosition;
 						cLocalBooleanPosition = cTranslateMain.m_cLocalBooleans.GetHeadPosition();
 						while(cLocalBooleanPosition.IsNotNull()){
@@ -1059,14 +1082,16 @@ void CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE)
 							int iOwnerNameLocation = FindListPosition(cTranslateMain.m_cSetNames,strOwnerVariable);
 							// Find the type of the parent set.
 							int iOwnerTypeLocation;
-							std::map<int, int>::iterator iOwnerTypeSuccess = cTranslateMain.m_cSetNamesToTypes.find(iOwnerNameLocation);
-							iOwnerTypeLocation = iOwnerTypeSuccess->second;
-							if (iOwnerTypeSuccess != cTranslateMain.m_cSetNamesToTypes.end()){
+							int iOwnerTypeSuccess = cTranslateMain.m_cSetNamesToTypes.Lookup(iOwnerNameLocation, 
+								iOwnerTypeLocation);
+							if (iOwnerTypeSuccess > 0){
 	/////////// Do something if it is 0 as an error occurred.
 								CString strOwnerType = GetListElement(cTranslateMain.m_cSetTypes,
 									iOwnerTypeLocation);
 								// Get the elements of the parent set.
 								NList<CString, CString>* plOwnerElements;
+								int iElementSuccess = cTranslateMain.m_cSetElements.Lookup(iOwnerTypeLocation, plOwnerElements);
+								if (iElementSuccess > 0){ 
 		/////////// Do something if it is 0 as an error occurred.
 									NPosition cOwnerElementPos;
 									cOwnerElementPos = plOwnerElements->GetHeadPosition();
@@ -1151,27 +1176,23 @@ void CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE)
 				// name in the set name, for each element of the other set.
 				int iSetLocation = FindListPosition(cTranslateMain.m_cAttributeSets,strSetName);
 				int iParentSetLocation;
-				std::map<int, int>::iterator iSetSuccess = cTranslateMain.m_cSetsToParentSets.find(iSetLocation);
-				iParentSetLocation = iSetSuccess->second;
-				if (iSetSuccess != cTranslateMain.m_cSetsToParentSets.end()){
+				int iSetSuccess = cTranslateMain.m_cSetsToParentSets.Lookup(iSetLocation, iParentSetLocation);
+				if (iSetSuccess != 0){
 					// This set is an attribute.
 					CString strParentSet = GetListElement(cTranslateMain.m_cParentSets, iParentSetLocation);
 					// Find the location of the parent set in the normal set list.
 					int iParentNameLocation = FindListPosition(cTranslateMain.m_cSetNames,strParentSet);
 					// Find the type of the parent set.
 					int iParentTypeLocation;
-					std::map<int, int>::iterator iParentTypeSuccess = cTranslateMain.m_cSetNamesToTypes.find(iParentNameLocation);
-					iParentTypeLocation = iParentTypeSuccess->second;
-					if (iParentTypeSuccess != cTranslateMain.m_cSetNamesToTypes.end()){
-												  // The set is an attribute of an element of another set, 
+					int iParentTypeSuccess = cTranslateMain.m_cSetNamesToTypes.Lookup(iParentNameLocation, iParentTypeLocation);
+					if (iParentTypeSuccess > 0){  // The set is an attribute of an element of another set, 
 											      // e.g. if set s is an attribute of each element c of set t, so
 											      // there would be a ||c:t or []c:t and under it, c_s refers to c's attribute s.
 						CString strParentType = GetListElement(cTranslateMain.m_cSetTypes, iParentTypeLocation);
 						// Get the elements of the parent set.
 						NList<CString, CString>* plParentElements;
-						std::map<int, NList<CString, CString>*>::iterator iElementSuccess = cTranslateMain.m_cSetElements.find(iParentTypeLocation);
-						plParentElements = iElementSuccess->second;
-						if (iElementSuccess != cTranslateMain.m_cSetElements.end()){
+						int iElementSuccess = cTranslateMain.m_cSetElements.Lookup(iParentTypeLocation, plParentElements);
+						if (iElementSuccess > 0){ 
 	/////////// Do something if it is 0 as an error occurred.
 							NPosition cParentElementPos;
 							cParentElementPos = plParentElements->GetHeadPosition();
@@ -1181,9 +1202,8 @@ void CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE)
 								strFullSetName = TrimChangeCase(strFullSetName, false);
 
 								NList<CString, CString>* plInitial;
-								std::map<int, NList<CString, CString>*>::iterator iInitialSuccess = cTranslateMain.m_cInitSetElements.find(setNo);
-								plInitial = iInitialSuccess->second;
-								if (iInitialSuccess != cTranslateMain.m_cInitSetElements.end()){
+								int iInitialSuccess = cTranslateMain.m_cInitSetElements.Lookup(setNo,plInitial);
+								if (iInitialSuccess > 0){
 									strText.Append(strFullSetName);
 									strText.Append(_T("={"));
 									NPosition cInitialPos;
@@ -1312,7 +1332,7 @@ void CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE)
 			CString strInitialisePC = cTranslateMain.m_lInitialisationPCs.GetNext(cInitialPCPos);
 			// Check if it was already initialised.
 			NPosition cAlreadyInitialisedPos = lRootChildrenPCs.Find(strInitialisePC);
-			if (cAlreadyInitialisedPos == NULL){
+			if (cAlreadyInitialisedPos.IsNull()){
 				// It wasn't already initialised.
 				strText.Append(strInitialisePC);
 				strText.Append(_T("=1;\r\n"));
@@ -1324,7 +1344,7 @@ void CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE)
 			strPC.Format(strPC + _T("%d"), i);
 			NPosition cPos = lRootChildrenPCs.Find(strPC);
 			NPosition cPos2 = cTranslateMain.m_lInitialisationPCs.Find(strPC); 
-			if ((cPos == NULL) && (cPos2 == NULL)){ // This wasn't already initialised.
+			if ((cPos.IsNull()) && (cPos2.IsNull())){ // This wasn't already initialised.
 				strText.Append(strPC);
 				strText.Append(_T("=0;\r\n"));
 			}
@@ -1509,7 +1529,7 @@ void CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE)
 		NPosition cBlockPos = pcBlocks->GetHeadPosition();
 		while (cBlockPos.IsNotNull()){
 			CTranslateAtomicBlock* pcCurrentBlock = pcBlocks->GetNext(cBlockPos);
-			if (lBlocksToDelete.Find(pcCurrentBlock) == NULL){
+			if (lBlocksToDelete.Find(pcCurrentBlock).IsNull()){
 				lBlocksToDelete.AddTail(pcCurrentBlock);
 			}
 		}
@@ -1529,69 +1549,82 @@ void CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE)
 	}
 	lBlocksToDelete.RemoveAll();
 
-	std::map<int,CTranslateNode*>::iterator cNodePosition = cTranslateMain.m_mTranslateNodes.begin();
-	while(cNodePosition != cTranslateMain.m_mTranslateNodes.end()){
-		CTranslateNode* pcTheNode = (*cNodePosition).second;
+	NPosition cNodePosition = cTranslateMain.m_mTranslateNodes.GetStartPosition();
+	while(cNodePosition.IsNotNull()){
+		CTranslateNode* pcTheNode;
+		int iID;
+		cTranslateMain.m_mTranslateNodes.GetNextAssoc(cNodePosition,iID,pcTheNode);
 		delete pcTheNode;
 		pcTheNode = NULL;
 	}
-	cTranslateMain.m_mTranslateNodes.clear();
+	cTranslateMain.m_mTranslateNodes.RemoveAll();
 
-	std::map<int,NList<CString, CString>*>::iterator cSetPosition = cTranslateMain.m_cSetElements.begin();
-	while(cSetPosition != cTranslateMain.m_cSetElements.end()){
-		NList<CString, CString>* plList = (*cSetPosition).second;
+	NPosition cSetPosition = cTranslateMain.m_cSetElements.GetStartPosition();
+	while(cSetPosition.IsNotNull()){
+		NList<CString, CString>* plList;
+		int iSetNumber;
+		cTranslateMain.m_cSetElements.GetNextAssoc(cSetPosition,iSetNumber,plList);
 		delete plList;
 		plList = NULL;
 	}
-	cTranslateMain.m_cSetElements.clear();
+	cTranslateMain.m_cSetElements.RemoveAll();
 
-	std::map<int,NList<CString, CString>*>::iterator cSetInitPosition = cTranslateMain.m_cInitSetElements.begin();
-	while(cSetInitPosition != cTranslateMain.m_cInitSetElements.end()){
-		NList<CString, CString>* plList = (*cSetInitPosition).second;
+	NPosition cSetInitPosition = cTranslateMain.m_cInitSetElements.GetStartPosition();
+	while(cSetInitPosition.IsNotNull()){
+		NList<CString, CString>* plList;
+		int iSetNumber;
+		cTranslateMain.m_cInitSetElements.GetNextAssoc(cSetInitPosition,iSetNumber,plList);
 		delete plList;
 		plList = NULL;
 	}
-	cTranslateMain.m_cInitSetElements.clear();
+	cTranslateMain.m_cInitSetElements.RemoveAll();
 
-	std::map<int,NList<CString, CString>*>::iterator cStatePosition = cTranslateMain.m_cLocalStates.begin();
-	while(cStatePosition != cTranslateMain.m_cLocalStates.end()){
-		NList<CString, CString>* plStates = (*cStatePosition).second;
+	NPosition cStatePosition = cTranslateMain.m_cLocalStates.GetStartPosition();
+	while(cStatePosition.IsNotNull()){
+		NList<CString,CString>* plStates;
+		int iLocation;
+		cTranslateMain.m_cLocalStates.GetNextAssoc(cStatePosition,iLocation,plStates);
 		delete plStates;
 		plStates = NULL;
 	}
-	cTranslateMain.m_cLocalStates.clear();
-	
-	std::map<int,NList<CString, CString>*>::iterator cActionPosition = cTranslateMain.m_cNodesToActions.begin();
-	while(cActionPosition != cTranslateMain.m_cNodesToActions.end()){
-		NList<CString,CString>* plStates = (*cActionPosition).second;
+	cTranslateMain.m_cLocalStates.RemoveAll();
+	cTranslateMain.m_lAtomicNodes.RemoveAll();
+	NPosition cActionPosition = cTranslateMain.m_cNodesToActions.GetStartPosition();
+	while(cActionPosition.IsNotNull()){
+		NList<CString,CString>* plStates;
+		int iLocation;
+		cTranslateMain.m_cNodesToActions.GetNextAssoc(cActionPosition,iLocation,plStates);
 		delete plStates;
 		plStates = NULL;
 	}
-	cTranslateMain.m_cNodesToActions.clear();
-
-	std::map<int,NList<CString, CString>*>::iterator cExtraPosition = cTranslateMain.m_cExtraActions.begin();
-	while(cExtraPosition != cTranslateMain.m_cExtraActions.end()){
-		NList<CString,CString>* plStates = (*cExtraPosition).second;
+	cTranslateMain.m_cNodesToActions.RemoveAll();
+	NPosition cExtraPosition = cTranslateMain.m_cExtraActions.GetStartPosition();
+	while(cExtraPosition.IsNotNull()){
+		NList<CString,CString>* plStates;
+		int iLocation;
+		cTranslateMain.m_cExtraActions.GetNextAssoc(cExtraPosition,iLocation,plStates);
 		delete plStates;
 		plStates = NULL;
 	}
-	cTranslateMain.m_cExtraActions.clear();
-
-	std::map<int,NList<CString, CString>*>::iterator cAtomicActionPos = cTranslateMain.m_cAtomicNodesToActions.begin();
-	while(cAtomicActionPos != cTranslateMain.m_cAtomicNodesToActions.end()){
-		NList<CString,CString>* plStates = (*cAtomicActionPos).second;
+	cTranslateMain.m_cExtraActions.RemoveAll();
+	NPosition cAtomicActionPos = cTranslateMain.m_cAtomicNodesToActions.GetStartPosition();
+	while(cAtomicActionPos.IsNotNull()){
+		NList<CString,CString>* plStates;
+		int iLocation;
+		cTranslateMain.m_cAtomicNodesToActions.GetNextAssoc(cAtomicActionPos,iLocation,plStates);
 		delete plStates;
 		plStates = NULL;
 	}
-	cTranslateMain.m_cAtomicNodesToActions.clear();
-
-	std::map<int,NList<int, int>*>::iterator cInternalPos = cTranslateMain.m_cMatchingInternal.begin();
-	while(cInternalPos != cTranslateMain.m_cMatchingInternal.end()){
-		NList<int,int>* plInputs = (*cInternalPos).second;
+	cTranslateMain.m_cAtomicNodesToActions.RemoveAll();
+	NPosition cInternalPos = cTranslateMain.m_cMatchingInternal.GetStartPosition();
+	while(cInternalPos.IsNotNull()){
+		NList<int,int>* plInputs;
+		int iOutput;
+		cTranslateMain.m_cMatchingInternal.GetNextAssoc(cInternalPos,iOutput,plInputs);
 		delete plInputs;
 		plInputs = NULL;
 	}
-	cTranslateMain.m_cMatchingInternal.clear();
+	cTranslateMain.m_cMatchingInternal.RemoveAll();
 
 	// Free the memory used for the Translation Steps.
 	NPosition cStepPosition = cTranslateMain.m_lSteps.GetHeadPosition();
@@ -1642,7 +1675,7 @@ void CTranslateSALMain::MakeLongIDs(int iRootNode){
 void CTranslateSALMain::AddInputVariable(CString strName)
 {
 	NPosition cPosition = m_cInputVariables.Find(strName);
-	if (cPosition == NULL){
+	if (cPosition.IsNull()){
 		m_cInputVariables.AddTail(strName);
 	}
 }	
@@ -1653,7 +1686,7 @@ void CTranslateSALMain::AddInputVariable(CString strName)
 	 */
 void CTranslateSALMain::AddOutputVariable(CString strName){
 	NPosition cPosition = m_cOutputVariables.Find(strName);
-	if (cPosition == NULL){
+	if (cPosition.IsNull()){
 		m_cOutputVariables.AddTail(strName);
 	}
 }
@@ -1664,7 +1697,7 @@ void CTranslateSALMain::AddOutputVariable(CString strName){
 	 */
 void CTranslateSALMain::AddLocalBoolean(CString strName){
 	NPosition cPosition = m_cLocalBooleans.Find(strName);
-	if (cPosition == NULL){
+	if (cPosition.IsNull()){
 		m_cLocalBooleans.AddTail(strName);
 	}
 }	
@@ -1675,7 +1708,7 @@ void CTranslateSALMain::AddLocalBoolean(CString strName){
 //////////// This function appears to be deprecated. Check this.
 void CTranslateSALMain::AddIntegerAttribute(CString strName){
 	NPosition cPosition = m_cIntegerAttributes.Find(strName);
-	if (cPosition == NULL){
+	if (cPosition.IsNull()){
 		m_cIntegerAttributes.AddTail(strName);
 	}
 }
@@ -1699,7 +1732,7 @@ void CTranslateSALMain::AddLocalVariable(CString strName, CString strState){
 	}else{
 		NList<CString,CString> *plStates;
 		int iSuccess = m_cLocalStates.Lookup(iLocation,plStates);
-		if (plStates->Find(strState) == NULL){
+		if (plStates->Find(strState).IsNull()){
 			plStates->AddTail(strState);
 			m_cLocalStates.SetAt(iLocation,plStates);
 		}
@@ -1766,7 +1799,7 @@ void CTranslateSALMain::RemoveFromList(NList<CString, CString>& cList, int iInde
 		if (iCounter == iIndex){
 			// This is the element to remove.
 			cList.RemoveAt(cPosition);
-			cPosition = NULL; // To get out of the loop.
+			cPosition.SetIsNull(); // To get out of the loop.
 		}else{
 			CString strCurrentString = cList.GetNext(cPosition);
 			iCounter++;
@@ -1990,7 +2023,7 @@ NList<CString, CString>* CTranslateSALMain::FindThreadsToKill(int iNode, bool bC
 		// Create the list of threads to kill which does not include the ones identified above.
 		for (int i = iPC; i < iNextHighestPC; i++){
 			NPosition cPos = lDoNotKillThreads.Find(i);
-			if (cPos == NULL){ // Kill this thread.
+			if (cPos.IsNull()){ // Kill this thread.
 				CString strCurrentPC = _T("pc");
 				strCurrentPC.Format(strCurrentPC + _T("%d"), i);
 				if (bCallingForReversion){
@@ -2359,7 +2392,7 @@ void CTranslateSALMain::RemoveMessageConflicts(NList<CString, CString>& lUpdates
 		if (lUpdates.Find(strMessage + _T("'=true")).IsNotNull()){
 			NPosition cMsgPosition;
 			cMsgPosition = lUpdates.Find(strMessage + _T("'=false"));
-			if (cMsgPosition == NULL){
+			if (cMsgPosition.IsNull()){
 				bContainsFalseMsg = false;
 			}else{
 				bContainsFalseMsg = true;
@@ -2371,7 +2404,7 @@ void CTranslateSALMain::RemoveMessageConflicts(NList<CString, CString>& lUpdates
 					lUpdates.RemoveAt(cFalsePosition);
 				}
 				cFalsePosition = lUpdates.Find(strMessage + _T("'=false"));
-				if (cFalsePosition == NULL){
+				if (cFalsePosition.IsNull()){
 					bContainsFalseMsg = false;
 				}else{
 					bContainsFalseMsg = true;
@@ -2810,7 +2843,7 @@ void CTranslateSALMain::StoreSetInformation(CString strSet){
 			// Check whether the alternative name was already added.
 	/////// Give an error here that there can't be two alternative names that are the same.
 			NPosition cPos3 = m_lAlternateNames.Find(strNameInBT);
-			if (cPos3 == NULL){
+			if (cPos3.IsNull()){
 				m_lAlternateNames.AddTail(strNameInBT);
 			}
 			int iAlternateLocation = FindListPosition(m_lAlternateNames,strNameInBT);
@@ -2821,7 +2854,7 @@ void CTranslateSALMain::StoreSetInformation(CString strSet){
 
 			// Check whether the type was already added.
 			NPosition cPos = m_cSetTypes.Find(strType);
-			if (cPos == NULL){
+			if (cPos.IsNull()){
 				m_cSetTypes.AddTail(strType);
 			}
 			// Note, it was stored in the set types list even though it isn't
@@ -2831,7 +2864,7 @@ void CTranslateSALMain::StoreSetInformation(CString strSet){
 
 			// Check whether the component was already added.
 			NPosition cPos2 = m_lAttributeComponents.Find(strComponentName);
-			if (cPos2 == NULL){
+			if (cPos2.IsNull()){
 				m_lAttributeComponents.AddTail(strComponentName);
 			}
 			int iComponentLocation = FindListPosition(m_lAttributeComponents,strComponentName);
@@ -2882,7 +2915,7 @@ void CTranslateSALMain::StoreSetInformation(CString strSet){
 		// Check whether the set type was already added.
 		strSetType = TrimChangeCase(strSetType,true);
 		NPosition cPos = m_cSetTypes.Find(strSetType);
-		if (cPos == NULL){
+		if (cPos.IsNull()){
 			m_cSetTypes.AddTail(strSetType);
 		}
 
@@ -2898,7 +2931,7 @@ void CTranslateSALMain::StoreSetInformation(CString strSet){
 			// Check whether the parent set was already added.
 			strSetBelongsTo = TrimChangeCase(strSetBelongsTo,true);
 			NPosition cPos = m_cParentSets.Find(strSetBelongsTo);
-			if (cPos == NULL){
+			if (cPos.IsNull()){
 				m_cParentSets.AddTail(strSetBelongsTo);
 			}
 		////////////////// Check whether it needs to be added to the parent sets list, since the parent might be a normal component not a set.	
@@ -3020,7 +3053,7 @@ CTranslateNode* CTranslateSALMain::ReadSlice(CString strPathName, CString strFil
 			if (bOneMoreLine == true){
 				bOneMoreLine = false; // Stop it reading anymore.
 			}else{
-				if (fgets(cLine,4096,pcFile).IsNotNull()){	
+				if (fgets(cLine,4096,pcFile) != NULL){	
 					strLine2 = cLine;
 
 					if (feof(pcFile)){  // The end of the file was reached but if it's come in here
@@ -3061,7 +3094,7 @@ CTranslateNode* CTranslateSALMain::ReadSlice(CString strPathName, CString strFil
 	}catch (CTranslateException salEx){
 		AfxMessageBox(salEx.GetMessage());
 		fclose(pcFile);
-		if (plLastComponent.IsNotNull()){
+		if (plLastComponent != NULL){
 			delete plLastComponent; 
 		}
 		pcRoot = NULL;
@@ -3882,7 +3915,7 @@ void CTranslateSALMain::AddElementToSet(CString strElement, CString strSet){
 	
 	}else{ // There are already elements.
 		NPosition cPos = plElements->Find(strElement);
-		if (cPos == NULL){ // This element is not already in the list.
+		if (cPos.IsNull()){ // This element is not already in the list.
 			plElements->AddTail(strElement);
 			m_cSetElements.SetAt(iSetTypePosition, plElements);
 		}
@@ -3903,7 +3936,7 @@ void CTranslateSALMain::AddUniqueElementToSet(CString strElement, CString strSet
 	
 	}else{ // There are already elements.
 		NPosition cPos = plElements->Find(strElement);
-		if (cPos == NULL){ // This element is not already in the list.
+		if (cPos.IsNull()){ // This element is not already in the list.
 			plElements->AddTail(strElement);
 			m_cUniqueSetElements.SetAt(iSetTypePosition, plElements);
 		}
@@ -3924,7 +3957,7 @@ void CTranslateSALMain::AddInitialElement(CString strElement, CString strSet){
 	
 	}else{ // There are already elements.
 		NPosition cPos = plElements->Find(strElement);
-		if (cPos == NULL){ // This element is not already in the list.
+		if (cPos.IsNull()){ // This element is not already in the list.
 			plElements->AddTail(strElement);
 			m_cInitSetElements.SetAt(iSetNamePosition, plElements);
 		}
@@ -4846,7 +4879,7 @@ bool CTranslateSALMain::IsUppaal(){
 	return m_bIsUPPAAL;
 }
 
-CTranslateNode* CTranslateSALMain::CreateTranslateNodesFromRandom(CTranslateRandom* pcRandom, CTranslateNode* pcOriginal)
+/*CTranslateNode* CTranslateSALMain::CreateTranslateNodesFromRandom(CTranslateRandom* pcRandom, CTranslateNode* pcOriginal)
 {
 	CTranslateNode* pcNode = ConvertToTranslateNodeFromRandom(pcOriginal);
 	int iNodeID = m_iHighestTranslateID;
@@ -4896,7 +4929,7 @@ CTranslateNode* CTranslateSALMain::ConvertToTranslateNodeFromRandom(CTranslateNo
 	pcNode->SetIsUserDefinedAttribute(false);
 		
 	return pcNode;
-}
+} */
 
 void CTranslateSALMain::AddPCToInitialisation(CString strPC){
 	m_lInitialisationPCs.AddTail(strPC);

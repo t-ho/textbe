@@ -40,7 +40,7 @@ bool CTranslateRuleAltBranching::applyBackwards(CTranslateSALMain& cMain, NList<
 			iCurrentNode = cLeafNodes.GetNext(cCurrentNodePosition);
 			// Check whether this node was already finished by its sibling.
 			NPosition cFinishedPosition = lFinishedNodes.Find(iCurrentNode);
-			if (cFinishedPosition == NULL){
+			if (cFinishedPosition.IsNull()){
 				CTranslateNode* pcNode = cMain.GetNode(iCurrentNode);
 				int iStateType = pcNode->GetType();
 				int iSiblingNumber = pcNode->GetSiblingNumber();
@@ -60,7 +60,7 @@ bool CTranslateRuleAltBranching::applyBackwards(CTranslateSALMain& cMain, NList<
 							bAllAlternative = false;
 						}
 						NPosition cSiblingLocation = cLeafNodes.Find(iSibling);
-						if (cSiblingLocation == NULL){
+						if (cSiblingLocation.IsNull()){
 							// The sibling is not a leaf node.
 							bAllSiblingsLeaves = false;
 						}
@@ -158,7 +158,7 @@ bool CTranslateRuleAltBranching::applyBackwards(CTranslateSALMain& cMain, NList<
 				int iParentNode = pcMatchedNode->GetParent();
 				if (iParentNode != iFinalNode){  // This isn't the final node.
 					cNodePosition = cLeafNodes.Find(iParentNode);
-					if (cNodePosition == NULL){ // The parent wasn't already added.
+					if (cNodePosition.IsNull()){ // The parent wasn't already added.
 						cLeafNodes.AddTail(iParentNode);
 					}
 				}
@@ -310,7 +310,7 @@ CTranslateParsingRule* CTranslateRuleAltBranching::FindRule(int iIndex, NList<CT
 
 void CTranslateRuleAltBranching::translateToUPPAAL(CTranslateUPPAAL& cMain, int iNode, int iOtherNode, NList<CTranslateParsingRule*, CTranslateParsingRule*>* plSecondaryRules)
 {
-	// For each of the siblings.
+/*	// For each of the siblings.
 	CTranslateNode* pcNode = cMain.GetNode(iNode);
 	int iSiblingNum = pcNode->GetSiblingNumber();
 	int iParent = pcNode->GetParent();
@@ -340,12 +340,12 @@ void CTranslateRuleAltBranching::translateToUPPAAL(CTranslateUPPAAL& cMain, int 
 
 		// Change the source node for this branch to be the parent transition's target node.
 		pcTransition = cMain.GetNodeTransition(iCurrent);
-		if (pcTransition.IsNotNull()){  // This is a normal node with one transition.
+		if (pcTransition != NULL){  // This is a normal node with one transition.
 			pcTransition->SetSource(iParentPC, iParentPCValue + 1, 0);
 		}else{ // This is a node with multiple transitions.
 			plTransitionList = cMain.GetMultipleTransitions(iNode);
 			pcTransition = plTransitionList->GetHead();
 			pcTransition->SetSource(iParentPC, iParentPCValue + 1, 0);
 		}
-	}
+	}*/
 }

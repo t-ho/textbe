@@ -12,7 +12,7 @@
 #include "TranslateRuleSequential.h"
 #include "TranslateStep.h"
 #include "GSEMethod.h"
-#include "TranslateUTrans.h"
+//#include "TranslateUTrans.h"
 #include "TranslateException.h"
 
 CTranslateRuleSequential::CTranslateRuleSequential(void)
@@ -151,12 +151,12 @@ void CTranslateRuleSequential::translateToSAL(CTranslateSALMain& cMain, int iNod
 					
 					int iAttributeType = pcNode->GetAttributeType();
 					// Add the attributes if they haven't already been added.
-					if (cMain.m_lUserDefinedAttributes.Find(strComponent) == NULL){					
+					if (cMain.m_lUserDefinedAttributes.Find(strComponent).IsNull()){					
 						cMain.m_lUserDefinedAttributes.AddTail(strComponent);
 						int iAttributeLocation1 = cMain.FindListPosition(cMain.m_lUserDefinedAttributes, strComponent);
 						cMain.m_mUserAttributeTypes.SetAt(iAttributeLocation1, iAttributeType);
 					}
-					if (cMain.m_lUserDefinedAttributes.Find(strState) == NULL){					
+					if (cMain.m_lUserDefinedAttributes.Find(strState).IsNull()){					
 						cMain.m_lUserDefinedAttributes.AddTail(strState);
 						int iAttributeLocation2 = cMain.FindListPosition(cMain.m_lUserDefinedAttributes, strState);
 						cMain.m_mUserAttributeTypes.SetAt(iAttributeLocation2, iAttributeType);
@@ -175,7 +175,7 @@ void CTranslateRuleSequential::translateToSAL(CTranslateSALMain& cMain, int iNod
 					CString strAttributeName = strComponent + _T("_") + strToken;
 					// Check if it was already added.
 					NPosition cPosition = cMain.m_lUserDefinedAttributes.Find(strAttributeName);
-					if (cPosition == NULL){ // The attribute is not in the list so add it.
+					if (cPosition.IsNull()){ // The attribute is not in the list so add it.
 						cMain.m_lUserDefinedAttributes.AddTail(strAttributeName);
 						// Associate the attribute with its type.
 						int iAttributeLocation1 = cMain.FindListPosition(cMain.m_lUserDefinedAttributes, strAttributeName);
@@ -278,12 +278,12 @@ void CTranslateRuleSequential::translateToSAL(CTranslateSALMain& cMain, int iNod
 					
 					int iAttributeType = pcNode->GetAttributeType();
 					// Add the attributes if they haven't already been added.
-					if (cMain.m_lUserDefinedAttributes.Find(strComponent) == NULL){					
+					if (cMain.m_lUserDefinedAttributes.Find(strComponent).IsNull()){					
 						cMain.m_lUserDefinedAttributes.AddTail(strComponent);
 						int iAttributeLocation1 = cMain.FindListPosition(cMain.m_lUserDefinedAttributes, strComponent);
 						cMain.m_mUserAttributeTypes.SetAt(iAttributeLocation1, iAttributeType);
 					}
-					if (cMain.m_lUserDefinedAttributes.Find(strState) == NULL){					
+					if (cMain.m_lUserDefinedAttributes.Find(strState).IsNull()){					
 						cMain.m_lUserDefinedAttributes.AddTail(strState);
 						int iAttributeLocation2 = cMain.FindListPosition(cMain.m_lUserDefinedAttributes, strState);
 						cMain.m_mUserAttributeTypes.SetAt(iAttributeLocation2, iAttributeType);
@@ -298,7 +298,7 @@ void CTranslateRuleSequential::translateToSAL(CTranslateSALMain& cMain, int iNod
 					CString strAttributeName = strComponent + _T("_") + strToken;
 					// Check if it was already added.
 					NPosition cPosition = cMain.m_lUserDefinedAttributes.Find(strAttributeName);
-					if (cPosition == NULL){ // The attribute is not in the list so add it.
+					if (cPosition.IsNull()){ // The attribute is not in the list so add it.
 						cMain.m_lUserDefinedAttributes.AddTail(strAttributeName);
 						int iAttributeLocation1 = cMain.FindListPosition(cMain.m_lUserDefinedAttributes, strAttributeName);
 						cMain.m_mUserAttributeTypes.SetAt(iAttributeLocation1, iUserType);
@@ -571,7 +571,7 @@ void CTranslateRuleSequential::translateToSAL(CTranslateSALMain& cMain, int iNod
 
 				// Check if it was already added.
 				NPosition cPosition = cMain.m_lUserDefinedAttributes.Find(strFirstAttribute);
-				if (cPosition == NULL){ // The attribute is not in the list so add it.
+				if (cPosition.IsNull()){ // The attribute is not in the list so add it.
 					cMain.m_lUserDefinedAttributes.AddTail(strFirstAttribute);
 					int iAttributeLocation1 = cMain.FindListPosition(cMain.m_lUserDefinedAttributes, strFirstAttribute);
 					if (iUserType != -1){   // Set the type, according to the one defined in the set information file.
@@ -594,7 +594,7 @@ void CTranslateRuleSequential::translateToSAL(CTranslateSALMain& cMain, int iNod
 				
 					// Check if it was already added.
 					NPosition cPosition = cMain.m_lUserDefinedAttributes.Find(strSecondAttribute);
-					if (cPosition == NULL){ // The attribute is not in the list so add it.
+					if (cPosition.IsNull()){ // The attribute is not in the list so add it.
 						cMain.m_lUserDefinedAttributes.AddTail(strSecondAttribute);
 						int iAttributeLocation1 = cMain.FindListPosition(cMain.m_lUserDefinedAttributes, strSecondAttribute);
 						if (iUserType != -1){  // Set the type, according to the one defined in the set information file.
@@ -629,7 +629,7 @@ void CTranslateRuleSequential::translateToSAL(CTranslateSALMain& cMain, int iNod
 
 void CTranslateRuleSequential::translateToUPPAAL(CTranslateUPPAAL& cMain, int iNode, int iOtherNode, NList<CTranslateParsingRule*, CTranslateParsingRule*>* plSecondaryRules)
 {
-	CString strLabel;
+/*	CString strLabel;
 	int iLabelType;
 	CTranslateNode* pcNode = cMain.GetNode(iNode);
 
@@ -775,5 +775,5 @@ void CTranslateRuleSequential::translateToUPPAAL(CTranslateUPPAAL& cMain, int iN
 			m_cParsingMethods.StoreUPPAALTransition(cMain,iNode,strLabel,iLabelType);
 		}
 	}
-	
+	*/
 }

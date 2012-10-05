@@ -220,7 +220,7 @@ bool CTranslateRuleReversion::ContainsPCUpdate(NList<CString, CString>* plList, 
 	
 void CTranslateRuleReversion::translateToUPPAAL(CTranslateUPPAAL& cMain, int iNode, int iOtherNode, NList<CTranslateParsingRule*, CTranslateParsingRule*>* plSecondaryRules)
 {
-	if (!(cMain.UsingViews())){
+/*	if (!(cMain.UsingViews())){
 		if (cMain.IsAtomic(iOtherNode)){
 			// This is not allowed at present.
 			// Throw an exception.
@@ -473,5 +473,5 @@ void CTranslateRuleReversion::translateToUPPAAL(CTranslateUPPAAL& cMain, int iNo
 			
 	}else{  // Using failure views.
 		// To be completed.
-	}		
+	}	*/	
 }

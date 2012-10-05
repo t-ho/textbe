@@ -191,7 +191,7 @@ void CTranslateRuleInternal::translateToSAL(CTranslateSALMain& cMain, int iNode,
 			CString strIntInputVariable = _T("intInMsg_") + strInputComponent + _T("_") + strMessageName;
 			strAction = strIntInputVariable + _T("'=true");
 			NPosition cFindPosition = plActions->Find(strAction);
-			if (cFindPosition == NULL){
+			if (cFindPosition.IsNull()){
 				plActions->AddTail(strAction);
 				cMain.AddLocalBoolean(strIntInputVariable);
 			}
@@ -233,10 +233,10 @@ void CTranslateRuleInternal::translateToSAL(CTranslateSALMain& cMain, int iNode,
 				// Associate the attributes with the correct type.
 				int iAttributeType = pcNode->GetAttributeType();
 				// Add the attributes if they haven't already been added.
-				if (cMain.m_lUserDefinedAttributes.Find(strFirstData) == NULL){					
+				if (cMain.m_lUserDefinedAttributes.Find(strFirstData).IsNull()){					
 					cMain.m_lUserDefinedAttributes.AddTail(strFirstData);
 				}
-				if (cMain.m_lUserDefinedAttributes.Find(strLeftSide) == NULL){					
+				if (cMain.m_lUserDefinedAttributes.Find(strLeftSide).IsNull()){					
 					cMain.m_lUserDefinedAttributes.AddTail(strLeftSide);
 				}
 				int iAttributeLocation1 = cMain.FindListPosition(cMain.m_lUserDefinedAttributes, strFirstData);
@@ -288,10 +288,10 @@ void CTranslateRuleInternal::translateToSAL(CTranslateSALMain& cMain, int iNode,
 					// Associate the attributes with the correct type.
 					int iAttributeType = pcNode->GetAttributeType();
 					// Add the attributes if they haven't already been added.
-					if (cMain.m_lUserDefinedAttributes.Find(strSecondData) == NULL){					
+					if (cMain.m_lUserDefinedAttributes.Find(strSecondData).IsNull()){					
 						cMain.m_lUserDefinedAttributes.AddTail(strSecondData);
 					}
-					if (cMain.m_lUserDefinedAttributes.Find(strSecondLeftSide) == NULL){					
+					if (cMain.m_lUserDefinedAttributes.Find(strSecondLeftSide).IsNull()){					
 						cMain.m_lUserDefinedAttributes.AddTail(strSecondLeftSide);
 					}
 					int iAttributeLocation1 = cMain.FindListPosition(cMain.m_lUserDefinedAttributes, strSecondData);
@@ -357,7 +357,7 @@ void CTranslateRuleInternal::translateToSAL(CTranslateSALMain& cMain, int iNode,
 			CString strIntInputVariable = _T("intInMsg_") + strInputComponent + _T("_") + strStateName;
 			strAction = strIntInputVariable + _T("'=true");
 			NPosition cFindPosition = plActions->Find(strAction);
-			if (cFindPosition == NULL){
+			if (cFindPosition.IsNull()){
 				plActions->AddTail(strAction);
 				cMain.AddLocalBoolean(strIntInputVariable);
 			}
@@ -379,7 +379,7 @@ void CTranslateRuleInternal::translateToSAL(CTranslateSALMain& cMain, int iNode,
 
 void CTranslateRuleInternal::translateToUPPAAL(CTranslateUPPAAL& cMain, int iNode, int iOtherNode, NList<CTranslateParsingRule*, CTranslateParsingRule*>* plSecondaryRules)
 {
-	CString strLabel = _T("");
+/*	CString strLabel = _T("");
 	int iLabelType;
 	CString strAction = _T("");
 
@@ -406,7 +406,7 @@ void CTranslateRuleInternal::translateToUPPAAL(CTranslateUPPAAL& cMain, int iNod
 		CString strInputComponent = pcInputNode->GetComponentName();
 		strInputComponent = cMain.TrimChangeCase(strInputComponent, false);
 		CString strIntInputVariable = _T("intInMsg_") + strInputComponent + _T("_") + strStateName;
-		if (plInputComponents->Find(strIntInputVariable) == NULL){ // The component wasn't already added.
+		if (plInputComponents->Find(strIntInputVariable).IsNull()){ // The component wasn't already added.
 			plInputComponents->AddTail(strIntInputVariable);
 			cMain.AddLocalBoolean(strIntInputVariable);
 			strLabel = strIntInputVariable;
@@ -433,5 +433,5 @@ void CTranslateRuleInternal::translateToUPPAAL(CTranslateUPPAAL& cMain, int iNod
 		delete plTransitions;
 	}
 	plInputComponents->RemoveAll();
-	delete plInputComponents;
+	delete plInputComponents; */
 }

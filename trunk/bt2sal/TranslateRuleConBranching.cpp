@@ -41,7 +41,7 @@ bool CTranslateRuleConBranching::applyBackwards(CTranslateSALMain& cMain, NList<
 			CTranslateNode* pcNode = cMain.GetNode(iCurrentNode);
 			// Check whether this node was already finished by its sibling.
 			NPosition cFinishedPosition = lFinishedNodes.Find(iCurrentNode);
-			if (cFinishedPosition == NULL){
+			if (cFinishedPosition.IsNull()){
 				int iStateType = pcNode->GetType();
 				int iSiblingNumber = pcNode->GetSiblingNumber();
 				// Check if this node has at least one sibling.
@@ -60,7 +60,7 @@ bool CTranslateRuleConBranching::applyBackwards(CTranslateSALMain& cMain, NList<
 							bAllConcurrent = false;
 						}
 						NPosition cSiblingLocation = cLeafNodes.Find(iSibling);
-						if (cSiblingLocation == NULL){
+						if (cSiblingLocation.IsNull()){
 							// The sibling is not a leaf node.
 							bAllSiblingsLeaves = false;
 						}
@@ -129,7 +129,7 @@ bool CTranslateRuleConBranching::applyBackwards(CTranslateSALMain& cMain, NList<
 				int iParentNode = pcMatchedNode->GetParent();
 				if (iParentNode != iFinalNode){  // This isn't the final node.
 					cNodePosition = cLeafNodes.Find(iParentNode);
-					if (cNodePosition == NULL){ // The parent wasn't already added.
+					if (cNodePosition.IsNull()){ // The parent wasn't already added.
 						cLeafNodes.AddTail(iParentNode);
 					}
 				}

@@ -132,7 +132,7 @@ void CTranslateRuleThreadKill::translateToSAL(CTranslateSALMain& cMain, int iNod
 
 void CTranslateRuleThreadKill::translateToUPPAAL(CTranslateUPPAAL& cMain, int iNode, int iOtherNode, NList<CTranslateParsingRule*, CTranslateParsingRule*>* plSecondaryRules)
 {
-	// Get the program counter of the thread to kill.
+/*	// Get the program counter of the thread to kill.
 	int iThreadPC = cMain.GetPC(iOtherNode);
 	// Get the process of the thread to kill.
 	int iKillProcess = cMain.GetProcess(iThreadPC);
@@ -142,7 +142,7 @@ void CTranslateRuleThreadKill::translateToUPPAAL(CTranslateUPPAAL& cMain, int iN
 	plProcessesToKill = cMain.FindProcessesToKill(iOtherNode);
 
 	// Add the first thread's process.
-	if (plProcessesToKill->Find(iKillProcess) == NULL){
+	if (plProcessesToKill->Find(iKillProcess).IsNull()){
 		plProcessesToKill->AddHead(iKillProcess);
 	}
 
@@ -177,6 +177,6 @@ void CTranslateRuleThreadKill::translateToUPPAAL(CTranslateUPPAAL& cMain, int iN
 		m_cParsingMethods.StoreUPPAALTransition(cMain, iNode, strLabel, iLabelType);
 		delete plTransitions;
 	}
-	delete plProcessesToKill;
+	delete plProcessesToKill; */
 }
 

@@ -29,7 +29,7 @@
 #include "TranslateSetUnion.h"
 #include "TranslateSetSubtract.h"
 #include "TranslateSetSubset.h"
-#include "TranslateUTrans.h"
+//#include "TranslateUTrans.h"
 #include "GSEMethod.h"
 
 #ifdef _DEBUG
@@ -454,7 +454,7 @@ CTranslateParsingRule* CTranslateParsingMethods::GetRule(int iRuleID)
 
 // Store an UPPAAL transition for normal (sequential or atomic) nodes which
 // require only one transition with one label plus additional clock labels.
-void CTranslateParsingMethods::StoreUPPAALTransition(CTranslateUPPAAL& cTranslateMain, int iNode, CString strLabel, int iLabelType)
+/*void CTranslateParsingMethods::StoreUPPAALTransition(CTranslateUPPAAL& cTranslateMain, int iNode, CString strLabel, int iLabelType)
 {
 	int iProgramCounterValue = 0;
 	int iNewValue = 0;
@@ -647,10 +647,10 @@ void CTranslateParsingMethods::StoreUPPAALTransition(CTranslateUPPAAL& cTranslat
 			}
 		}
 	}
-}
+}*/
 
 // Store an UPPAAL transition for nodes which require a set of committed states.
-void CTranslateParsingMethods::StoreMultipleUPPAALTransition(CTranslateUPPAAL &cTranslateMain, int iNode, NList<CTranslateUTrans*,CTranslateUTrans*> *plTransitions, bool bDoClocks){
+/*void CTranslateParsingMethods::StoreMultipleUPPAALTransition(CTranslateUPPAAL &cTranslateMain, int iNode, NList<CTranslateUTrans*,CTranslateUTrans*> *plTransitions, bool bDoClocks){
 	NPosition cPos;
 	NList<CTranslateUTrans*, CTranslateUTrans*>* plProcessTransitions;
 	int iProgramCounter = cTranslateMain.GetPC(iNode);
@@ -715,7 +715,7 @@ void CTranslateParsingMethods::StoreMultipleUPPAALTransition(CTranslateUPPAAL &c
 		}	
 		// Add this transition to the process' list of transitions
 		// if it's not already in the list.
-		if (plProcessTransitions->Find(pcCurrentTransition) == NULL){
+		if (plProcessTransitions->Find(pcCurrentTransition).IsNull()){
 			plProcessTransitions->AddTail(pcCurrentTransition);
 		}
 		iCount++;
@@ -733,7 +733,7 @@ void CTranslateParsingMethods::StoreMultipleUPPAALTransition(CTranslateUPPAAL &c
 			plProcessTransitions->AddTail(pcResetTransition);
 		}
 	}
-}
+}*/
 /*
 // Store an UPPAAL transition for nodes which require many labels but just one transition.
 void CTranslateParsingMethods::StoreUPPAALManyLabels(CTranslateUPPAAL& cTranslateMain, int iNode, NList<CString, CString>* plLabels, NList<int, int>* plLabelTypes){
