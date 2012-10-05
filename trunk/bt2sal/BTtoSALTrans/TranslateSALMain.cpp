@@ -75,10 +75,18 @@ CTranslateSALMain::~CTranslateSALMain(void)
 void CTranslateSALMain::SelectOptions(int iPriority, int iBuff, int iWithSets, const wchar_t* strSetsPath, const wchar_t* strInitPath)
 {
 	// Get the new selections.
-	m_iOptionSelected = iPriority;
-	m_iBufOptionSelected = iBuff;
+	if (iPriority == 2){
+		m_iOptionSelected = 4;
+	}else{
+		m_iOptionSelected = 1;
+	}
+	if (iBuff == 2){
+		m_iBufOptionSelected = 1;
+	}else{
+		m_iBufOptionSelected = 2;
+	}
 	m_bTranslateWithViews = false;
-	if (iWithSets == 1){
+	if (iWithSets == 2){
 		m_bTranslateWithRandomBT = true;
 	}else{
 		m_bTranslateWithRandomBT = false;
