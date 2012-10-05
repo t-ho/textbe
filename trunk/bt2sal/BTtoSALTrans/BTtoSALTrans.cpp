@@ -62,7 +62,19 @@ BOOL CBTtoSALTransApp::InitInstance()
 	return TRUE;
 }
 
-const wchar_t* CBTtoSALTransApp::Translate(int iPriority, int iBuff, int iWithSets, const wchar_t* strSetsPath, const wchar_t* strInitPath){
+/*
+@param: const wchar_t* strTree - the .bt representation of the tree
+		int iPriority = 1 for “no prioritisation” (default)
+					= 2 for “with prioritisation”
+		int iBuff = 1 for “messages buffered” (default)
+				= 2 for “no buffering”
+		int iWithSets = 1 for “do not use sets” (default) 
+					= 2 for “use sets”
+		const wchar_t* strSetsPath - The sets information (can be an empty string if no sets are required).
+		const wchar_t* strInitPath – The initialisation information (can be an empty string if not required).
+@return: wchar_t* - a string containing the SAL translation
+*/
+const wchar_t* CBTtoSALTransApp::Translate(const wchar_t* strTree, int iPriority, int iBuff, int iWithSets, const wchar_t* strSetsPath, const wchar_t* strInitPath){
 	m_cTranslateMain.SelectOptions(iPriority, iBuff, iWithSets, strSetsPath, strInitPath);
 	CString strResult = m_cTranslateMain.ParseBT(0, false, false);
 	LPCTSTR result = strResult;
