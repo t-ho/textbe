@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="TextBe" uid="org.be.textbe" id="org.be.textbe.ide.product" application="org.eclipse.ui.ide.workbench" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true">
+<product name="TextBe" uid="org.be.textbe" id="org.be.textbe.ide.product" application="org.eclipse.ui.ide.workbench" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
+
+   <aboutInfo>
+      <image path="/org.be.textbe.ide.branding/about/tree_of_knowledge.png"/>
+      <text>
+         http://commons.wikimedia.org/wiki/File:Tree_of_Knowledge.jpg
+      </text>
+   </aboutInfo>
 
    <configIni use="default">
    </configIni>
@@ -10,17 +17,18 @@
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
    </launcherArgs>
 
-   <windowImages i16="icons/alt_window_16.gif" i32="icons/alt_window_32.gif" i48="icons/alt_window_48.gif"/>
+   <windowImages i16="/org.be.textbe.ide.branding/icons/alt_window_16.gif" i32="/org.be.textbe.ide.branding/icons/alt_window_32.gif" i48="/org.be.textbe.ide.branding/icons/alt_window_48.gif" i64="/org.be.textbe.ide.branding/icons/alt_window_64.gif" i128="/org.be.textbe.ide.branding/icons/alt_window_128.gif"/>
 
    <splash
-      location="org.be.textbe.ide"
+      location="org.be.textbe.ide.branding"
       startupProgressRect="5,70,445,15"
       startupMessageRect="5,90,445,20"
       startupForegroundColor="000000" />
    <launcher name="textbe">
+      <macosx icon="/org.be.textbe.ide.branding/launcher/macosx/textbe.icns"/>
       <solaris/>
       <win useIco="true">
-         <ico path="/org.be.textbe.ide/icons/textbe.ico"/>
+         <ico path="/org.be.textbe.ide.branding/launcher/win32/textbe.ico"/>
          <bmp/>
       </win>
    </launcher>
@@ -153,6 +161,11 @@
       <plugin id="org.w3c.dom.smil"/>
       <plugin id="org.w3c.dom.svg"/>
    </plugins>
+
+   <features>
+      <feature id="org.be.textbe.ide.rcp.reuse" version="1.0.0.qualifier"/>
+      <feature id="org.be.textbe.ide.rcp.configuration" version="1.0.0.qualifier"/>
+   </features>
 
 
 </product>
