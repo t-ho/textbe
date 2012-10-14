@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.be.textbe</groupId>
 	<artifactId>org.be.textbe-parent</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>2.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -12,19 +12,19 @@
 	</properties>
 	<repositories>
 		<repository>
-			<id>indigo</id>
+			<id>updates4.2</id>
 			<layout>p2</layout>
-			<url>http://download.eclipse.org/releases/indigo</url>
+			<url>http://download.eclipse.org/eclipse/updates/4.2</url>
+		</repository>
+		<repository>
+			<id>juno</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/releases/juno</url>
 		</repository>
 		<repository>
 			<id>emftext</id>
 			<layout>p2</layout>
 			<url>http://emftext.org/update</url>
-		</repository>
-		<repository>
-			<id>Abstratt Graphviz</id>
-			<layout>p2</layout>
-			<url>http://abstratt.com/update</url>
 		</repository>
 		<repository>
 			<id>Orbit</id>
