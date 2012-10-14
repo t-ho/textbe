@@ -23,15 +23,15 @@
          id="product"
          point="org.eclipse.core.runtime.products">
       <product
-            application="org.be.textbe.ide.application"
-            name="TextBe Workbench">
+            application="org.eclipse.ui.ide.workbench"
+            name="TextBe">
          <property
                name="windowImages"
                value="icons/alt_window_16.gif,icons/alt_window_32.gif,icons/alt_window_48.gif">
          </property>
          <property
                name="appName"
-               value="TextBe Workbench">
+               value="TextBe">
          </property>
          <property
                name="startupProgressRect"
