@@ -35,25 +35,25 @@ bool CTranslateRuleInternal::applyBackwards(CTranslateSALMain& cMain, NList<int,
 		CTranslateNode* pcNode = cMain.GetNode(iCurrentNode);
 		int iStateType = pcNode->GetType();
 		int iSiblingNumber = pcNode->GetSiblingNumber();
-		CString strOutputComp = pcNode->GetComponentName();
-		CString strOutputState;
+		NString strOutputComp = pcNode->GetComponentName();
+		NString strOutputState;
 
 		if (iStateType == GSE_T_OUTPUT1){
 			if ((iCurrentNode != iFinalNode) && ((iSiblingNumber == 0) || (bConsiderIfBranching == true))){   
 				// The node is a sequential node.
-				CString strFlag = pcNode->GetFlag();
+				NString strFlag = pcNode->GetFlag();
 				if (strFlag == _T("")){ // Check that there is no flag, e.g. thread kill flag.
 
 					// Get the message name.
-					CString strNodeState = pcNode->GetStateName();
+					NString strNodeState = pcNode->GetStateName();
 					int iTokenPos1 = 0;
-					CString strToken1 = strNodeState.Tokenize(_T("("), iTokenPos1); 
+					NString strToken1 = strNodeState.Tokenize(_T("("), iTokenPos1); 
 					strOutputState = strToken1;
 					strToken1 = strNodeState.Tokenize(_T("("), iTokenPos1);  // Get the part after the '('.
 					if (strToken1 != _T("")){
 						// The message contains data, e.g. < m(d) >
 						if (strToken1.Right(1) != _T(")")){
-							CString strMessage = _T("Missing closing bracket in the node: ");
+							NString strMessage = _T("Missing closing bracket in the node: ");
 							strMessage = strMessage + strOutputComp + _T(" ") + strNodeState;
 							CTranslateException cException(strMessage);
 							throw cException;
@@ -80,16 +80,16 @@ bool CTranslateRuleInternal::applyBackwards(CTranslateSALMain& cMain, NList<int,
 						int iAllNodeType = pcAllNode->GetType();
 						if (iAllNodeType == GSE_T_INPUT1){ // The node is an internal input node.
 							// Check if the behavior names match and that there are no flags.
-							CString strInputState;
-							CString strAllNodeState = pcAllNode->GetStateName();
+							NString strInputState;
+							NString strAllNodeState = pcAllNode->GetStateName();
 							int iTokenPos2 = 0;
-							CString strToken2 = strAllNodeState.Tokenize(_T("("), iTokenPos2); 
+							NString strToken2 = strAllNodeState.Tokenize(_T("("), iTokenPos2); 
 							strInputState = strToken2;
 							strToken2 = strAllNodeState.Tokenize(_T("("), iTokenPos2);  // Get the part after the '('.
 							if (strToken2 != _T("")){
 								// The message contains data, e.g. < m(d) >
 								if (strToken2.Right(1) != _T(")")){
-									CString strMessage = _T("Missing closing bracket in the node: ");
+									NString strMessage = _T("Missing closing bracket in the node: ");
 									strMessage = strMessage + pcAllNode->GetComponentName() + _T(" ") + strAllNodeState;
 									CTranslateException cException(strMessage);
 									delete plMatchingInputNodes;
@@ -100,7 +100,7 @@ bool CTranslateRuleInternal::applyBackwards(CTranslateSALMain& cMain, NList<int,
 							}else{  // The message does not contain data so the entire state name is its message name.
 								strInputState = cMain.TrimChangeCase(strAllNodeState,false);
 							}
-							CString strInputFlag = pcAllNode->GetFlag();
+							NString strInputFlag = pcAllNode->GetFlag();
 
 				    		if(strInputFlag == _T("")){ // Make sure it isn't a thread kill, etc.				    		
 			    				if(strOutputState == strInputState){	    			
@@ -112,7 +112,7 @@ bool CTranslateRuleInternal::applyBackwards(CTranslateSALMain& cMain, NList<int,
 					}
 				    
 					if(!bFoundInputNode){
-						CString strMessage = _T("No matching internal input node found for: ");
+						NString strMessage = _T("No matching internal input node found for: ");
 						strMessage = strMessage + strOutputComp + _T(" <") + strOutputState + _T(">");
 						CTranslateException cException(strMessage);
 						delete plMatchingInputNodes;
@@ -153,13 +153,13 @@ bool CTranslateRuleInternal::applyBackwards(CTranslateSALMain& cMain, NList<int,
 
 void CTranslateRuleInternal::translateToSAL(CTranslateSALMain& cMain, int iNode, int iOtherNode, NList<CTranslateParsingRule*, CTranslateParsingRule*>* plSecondaryRules) 
 {
-	CString strGuard = _T("");
-	CString strAction = _T("");
-	NList<CString, CString>* plActions = new NList<CString, CString>;
+	NString strGuard = _T("");
+	NString strAction = _T("");
+	NList<NString, NString>* plActions = new NList<NString, NString>;
 
 	CTranslateNode* pcNode = cMain.GetNode(iNode);
-	CString strComponentName = pcNode->GetComponentName();
-	CString strStateName = pcNode->GetStateName();
+	NString strComponentName = pcNode->GetComponentName();
+	NString strStateName = pcNode->GetStateName();
 	strComponentName = cMain.TrimChangeCase(strComponentName, false);
 	strStateName = cMain.TrimChangeCase(strStateName, false);
 
@@ -173,22 +173,22 @@ void CTranslateRuleInternal::translateToSAL(CTranslateSALMain& cMain, int iNode,
 	cInputPos = plMatchingInputNodes->GetHeadPosition();
 	while(cInputPos.IsNotNull()){
 		int iTokenPos1 = 0;
-		CString strToken1 = strStateName.Tokenize(_T("("), iTokenPos1); 
-		CString strMessageName = strToken1;
+		NString strToken1 = strStateName.Tokenize(_T("("), iTokenPos1); 
+		NString strMessageName = strToken1;
 		strToken1 = strStateName.Tokenize(_T("("), iTokenPos1);  // Get the part after the '('.
 		if (strToken1 != _T("")){
 			// The message contains data, e.g. < m(d) >
 			strMessageName = cMain.TrimChangeCase(strMessageName, false);
-			CString strData = cMain.TrimChangeCase(strToken1, false);
+			NString strData = cMain.TrimChangeCase(strToken1, false);
 			strData = strToken1.Left(strToken1.GetLength() - 1); // Remove the closing bracket.
 			strData = cMain.TrimChangeCase(strData, false);
 			
 			// Assume that the "d" in m(d) is an attribute of this component.
 			int iInputNode = plMatchingInputNodes->GetNext(cInputPos);
 			CTranslateNode* pcInputNode = cMain.GetNode(iInputNode);
-			CString strInputComponent = pcInputNode->GetComponentName();
+			NString strInputComponent = pcInputNode->GetComponentName();
 			strInputComponent = cMain.TrimChangeCase(strInputComponent, false);
-			CString strIntInputVariable = _T("intInMsg_") + strInputComponent + _T("_") + strMessageName;
+			NString strIntInputVariable = _T("intInMsg_") + strInputComponent + _T("_") + strMessageName;
 			strAction = strIntInputVariable + _T("'=true");
 			NPosition cFindPosition = plActions->Find(strAction);
 			if (cFindPosition.IsNull()){
@@ -198,12 +198,12 @@ void CTranslateRuleInternal::translateToSAL(CTranslateSALMain& cMain, int iNode,
 
 			// Get the name that is used in the input node for the data variable.
 			int iTokenPos5 = 0;
-			CString strInputStateName = pcInputNode->GetStateName();
-			CString strDataInInput = strInputStateName.Tokenize(_T("("), iTokenPos5);
+			NString strInputStateName = pcInputNode->GetStateName();
+			NString strDataInInput = strInputStateName.Tokenize(_T("("), iTokenPos5);
 			strDataInInput = strInputStateName.Tokenize(_T("("), iTokenPos5);  // Get the part after the '('.
 			if (strDataInInput == _T("")){
 				// Throw an error as the input node is not accepting data with the message.
-				CString strMessage = _T("The input message node: ");
+				NString strMessage = _T("The input message node: ");
 				strMessage = strMessage + strInputComponent + _T(" <") + strInputStateName + _T(">\r\n");
 				strMessage = strMessage + _T("is not accepting data even though the output node: ");
 				strMessage = strMessage + strComponentName + _T(" <") + strStateName + _T(">\r\n");
@@ -214,19 +214,19 @@ void CTranslateRuleInternal::translateToSAL(CTranslateSALMain& cMain, int iNode,
 			strDataInInput = cMain.TrimChangeCase(strDataInInput, false);
 			strDataInInput = strDataInInput.Left(strDataInInput.GetLength() - 1); // Remove the closing bracket.
 			int iTokenPos4 = 0;
-			CString strFirstDataInInput = strDataInInput.Tokenize(_T(","), iTokenPos4);
-			CString strSecondDataInInput = strDataInInput.Tokenize(_T(","), iTokenPos4);
+			NString strFirstDataInInput = strDataInInput.Tokenize(_T(","), iTokenPos4);
+			NString strSecondDataInInput = strDataInInput.Tokenize(_T(","), iTokenPos4);
 			
 			// Add the action to set the data variable to equal the attribute of this component.
 			// Separate the data into each of the parts based on any commas.
 			int iTokenPos2 = 0;
-			CString strFirstData = strData.Tokenize(_T(","), iTokenPos2);
-			CString strSecondData = strData.Tokenize(_T(","), iTokenPos2);
+			NString strFirstData = strData.Tokenize(_T(","), iTokenPos2);
+			NString strSecondData = strData.Tokenize(_T(","), iTokenPos2);
 
 			// Figure out whether output node's data is referring to an attribute of the output node
 			// or to another variable that was already defined.
-			CString strRightSide;
-			CString strLeftSide = strMessageName + _T("_") + strFirstDataInInput;
+			NString strRightSide;
+			NString strLeftSide = strMessageName + _T("_") + strFirstDataInInput;
 
 			if (pcNode->IsUserDefinedAttribute()){  // Remember that at the moment, it has to be that either both
 													// data items are user-defined or neither are.
@@ -251,7 +251,7 @@ void CTranslateRuleInternal::translateToSAL(CTranslateSALMain& cMain, int iNode,
 				int iUserType = cMain.GetUserDefinedType(strComponentName, strFirstData, pcNode);
 				if(iUserType == -1){
 					// Throw an error since the data variable's type was not defined.
-					CString strMessage = _T("Type not defined for the variable: ");
+					NString strMessage = _T("Type not defined for the variable: ");
 					strMessage = strMessage + strComponentName + _T("_") + strFirstData + _T("\r\n");
 					strMessage = strMessage + _T("in the node: ");
 					strMessage = strMessage + strComponentName + _T(" <") + strStateName + _T(">\r\n");
@@ -273,7 +273,7 @@ void CTranslateRuleInternal::translateToSAL(CTranslateSALMain& cMain, int iNode,
 			if (strSecondData != _T("")){
 				if (strSecondDataInInput == _T("")){
 					// Throw an error as the input node is not accepting two items of data with the message.
-					CString strMessage = _T("The input message node: ");
+					NString strMessage = _T("The input message node: ");
 					strMessage = strMessage + strInputComponent + _T(" <") + strInputStateName + _T(">\r\n");
 					strMessage = strMessage + _T("is accepting only one data item even though the output node: ");
 					strMessage = strMessage + strComponentName + _T(" <") + strStateName + _T(">\r\n");
@@ -281,8 +281,8 @@ void CTranslateRuleInternal::translateToSAL(CTranslateSALMain& cMain, int iNode,
 					CTranslateException cException(strMessage);
 					throw cException;
 				}
-				CString strSecondRightSide;
-				CString strSecondLeftSide = strMessageName + _T("_") + strSecondDataInInput;
+				NString strSecondRightSide;
+				NString strSecondLeftSide = strMessageName + _T("_") + strSecondDataInInput;
 
 				if (pcNode->IsUserDefinedAttribute()){
 					// Associate the attributes with the correct type.
@@ -306,7 +306,7 @@ void CTranslateRuleInternal::translateToSAL(CTranslateSALMain& cMain, int iNode,
 					int iUserType = cMain.GetUserDefinedType(strComponentName, strSecondData, pcNode);
 					if(iUserType == -1){
 						// Throw an error since the data variable's type was not defined.
-						CString strMessage = _T("Type not defined for the variable: ");
+						NString strMessage = _T("Type not defined for the variable: ");
 						strMessage = strMessage + strComponentName + _T("_") + strSecondData + _T("\r\n");
 						strMessage = strMessage + _T("in the node: ");
 						strMessage = strMessage + strComponentName + _T(" <") + strStateName + _T(">\r\n");
@@ -330,7 +330,7 @@ void CTranslateRuleInternal::translateToSAL(CTranslateSALMain& cMain, int iNode,
 				// to receive two items of data.
 				if (strSecondDataInInput != _T("")){
 					// Throw an error as the output node is not sending two items of data with the message.
-					CString strMessage = _T("The input message node: ");
+					NString strMessage = _T("The input message node: ");
 					strMessage = strMessage + strInputComponent + _T(" <") + strInputStateName + _T(">\r\n");
 					strMessage = strMessage + _T("is accepting two data items even though the output node: ");
 					strMessage = strMessage + strComponentName + _T(" <") + strStateName + _T(">\r\n");
@@ -341,8 +341,8 @@ void CTranslateRuleInternal::translateToSAL(CTranslateSALMain& cMain, int iNode,
 			}
 			
 			if (cMain.GetTranslationType() == 4){
-				CString strMessage = _T("(intInMsg_") + strInputComponent + _T("_") + strMessageName;
-				CString strInputPC = cMain.GetPCForNode(iInputNode);
+				NString strMessage = _T("(intInMsg_") + strInputComponent + _T("_") + strMessageName;
+				NString strInputPC = cMain.GetPCForNode(iInputNode);
 				int iInputPCValue = cMain.GetPCValueForNode(iInputNode);
 				strMessage.Append(_T(" AND ") + strInputPC + _T("="));
 				strMessage.Format(strMessage + _T("%d"), iInputPCValue);
@@ -352,9 +352,9 @@ void CTranslateRuleInternal::translateToSAL(CTranslateSALMain& cMain, int iNode,
 		}else{  // The message did not contain data.
 			int iInputNode = plMatchingInputNodes->GetNext(cInputPos);
 			CTranslateNode* pcInputNode = cMain.GetNode(iInputNode);
-			CString strInputComponent = pcInputNode->GetComponentName();
+			NString strInputComponent = pcInputNode->GetComponentName();
 			strInputComponent = cMain.TrimChangeCase(strInputComponent, false);
-			CString strIntInputVariable = _T("intInMsg_") + strInputComponent + _T("_") + strStateName;
+			NString strIntInputVariable = _T("intInMsg_") + strInputComponent + _T("_") + strStateName;
 			strAction = strIntInputVariable + _T("'=true");
 			NPosition cFindPosition = plActions->Find(strAction);
 			if (cFindPosition.IsNull()){
@@ -363,8 +363,8 @@ void CTranslateRuleInternal::translateToSAL(CTranslateSALMain& cMain, int iNode,
 			}
 
 			if (cMain.GetTranslationType() == 4){
-				CString strMessage = _T("(intInMsg_") + strInputComponent + _T("_") + strStateName;
-				CString strInputPC = cMain.GetPCForNode(iInputNode);
+				NString strMessage = _T("(intInMsg_") + strInputComponent + _T("_") + strStateName;
+				NString strInputPC = cMain.GetPCForNode(iInputNode);
 				int iInputPCValue = cMain.GetPCValueForNode(iInputNode);
 				strMessage.Append(_T(" AND ") + strInputPC + _T("="));
 				strMessage.Format(strMessage + _T("%d"), iInputPCValue);
@@ -379,21 +379,21 @@ void CTranslateRuleInternal::translateToSAL(CTranslateSALMain& cMain, int iNode,
 
 void CTranslateRuleInternal::translateToUPPAAL(CTranslateUPPAAL& cMain, int iNode, int iOtherNode, NList<CTranslateParsingRule*, CTranslateParsingRule*>* plSecondaryRules)
 {
-/*	CString strLabel = _T("");
+/*	NString strLabel = _T("");
 	int iLabelType;
-	CString strAction = _T("");
+	NString strAction = _T("");
 
 	CTranslateNode* pcNode = cMain.GetNode(iNode);
-	CString strComponentName = pcNode->GetComponentName();
-	CString strStateName = pcNode->GetStateName();
+	NString strComponentName = pcNode->GetComponentName();
+	NString strStateName = pcNode->GetStateName();
 	strComponentName = cMain.TrimChangeCase(strComponentName, false);
 	strStateName = cMain.TrimChangeCase(strStateName, false);
 
 	// Get the list of matching internal input nodes.
 	NList<int, int>* plMatchingInputNodes;
 	plMatchingInputNodes = cMain.GetInternalMsgAssociation(iNode);
-	NList<CString, CString>* plInputComponents; // A list of the input component names.
-	plInputComponents = new NList<CString, CString>;
+	NList<NString, NString>* plInputComponents; // A list of the input component names.
+	plInputComponents = new NList<NString, NString>;
 
 	// Create variables for each input node.
 	NList<CTranslateUTrans*, CTranslateUTrans*>* plTransitions = new NList<CTranslateUTrans*, CTranslateUTrans*>;
@@ -403,9 +403,9 @@ void CTranslateRuleInternal::translateToUPPAAL(CTranslateUPPAAL& cMain, int iNod
 	while(cInputPos.IsNotNull()){
 		int iInputNode = plMatchingInputNodes->GetNext(cInputPos);
 		CTranslateNode* pcInputNode = cMain.GetNode(iInputNode);
-		CString strInputComponent = pcInputNode->GetComponentName();
+		NString strInputComponent = pcInputNode->GetComponentName();
 		strInputComponent = cMain.TrimChangeCase(strInputComponent, false);
-		CString strIntInputVariable = _T("intInMsg_") + strInputComponent + _T("_") + strStateName;
+		NString strIntInputVariable = _T("intInMsg_") + strInputComponent + _T("_") + strStateName;
 		if (plInputComponents->Find(strIntInputVariable).IsNull()){ // The component wasn't already added.
 			plInputComponents->AddTail(strIntInputVariable);
 			cMain.AddLocalBoolean(strIntInputVariable);

@@ -47,7 +47,7 @@ void NPosition::SetPointer(std::list<CTranslateAtomicBlock*> &blockList){
 	m_IsNotAtEnd = true;
 }
 
-void NPosition::SetPointer(std::list<CString> &stringList){
+void NPosition::SetPointer(std::list<NString> &stringList){
 	m_iType = 6;
 	m_stringPointer = stringList.begin();
 	m_IsNotAtEnd = true;
@@ -61,7 +61,7 @@ std::list<CTranslateNode*>::iterator NPosition::GetPointer(CTranslateNode* pcTyp
 	return m_nodePointer;
 }
 
-std::list<CString>::iterator NPosition::GetPointer(CString strType){
+std::list<NString>::iterator NPosition::GetPointer(NString strType){
 	return m_stringPointer;
 }
 
@@ -129,7 +129,7 @@ void NPosition::SetMapPointer(std::map<int,int> &intMap){
 	m_intMapPointer = intMap.begin();
 	m_iType = 7;
 }
-void NPosition::SetMapPointer(std::map<int,CString> &stringMap){
+void NPosition::SetMapPointer(std::map<int,NString> &stringMap){
 	m_stringMapPointer = stringMap.begin();
 	m_iType = 8;
 }
@@ -137,7 +137,7 @@ void NPosition::SetMapPointer(std::map<int,NList<int, int>*> &intListMap){
 	m_intListMapPointer = intListMap.begin();
 	m_iType = 9;
 }
-void NPosition::SetMapPointer(std::map<int,NList<CString, CString>*> &stringListMap){
+void NPosition::SetMapPointer(std::map<int,NList<NString, NString>*> &stringListMap){
 	m_stringListMapPointer = stringListMap.begin();
 	m_iType = 10;
 }
@@ -154,7 +154,7 @@ std::map<int,int>::iterator NPosition::GetMapPointer(int iType,int iType2){
 	return m_intMapPointer;
 }
 
-std::map<int,CString>::iterator NPosition::GetMapPointer(int iType,CString strType2){
+std::map<int,NString>::iterator NPosition::GetMapPointer(int iType,NString strType2){
 	return m_stringMapPointer;
 }
 
@@ -162,7 +162,7 @@ std::map<int,NList<int, int>*>::iterator NPosition::GetMapPointer(int iType,NLis
 	return m_intListMapPointer;
 }
 
-std::map<int,NList<CString, CString>*>::iterator NPosition::GetMapPointer(int iType,NList<CString, CString>* pcType2){
+std::map<int,NList<NString, NString>*>::iterator NPosition::GetMapPointer(int iType,NList<NString, NString>* pcType2){
 	return m_stringListMapPointer;
 }
 

@@ -51,7 +51,7 @@ bool CTranslateRuleSequential::applyBackwards(CTranslateSALMain& cMain, NList<in
 			}else if ((iStateType == GSE_T_STATE) || (iStateType == GSE_T_CONDITION) || (iStateType == GSE_T_EVENT) || (iStateType == GSE_T_GUARD) || (iStateType == GSE_T_INPUT) || (iStateType == GSE_T_OUTPUT) || (iStateType == GSE_T_INPUT1)){
 				if ((iCurrentNode != iFinalNode) && ((iSiblingNumber == 0) || (bConsiderIfBranching == true))){   
 					// The node is a sequential node.
-					CString strFlag = pcNode->GetFlag();
+					NString strFlag = pcNode->GetFlag();
 					if (strFlag == _T("")){ // Check that there is no flag, e.g. thread kill flag.
 						cMatchedNodes.AddTail(iCurrentNode);
 						m_cParsingMethods.CheckForAtomic(cMain, iCurrentNode);
@@ -86,9 +86,9 @@ bool CTranslateRuleSequential::applyBackwards(CTranslateSALMain& cMain, NList<in
 
 void CTranslateRuleSequential::translateToSAL(CTranslateSALMain& cMain, int iNode, int iOtherNode, NList<CTranslateParsingRule*, CTranslateParsingRule*>* plSecondaryRules) 
 {
-	CString strGuard = _T("");
-	CString strAction = _T("");
-	NList<CString, CString>* plActions = new NList<CString, CString>;
+	NString strGuard = _T("");
+	NString strAction = _T("");
+	NList<NString, NString>* plActions = new NList<NString, NString>;
 
 	CTranslateNode* pcNode = cMain.GetNode(iNode);
 	bool bIsExternal = false;
@@ -97,21 +97,21 @@ void CTranslateRuleSequential::translateToSAL(CTranslateSALMain& cMain, int iNod
 	if (pcNode->IsBlankNode()){  // The node is a blank node.
 		// Don't do anything in this case. - a blank transition will be created.
 	}else{
-		CString strComponentName = pcNode->GetComponentName();
-		CString strStateName = pcNode->GetStateName();
+		NString strComponentName = pcNode->GetComponentName();
+		NString strStateName = pcNode->GetStateName();
 		// Create variables for storing the actual component name & state.
 		// (Since strStateName may contain attributes).
-		CString strComponent = cMain.TrimChangeCase(strComponentName, false);
+		NString strComponent = cMain.TrimChangeCase(strComponentName, false);
 		strComponentName = strComponent;
 		strStateName = cMain.TrimChangeCase(strStateName, false);
-		CString strState = strComponentName + _T("_") + strStateName;
+		NString strState = strComponentName + _T("_") + strStateName;
 
 		// Check the type of the node and translate accordingly.
 		int iStateType = pcNode->GetType();
 		if (iStateType == GSE_T_STATE){ // State-realisation ([s])
 			int iTokenPos = 0;
-			CString strToken = strStateName.Tokenize(_T(":="), iTokenPos);
-			CString strToken2 = strStateName.Tokenize(_T(":="), iTokenPos);
+			NString strToken = strStateName.Tokenize(_T(":="), iTokenPos);
+			NString strToken2 = strStateName.Tokenize(_T(":="), iTokenPos);
 			if (strToken2 != _T("")){ // The state contains attributes.
 				strToken = cMain.TrimChangeCase(strToken, false);
 				strToken2 = cMain.TrimChangeCase(strToken2, false);
@@ -172,7 +172,7 @@ void CTranslateRuleSequential::translateToSAL(CTranslateSALMain& cMain, int iNod
 				}else if(iUserType != -1){
 					// Only associate the first attribute with the type because the second
 					// one is a variable that was defined earlier.
-					CString strAttributeName = strComponent + _T("_") + strToken;
+					NString strAttributeName = strComponent + _T("_") + strToken;
 					// Check if it was already added.
 					NPosition cPosition = cMain.m_lUserDefinedAttributes.Find(strAttributeName);
 					if (cPosition.IsNull()){ // The attribute is not in the list so add it.
@@ -233,7 +233,7 @@ void CTranslateRuleSequential::translateToSAL(CTranslateSALMain& cMain, int iNod
 		}else if (iStateType == GSE_T_CONDITION){ // Selection (?s?)
 			int iTokenPos = 0;
 			bool bIsANot = false;
-			CString strConnector = _T("=");
+			NString strConnector = _T("=");
 			if (strStateName.Left(4) == _T("NOT(")){
 				bIsANot = true;
 				int iStateLength = strStateName.GetLength();
@@ -242,8 +242,8 @@ void CTranslateRuleSequential::translateToSAL(CTranslateSALMain& cMain, int iNod
 				strStateName.Truncate(iNewLength - 1);
 				strState = strComponentName + _T("_") + strStateName;
 			}
-			CString strToken = strStateName.Tokenize(_T("="), iTokenPos);
-			CString strToken2 = strStateName.Tokenize(_T("="), iTokenPos);
+			NString strToken = strStateName.Tokenize(_T("="), iTokenPos);
+			NString strToken2 = strStateName.Tokenize(_T("="), iTokenPos);
 			if (strToken2 != _T("")){ // The state contains attributes.
 				strToken = cMain.TrimChangeCase(strToken, false);
 				strToken2 = cMain.TrimChangeCase(strToken2, false);
@@ -295,7 +295,7 @@ void CTranslateRuleSequential::translateToSAL(CTranslateSALMain& cMain, int iNod
 				}else if(iUserType != -1){
 					// Only associate the first attribute with the type because the second
 					// one is a variable that was defined earlier.
-					CString strAttributeName = strComponent + _T("_") + strToken;
+					NString strAttributeName = strComponent + _T("_") + strToken;
 					// Check if it was already added.
 					NPosition cPosition = cMain.m_lUserDefinedAttributes.Find(strAttributeName);
 					if (cPosition.IsNull()){ // The attribute is not in the list so add it.
@@ -389,9 +389,9 @@ void CTranslateRuleSequential::translateToSAL(CTranslateSALMain& cMain, int iNod
 
 			bool bIsNodeAtomic = cMain.IsAtomic(iNode);
 			if (!bIsNodeAtomic){
-				CString strProgramCounterName = cMain.GetPCForNode(iNode);
+				NString strProgramCounterName = cMain.GetPCForNode(iNode);
 				int iProgramCounterValue = cMain.GetPCValueForNode(iNode);
-				CString strOppositeGuard = strProgramCounterName + _T("=");
+				NString strOppositeGuard = strProgramCounterName + _T("=");
 				strOppositeGuard.Format(strOppositeGuard + _T("%d"), iProgramCounterValue);
 				if (bIsANot == false){  // The original selection is not a NOT case.
 					strOppositeGuard = strOppositeGuard + _T(" AND NOT (");
@@ -403,7 +403,7 @@ void CTranslateRuleSequential::translateToSAL(CTranslateSALMain& cMain, int iNod
 				
 				// CHECK THAT THE MESSAGEREADY PART HERE WON'T COME FOR EXTERNAL INPUT OR INTERNAL INPUT NODES.
 				if (!(pcNode->IsNodeNonDeterministic())){  // This is not an alternative selection.
-					NList<CString, CString>* plOppositeActions = new NList<CString, CString>;
+					NList<NString, NString>* plOppositeActions = new NList<NString, NString>;
 					plOppositeActions->AddTail(strProgramCounterName + _T("'=0"));
 					if (cMain.GetTranslationType() == 4){
 						strOppositeGuard = strOppositeGuard + _T(" AND NOT(messageReady)");
@@ -416,7 +416,7 @@ void CTranslateRuleSequential::translateToSAL(CTranslateSALMain& cMain, int iNod
 			}
 
 		}else if ((iStateType == GSE_T_EVENT) || (iStateType == GSE_T_INPUT)){ //Event (??s?? or >>s<<)
-			CString strExtInputVariable = _T("extInMsg_") + strStateName;
+			NString strExtInputVariable = _T("extInMsg_") + strStateName;
 			strGuard = strExtInputVariable + _T("=true");
 			cMain.AddInputVariable(strExtInputVariable);
 			bIsExternal = true;
@@ -426,7 +426,7 @@ void CTranslateRuleSequential::translateToSAL(CTranslateSALMain& cMain, int iNod
 		}else if (iStateType == GSE_T_GUARD){  // Guard (???s???)
 			int iTokenPos = 0;
 			bool bIsANot = false;
-			CString strConnector = _T("=");
+			NString strConnector = _T("=");
 			if (strStateName.Left(4) == _T("NOT(")){
 				bIsANot = true;
 				int iStateLength = strStateName.GetLength();
@@ -435,8 +435,8 @@ void CTranslateRuleSequential::translateToSAL(CTranslateSALMain& cMain, int iNod
 				strStateName.Truncate(iNewLength - 1);
 				strState = strComponentName + _T("_") + strStateName;
 			}
-			CString strToken = strStateName.Tokenize(_T("="), iTokenPos);
-			CString strToken2 = strStateName.Tokenize(_T("="), iTokenPos);
+			NString strToken = strStateName.Tokenize(_T("="), iTokenPos);
+			NString strToken2 = strStateName.Tokenize(_T("="), iTokenPos);
 			if (strToken2 != _T("")){ // The state contains attributes.
 				strToken = cMain.TrimChangeCase(strToken, false);
 				strToken2 = cMain.TrimChangeCase(strToken2, false);
@@ -530,7 +530,7 @@ void CTranslateRuleSequential::translateToSAL(CTranslateSALMain& cMain, int iNod
 			}
 		
 		}else if (iStateType == GSE_T_OUTPUT){ // External output (<<s>>)
-			CString strExtOutVariable = _T("extOutMsg_") + strStateName;
+			NString strExtOutVariable = _T("extOutMsg_") + strStateName;
 			cMain.AddOutputVariable(strExtOutVariable);
 			strExtOutVariable = strExtOutVariable + _T("'=true");
 			plActions->AddTail(strExtOutVariable);
@@ -543,27 +543,27 @@ void CTranslateRuleSequential::translateToSAL(CTranslateSALMain& cMain, int iNod
 			
 			// Check if the message contains data.
 			int iTokenPos1 = 0;
-			CString strToken1 = strStateName.Tokenize(_T("("), iTokenPos1); 
-			CString strMessageName = strToken1;
+			NString strToken1 = strStateName.Tokenize(_T("("), iTokenPos1); 
+			NString strMessageName = strToken1;
 			strToken1 = strStateName.Tokenize(_T("("), iTokenPos1);  // Get the part after the '('.
 			if (strToken1 != _T("")){
 				// The message contains data, e.g. > m(d) <
 				strMessageName = cMain.TrimChangeCase(strMessageName, false);
-				CString strData = cMain.TrimChangeCase(strToken1, false);
+				NString strData = cMain.TrimChangeCase(strToken1, false);
 				strData = strToken1.Left(strToken1.GetLength() - 1); // Remove the closing bracket.
 				strData = cMain.TrimChangeCase(strData, false);
 				// Separate the data into each of the parts based on any commas.
 				int iTokenPos2 = 0;
-				CString strFirstData = strData.Tokenize(_T(","), iTokenPos2);
-				CString strSecondData = strData.Tokenize(_T(","), iTokenPos2);
+				NString strFirstData = strData.Tokenize(_T(","), iTokenPos2);
+				NString strSecondData = strData.Tokenize(_T(","), iTokenPos2);
 	//			int iUserType = cMain.GetUserDefinedType(strComponentName, strFirstData, pcNode);
 	//			if (iUserType == -1){  // Throw an error as the data type was not defined in the text information file.
-	//				CString strMessage = _T("Type not defined for the message: ");
+	//				NString strMessage = _T("Type not defined for the message: ");
 	//				strMessage = strMessage + strComponentName + _T(" ") + strStateName;
 	//				CTranslateException cException(strMessage);
 	//				throw cException;
 	//			}
-				CString strFirstAttribute = strComponentName + _T("_") + strFirstData;
+				NString strFirstAttribute = strComponentName + _T("_") + strFirstData;
 				int iUserType = cMain.GetUserDefinedType(strComponentName, strFirstData, pcNode);
 				strFirstData = strMessageName + _T("_") + strFirstData;
 				strAction = strFirstAttribute + _T("'=") + strFirstData;
@@ -577,7 +577,7 @@ void CTranslateRuleSequential::translateToSAL(CTranslateSALMain& cMain, int iNod
 					if (iUserType != -1){   // Set the type, according to the one defined in the set information file.
 						cMain.m_mUserAttributeTypes.SetAt(iAttributeLocation1, iUserType);
 					}else{
-						CString strMessage = _T("Type not defined for the attribute: ");
+						NString strMessage = _T("Type not defined for the attribute: ");
 						strMessage = strMessage + strFirstAttribute;
 						CTranslateException cException(strMessage);
 						throw cException;
@@ -586,7 +586,7 @@ void CTranslateRuleSequential::translateToSAL(CTranslateSALMain& cMain, int iNod
 
 
 				if (strSecondData != _T("")){
-					CString strSecondAttribute = strComponentName + _T("_") + strSecondData;
+					NString strSecondAttribute = strComponentName + _T("_") + strSecondData;
 					int iUserType = cMain.GetUserDefinedType(strComponentName, strSecondData, pcNode);
 					strSecondData = strMessageName + _T("_") + strSecondData;
 					strAction = strSecondAttribute + _T("'=") + strSecondData;
@@ -600,14 +600,14 @@ void CTranslateRuleSequential::translateToSAL(CTranslateSALMain& cMain, int iNod
 						if (iUserType != -1){  // Set the type, according to the one defined in the set information file.
 							cMain.m_mUserAttributeTypes.SetAt(iAttributeLocation1, iUserType);
 						}else{
-							CString strMessage = _T("Type not defined for the attribute: ");
+							NString strMessage = _T("Type not defined for the attribute: ");
 							strMessage = strMessage + strFirstAttribute;
 							CTranslateException cException(strMessage);
 							throw cException;
 						}
 					}
 				}
-				CString strIntInputVariable = _T("intInMsg_") + strComponentName + _T("_") + strMessageName;
+				NString strIntInputVariable = _T("intInMsg_") + strComponentName + _T("_") + strMessageName;
 				strGuard = strIntInputVariable + _T("=true");
 				cMain.AddLocalBoolean(strIntInputVariable);
 				strAction = strIntInputVariable + _T("'=false");
@@ -615,7 +615,7 @@ void CTranslateRuleSequential::translateToSAL(CTranslateSALMain& cMain, int iNod
 				
 			}else{
 				strStateName = cMain.TrimChangeCase(strStateName, false);
-				CString strIntInputVariable = _T("intInMsg_") + strComponentName + _T("_") + strStateName;
+				NString strIntInputVariable = _T("intInMsg_") + strComponentName + _T("_") + strStateName;
 				strGuard = strIntInputVariable + _T("=true");
 				cMain.AddLocalBoolean(strIntInputVariable);
 				strAction = strIntInputVariable + _T("'=false");
@@ -629,19 +629,19 @@ void CTranslateRuleSequential::translateToSAL(CTranslateSALMain& cMain, int iNod
 
 void CTranslateRuleSequential::translateToUPPAAL(CTranslateUPPAAL& cMain, int iNode, int iOtherNode, NList<CTranslateParsingRule*, CTranslateParsingRule*>* plSecondaryRules)
 {
-/*	CString strLabel;
+/*	NString strLabel;
 	int iLabelType;
 	CTranslateNode* pcNode = cMain.GetNode(iNode);
 
 	if (pcNode->IsBlankNode()){  // The node is a blank node.
 		// Don't do anything in this case.
 	}else{
-		CString strComponentName = pcNode->GetComponentName();
-		CString strStateName = pcNode->GetStateName();
+		NString strComponentName = pcNode->GetComponentName();
+		NString strStateName = pcNode->GetStateName();
 		// Create variables for storing the actual component name & state.
 		// (Since strStateName may contain attributes).
-		CString strComponent = strComponentName;
-		CString strState = strComponentName + _T("_") + cMain.TrimChangeCase(strStateName,false);
+		NString strComponent = strComponentName;
+		NString strState = strComponentName + _T("_") + cMain.TrimChangeCase(strStateName,false);
 
 		// Check the type of the node and translate accordingly.
 		int iStateType = pcNode->GetType();
@@ -650,8 +650,8 @@ void CTranslateRuleSequential::translateToUPPAAL(CTranslateUPPAAL& cMain, int iN
 				strLabel = strStateName; // Leave it as it is since this is a formula.
 			}else{
 				int iTokenPos = 0;
-				CString strToken = strStateName.Tokenize(_T(":="), iTokenPos);
-				CString strToken2 = strStateName.Tokenize(_T(":="), iTokenPos);
+				NString strToken = strStateName.Tokenize(_T(":="), iTokenPos);
+				NString strToken2 = strStateName.Tokenize(_T(":="), iTokenPos);
 				if (strToken2 != _T("")){ // The state contains attributes.
 					strToken = cMain.TrimChangeCase(strToken, false);
 					strToken2 = cMain.TrimChangeCase(strToken2, false);
@@ -683,8 +683,8 @@ void CTranslateRuleSequential::translateToUPPAAL(CTranslateUPPAAL& cMain, int iN
 					strStateName.Truncate(iNewLength - 1);
 					strState = strComponentName + _T("_") + strStateName;
 				}
-				CString strToken = strStateName.Tokenize(_T("="), iTokenPos);
-				CString strToken2 = strStateName.Tokenize(_T("="), iTokenPos);
+				NString strToken = strStateName.Tokenize(_T("="), iTokenPos);
+				NString strToken2 = strStateName.Tokenize(_T("="), iTokenPos);
 				if (strToken2 != _T("")){ // The state contains attributes.
 					strToken = cMain.TrimChangeCase(strToken, false);
 					strToken2 = cMain.TrimChangeCase(strToken2, false);
@@ -712,7 +712,7 @@ void CTranslateRuleSequential::translateToUPPAAL(CTranslateUPPAAL& cMain, int iN
 			int iProgramCounterValue = cMain.GetPCValueForNode(iNode);
 			int iSourceIndex = cMain.GetSourceIndexForNode(iNode);
 			CTranslateUTrans* pcNotTransition = new CTranslateUTrans();
-			CString strNotLabel;
+			NString strNotLabel;
 			if (bIsANot == false){ 
 				strNotLabel = _T("not(") + strLabel + _T(")");
 			}else{
@@ -740,8 +740,8 @@ void CTranslateRuleSequential::translateToUPPAAL(CTranslateUPPAAL& cMain, int iN
 				strLabel = strStateName; // Leave it as it is since this is a formula.
 			}else{
 				int iTokenPos = 0;
-				CString strToken = strStateName.Tokenize(_T("="), iTokenPos);
-				CString strToken2 = strStateName.Tokenize(_T("="), iTokenPos);
+				NString strToken = strStateName.Tokenize(_T("="), iTokenPos);
+				NString strToken2 = strStateName.Tokenize(_T("="), iTokenPos);
 				if (strToken2 != _T("")){ // The state contains attributes.
 					strToken = cMain.TrimChangeCase(strToken, false);
 					strToken2 = cMain.TrimChangeCase(strToken2, false);
@@ -760,7 +760,7 @@ void CTranslateRuleSequential::translateToUPPAAL(CTranslateUPPAAL& cMain, int iN
 		}else if (iStateType == GSE_T_OUTPUT){ // External output (<<s>>)
 			strLabel = _T("extOutMsg_") + strComponentName + _T("_") + strStateName;
 			iLabelType = UPPAAL_SYNCH;  
-			CString strEnvironmentLabel = strLabel + _T("?");
+			NString strEnvironmentLabel = strLabel + _T("?");
 			cMain.AddInputVariable(strEnvironmentLabel);
 			strLabel.Append(_T("!"));
 			m_cParsingMethods.StoreUPPAALTransition(cMain,iNode,strLabel,iLabelType);

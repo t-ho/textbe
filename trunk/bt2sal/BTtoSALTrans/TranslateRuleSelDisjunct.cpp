@@ -67,12 +67,12 @@ bool CTranslateRuleSelDisjunct::applyBackwards(CTranslateSALMain& cMain, NList<i
 
 void CTranslateRuleSelDisjunct::translateToSAL(CTranslateSALMain& cMain, int iNode, int iOtherNode, NList<CTranslateParsingRule*, CTranslateParsingRule*>* plSecondaryRules) 
 {
-/*	CString strGuard = _T("");
-	CString strAction = _T("");
-	NList<CString, CString>* plActions = new NList<CString, CString>;
+/*	NString strGuard = _T("");
+	NString strAction = _T("");
+	NList<NString, NString>* plActions = new NList<NString, NString>;
 
-	CString strComponentName = CGSEDataManager::s_pcDataManager->GetNodeComponent(iNode);
-	CString strStateName = CGSEDataManager::s_pcDataManager->GetNodeState(iNode);
+	NString strComponentName = CGSEDataManager::s_pcDataManager->GetNodeComponent(iNode);
+	NString strStateName = CGSEDataManager::s_pcDataManager->GetNodeState(iNode);
 	strComponentName = cMain.TrimChangeCase(strComponentName, false);
 	strStateName = cMain.TrimChangeCase(strStateName, false);
 	int iStateType = CGSEDataManager::s_pcDataManager->GetNodeDecoration(iNode);
@@ -86,13 +86,13 @@ void CTranslateRuleSelDisjunct::translateToSAL(CTranslateSALMain& cMain, int iNo
 		cMain.AddLocalVariable(strComponentName, strStateName);
 		
 		// Create an extra transition for the opposite branch.
-		CString strProgramCounterName = cMain.GetPCForNode(iNode);
+		NString strProgramCounterName = cMain.GetPCForNode(iNode);
 		int iProgramCounterValue = cMain.GetPCValueForNode(iNode);
-		CString strOppositeGuard = strProgramCounterName + _T("=");
+		NString strOppositeGuard = strProgramCounterName + _T("=");
 		strOppositeGuard.Format(strOppositeGuard + _T("%d"), iProgramCounterValue);
 		strOppositeGuard = strOppositeGuard + _T(" AND NOT (") + strComponentName;
 		strOppositeGuard = strOppositeGuard + _T("=") + strComponentName + _T("_") + strStateName + _T(")");
-		NList<CString, CString>* plOppositeActions = new NList<CString, CString>;
+		NList<NString, NString>* plOppositeActions = new NList<NString, NString>;
 		plOppositeActions->AddTail(strProgramCounterName + _T("'=0"));
 		if (cMain.GetTranslationType() == 4){
 			strOppositeGuard = strOppositeGuard + _T(" AND NOT(messageReady)");
@@ -100,7 +100,7 @@ void CTranslateRuleSelDisjunct::translateToSAL(CTranslateSALMain& cMain, int iNo
 		cMain.AddExtraTransition(strOppositeGuard, plOppositeActions);	
 
 	}else if ((iStateType == GSE_T_EVENT) || (iStateType == GSE_T_INPUT)){ //Event (??s?? or >>s<<)
-		CString strExtInputVariable = _T("extInMsg_") + strComponentName + _T("_") + strStateName;
+		NString strExtInputVariable = _T("extInMsg_") + strComponentName + _T("_") + strStateName;
 		strGuard = strExtInputVariable + _T("=true");
 		cMain.AddInputVariable(strExtInputVariable);
 		
@@ -109,13 +109,13 @@ void CTranslateRuleSelDisjunct::translateToSAL(CTranslateSALMain& cMain, int iNo
 		cMain.AddLocalVariable(strComponentName, strStateName);
 	
 	}else if (iStateType == GSE_T_OUTPUT){ // External output (<<s>>)
-		CString strExtOutVariable = _T("extOutMsg_") + strComponentName + _T("_") + strStateName;
+		NString strExtOutVariable = _T("extOutMsg_") + strComponentName + _T("_") + strStateName;
 		cMain.AddOutputVariable(strExtOutVariable);
 		strExtOutVariable = strExtOutVariable + _T("'=true");
 		plActions->AddTail(strExtOutVariable);
 	
 	}else if (iStateType == GSE_T_INPUT1){ // Internal input (>s<)
-		CString strIntInputVariable = _T("intInMsg_") + strComponentName + _T("_") + strStateName;
+		NString strIntInputVariable = _T("intInMsg_") + strComponentName + _T("_") + strStateName;
 		strGuard = strIntInputVariable + _T("=true");
 		cMain.AddLocalBoolean(strIntInputVariable);
 	}

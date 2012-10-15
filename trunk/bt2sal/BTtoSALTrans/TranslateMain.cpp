@@ -9,8 +9,8 @@
 //
 
 #include "StdAfx.h"
-#include "BTtoSALTrans.h"
 #include "TranslateMain.h"
+#include "OptionsWindow.h"
 #include "TranslateRuleSequential.h"
 #include "TranslateRuleConBranching.h"
 #include "TranslateRuleAltBranching.h"
@@ -21,6 +21,7 @@
 #include "TranslateRuleSelDisjunct.h"
 #include "TranslateRuleInternal.h"
 #include "GSEMethod.h"
+#include "ResultsWindow.h"
 #include "TranslateException.h"
 #include "TranslateStep.h"
 
@@ -54,7 +55,7 @@ void CTranslateMain::ParseBT(int iTreeID)
  *  the INPUT section of the SAL module.
  *  @param name  The name of the variable.
  */
-void CTranslateMain::AddInputVariable(CString strName)
+void CTranslateMain::AddInputVariable(NString strName)
 {
 }	
 
@@ -62,20 +63,20 @@ void CTranslateMain::AddInputVariable(CString strName)
 	 *  the OUTPUT section of the SAL module.
 	 *  @param name  The name of the variable.
 	 */
-void CTranslateMain::AddOutputVariable(CString strName){
+void CTranslateMain::AddOutputVariable(NString strName){
 }
 	
 	/** Add a local boolean variable. This variable will be later written to
 	 *  the LOCAL section of the SAL module.
 	 *  @param name  The name of the variable.
 	 */
-void CTranslateMain::AddLocalBoolean(CString strName){
+void CTranslateMain::AddLocalBoolean(NString strName){
 }	
 
 	/** Add an Integer attribute. This variable will be later 
 	 *  declared as an Integer type in the SAL code.
 	 */
-void CTranslateMain::AddIntegerAttribute(CString strName){
+void CTranslateMain::AddIntegerAttribute(NString strName){
 }
 
 	/** Add a local variable (not a boolean) and its state. 
@@ -86,7 +87,7 @@ void CTranslateMain::AddIntegerAttribute(CString strName){
 	 *  @param name  The name of the variable,
 	 *  @param state  The name of the state of the variable.
 	 */
-void CTranslateMain::AddLocalVariable(CString strName, CString strState){	
+void CTranslateMain::AddLocalVariable(NString strName, NString strState){	
 }	
 
 /** Creates a link between an internal output node and the list of
@@ -107,12 +108,12 @@ NList<int, int>* CTranslateMain::GetInternalMsgAssociation(int iOutputNode){
 	return NULL;
 }
 
-int CTranslateMain::FindListPosition(NList<CString, CString>& cList, CString strValue)
+int CTranslateMain::FindListPosition(NList<NString, NString>& cList, NString strValue)
 {
 	return 0;
 }
 
-void CTranslateMain::RemoveFromList(NList<CString, CString>& cList, int iIndex)
+void CTranslateMain::RemoveFromList(NList<NString, NString>& cList, int iIndex)
 {
 }
 
@@ -120,14 +121,14 @@ void CTranslateMain::RemoveFromList(NList<CString, CString>& cList, int iIndex)
 	 *  @param  n   The node the guard applies to,
 	 *  @param  guard  The transition guard as a string.
 	 */
-void CTranslateMain::AddNodeGuard(int iNode, CString strGuard){
+void CTranslateMain::AddNodeGuard(int iNode, NString strGuard){
 }
 	
 	/** Add a list of actions for a transition, associating it with a node.
 	 *  @param  n   The node the actions apply to,
 	 *  @param  actions The action string list.
 	 */
-void CTranslateMain::AddNodeAction(int iNode, NList<CString, CString>* plActions){
+void CTranslateMain::AddNodeAction(int iNode, NList<NString, NString>* plActions){
 }
 
 void CTranslateMain::RemoveNodeTransition(int iNode){
@@ -137,7 +138,7 @@ void CTranslateMain::RemoveNodeTransition(int iNode){
 	 *  @param  n   The node the transition is associated with,
 	 *  @param  action  The transition action as a string.
 	 */
-void CTranslateMain::AddExtraNodeAction(int iNode, CString strAction){
+void CTranslateMain::AddExtraNodeAction(int iNode, NString strAction){
 }
 
 	/** Add a guard and a list of actions for a transition that does not apply 
@@ -146,7 +147,7 @@ void CTranslateMain::AddExtraNodeAction(int iNode, CString strAction){
 	 *  @param  guard  The transition guard as a string.
 	 *  @param  actions  The transitions actions as a list of strings.
 	 */
-int CTranslateMain::AddExtraTransition(CString strGuard, NList<CString,CString>* plActions){
+int CTranslateMain::AddExtraTransition(NString strGuard, NList<NString,NString>* plActions){
 	return -1;
 }
 
@@ -162,7 +163,7 @@ void CTranslateMain::AddPCRange(int iProgramCounter, int iValue){
 	/** Returns a string representing the name of a new unused program counter.
 	 *  @return  The pc name.
 	 */
-CString CTranslateMain::GetNewProgramCounter(){
+NString CTranslateMain::GetNewProgramCounter(){
 	return _T("");
 }
 	
@@ -171,7 +172,7 @@ CString CTranslateMain::GetNewProgramCounter(){
 	 *  @param  n  The node,
 	 *  @return The name of the program counter.
 	 */
-CString CTranslateMain::GetPCForNode(int iNode){
+NString CTranslateMain::GetPCForNode(int iNode){
 	return _T("");
 }
 	
@@ -187,14 +188,14 @@ int CTranslateMain::GetPCValueForNode(int iNode){
 	/** Returns the guard for the given node.
 	 *  @return The guard.
 	 */
-CString CTranslateMain::GetGuard(int iNode){
+NString CTranslateMain::GetGuard(int iNode){
 	return _T("");
 }
 	
 	/** Returns the actions for the given node.
 	 *  @return  A list of strings representing each action.
 	 */
-NList<CString, CString>* CTranslateMain::GetActions(int iNode){
+NList<NString, NString>* CTranslateMain::GetActions(int iNode){
 	return NULL;
 }
 	
@@ -205,7 +206,7 @@ NList<CString, CString>* CTranslateMain::GetActions(int iNode){
 	 *  @param n  The node,
 	 *  @return  A list of the names of the program counters.
 	 */
-NList<CString, CString>* CTranslateMain::FindThreadsToKill(int iNode){
+NList<NString, NString>* CTranslateMain::FindThreadsToKill(int iNode){
 	return NULL;
 }
 
@@ -223,27 +224,27 @@ bool CTranslateMain::IsAtomic(int iNode){
 	 *  @param  n   The node the guard applies to,
 	 *  @param  guard  The transition guard as a string.
 	 */
-void CTranslateMain::AddAtomicGuard(int iNode, CString strGuard){
+void CTranslateMain::AddAtomicGuard(int iNode, NString strGuard){
 }
 
 	/** Add an atomic action list. 
 	 *  @param  n   The node the guard applies to,
 	 *  @param  actions  The transition actions as a list.
 	 */
-void CTranslateMain::AddAtomicActions(int iNode, NList<CString, CString>* plActions){
+void CTranslateMain::AddAtomicActions(int iNode, NList<NString, NString>* plActions){
 }
 	
 	/** Returns the atomic guard for the given node.
 	 *  @return The guard.
 	 */
-CString CTranslateMain::GetAtomicGuard(int iNode){		
+NString CTranslateMain::GetAtomicGuard(int iNode){		
 	return _T("");
 }
 	
 	/** Returns the atomic actions for the given node.
 	 *  @return  A list of strings representing each action.
 	 */
-NList<CString, CString>* CTranslateMain::GetAtomicActions(int iNode){
+NList<NString, NString>* CTranslateMain::GetAtomicActions(int iNode){
 	return NULL;
 }
 
@@ -258,7 +259,7 @@ void CTranslateMain::CreateIDValues(int iRootNode){
 	 *  @param  s   The string,
 	 *  @param  upperCase  true if the first letter should be upper-case, false if lower-case.
 	 */
-CString CTranslateMain::TrimChangeCase(CString strName, bool bToUpperCase){
+NString CTranslateMain::TrimChangeCase(NString strName, bool bToUpperCase){
 	return _T("");
 }
 	
@@ -271,7 +272,7 @@ bool CTranslateMain::UsingViews(){
 	 *  and the rest of the updates are removed.
 	 *  @param list  a list of Strings of transition update statements.
 	 */
-void CTranslateMain::RemoveAssignmentRepeats(NList<CString, CString>& lAssignments){
+void CTranslateMain::RemoveAssignmentRepeats(NList<NString, NString>& lAssignments){
 }
 
 /** Returns the type of translation currently selected by the user.
@@ -288,14 +289,14 @@ int CTranslateMain::GetTranslationType()
 	 *  @param updates The list of Strings of update statements to check,
 	 *  @param messageNames The list of the names of the messages involved in the updates.
 	 */
-void CTranslateMain::RemoveMessageConflicts(NList<CString, CString>& lUpdates, NList<CString, CString>& lMessageNames){
+void CTranslateMain::RemoveMessageConflicts(NList<NString, NString>& lUpdates, NList<NString, NString>& lMessageNames){
 }
 
 	/** Adds a string to the string which is used for the messageReady declaration 
 	 *  for translation type 4.
 	 *  @param m  the string to add.
 	 */
-void CTranslateMain::AddMessageString(CString strMessage){
+void CTranslateMain::AddMessageString(NString strMessage){
 }
 
 // Identifies the initialisation nodes - these are the root node and its descendents which
@@ -313,10 +314,10 @@ void CTranslateMain::StoreTranslationStep(int iNode, int iRuleID, int iOtherNode
 {	
 }
 
-NList<CString, CString>* CTranslateMain::ConvertGuardToList(CString strGuard){
-	NList<CString, CString>* plGuardList = new NList<CString, CString>;
+NList<NString, NString>* CTranslateMain::ConvertGuardToList(NString strGuard){
+	NList<NString, NString>* plGuardList = new NList<NString, NString>;
 	int iPos = 0;
-	CString strToken = strGuard.Tokenize(_T("AND"),iPos);
+	NString strToken = strGuard.Tokenize(_T("AND"),iPos);
 	while (strToken != _T("")){
 		plGuardList->AddTail(strToken);
 		strToken = strGuard.Tokenize(_T("AND"),iPos);		

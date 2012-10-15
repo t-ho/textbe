@@ -10,7 +10,6 @@
 //
 #include "StdAfx.h"
 #include "TranslateStep.h"
-#include "NList.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

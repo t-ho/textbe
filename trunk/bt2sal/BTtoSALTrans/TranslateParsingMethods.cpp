@@ -117,12 +117,12 @@ void CTranslateParsingMethods::CheckForAtomic(CTranslateSALMain& cMain, int iCur
 	}
 }
 
-void CTranslateParsingMethods::StoreNodeTransition(CTranslateSALMain& cTranslateMain, int iNode, CString strGuard, NList<CString, CString>* plActions, int iParent, bool bIsExternal, bool bIsInternalInput)
+void CTranslateParsingMethods::StoreNodeTransition(CTranslateSALMain& cTranslateMain, int iNode, NString strGuard, NList<NString, NString>* plActions, int iParent, bool bIsExternal, bool bIsInternalInput)
 {
 	int iProgramCounterValue = 0;
 	int iNewValue = 0;
 	CTranslateNode* pcNode = cTranslateMain.GetNode(iNode);
-	CString strProgramCounterName = cTranslateMain.GetPCForNode(iNode);
+	NString strProgramCounterName = cTranslateMain.GetPCForNode(iNode);
 	iProgramCounterValue = cTranslateMain.GetPCValueForNode(iNode);
 	iNewValue = iProgramCounterValue + 1;
 
@@ -182,7 +182,7 @@ void CTranslateParsingMethods::StoreNodeTransition(CTranslateSALMain& cTranslate
 		if (bIsBottom){  
 			// This is the bottom node of the block.
 			// Check if this node already had a guard related to atomic alternate branching.
-			CString strPreviousGuard = cTranslateMain.GetAtomicGuard(iNode);
+			NString strPreviousGuard = cTranslateMain.GetAtomicGuard(iNode);
 			if (strPreviousGuard != _T("")){
 				if (strGuard != _T("")){
 					strGuard = strPreviousGuard + _T(" AND ") + strGuard;
@@ -201,23 +201,23 @@ void CTranslateParsingMethods::StoreNodeTransition(CTranslateSALMain& cTranslate
 			// Since this is the bottom node it can only be part of one block.
 			CTranslateAtomicBlock* pcBlock = pcAtomicBlocks->GetHead();
 
-			CString strFullGuard = _T("");
-			CString strFullOppositeGuard = _T("");  // The NOT case for selection nodes.
-			NList<CString, CString>* plFullActions = new NList<CString, CString>;
+			NString strFullGuard = _T("");
+			NString strFullOppositeGuard = _T("");  // The NOT case for selection nodes.
+			NList<NString, NString>* plFullActions = new NList<NString, NString>;
 
 			if (cTranslateMain.UsingViews()){
 				
 			}else{  // Not using failure views.
-				CString strTempGuard;
-				NList<CString, CString> lTempActions;
+				NString strTempGuard;
+				NList<NString, NString> lTempActions;
 					
 				NList<int, int>* plAtomicNodes = pcBlock->GetNodes();
 				NPosition cAtomicPosition = plAtomicNodes->GetHeadPosition();
 				while (cAtomicPosition.IsNotNull()){
 					int iCurrentNode = plAtomicNodes->GetNext(cAtomicPosition);
 					CTranslateNode* pcCurrentNode = cTranslateMain.GetNode(iCurrentNode);
-					CString strTempGuard = cTranslateMain.GetAtomicGuard(iCurrentNode);
-					NList<CString,CString>* plTempActions;
+					NString strTempGuard = cTranslateMain.GetAtomicGuard(iCurrentNode);
+					NList<NString,NString>* plTempActions;
 					plTempActions = cTranslateMain.GetAtomicActions(iCurrentNode);
 					
 					if (strTempGuard != _T("")){
@@ -255,7 +255,7 @@ void CTranslateParsingMethods::StoreNodeTransition(CTranslateSALMain& cTranslate
 					// Add all the current node's actions to the full list.
 					NPosition cTempPosition = plTempActions->GetHeadPosition();
 					while (cTempPosition.IsNotNull()){
-						CString strCurrentTempAction = plTempActions->GetNext(cTempPosition);
+						NString strCurrentTempAction = plTempActions->GetNext(cTempPosition);
 						plFullActions->AddTail(strCurrentTempAction);
 					}
 
@@ -264,7 +264,7 @@ void CTranslateParsingMethods::StoreNodeTransition(CTranslateSALMain& cTranslate
 					// block, because there can't be more than one forall and forone nodes
 					// joined atomically.
 					CTranslateNode* pcAtomicNode = cTranslateMain.GetNode(iCurrentNode);
-					CString strSetsGuard = pcAtomicNode->RetrieveSetsGuard();
+					NString strSetsGuard = pcAtomicNode->RetrieveSetsGuard();
 					if (strSetsGuard != _T("")){
 						CTranslateNode* pcFinalNode = cTranslateMain.GetNode(iNode);
 						pcFinalNode->StoreSetsGuard(strSetsGuard);
@@ -301,7 +301,7 @@ void CTranslateParsingMethods::StoreNodeTransition(CTranslateSALMain& cTranslate
 						strFullOppositeGuard = strProgramCounterName + _T("=") + strFullOppositeGuard;
 					}
 				}
-				CString strAction = strProgramCounterName + _T("'=");
+				NString strAction = strProgramCounterName + _T("'=");
 				strAction.Format(strAction + _T("%d"), iNewValue);
 				plFullActions->AddTail(strAction);
 	
@@ -321,10 +321,10 @@ void CTranslateParsingMethods::StoreNodeTransition(CTranslateSALMain& cTranslate
 					if (strFullOppositeGuard != _T("")){
 						// Create the list of actions to set all the program counters of this
 						// atomic block to 0.
-						NList<CString, CString>* plOppositeActions = new NList<CString, CString>;
+						NList<NString, NString>* plOppositeActions = new NList<NString, NString>;
 						NList<int, int>* plProgramCounters = pcBlock->GetProgramCounters();
 						NPosition cPCPos = plProgramCounters->GetHeadPosition();
-						CString strResetAction;
+						NString strResetAction;
 						int iCurrentPC;
 						while (cPCPos.IsNotNull()){
 							iCurrentPC = plProgramCounters->GetNext(cPCPos);
@@ -350,7 +350,7 @@ void CTranslateParsingMethods::StoreNodeTransition(CTranslateSALMain& cTranslate
 			//// where if there is a non-atomic alternate branching where one (or more) branch(es) are
 			//// atomic within themselves but not to the parent of the alternate branching, then the 
 			//// guard of that branch is printed twice, e.g. pc4=1 AND pc4=1 --> ...
-	//		CString strPreviousGuard = cTranslateMain.GetAtomicGuard(iNode);
+	//		NString strPreviousGuard = cTranslateMain.GetAtomicGuard(iNode);
 	//		if (strPreviousGuard != _T("")){
 	//			if (strGuard != _T("")){
 	//				strGuard = strPreviousGuard + _T(" AND ") + strGuard;
@@ -372,7 +372,7 @@ void CTranslateParsingMethods::StoreNodeTransition(CTranslateSALMain& cTranslate
 			strGuard.Format(_T("%d") + strGuard, iProgramCounterValue);
 			strGuard = strProgramCounterName + _T("=") + strGuard;
 		}
-		CString strAction = strProgramCounterName + _T("'=");
+		NString strAction = strProgramCounterName + _T("'=");
 		strAction.Format(strAction + _T("%d"), iNewValue);
 		plActions->AddTail(strAction);
 
@@ -454,7 +454,7 @@ CTranslateParsingRule* CTranslateParsingMethods::GetRule(int iRuleID)
 
 // Store an UPPAAL transition for normal (sequential or atomic) nodes which
 // require only one transition with one label plus additional clock labels.
-/*void CTranslateParsingMethods::StoreUPPAALTransition(CTranslateUPPAAL& cTranslateMain, int iNode, CString strLabel, int iLabelType)
+/*void CTranslateParsingMethods::StoreUPPAALTransition(CTranslateUPPAAL& cTranslateMain, int iNode, NString strLabel, int iLabelType)
 {
 	int iProgramCounterValue = 0;
 	int iNewValue = 0;
@@ -509,9 +509,9 @@ CTranslateParsingRule* CTranslateParsingMethods::GetRule(int iRuleID)
 				while (cAtomicPosition.IsNotNull()){
 					int iCurrentNode = plAtomicNodes->GetNext(cAtomicPosition);
 					pcAtomicTransition = cTranslateMain.GetNodeTransition(iCurrentNode);
-					CString strAtomicGuard = pcAtomicTransition->GetGuard();
-					CString strAtomicAssignment = pcAtomicTransition->GetAssignment();
-					CString strAtomicSynch = pcAtomicTransition->GetSynchronisation();
+					NString strAtomicGuard = pcAtomicTransition->GetGuard();
+					NString strAtomicAssignment = pcAtomicTransition->GetAssignment();
+					NString strAtomicSynch = pcAtomicTransition->GetSynchronisation();
 					if (strAtomicGuard != _T("")){
 						pcTransition->AddLabel(strAtomicGuard, 2);
 					}
@@ -539,15 +539,15 @@ CTranslateParsingRule* CTranslateParsingMethods::GetRule(int iRuleID)
 				}
 
 				// Create clock labels if necessary.
-				NList<CString, CString>* plTags = pcNode->GetExtraInfoTags();
-				NList<CString, CString>* plNames = pcNode->GetExtraInfoNames();
+				NList<NString, NString>* plTags = pcNode->GetExtraInfoTags();
+				NList<NString, NString>* plNames = pcNode->GetExtraInfoNames();
 				if (plTags->GetSize() > 0){
 					NPosition cTagPos = plTags->GetHeadPosition();
 					NPosition cNamePos = plNames->GetHeadPosition();
 					int iClockLabelType;
 					while (cTagPos.IsNotNull()){
-						CString strTag = plTags->GetNext(cTagPos);
-						CString strName = plNames->GetNext(cNamePos);
+						NString strTag = plTags->GetNext(cTagPos);
+						NString strName = plNames->GetNext(cNamePos);
 						cTranslateMain.AddClockDetails(strName);
 						strName.Replace(_T("<"), _T("&lt;"));
 						strName.Replace(_T(">"), _T("&gt;"));
@@ -602,15 +602,15 @@ CTranslateParsingRule* CTranslateParsingMethods::GetRule(int iRuleID)
 		}	
 		
 		// Create clock labels if necessary.
-		NList<CString, CString>* plTags = pcNode->GetExtraInfoTags();
-		NList<CString, CString>* plNames = pcNode->GetExtraInfoNames();
+		NList<NString, NString>* plTags = pcNode->GetExtraInfoTags();
+		NList<NString, NString>* plNames = pcNode->GetExtraInfoNames();
 		if (plTags->GetSize() > 0){
 			NPosition cTagPos = plTags->GetHeadPosition();
 			NPosition cNamePos = plNames->GetHeadPosition();
 			int iClockLabelType;
 			while (cTagPos.IsNotNull()){
-				CString strTag = plTags->GetNext(cTagPos);
-				CString strName = plNames->GetNext(cNamePos);
+				NString strTag = plTags->GetNext(cTagPos);
+				NString strName = plNames->GetNext(cNamePos);
 				cTranslateMain.AddClockDetails(strName);
 				strName.Replace(_T("<"), _T("&lt;"));
 				strName.Replace(_T(">"), _T("&gt;"));
@@ -667,15 +667,15 @@ CTranslateParsingRule* CTranslateParsingMethods::GetRule(int iRuleID)
 	// Add the clock labels to the first transition in the block.  /////UUUUUUUUU Check if this is correct.
 	if (bDoClocks){
 		CTranslateUTrans* pcFirstTransition = plTransitions->GetHead();
-		NList<CString, CString>* plTags = pcNode->GetExtraInfoTags();
-		NList<CString, CString>* plNames = pcNode->GetExtraInfoNames();
+		NList<NString, NString>* plTags = pcNode->GetExtraInfoTags();
+		NList<NString, NString>* plNames = pcNode->GetExtraInfoNames();
 		if (plTags->GetSize() > 0){
 			NPosition cTagPos = plTags->GetHeadPosition();
 			NPosition cNamePos = plNames->GetHeadPosition();
 			int iClockLabelType;
 			while (cTagPos.IsNotNull()){
-				CString strTag = plTags->GetNext(cTagPos);
-				CString strName = plNames->GetNext(cNamePos);
+				NString strTag = plTags->GetNext(cTagPos);
+				NString strName = plNames->GetNext(cNamePos);
 				cTranslateMain.AddClockDetails(strName);
 				strName.Replace(_T("<"), _T("&lt;"));
 				strName.Replace(_T(">"), _T("&gt;"));
@@ -736,7 +736,7 @@ CTranslateParsingRule* CTranslateParsingMethods::GetRule(int iRuleID)
 }*/
 /*
 // Store an UPPAAL transition for nodes which require many labels but just one transition.
-void CTranslateParsingMethods::StoreUPPAALManyLabels(CTranslateUPPAAL& cTranslateMain, int iNode, NList<CString, CString>* plLabels, NList<int, int>* plLabelTypes){
+void CTranslateParsingMethods::StoreUPPAALManyLabels(CTranslateUPPAAL& cTranslateMain, int iNode, NList<NString, NString>* plLabels, NList<int, int>* plLabelTypes){
 	int iProgramCounterValue = 0;
 	int iNewValue = 0;
 	CTranslateNode* pcNode = cTranslateMain.GetNode(iNode);
@@ -787,7 +787,7 @@ void CTranslateParsingMethods::StoreUPPAALManyLabels(CTranslateUPPAAL& cTranslat
 				//Get all the atomic labels and join them together.
 				CTranslateUTrans* pcTransition = new CTranslateUTrans;
 				CTranslateUTrans* pcAtomicTransition;
-				NList<CString, CString>* plAtomicLabels;
+				NList<NString, NString>* plAtomicLabels;
 				NList<int, int>* plAtomicLabelTypes;
 				NList<int, int>* plAtomicNodes = pcBlock->GetNodes();
 				pcTransition->SetLabelList(plLabels);
@@ -801,7 +801,7 @@ void CTranslateParsingMethods::StoreUPPAALManyLabels(CTranslateUPPAAL& cTranslat
 					plAtomicLabels = pcAtomicTransition->GetLabels();
 					plAtomicLabelTypes = pcAtomicTransition->GetLabelTypes();
 					if (plAtomicLabels->GetCount() > 0){
-						CString strLabel = plAtomicLabels->GetHead();
+						NString strLabel = plAtomicLabels->GetHead();
 						int iLabelType = plAtomicLabelTypes->GetHead();
 						pcTransition->AddLabel(strLabel, iLabelType);
 					}
@@ -817,15 +817,15 @@ void CTranslateParsingMethods::StoreUPPAALManyLabels(CTranslateUPPAAL& cTranslat
 				}
 				
 				// Create clock labels if necessary.
-				NList<CString, CString>* plTags = pcNode->GetExtraInfoTags();
-				NList<CString, CString>* plNames = pcNode->GetExtraInfoNames();
+				NList<NString, NString>* plTags = pcNode->GetExtraInfoTags();
+				NList<NString, NString>* plNames = pcNode->GetExtraInfoNames();
 				if (plTags->GetSize() > 0){
 					NPosition cTagPos = plTags->GetHeadPosition();
 					NPosition cNamePos = plNames->GetHeadPosition();
 					int iClockLabelType;
 					while (cTagPos.IsNotNull()){
-						CString strTag = plTags->GetNext(cTagPos);
-						CString strName = plNames->GetNext(cNamePos);
+						NString strTag = plTags->GetNext(cTagPos);
+						NString strName = plNames->GetNext(cNamePos);
 						cTranslateMain.AddClockDetails(strName);
 						strName.Replace(_T("<"), _T("&lt;"));
 						strName.Replace(_T(">"), _T("&gt;"));
@@ -877,15 +877,15 @@ void CTranslateParsingMethods::StoreUPPAALManyLabels(CTranslateUPPAAL& cTranslat
 		NList<CTranslateUTrans*, CTranslateUTrans*>* plProcessTransitions;
 
 		// Create clock labels if necessary.
-		NList<CString, CString>* plTags = pcNode->GetExtraInfoTags();
-		NList<CString, CString>* plNames = pcNode->GetExtraInfoNames();
+		NList<NString, NString>* plTags = pcNode->GetExtraInfoTags();
+		NList<NString, NString>* plNames = pcNode->GetExtraInfoNames();
 		if (plTags->GetSize() > 0){
 			NPosition cTagPos = plTags->GetHeadPosition();
 			NPosition cNamePos = plNames->GetHeadPosition();
 			int iClockLabelType;
 			while (cTagPos.IsNotNull()){
-				CString strTag = plTags->GetNext(cTagPos);
-				CString strName = plNames->GetNext(cNamePos);
+				NString strTag = plTags->GetNext(cTagPos);
+				NString strName = plNames->GetNext(cNamePos);
 				cTranslateMain.AddClockDetails(strName);
 				strName.Replace(_T("<"), _T("&lt;"));
 				strName.Replace(_T(">"), _T("&gt;"));

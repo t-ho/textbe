@@ -12,6 +12,7 @@
 
 #include "StdAfx.h"
 #include "TranslateSALMain.h"
+#include "OptionsWindow.h"
 #include "TranslateRuleSequential.h"
 #include "TranslateRuleConBranching.h"
 #include "TranslateRuleAltBranching.h"
@@ -23,6 +24,7 @@
 #include "TranslateRuleInternal.h"
 
 #include "GSEMethod.h"
+#include "ResultsWindow.h"
 #include "TranslateException.h"
 #include "TranslateStep.h"
 #include "TranslateSetAdd.h"
@@ -39,6 +41,7 @@
 #include "NList.h"
 #include "NPosition.h"
 #include <list>
+#include <sstream> 
 //#import "msxml4.dll"
 // using namespace MSXML2;
 //#using <mscorlib.dll>
@@ -99,7 +102,7 @@ void CTranslateSALMain::SelectOptions(int iPriority, int iBuff, int iWithSets, c
 // Parse the current Behavior Tree to identify which translation
 // rules to apply and to check that the tree contains valid syntax.
 // Then translate the BT to SAL.
-CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE)
+void CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE)
 {
 //	CTranslateRandom* pcRandom; // This will only be used if a random BT is being used.
 	CFileTime cStartTime;
@@ -208,7 +211,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 	/*	CFileDialog cFileDlg (TRUE, NULL, _T("*.*"),
 				OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY, NULL, NULL);
 		if(cFileDlg.DoModal ()==IDOK ){
-			CString strPathName = cFileDlg.GetPathName();
+			NString strPathName = cFileDlg.GetPathName();
 			String^ path = gcnew String(strPathName);
 			path += " (System::String)";
 
@@ -264,12 +267,12 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 			CFileDialog cFileDlg (TRUE, NULL, _T("*.*"),
 				OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY, NULL, NULL);
 			if(cFileDlg.DoModal ()==IDOK ){
-				CString strPathName = cFileDlg.GetPathName();
-				CString strFileName = cFileDlg.GetFileName();
+				NString strPathName = cFileDlg.GetPathName();
+				NString strFileName = cFileDlg.GetFileName();
 				cTranslateMain.m_iHighestTranslateID = 1;
 				pcTranslateRoot = cTranslateMain.ReadSlice(strPathName, strFileName);
 				if (pcTranslateRoot == NULL){
-					CString strMessage = _T("");
+					NString strMessage = _T("");
 					CTranslateException cException(strMessage);
 					throw cException;
 				}
@@ -301,8 +304,8 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 		//	CFileDialog cFileDlg (TRUE, NULL, _T("*.*"),
 		//			OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY, NULL, NULL);
 		//	if(cFileDlg.DoModal ()==IDOK ){
-		//		CString strPathName = cFileDlg.GetPathName();
-			//	CString strFileName = cFileDlg.GetFileName();
+		//		NString strPathName = cFileDlg.GetPathName();
+			//	NString strFileName = cFileDlg.GetFileName();
 		//	
 				if (m_bDisplayTimes){
 					cSetParsingStartTime = CFileTime::GetCurrentTime(); 
@@ -310,7 +313,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 				
 				if (m_bTranslateWithRandomBT){ // This means that it has set nodes.
 					if ((m_strPathName == _T("")) || (m_strFileName == _T(""))){
-						CString strMessage = _T("You have not selected a set information file. ");
+						NString strMessage = _T("You have not selected a set information file. ");
 						CTranslateException cException(strMessage);
 						throw cException;
 					}
@@ -327,16 +330,16 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 								// The node is a set operation.
 				//				lSetNodes.AddTail(pcCurrentSetNode);
 								// Store its state name to a file for the parser to read.
-							//	CString strStateName = pcCurrentSetNode->GetStateName();
+							//	NString strStateName = pcCurrentSetNode->GetStateName();
 							//	strStateName = strStateName + _T("\r\n");
 							//	FILE *pcParserFile;
-							//	CString strPathName = _T("C:/sets/BTSetExp.txt");
+							//	NString strPathName = _T("C:/sets/BTSetExp.txt");
 							//	_tfopen_s(&pcParserFile,(LPCTSTR)strPathName,_T("wt"));
 							//	_fputts((LPCTSTR)strStateName,pcParserFile);
 							//	fclose(pcParserFile);
 
 								// Run the parser.
-							//	CString strCmd =_T("C:/sets/parser");
+							//	NString strCmd =_T("C:/sets/parser");
 							//	_tsystem((LPCTSTR)strCmd);
 
 								// Parse the node's set expression.
@@ -356,7 +359,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 			CTranslateSlicer cSlicer;
 			iRootNode = pcTranslateRoot->GetNodeID();
 			cTranslateMain.MakeLongIDs(iRootNode);	
-		//	CString strCriterion = cTranslateMain.m_strCriterion;
+		//	NString strCriterion = cTranslateMain.m_strCriterion;
 			CMap<int, int, CTranslateNode*, CTranslateNode*>* pcMapPointer;
 			pcMapPointer = &cTranslateMain.m_mTranslateNodes;
 			// Note that cSlicer will modify the node map.
@@ -384,7 +387,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 
 		// Create an empty actions list for the root node.
 		// This is to handle branching directly after the root node.
-		NList<CString, CString>* plRootActions = new NList<CString, CString>;
+		NList<NString, NString>* plRootActions = new NList<NString, NString>;
 		cTranslateMain.AddNodeAction(iRootNode, plRootActions);
 
 		bool bParsingSuccessful = true;
@@ -426,7 +429,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 		// Check if the BT was correctly parsed.
 		// There should be one leaf node left (The top node: m_iStartNode).
 		if ((cLeafNodes.GetSize() > 1) || ((cLeafNodes.GetSize() == 1) && (cLeafNodes.GetHead() != cTranslateMain.m_iStartNode))){
-		   CString strMessage;
+		   NString strMessage;
 		   strMessage = _T("Behavior Tree Parsing error: The Behavior Tree is not valid according to the rules. \n");
 		   strMessage.Append(_T("Problem may be due to nodes: \n"));
 					
@@ -434,9 +437,9 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 		   while (cLeafPos.IsNotNull()){
 				int iCurrentLeafNode = cLeafNodes.GetNext(cLeafPos);
 				CTranslateNode* pcLeaf = cTranslateMain.GetNode(iCurrentLeafNode);
-				CString strLeafComponent = pcLeaf->GetComponentName();
-				CString strLeafState = pcLeaf->GetStateName();
-				CString strLeafName = strLeafComponent + _T("-") + strLeafState;
+				NString strLeafComponent = pcLeaf->GetComponentName();
+				NString strLeafState = pcLeaf->GetStateName();
+				NString strLeafName = strLeafComponent + _T("-") + strLeafState;
 				strMessage.Append(strLeafName);
 				if (cLeafPos.IsNotNull()){ // This isn't the last node.
 					strMessage.Append(_T(",\n"));
@@ -512,29 +515,29 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 		}
 
 		// Write the context name at the top, using the name of the file.
-		CString strFileName = _T("");  
-		CString strText = strFileName + _T(":CONTEXT=\r\n");	
+		NString strFileName = _T("");  
+		NString strText = strFileName + _T(":CONTEXT=\r\n");	
 
 		// Write the BEGIN line.
 		strText.Append(_T("BEGIN\r\n"));
 
 		// This section writes the state type declarations.
-		CString strComponentName, strStateName;  
+		NString strComponentName, strStateName;  
 	
 		// Write the local variable state type declarations.	
 		int iLocalCounter = 0;
 		NPosition cLocalPosition = cTranslateMain.m_cLocalComponents.GetHeadPosition();
 		while(cLocalPosition.IsNotNull()){
-			CString strComponentName = cTranslateMain.m_cLocalComponents.GetNext(cLocalPosition);
+			NString strComponentName = cTranslateMain.m_cLocalComponents.GetNext(cLocalPosition);
 			strText.Append(TrimChangeCase(strComponentName, true) 
 				+ _T(": TYPE={"));
 			// Get the states for this component.
-			NList<CString,CString>* plStates;
+			NList<NString,NString>* plStates;
 			int iSuccess = cTranslateMain.m_cLocalStates.Lookup(iLocalCounter,plStates);
 			int iStateCounter = 0;
 			NPosition cStatePosition = plStates->GetHeadPosition();
 			while(cStatePosition.IsNotNull()){
-				CString strStateName = plStates->GetNext(cStatePosition);
+				NString strStateName = plStates->GetNext(cStatePosition);
 				if (iStateCounter == 0){ // This is the first state element.
 					strText.Append(TrimChangeCase(strStateName, false));
 				}else{ // This is not the first state element.
@@ -551,15 +554,15 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 			int iSetCounter = 0;
 			NPosition cSetTypePosition = cTranslateMain.m_cSetTypes.GetHeadPosition();
 			while(cSetTypePosition.IsNotNull()){
-				CString strSetType = cTranslateMain.m_cSetTypes.GetNext(cSetTypePosition);
+				NString strSetType = cTranslateMain.m_cSetTypes.GetNext(cSetTypePosition);
 				strText.Append(TrimChangeCase(strSetType, true) + _T(": TYPE={"));
 				// Get the possible elements for this set type.
-				NList<CString,CString>* plElements;
+				NList<NString,NString>* plElements;
 				int iSuccess = cTranslateMain.m_cSetElements.Lookup(iSetCounter,plElements);
 				int iElementCounter = 0;
 				NPosition cElementPosition = plElements->GetHeadPosition();
 				while(cElementPosition.IsNotNull()){
-					CString strElementName = plElements->GetNext(cElementPosition);
+					NString strElementName = plElements->GetNext(cElementPosition);
 					if (iElementCounter == 0){ // This is the first element.
 						strText.Append(TrimChangeCase(strElementName, false));
 					}else{ // This is not the first element.
@@ -576,12 +579,12 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 		strText.Append(_T("\r\nbehavior:MODULE=\r\nBEGIN\r\n"));
 	       		
 		// Write the Input variable declarations.
-		CString strInputSection = _T("INPUT ");
+		NString strInputSection = _T("INPUT ");
 		NPosition cInputPosition;
 		cInputPosition = cTranslateMain.m_cInputVariables.GetHeadPosition();
 		int iInputCounter = 0;
 		while(cInputPosition.IsNotNull()){
-			CString strCurrentInput = cTranslateMain.m_cInputVariables.GetNext(cInputPosition);  
+			NString strCurrentInput = cTranslateMain.m_cInputVariables.GetNext(cInputPosition);  
 			strCurrentInput = TrimChangeCase(strCurrentInput, false);
 			if (iInputCounter == 0){  // This is the first element.
 				strInputSection.Append(strCurrentInput);
@@ -597,12 +600,12 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 		}
 
 		// Write the Output variable declarations.
-		CString strOutputSection = _T("OUTPUT ");	
+		NString strOutputSection = _T("OUTPUT ");	
 		NPosition cOutputPosition;
 		cOutputPosition = cTranslateMain.m_cOutputVariables.GetHeadPosition();
 		int iOutputCounter = 0;
 		while(cOutputPosition.IsNotNull()){
-			CString strCurrentOutput = cTranslateMain.m_cOutputVariables.GetNext(cOutputPosition); 
+			NString strCurrentOutput = cTranslateMain.m_cOutputVariables.GetNext(cOutputPosition); 
 			strCurrentOutput = TrimChangeCase(strCurrentOutput, false);	
 			if (iOutputCounter == 0){  // This is the first element.
 				strOutputSection.Append(strCurrentOutput);
@@ -621,7 +624,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 		strText.Append(_T("LOCAL\r\n"));   
 		NPosition cComponentPosition = cTranslateMain.m_cLocalComponents.GetHeadPosition();
 		while(cComponentPosition.IsNotNull()){
-			CString strComponentName = cTranslateMain.m_cLocalComponents.GetNext(cComponentPosition);
+			NString strComponentName = cTranslateMain.m_cLocalComponents.GetNext(cComponentPosition);
 			strText.Append(TrimChangeCase(strComponentName, false) 
 			  + _T(": ") + TrimChangeCase(strComponentName, true) + _T(",\r\n"));
 		}
@@ -630,7 +633,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 		NPosition cIntegerPosition2 = cTranslateMain.m_lIntegers.GetHeadPosition();
 		int iIntListPosition = 0;
 		while (cIntegerPosition2.IsNotNull()){
-			CString strIntegerName = cTranslateMain.m_lIntegers.GetNext(cIntegerPosition2);
+			NString strIntegerName = cTranslateMain.m_lIntegers.GetNext(cIntegerPosition2);
 			strText.Append(strIntegerName + _T(":[") 
 				+ GetListElement(cTranslateMain.m_lStartValues,iIntListPosition)
 				+ _T("..") + GetListElement(cTranslateMain.m_lEndValues,iIntListPosition) + _T("],\r\n"));
@@ -641,16 +644,16 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 		NPosition cUserAttributePos = cTranslateMain.m_lUserDefinedAttributes.GetHeadPosition();
 		int iAttributeLocation = 0;
 		while(cUserAttributePos.IsNotNull()){
-			CString strAttributeName = cTranslateMain.m_lUserDefinedAttributes.GetNext(cUserAttributePos);
+			NString strAttributeName = cTranslateMain.m_lUserDefinedAttributes.GetNext(cUserAttributePos);
 			int iTypeLocation;
 			int iAttributeSuccess = cTranslateMain.m_mUserAttributeTypes.Lookup(iAttributeLocation, iTypeLocation);
 			if (iAttributeSuccess == 0){   // The type could not be found in the map.
-				CString strMessage = _T("Type not defined for the attribute: ");
+				NString strMessage = _T("Type not defined for the attribute: ");
 				strMessage = strMessage + strAttributeName;
 				CTranslateException cException(strMessage);
 				throw cException;
 			}
- 			CString strAttributeType = GetListElement(cTranslateMain.m_cSetTypes, iTypeLocation);
+ 			NString strAttributeType = GetListElement(cTranslateMain.m_cSetTypes, iTypeLocation);
 			strText.Append(TrimChangeCase(strAttributeName, false) 
 			  + _T(": ") + TrimChangeCase(strAttributeType, true) + _T(",\r\n"));
 			iAttributeLocation++;
@@ -668,7 +671,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 		NPosition cLocalBooleanPosition;
 		cLocalBooleanPosition = cTranslateMain.m_cLocalBooleans.GetHeadPosition();
 		while(cLocalBooleanPosition.IsNotNull()){
-			CString strCurrentBoolean = cTranslateMain.m_cLocalBooleans.GetNext(cLocalBooleanPosition);
+			NString strCurrentBoolean = cTranslateMain.m_cLocalBooleans.GetNext(cLocalBooleanPosition);
 			strCurrentBoolean = TrimChangeCase(strCurrentBoolean, false);
 			strText.Append(strCurrentBoolean + _T(":BOOLEAN,\r\n"));
 		}
@@ -678,7 +681,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 		NPosition cIntegerPosition;
 		cIntegerPosition = cTranslateMain.m_cIntegerAttributes.GetHeadPosition();
 		while(cIntegerPosition.IsNotNull()){
-			CString strCurrentInteger = cTranslateMain.m_cIntegerAttributes.GetNext(cIntegerPosition);
+			NString strCurrentInteger = cTranslateMain.m_cIntegerAttributes.GetNext(cIntegerPosition);
 			strCurrentInteger = TrimChangeCase(strCurrentInteger, false);
 			strText.Append(strCurrentInteger + _T(":[-100..100],\r\n"));
 		}
@@ -688,11 +691,11 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 			int iLocalSetCounter = 0;
 			NPosition cSetPosition = cTranslateMain.m_cSetNames.GetHeadPosition();
 			while (cSetPosition.IsNotNull()){
-				CString strSetName = cTranslateMain.m_cSetNames.GetNext(cSetPosition);
+				NString strSetName = cTranslateMain.m_cSetNames.GetNext(cSetPosition);
 				int iSetTypePosition;
 				int iSuccess = cTranslateMain.m_cSetNamesToTypes.Lookup(iLocalSetCounter, 
 					iSetTypePosition);
-				CString strSetType = GetListElement(cTranslateMain.m_cSetTypes,iSetTypePosition);
+				NString strSetType = GetListElement(cTranslateMain.m_cSetTypes,iSetTypePosition);
 				// Check if this set is an attribute of another set.
 				NPosition cIsInAttributeList = cTranslateMain.m_cAttributeSets.Find(strSetName);
 				if (cIsInAttributeList.IsNotNull()){
@@ -702,7 +705,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 					int iParentSuccess = cTranslateMain.m_cSetsToParentSets.Lookup(iAttributePosition, iParentPosition);
 					if (iParentSuccess > 0){  
 /////////// Do something if it is 0 as an error occurred.
-						CString strParentSet = GetListElement(cTranslateMain.m_cParentSets,iParentPosition);
+						NString strParentSet = GetListElement(cTranslateMain.m_cParentSets,iParentPosition);
 						// Find the location of the parent set in the normal set list.
 						int iParentNameLocation = FindListPosition(cTranslateMain.m_cSetNames,strParentSet);
 						// Find the type of the parent set.
@@ -712,18 +715,18 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 						if (iParentTypeSuccess > 0){  // The set is an attribute of an element of another set, 
 											  // e.g. if set s is an attribute of each element c of set t, so
 											  // there would be a ||c:t or []c:t and under it, c_s refers to c's attribute s.
-							CString strParentType = GetListElement(cTranslateMain.m_cSetTypes,
+							NString strParentType = GetListElement(cTranslateMain.m_cSetTypes,
 								iParentTypeLocation);
 							// Get the elements of the parent set.
-							NList<CString, CString>* plParentElements;
+							NList<NString, NString>* plParentElements;
 							int iElementSuccess = cTranslateMain.m_cSetElements.Lookup(iParentTypeLocation, plParentElements);
 							if (iElementSuccess > 0){ 
 	/////////// Do something if it is 0 as an error occurred.
 								NPosition cParentElementPos;
 								cParentElementPos = plParentElements->GetHeadPosition();
 								while (cParentElementPos.IsNotNull()){
-									CString strCurrentElement = plParentElements->GetNext(cParentElementPos);
-									CString strFullName = strCurrentElement + _T("_") + strSetName;
+									NString strCurrentElement = plParentElements->GetNext(cParentElementPos);
+									NString strFullName = strCurrentElement + _T("_") + strSetName;
 									strText.Append(TrimChangeCase(strFullName, false));
 									strText.Append(_T(": set{"));
 									strText.Append(TrimChangeCase(strSetType, true));
@@ -732,7 +735,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 							}
 						}else{  // The set is an attribute of a component that is not part of another set,
 								// e.g. if the set was s and it was an attribute of the component c, i.e. c_s.
-							CString strFullName = strParentSet + _T("_") + strSetName;
+							NString strFullName = strParentSet + _T("_") + strSetName;
 							strText.Append(TrimChangeCase(strFullName, false));
 							strText.Append(_T(": set{"));
 							strText.Append(TrimChangeCase(strSetType, true));
@@ -761,7 +764,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 				//FV loop through the views list to see if
 				// any are larger than iMaxView.
 			}
-			CString strViewLine = _T("view:[1..");
+			NString strViewLine = _T("view:[1..");
 			strViewLine.Format(strViewLine + _T("%d"), iMaxView);
 			strText.Append(strViewLine);
 			strText.Append(_T("],\r\n"));
@@ -769,7 +772,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 
 		// Write the program counter declarations (under the Local section).
 		for (int i = 1; i <= cTranslateMain.m_iHighestProgramCounter; i++){
-			CString strPCText = _T("pc");
+			NString strPCText = _T("pc");
 			strPCText.Format(strPCText + _T("%d"),i);
 			strPCText.Append(_T(": [0.."));
 			int iHighestValue;
@@ -794,7 +797,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 				int iBooleanCounter = 0;
 
 				while(cLocalPosition.IsNotNull()){
-					CString strCurrentBoolean = cTranslateMain.m_cLocalBooleans.GetNext(cLocalBooleanPosition);  
+					NString strCurrentBoolean = cTranslateMain.m_cLocalBooleans.GetNext(cLocalBooleanPosition);  
 					if (iBooleanCounter == 0){  // This is the first element.
 						strText.Append(_T("(") + TrimChangeCase(strCurrentBoolean, false));  
 					}else{
@@ -824,7 +827,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 				strText.Append(_T("messageReady = false\r\n\r\n"));
 			}
 			strText.Append(_T("DEFINITION\r\n"));
-			CString strTempText;
+			NString strTempText;
 			strTempText.Append(_T("internalActions = "));
 			
 			// Get all the guards for internal actions.
@@ -844,7 +847,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 						plBlock = pcAtomicBlocks->GetNext(cBlockPos);
 						if (plBlock->ContainsExternal() != true){
 							if (UsingViews() != true){
-								CString strGuard;
+								NString strGuard;
 								int iSuccess = cTranslateMain.m_cNodesToGuards.Lookup(iNode,strGuard);
 								if (iSuccess > 0){
 									if (iInternalActionCount != 0){
@@ -866,7 +869,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 						}
 					}
 				}else if ((pcNode->GetType() != GSE_T_INPUT) && (pcNode->GetType() != GSE_T_EVENT)){  // If this is not an external input node.
-					CString strGuard;
+					NString strGuard;
 					int iSuccess = cTranslateMain.m_cNodesToGuards.Lookup(iNode,strGuard);
 					if (iSuccess != 0){
 						if (iInternalActionCount != 0){ // This is not the first action.
@@ -907,17 +910,17 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 						plBlock = pcAtomicBlocks->GetNext(cBlockPos);
 					//	if (plBlock->ContainsExternal() != true){
 							if (UsingViews() != true){
-								CString strGuard;
+								NString strGuard;
 								int iSuccess = cTranslateMain.m_cNodesToGuards.Lookup(iNode,strGuard);
 								if (iSuccess > 0){
 									// Add the updates to set all messages back to false.
 									if (!plBlock->ContainsInternalInput()){
-										NList<CString,CString>* plActionList;
+										NList<NString,NString>* plActionList;
 										int iSuccess2 = cTranslateMain.m_cNodesToActions.Lookup(iNode,plActionList);
 										if (iSuccess2 != 0){
 											NPosition cBooleanPos = cTranslateMain.m_cLocalBooleans.GetHeadPosition();
 											while (cBooleanPos.IsNotNull()){
-												CString strLocalBoolean = cTranslateMain.m_cLocalBooleans.GetNext(cBooleanPos);
+												NString strLocalBoolean = cTranslateMain.m_cLocalBooleans.GetNext(cBooleanPos);
 												plActionList->AddTail(strLocalBoolean + _T("'=false"));
 											}
 										}
@@ -932,13 +935,13 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 							}
 					}
 				}else if (pcNode->GetType() != GSE_T_INPUT1){
-					NList<CString,CString>* plActionList;
+					NList<NString,NString>* plActionList;
 					int iSuccess2 = cTranslateMain.m_cNodesToActions.Lookup(iNode,plActionList);
 					if (iSuccess2 != 0){
 						NPosition cLocalBooleanPosition;
 						cLocalBooleanPosition = cTranslateMain.m_cLocalBooleans.GetHeadPosition();
 						while(cLocalBooleanPosition.IsNotNull()){
-							CString strCurrentBoolean = cTranslateMain.m_cLocalBooleans.GetNext(cLocalBooleanPosition);
+							NString strCurrentBoolean = cTranslateMain.m_cLocalBooleans.GetNext(cLocalBooleanPosition);
 							strCurrentBoolean = TrimChangeCase(strCurrentBoolean, false);
 							plActionList->AddTail(strCurrentBoolean + _T("'=false"));
 						}		
@@ -957,10 +960,10 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 			if (m_bDisplayTimes){
 				cPauseTime1 = CFileTime::GetCurrentTime(); // Stop timing as it is opening files.
 			}
-			// Read the initialisation file, if one was specified by the user.
+/*			// Read the initialisation file, if one was specified by the user.  //FOR DLL
 			if (m_strPathName2 != _T("")){
 				FILE *pcFile;
-				CString strLine;
+				NString strLine;
 				char cLine[4096];
 
 				if (m_bDisplayTimes){
@@ -979,9 +982,9 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 							int iLength = strLine.GetLength();
 							strLine.Truncate(iLength - 1);	
 							int iTokenPos = 0;
-							CString strOwnerVariable = strLine.Tokenize(_T(";"), iTokenPos);
-							CString strVariable = strLine.Tokenize(_T(";"), iTokenPos);
-							CString strInitialState = strLine.Tokenize(_T(";"), iTokenPos);
+							NString strOwnerVariable = strLine.Tokenize(_T(";"), iTokenPos);
+							NString strVariable = strLine.Tokenize(_T(";"), iTokenPos);
+							NString strInitialState = strLine.Tokenize(_T(";"), iTokenPos);
 						
 							// Initialise the variables.
 							int iOwnerNameLocation = FindListPosition(cTranslateMain.m_cSetNames,strOwnerVariable);
@@ -991,26 +994,26 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 								iOwnerTypeLocation);
 							if (iOwnerTypeSuccess > 0){
 	/////////// Do something if it is 0 as an error occurred.
-								CString strOwnerType = GetListElement(cTranslateMain.m_cSetTypes,
+								NString strOwnerType = GetListElement(cTranslateMain.m_cSetTypes,
 									iOwnerTypeLocation);
 								// Get the elements of the parent set.
-								NList<CString, CString>* plOwnerElements;
+								NList<NString, NString>* plOwnerElements;
 								int iElementSuccess = cTranslateMain.m_cSetElements.Lookup(iOwnerTypeLocation, plOwnerElements);
 								if (iElementSuccess > 0){ 
 		/////////// Do something if it is 0 as an error occurred.
 									NPosition cOwnerElementPos;
 									cOwnerElementPos = plOwnerElements->GetHeadPosition();
 									while (cOwnerElementPos.IsNotNull()){
-										CString strCurrentElement = plOwnerElements->GetNext(cOwnerElementPos);
+										NString strCurrentElement = plOwnerElements->GetNext(cOwnerElementPos);
 										strCurrentElement = TrimChangeCase(strCurrentElement, false);
-										CString strFullName;
+										NString strFullName;
 										if (strVariable != _T("/")){  // This is an initialisation of an attribute of a set element.
 											strFullName = strCurrentElement + _T("Component_") + strVariable;
 										}else{  // This is an initialisation of a state of a set element.
 											strVariable = TrimChangeCase(strVariable, false);
 											strFullName = strCurrentElement  + _T("Component");
 										}
-										CString strFullState = strFullName + _T("_") + strInitialState;
+										NString strFullState = strFullName + _T("_") + strInitialState;
 										strText.Append(TrimChangeCase(strFullName, false));
 										strText.Append(_T("="));
 										strText.Append(TrimChangeCase(strFullState, false) + _T(";\r\n"));
@@ -1021,6 +1024,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 					}
 					fclose(pcFile);
 				}
+*/
 		//	}
 			
 		
@@ -1034,20 +1038,20 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 		while (cInitPosition.IsNotNull()){
 			int iCurrentNode = lInitNodes.GetNext(cInitPosition);
 			CTranslateNode* pcNode = cTranslateMain.GetNode(iCurrentNode);
-			CString strComponent;
+			NString strComponent;
 			strComponentName = pcNode->GetComponentName();
-			CString strState;
+			NString strState;
 			strStateName = pcNode->GetStateName();
-			CString strAction;
+			NString strAction;
 			strComponentName = TrimChangeCase(strComponentName, false);
 			strStateName = TrimChangeCase(strStateName, false);
-			CString strFinalComp = strComponentName;
-			CString strFinalState = strComponentName + _T("_") + strStateName;
+			NString strFinalComp = strComponentName;
+			NString strFinalState = strComponentName + _T("_") + strStateName;
 		
 			// Check for attributes.
 			int iTokenPos = 0;
-			CString strToken = strStateName.Tokenize(_T(":="), iTokenPos);
-			CString strToken2 = strStateName.Tokenize(_T(":="), iTokenPos);
+			NString strToken = strStateName.Tokenize(_T(":="), iTokenPos);
+			NString strToken2 = strStateName.Tokenize(_T(":="), iTokenPos);
 			if (strToken2 != _T("")){ // The state contains attributes.
 				strToken = TrimChangeCase(strToken, false);
 				strToken2 = TrimChangeCase(strToken2, false);
@@ -1075,8 +1079,8 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 		if (bUsingSets){
 			int iNumberOfSets = (int) cTranslateMain.m_cSetNames.GetSize();
 			for (int setNo = 0; setNo < iNumberOfSets; setNo++){
-				CString strFullSetName;
-				CString strSetName = GetListElement(cTranslateMain.m_cSetNames,setNo);
+				NString strFullSetName;
+				NString strSetName = GetListElement(cTranslateMain.m_cSetNames,setNo);
 				// The set may be an attribute of another set. If so, include the component
 				// name in the set name, for each element of the other set.
 				int iSetLocation = FindListPosition(cTranslateMain.m_cAttributeSets,strSetName);
@@ -1084,7 +1088,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 				int iSetSuccess = cTranslateMain.m_cSetsToParentSets.Lookup(iSetLocation, iParentSetLocation);
 				if (iSetSuccess != 0){
 					// This set is an attribute.
-					CString strParentSet = GetListElement(cTranslateMain.m_cParentSets, iParentSetLocation);
+					NString strParentSet = GetListElement(cTranslateMain.m_cParentSets, iParentSetLocation);
 					// Find the location of the parent set in the normal set list.
 					int iParentNameLocation = FindListPosition(cTranslateMain.m_cSetNames,strParentSet);
 					// Find the type of the parent set.
@@ -1093,20 +1097,20 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 					if (iParentTypeSuccess > 0){  // The set is an attribute of an element of another set, 
 											      // e.g. if set s is an attribute of each element c of set t, so
 											      // there would be a ||c:t or []c:t and under it, c_s refers to c's attribute s.
-						CString strParentType = GetListElement(cTranslateMain.m_cSetTypes, iParentTypeLocation);
+						NString strParentType = GetListElement(cTranslateMain.m_cSetTypes, iParentTypeLocation);
 						// Get the elements of the parent set.
-						NList<CString, CString>* plParentElements;
+						NList<NString, NString>* plParentElements;
 						int iElementSuccess = cTranslateMain.m_cSetElements.Lookup(iParentTypeLocation, plParentElements);
 						if (iElementSuccess > 0){ 
 	/////////// Do something if it is 0 as an error occurred.
 							NPosition cParentElementPos;
 							cParentElementPos = plParentElements->GetHeadPosition();
 							while (cParentElementPos.IsNotNull()){
-								CString strCurrentElement = plParentElements->GetNext(cParentElementPos);
+								NString strCurrentElement = plParentElements->GetNext(cParentElementPos);
 								strFullSetName = strCurrentElement + _T("_") + strSetName;
 								strFullSetName = TrimChangeCase(strFullSetName, false);
 
-								NList<CString, CString>* plInitial;
+								NList<NString, NString>* plInitial;
 								int iInitialSuccess = cTranslateMain.m_cInitSetElements.Lookup(setNo,plInitial);
 								if (iInitialSuccess > 0){
 									strText.Append(strFullSetName);
@@ -1115,7 +1119,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 									cInitialPos = plInitial->GetHeadPosition();
 									int iInitialCounter = 0;
 									while (cInitialPos.IsNotNull()){
-										CString strInitialValue = plInitial->GetNext(cInitialPos);
+										NString strInitialValue = plInitial->GetNext(cInitialPos);
 										if (iInitialCounter != 0){
 											// This is not the first element.
 											strText.Append(_T(","));
@@ -1128,7 +1132,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 									strText.Append(strFullSetName);
 									int iSetTypeLocation;
 									int iTypeSuccess = cTranslateMain.m_cSetNamesToTypes.Lookup(setNo,iSetTypeLocation);
-									CString strSetType = GetListElement(cTranslateMain.m_cSetTypes, iSetTypeLocation);
+									NString strSetType = GetListElement(cTranslateMain.m_cSetTypes, iSetTypeLocation);
 									strSetType = TrimChangeCase(strSetType, true);
 									strText.Append(_T("=set{") + strSetType + _T("}!empty_set;\r\n"));
 								}
@@ -1140,7 +1144,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 						strFullSetName = strParentSet + _T("_") + strSetName;
 						strFullSetName = TrimChangeCase(strFullSetName, false);
 
-						NList<CString, CString>* plInitial;
+						NList<NString, NString>* plInitial;
 						int iInitialSuccess = cTranslateMain.m_cInitSetElements.Lookup(setNo,plInitial);
 						if (iInitialSuccess > 0){
 							strText.Append(strFullSetName);
@@ -1149,7 +1153,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 							cInitialPos = plInitial->GetHeadPosition();
 							int iInitialCounter = 0;
 							while (cInitialPos.IsNotNull()){
-								CString strInitialValue = plInitial->GetNext(cInitialPos);
+								NString strInitialValue = plInitial->GetNext(cInitialPos);
 								if (iInitialCounter != 0){
 									// This is not the first element.
 									strText.Append(_T(","));
@@ -1162,7 +1166,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 							strText.Append(strFullSetName);
 							int iSetTypeLocation;
 							int iTypeSuccess = cTranslateMain.m_cSetNamesToTypes.Lookup(setNo,iSetTypeLocation);
-							CString strSetType = GetListElement(cTranslateMain.m_cSetTypes, iSetTypeLocation);
+							NString strSetType = GetListElement(cTranslateMain.m_cSetTypes, iSetTypeLocation);
 							strSetType = TrimChangeCase(strSetType, true);
 							strText.Append(_T("=set{") + strSetType + _T("}!empty_set;\r\n"));
 						}
@@ -1171,7 +1175,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 					strFullSetName = strSetName;
 					strFullSetName = TrimChangeCase(strFullSetName, false);
 
-					NList<CString, CString>* plInitial;
+					NList<NString, NString>* plInitial;
 					int iInitialSuccess = cTranslateMain.m_cInitSetElements.Lookup(setNo,plInitial);
 					if (iInitialSuccess > 0){
 						strText.Append(strFullSetName);
@@ -1180,7 +1184,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 						cInitialPos = plInitial->GetHeadPosition();
 						int iInitialCounter = 0;
 						while (cInitialPos.IsNotNull()){
-							CString strInitialValue = plInitial->GetNext(cInitialPos);
+							NString strInitialValue = plInitial->GetNext(cInitialPos);
 							if (iInitialCounter != 0){
 								// This is not the first element.
 								strText.Append(_T(","));
@@ -1193,7 +1197,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 						strText = strText + strFullSetName;
 						int iSetTypeLocation;
 						int iTypeSuccess = cTranslateMain.m_cSetNamesToTypes.Lookup(setNo,iSetTypeLocation);
-						CString strSetType = GetListElement(cTranslateMain.m_cSetTypes, iSetTypeLocation);
+						NString strSetType = GetListElement(cTranslateMain.m_cSetTypes, iSetTypeLocation);
 						strSetType = TrimChangeCase(strSetType, true);
 						strText.Append(_T("=set{") + strSetType + _T("}!empty_set;\r\n"));
 					}
@@ -1205,7 +1209,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 		NPosition cLocalBooleanPosition2;
 		cLocalBooleanPosition2 = cTranslateMain.m_cLocalBooleans.GetHeadPosition();
 		while(cLocalBooleanPosition2.IsNotNull()){
-			CString strCurrentBool = cTranslateMain.m_cLocalBooleans.GetNext(cLocalBooleanPosition2);
+			NString strCurrentBool = cTranslateMain.m_cLocalBooleans.GetNext(cLocalBooleanPosition2);
 			strCurrentBool = TrimChangeCase(strCurrentBool, false);
 			strText.Append(strCurrentBool + _T("=false;\r\n"));
 		}
@@ -1214,7 +1218,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 		NPosition cLocalBooleanPosition3;
 		cLocalBooleanPosition3 = cTranslateMain.m_cOutputVariables.GetHeadPosition();
 		while(cLocalBooleanPosition3.IsNotNull()){
-			CString strCurrentBool = cTranslateMain.m_cOutputVariables.GetNext(cLocalBooleanPosition3);
+			NString strCurrentBool = cTranslateMain.m_cOutputVariables.GetNext(cLocalBooleanPosition3);
 			strCurrentBool = TrimChangeCase(strCurrentBool, false);
 			strText.Append(strCurrentBool + _T("=false;\r\n"));
 		}
@@ -1223,10 +1227,10 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 		// Initialise the program counters of the top node or nodes and set them to 1.
 		CTranslateNode* pcStartNode = cTranslateMain.GetNode(cTranslateMain.m_iStartNode);
 		int iRootChildren = pcStartNode->GetNumberOfChildren();
-		NList<CString, CString> lRootChildrenPCs;
+		NList<NString, NString> lRootChildrenPCs;
 		for (int i = 0; i < iRootChildren; i++){
 			int iRootChild = pcStartNode->GetChildID(i);
-			CString strRootChildPC = cTranslateMain.GetPCForNode(iRootChild);
+			NString strRootChildPC = cTranslateMain.GetPCForNode(iRootChild);
 			strText.Append(strRootChildPC);
 			strText.Append(_T("=1;\r\n"));
 			lRootChildrenPCs.AddTail(strRootChildPC);
@@ -1234,7 +1238,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 		// Initialise any program counters that were included from alternative atomic branching to 1.
 		NPosition cInitialPCPos = cTranslateMain.m_lInitialisationPCs.GetHeadPosition();
 		while (cInitialPCPos.IsNotNull()){
-			CString strInitialisePC = cTranslateMain.m_lInitialisationPCs.GetNext(cInitialPCPos);
+			NString strInitialisePC = cTranslateMain.m_lInitialisationPCs.GetNext(cInitialPCPos);
 			// Check if it was already initialised.
 			NPosition cAlreadyInitialisedPos = lRootChildrenPCs.Find(strInitialisePC);
 			if (cAlreadyInitialisedPos.IsNull()){
@@ -1245,7 +1249,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 		}
 		// Initialise all other program counters to 0.
 		for (int i = 1; i < cTranslateMain.m_iHighestProgramCounter + 1; i++){
-			CString strPC = _T("pc");
+			NString strPC = _T("pc");
 			strPC.Format(strPC + _T("%d"), i);
 			NPosition cPos = lRootChildrenPCs.Find(strPC);
 			NPosition cPos2 = cTranslateMain.m_lInitialisationPCs.Find(strPC); 
@@ -1257,7 +1261,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 	       		
 		if (m_iOptionSelected == 3){
        		for (int i = 1; i < cTranslateMain.m_iHighestProgramCounter + 1; i++){
-				CString strPC = _T("pc");
+				NString strPC = _T("pc");
 				strPC.Format(strPC + _T("%d"), i);
 				strText.Append(strPC);
 				strText.Append(_T("Allowed=false;\r\n"));
@@ -1274,10 +1278,10 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 		NPosition cNodePosition;
 		cNodePosition = cAllNodes.GetHeadPosition();
 
-		CString strTransition;
+		NString strTransition;
 		while(cNodePosition.IsNotNull()){
 			int iCurrentNode = cAllNodes.GetNext(cNodePosition);
-			CString strGuard;
+			NString strGuard;
 			int iSuccess = cTranslateMain.m_cNodesToGuards.Lookup(iCurrentNode,strGuard);
 			
 			if (iSuccess != 0){
@@ -1295,13 +1299,13 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 				
 				// Write the action.
 				strText.Append(_T("-->\r\n"));
-				NList<CString,CString>* plActions;
+				NList<NString,NString>* plActions;
 				int iActionSuccess = cTranslateMain.m_cNodesToActions.Lookup(iCurrentNode, plActions);
 				if (iActionSuccess != 0){
 					NPosition cActionPosition;
 					cActionPosition = plActions->GetHeadPosition();
 					while(cActionPosition.IsNotNull()){
-						CString strCurrentAction = plActions->GetNext(cActionPosition);
+						NString strCurrentAction = plActions->GetNext(cActionPosition);
 						strText.Append(_T("\t") + strCurrentAction + _T(";\r\n"));
 					}
 				}
@@ -1318,7 +1322,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 		cExtraPosition = cTranslateMain.m_lExtraGuards.GetHeadPosition();
 		while(cExtraPosition.IsNotNull()){
 			// Write the guard.
-			CString strExtraGuard = cTranslateMain.m_lExtraGuards.GetNext(cExtraPosition);
+			NString strExtraGuard = cTranslateMain.m_lExtraGuards.GetNext(cExtraPosition);
 			strTransition = _T("A");
 			strTransition.Format(strTransition + _T("%d"), iTransitionNumber);
 			strText.Append(strTransition);
@@ -1326,13 +1330,13 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 			strText.Append(_T("-->\r\n"));
 
 			// Write the action.
-			NList<CString,CString>* plExtraActions;
+			NList<NString,NString>* plExtraActions;
 			int iExtraSuccess = cTranslateMain.m_cExtraActions.Lookup(iExtraCount,plExtraActions);
 			if (iExtraSuccess != 0){
 				NPosition cExtraActionPosition;
 				cExtraActionPosition = plExtraActions->GetHeadPosition();
 				while(cExtraActionPosition.IsNotNull()){
-					CString strExtraAction = plExtraActions->GetNext(cExtraActionPosition);
+					NString strExtraAction = plExtraActions->GetNext(cExtraActionPosition);
 					strText.Append(_T("\t") + strExtraAction + _T(";\r\n"));
 				}
 			}
@@ -1348,9 +1352,9 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 		strText.Append(_T(": ELSE --> \r\n]\r\n\r\n"));
 		strText.Append(_T("END; % of MODULE\r\n\r\nEND\r\n"));
 
-//		CResultsWindow cResultsDialog;
+		CResultsWindow cResultsDialog;
 
-		// Calculate the times taken.
+/*		// Calculate the times taken.
 		if (m_bDisplayTimes){
 			CFileTime cFinishTime = CFileTime::GetCurrentTime();
 			ULONGLONG cStartNumber = cStartTime.GetTime();
@@ -1381,9 +1385,9 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 			}
 
 			// Put the times into strings.
-			CString strParsingTime = _T("");
+			NString strParsingTime = _T("");
 			strParsingTime.Format(strParsingTime + _T("%d"), cParsingTime);
-			CString strTranslationTime = _T("");
+			NString strTranslationTime = _T("");
 			strTranslationTime.Format(strTranslationTime + _T("%d"), cTranslationTime);
 			
 			if (bUsingSets){
@@ -1393,20 +1397,21 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 				strParsingTime.Format(strParsingTime + _T("%d"), cRunningParserTime);
 			}
 
-		//	cResultsDialog.SetTimes(strParsingTime, strTranslationTime);
+			cResultsDialog.SetTimes(strParsingTime, strTranslationTime);
 		}
+*/
 
 		// Get the details about the BT if it is a randomly created BT.
 	//	if (m_bTranslateWithRandomBT){
-	//		CString strNodesNumber = _T("");
+	//		NString strNodesNumber = _T("");
 	//		strNodesNumber.Format(strNodesNumber + _T("%d"), pcRandom->GetNumberOfNodes());
-	//		CString strBranchesNumber = _T("");
+	//		NString strBranchesNumber = _T("");
 	//		strBranchesNumber.Format(strBranchesNumber + _T("%d"), pcRandom->GetNumberOfBranches());
-		//	CString strReversionsNumber = _T("");
+		//	NString strReversionsNumber = _T("");
 	//		strReversionsNumber.Format(strReversionsNumber + _T("%d"), pcRandom->GetNumberOfReversions());
-	//		CString strMacrosNumber = _T("");
+	//		NString strMacrosNumber = _T("");
 		//	strMacrosNumber.Format(strMacrosNumber + _T("%d"), pcRandom->GetNumberOfMacros());
-	//		CString strThreadKillNumber = _T("");
+	//		NString strThreadKillNumber = _T("");
 	//		strThreadKillNumber.Format(strThreadKillNumber + _T("%d"), pcRandom->GetNumberOfThreadKills());
 			
 	//		cResultsDialog.SetRandomInformation(strNodesNumber, strBranchesNumber, 
@@ -1414,13 +1419,12 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 	//	}
 
 		// Show the translation.
-	//	cResultsDialog.SetResultsText(strText);
-	//	cResultsDialog.DoModal();
-		return strText;
+		cResultsDialog.SetResultsText(strText);
+		cResultsDialog.DoModal();	
 		}
 	}catch (CTranslateException salEx){
 		if (salEx.GetMessage() != _T("")){
-			AfxMessageBox(salEx.GetMessage());
+//			AfxMessageBox(salEx.GetMessage()); //FOR DLL
 		}
 		bError = true;
 	}
@@ -1467,7 +1471,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 
 	NPosition cSetPosition = cTranslateMain.m_cSetElements.GetStartPosition();
 	while(cSetPosition.IsNotNull()){
-		NList<CString, CString>* plList;
+		NList<NString, NString>* plList;
 		int iSetNumber;
 		cTranslateMain.m_cSetElements.GetNextAssoc(cSetPosition,iSetNumber,plList);
 		delete plList;
@@ -1477,7 +1481,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 
 	NPosition cSetInitPosition = cTranslateMain.m_cInitSetElements.GetStartPosition();
 	while(cSetInitPosition.IsNotNull()){
-		NList<CString, CString>* plList;
+		NList<NString, NString>* plList;
 		int iSetNumber;
 		cTranslateMain.m_cInitSetElements.GetNextAssoc(cSetInitPosition,iSetNumber,plList);
 		delete plList;
@@ -1487,7 +1491,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 
 	NPosition cStatePosition = cTranslateMain.m_cLocalStates.GetStartPosition();
 	while(cStatePosition.IsNotNull()){
-		NList<CString,CString>* plStates;
+		NList<NString,NString>* plStates;
 		int iLocation;
 		cTranslateMain.m_cLocalStates.GetNextAssoc(cStatePosition,iLocation,plStates);
 		delete plStates;
@@ -1497,7 +1501,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 	cTranslateMain.m_lAtomicNodes.RemoveAll();
 	NPosition cActionPosition = cTranslateMain.m_cNodesToActions.GetStartPosition();
 	while(cActionPosition.IsNotNull()){
-		NList<CString,CString>* plStates;
+		NList<NString,NString>* plStates;
 		int iLocation;
 		cTranslateMain.m_cNodesToActions.GetNextAssoc(cActionPosition,iLocation,plStates);
 		delete plStates;
@@ -1506,7 +1510,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 	cTranslateMain.m_cNodesToActions.RemoveAll();
 	NPosition cExtraPosition = cTranslateMain.m_cExtraActions.GetStartPosition();
 	while(cExtraPosition.IsNotNull()){
-		NList<CString,CString>* plStates;
+		NList<NString,NString>* plStates;
 		int iLocation;
 		cTranslateMain.m_cExtraActions.GetNextAssoc(cExtraPosition,iLocation,plStates);
 		delete plStates;
@@ -1515,7 +1519,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 	cTranslateMain.m_cExtraActions.RemoveAll();
 	NPosition cAtomicActionPos = cTranslateMain.m_cAtomicNodesToActions.GetStartPosition();
 	while(cAtomicActionPos.IsNotNull()){
-		NList<CString,CString>* plStates;
+		NList<NString,NString>* plStates;
 		int iLocation;
 		cTranslateMain.m_cAtomicNodesToActions.GetNextAssoc(cAtomicActionPos,iLocation,plStates);
 		delete plStates;
@@ -1556,7 +1560,7 @@ CString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 
 void CTranslateSALMain::MakeLongIDs(int iRootNode){
 	CTranslateNode* pcRootNode = GetNode(iRootNode);
-	CString strID;
+	NString strID;
 
 	if (iRootNode == 1){
 		strID = _T("0");
@@ -1567,7 +1571,7 @@ void CTranslateSALMain::MakeLongIDs(int iRootNode){
 	for (int i = 0; i < pcRootNode->GetNumberOfChildren(); i++){
 		int iChild = pcRootNode->GetChildID(i);
 		CTranslateNode* pcChild = GetNode(iChild);
-		CString strChildID = _T("");
+		NString strChildID = _T("");
 		strChildID.Format(strID + _T("%d"), i);
 		pcChild->SetStringID(strChildID);
 		MakeLongIDs(iChild);
@@ -1578,7 +1582,7 @@ void CTranslateSALMain::MakeLongIDs(int iRootNode){
  *  the INPUT section of the SAL module.
  *  @param name  The name of the variable.
  */
-void CTranslateSALMain::AddInputVariable(CString strName)
+void CTranslateSALMain::AddInputVariable(NString strName)
 {
 	NPosition cPosition = m_cInputVariables.Find(strName);
 	if (cPosition.IsNull()){
@@ -1590,7 +1594,7 @@ void CTranslateSALMain::AddInputVariable(CString strName)
 	 *  the OUTPUT section of the SAL module.
 	 *  @param name  The name of the variable.
 	 */
-void CTranslateSALMain::AddOutputVariable(CString strName){
+void CTranslateSALMain::AddOutputVariable(NString strName){
 	NPosition cPosition = m_cOutputVariables.Find(strName);
 	if (cPosition.IsNull()){
 		m_cOutputVariables.AddTail(strName);
@@ -1601,7 +1605,7 @@ void CTranslateSALMain::AddOutputVariable(CString strName){
 	 *  the LOCAL section of the SAL module.
 	 *  @param name  The name of the variable.
 	 */
-void CTranslateSALMain::AddLocalBoolean(CString strName){
+void CTranslateSALMain::AddLocalBoolean(NString strName){
 	NPosition cPosition = m_cLocalBooleans.Find(strName);
 	if (cPosition.IsNull()){
 		m_cLocalBooleans.AddTail(strName);
@@ -1612,7 +1616,7 @@ void CTranslateSALMain::AddLocalBoolean(CString strName){
 	 *  declared as an Integer type in the SAL code.
 	 */ 
 //////////// This function appears to be deprecated. Check this.
-void CTranslateSALMain::AddIntegerAttribute(CString strName){
+void CTranslateSALMain::AddIntegerAttribute(NString strName){
 	NPosition cPosition = m_cIntegerAttributes.Find(strName);
 	if (cPosition.IsNull()){
 		m_cIntegerAttributes.AddTail(strName);
@@ -1627,16 +1631,16 @@ void CTranslateSALMain::AddIntegerAttribute(CString strName){
 	 *  @param name  The name of the variable,
 	 *  @param state  The name of the state of the variable.
 	 */
-void CTranslateSALMain::AddLocalVariable(CString strName, CString strState){	
+void CTranslateSALMain::AddLocalVariable(NString strName, NString strState){	
 	int iLocation = FindListPosition(m_cLocalComponents,strName);
 	if (iLocation == -1){
-		NList<CString,CString> *plStates = new NList<CString,CString>;
+		NList<NString,NString> *plStates = new NList<NString,NString>;
 		plStates->AddTail(strState);
 		m_cLocalComponents.AddTail(strName);
 		iLocation = FindListPosition(m_cLocalComponents,strName);
 		m_cLocalStates.SetAt(iLocation,plStates);
 	}else{
-		NList<CString,CString> *plStates;
+		NList<NString,NString> *plStates;
 		int iSuccess = m_cLocalStates.Lookup(iLocation,plStates);
 		if (plStates->Find(strState).IsNull()){
 			plStates->AddTail(strState);
@@ -1666,13 +1670,13 @@ NList<int, int>* CTranslateSALMain::GetInternalMsgAssociation(int iOutputNode){
 	return plInputNodes;
 }
 
-int CTranslateSALMain::FindListPosition(NList<CString, CString>& cList, CString strValue)
+int CTranslateSALMain::FindListPosition(NList<NString, NString>& cList, NString strValue)
 {
 	NPosition cPosition = cList.GetHeadPosition();
 	int iCounter = -1;
 	int iIndex = -1;
 	while(cPosition.IsNotNull()){
-		CString strCurrentString = cList.GetNext(cPosition);
+		NString strCurrentString = cList.GetNext(cPosition);
 		iCounter++;
 		if (strCurrentString == strValue){
 			iIndex = iCounter;
@@ -1682,13 +1686,13 @@ int CTranslateSALMain::FindListPosition(NList<CString, CString>& cList, CString 
 }
 
 
-CString CTranslateSALMain::GetListElement(NList<CString, CString>& cList, int iPosition)
+NString CTranslateSALMain::GetListElement(NList<NString, NString>& cList, int iPosition)
 {
 	int iCounter = 0;
-	CString strElement;
+	NString strElement;
 	NPosition cPosition = cList.GetHeadPosition();
 	while(cPosition.IsNotNull()){
-		CString strCurrentString = cList.GetNext(cPosition);
+		NString strCurrentString = cList.GetNext(cPosition);
 		if (iCounter == iPosition){
 			strElement = strCurrentString;
 		}
@@ -1697,7 +1701,7 @@ CString CTranslateSALMain::GetListElement(NList<CString, CString>& cList, int iP
 	return strElement;
 }
 
-void CTranslateSALMain::RemoveFromList(NList<CString, CString>& cList, int iIndex)
+void CTranslateSALMain::RemoveFromList(NList<NString, NString>& cList, int iIndex)
 {
 	NPosition cPosition = cList.GetHeadPosition();
 	int iCounter = 0;
@@ -1707,7 +1711,7 @@ void CTranslateSALMain::RemoveFromList(NList<CString, CString>& cList, int iInde
 			cList.RemoveAt(cPosition);
 			cPosition.SetIsNull(); // To get out of the loop.
 		}else{
-			CString strCurrentString = cList.GetNext(cPosition);
+			NString strCurrentString = cList.GetNext(cPosition);
 			iCounter++;
 		}
 	}
@@ -1717,7 +1721,7 @@ void CTranslateSALMain::RemoveFromList(NList<CString, CString>& cList, int iInde
 	 *  @param  n   The node the guard applies to,
 	 *  @param  guard  The transition guard as a string.
 	 */
-void CTranslateSALMain::AddNodeGuard(int iNode, CString strGuard){
+void CTranslateSALMain::AddNodeGuard(int iNode, NString strGuard){
 	m_cNodesToGuards.SetAt(iNode,strGuard);
 }
 	
@@ -1725,10 +1729,10 @@ void CTranslateSALMain::AddNodeGuard(int iNode, CString strGuard){
 	 *  @param  n   The node the actions apply to,
 	 *  @param  actions The action string list.
 	 */
-void CTranslateSALMain::AddNodeAction(int iNode, NList<CString, CString>* plActions){
+void CTranslateSALMain::AddNodeAction(int iNode, NList<NString, NString>* plActions){
 	RemoveAssignmentRepeats(*plActions);
 	// Check if there is already a list stored for this node.
-	NList<CString, CString>* plCurrentActions;
+	NList<NString, NString>* plCurrentActions;
 	int iSuccess = m_cNodesToActions.Lookup(iNode, plCurrentActions);
 	if (iSuccess != 0){
 		if (plActions != plCurrentActions){ // If this is a new list being added.
@@ -1748,8 +1752,8 @@ void CTranslateSALMain::RemoveNodeTransition(int iNode){
 	 *  @param  n   The node the transition is associated with,
 	 *  @param  action  The transition action as a string.
 	 */
-void CTranslateSALMain::AddExtraNodeAction(int iNode, CString strAction){
-	NList<CString,CString>* plCurrentActions;
+void CTranslateSALMain::AddExtraNodeAction(int iNode, NString strAction){
+	NList<NString,NString>* plCurrentActions;
 	if (UsingViews()){
 		// This section to be completed.
 	}else{
@@ -1766,7 +1770,7 @@ void CTranslateSALMain::AddExtraNodeAction(int iNode, CString strAction){
 				if (iSuccess == 0){ // The block hasn't been fully translated yet.
 					int iSuccess2 = m_cAtomicNodesToActions.Lookup(iNode, plCurrentActions);
 					if (iSuccess2 == 0){ // The node hasn't been translated yet.
-						plCurrentActions = new NList<CString, CString>;
+						plCurrentActions = new NList<NString, NString>;
 					}
 					plCurrentActions->AddTail(strAction);
 					m_cAtomicNodesToActions.SetAt(iNode, plCurrentActions);	
@@ -1793,7 +1797,7 @@ void CTranslateSALMain::AddExtraNodeAction(int iNode, CString strAction){
 	 *  @param  guard  The transition guard as a string.
 	 *  @param  actions  The transitions actions as a list of strings.
 	 */
-int CTranslateSALMain::AddExtraTransition(CString strGuard, NList<CString,CString>* plActions){
+int CTranslateSALMain::AddExtraTransition(NString strGuard, NList<NString,NString>* plActions){
 	int iPosition = -1;
 	RemoveAssignmentRepeats(*plActions);
 	iPosition = FindListPosition(m_lExtraGuards, strGuard);
@@ -1801,7 +1805,7 @@ int CTranslateSALMain::AddExtraTransition(CString strGuard, NList<CString,CStrin
 		m_lExtraGuards.AddTail(strGuard);
 		iPosition = FindListPosition(m_lExtraGuards, strGuard);
 	}else{ // The guard was there so delete the old action list.
-		NList<CString, CString>* plOldActions;
+		NList<NString, NString>* plOldActions;
 		int iSuccess = m_cExtraActions.Lookup(iPosition, plOldActions);
 		if (iSuccess != 0){ // An old list was there.
 			delete plOldActions;
@@ -1829,9 +1833,9 @@ void CTranslateSALMain::AddPCRange(int iProgramCounter, int iValue){
 	/** Returns a string representing the name of a new unused program counter.
 	 *  @return  The pc name.
 	 */
-CString CTranslateSALMain::GetNewProgramCounter(){
+NString CTranslateSALMain::GetNewProgramCounter(){
 	m_iHighestProgramCounter++;
-	CString strNewProgramCounter = _T("pc");
+	NString strNewProgramCounter = _T("pc");
 	strNewProgramCounter.Format(strNewProgramCounter + _T("%d"), m_iHighestProgramCounter);
 	m_cPCRanges.SetAt(m_iHighestProgramCounter, 2);
 	return strNewProgramCounter;
@@ -1842,8 +1846,8 @@ CString CTranslateSALMain::GetNewProgramCounter(){
 	 *  @param  n  The node,
 	 *  @return The name of the program counter.
 	 */
-CString CTranslateSALMain::GetPCForNode(int iNode){
-	CString strProgramCounter = _T("");
+NString CTranslateSALMain::GetPCForNode(int iNode){
+	NString strProgramCounter = _T("");
 	int iProgramCounter;
 	int iSuccess = m_cNodesToPCs.Lookup(iNode, iProgramCounter);
 	if (iSuccess != -1){
@@ -1880,8 +1884,8 @@ void CTranslateSALMain::SetPCValueForNode(int iNode, int iPCValue){
 	/** Returns the guard for the given node.
 	 *  @return The guard.
 	 */
-CString CTranslateSALMain::GetGuard(int iNode){
-	CString strGuard = _T("");
+NString CTranslateSALMain::GetGuard(int iNode){
+	NString strGuard = _T("");
 	int iSuccess = m_cNodesToGuards.Lookup(iNode,strGuard);
 	return strGuard;
 }
@@ -1889,8 +1893,8 @@ CString CTranslateSALMain::GetGuard(int iNode){
 	/** Returns the actions for the given node.
 	 *  @return  A list of strings representing each action.
 	 */
-NList<CString, CString>* CTranslateSALMain::GetActions(int iNode){
-	NList<CString, CString>* plActions;
+NList<NString, NString>* CTranslateSALMain::GetActions(int iNode){
+	NList<NString, NString>* plActions;
 	int iSuccess = m_cNodesToActions.Lookup(iNode,plActions);
 	return plActions;
 }
@@ -1902,8 +1906,8 @@ NList<CString, CString>* CTranslateSALMain::GetActions(int iNode){
 	 *  @param n  The node,
 	 *  @return  A list of the names of the program counters.
 	 */
-NList<CString, CString>* CTranslateSALMain::FindThreadsToKill(int iNode, bool bCallingForReversion){
-	NList<CString, CString>* plThreadsToKill = new NList<CString, CString>;
+NList<NString, NString>* CTranslateSALMain::FindThreadsToKill(int iNode, bool bCallingForReversion){
+	NList<NString, NString>* plThreadsToKill = new NList<NString, NString>;
 	int iPC;
 	int iSuccess = m_cNodesToPCs.Lookup(iNode, iPC);
 	if (iSuccess != 0){
@@ -1930,7 +1934,7 @@ NList<CString, CString>* CTranslateSALMain::FindThreadsToKill(int iNode, bool bC
 		for (int i = iPC; i < iNextHighestPC; i++){
 			NPosition cPos = lDoNotKillThreads.Find(i);
 			if (cPos.IsNull()){ // Kill this thread.
-				CString strCurrentPC = _T("pc");
+				NString strCurrentPC = _T("pc");
 				strCurrentPC.Format(strCurrentPC + _T("%d"), i);
 				if (bCallingForReversion){
 					strCurrentPC.Append(_T("'=0"));
@@ -2042,7 +2046,7 @@ void CTranslateSALMain::SetAtomicBlock(int iNode, CTranslateAtomicBlock* pcAtomi
 	 *  @param  n   The node the guard applies to,
 	 *  @param  guard  The transition guard as a string.
 	 */
-void CTranslateSALMain::AddAtomicGuard(int iNode, CString strGuard){
+void CTranslateSALMain::AddAtomicGuard(int iNode, NString strGuard){
 	// Store the new guard with the given node.
 	m_cAtomicNodesToGuards.SetAt(iNode, strGuard);
 }
@@ -2051,15 +2055,15 @@ void CTranslateSALMain::AddAtomicGuard(int iNode, CString strGuard){
 	 *  @param  n   The node the guard applies to,
 	 *  @param  actions  The transition actions as a list.
 	 */
-void CTranslateSALMain::AddAtomicActions(int iNode, NList<CString, CString>* plActions){
-	NList<CString, CString>* plCurrentActions;
+void CTranslateSALMain::AddAtomicActions(int iNode, NList<NString, NString>* plActions){
+	NList<NString, NString>* plCurrentActions;
 	int iSuccess = m_cAtomicNodesToActions.Lookup(iNode, plCurrentActions);
 	if (iSuccess != 0){ // There are already some actions associated with this node.
 		// Copy all the current actions to the new list.
 		NPosition cListPos;
 		cListPos = plCurrentActions->GetHeadPosition();
 		while (cListPos.IsNotNull()){
-			CString strAction = plCurrentActions->GetNext(cListPos);
+			NString strAction = plCurrentActions->GetNext(cListPos);
 			plActions->AddTail(strAction);
 		}
 		delete plCurrentActions;
@@ -2072,8 +2076,8 @@ void CTranslateSALMain::AddAtomicActions(int iNode, NList<CString, CString>* plA
 	/** Returns the atomic guard for the given node.
 	 *  @return The guard.
 	 */
-CString CTranslateSALMain::GetAtomicGuard(int iNode){		
-	CString strGuard = _T("");
+NString CTranslateSALMain::GetAtomicGuard(int iNode){		
+	NString strGuard = _T("");
 	int iSuccess = m_cAtomicNodesToGuards.Lookup(iNode, strGuard);
 	return strGuard;
 }
@@ -2081,8 +2085,8 @@ CString CTranslateSALMain::GetAtomicGuard(int iNode){
 	/** Returns the atomic actions for the given node.
 	 *  @return  A list of strings representing each action.
 	 */
-NList<CString, CString>* CTranslateSALMain::GetAtomicActions(int iNode){
-	NList<CString, CString>* plActions;
+NList<NString, NString>* CTranslateSALMain::GetAtomicActions(int iNode){
+	NList<NString, NString>* plActions;
 	int iSuccess = m_cAtomicNodesToActions.Lookup(iNode, plActions);
 	return plActions;
 }
@@ -2094,7 +2098,7 @@ void CTranslateSALMain::CreateIDValues(int iRootNode){
 	int iParentNode;
 	int iParentPCValue, iCurrentPCValue;
 	int iParentPC, iNewProgramCounter;
-	CString strCurrentID;
+	NString strCurrentID;
 	NList<int, int> cAllNodes;
 	bool bUsedPC1 = false; // Records whether pc1 was used yet.
 	
@@ -2167,7 +2171,7 @@ void CTranslateSALMain::CreateIDValues(int iRootNode){
 				// Iterate through this node and its siblings.
 				for (int i = 0; i <= iSiblingNumber; i++){
 					int iSiblingNode = pcParentNode->GetChildID(i);
-					CString strSiblingID;
+					NString strSiblingID;
 					int iSuccess = m_cNodesToIDs.Lookup(iSiblingNode,strSiblingID);
 					if (iSuccess == 0){  // If this node hasn't already been assigned an ID by a sibling.
 						int iSuccess2 = m_cNodesToIDs.Lookup(iParentNode,strCurrentID);
@@ -2193,10 +2197,10 @@ void CTranslateSALMain::CreateIDValues(int iRootNode){
 	 *  @param  s   The string,
 	 *  @param  upperCase  true if the first letter should be upper-case, false if lower-case.
 	 */
-CString CTranslateSALMain::TrimChangeCase(CString strName, bool bToUpperCase){
+NString CTranslateSALMain::TrimChangeCase(NString strName, bool bToUpperCase){
 	// Replace white spaces between words with underscores.
 	strName.Trim();
-	strName.Trim(_T(""));
+//	strName.Trim(_T(""));
 	strName.Replace(_T(" "),_T("_"));
 	strName.Replace(_T("-"),_T("_"));
 	if (strName.Left(4) != _T("NOT(")){
@@ -2204,14 +2208,14 @@ CString CTranslateSALMain::TrimChangeCase(CString strName, bool bToUpperCase){
 //		strName.Replace(_T(")"),_T(""));  ///// This doesn't work because then NOT(something)'s won't be done right.
 	
 		// Change the first letter into upper or lower case as specified.
-		CString strFirstLetter = strName.Left(1);
+		NString strFirstLetter = strName.Left(1);
 		if (bToUpperCase == true){
 			strFirstLetter = strFirstLetter.MakeUpper();
 		}else{
 			strFirstLetter = strFirstLetter.MakeLower();
 		}
 		int iLength = strName.GetLength();
-		CString strTemp = strName.Mid(1,iLength);
+		NString strTemp = strName.Mid(1,iLength);
 		strName = strFirstLetter + strTemp;
 	}
 	return strName;
@@ -2232,7 +2236,7 @@ bool CTranslateSALMain::ShowTimes(){
 	 *  and the rest of the updates are removed.
 	 *  @param list  a list of Strings of transition update statements.
 	 */
-void CTranslateSALMain::RemoveAssignmentRepeats(NList<CString, CString>& lAssignments){
+void CTranslateSALMain::RemoveAssignmentRepeats(NList<NString, NString>& lAssignments){
 		/* If the actions include "allThreadsBlocked", then set it to true.
 		 * This is because if there was a < > node and a > < node in the same atomic block, 
 		 * the allThreadsBlocked should be set to true for the output message.
@@ -2241,7 +2245,7 @@ void CTranslateSALMain::RemoveAssignmentRepeats(NList<CString, CString>& lAssign
 		int iNoOfBlockedFalse = 0;
 		NPosition cListPosition = lAssignments.GetHeadPosition();
 		while (cListPosition.IsNotNull()){ 
-			CString strCurrent = lAssignments.GetNext(cListPosition);
+			NString strCurrent = lAssignments.GetNext(cListPosition);
 			if (strCurrent == _T("allThreadsBlocked'=true")){
 				iNoOfBlockedTrue++;
 			}else if (strCurrent == _T("allThreadsBlocked'=false")){
@@ -2257,12 +2261,12 @@ void CTranslateSALMain::RemoveAssignmentRepeats(NList<CString, CString>& lAssign
 		}
 		
 		// Remove the rest of the repeated statements.
-		NList<CString, CString> lFirstParts;
+		NList<NString, NString> lFirstParts;
 		cListPosition = lAssignments.GetHeadPosition();
 		while (cListPosition.IsNotNull()){
-			CString strCurrent = lAssignments.GetNext(cListPosition);
+			NString strCurrent = lAssignments.GetNext(cListPosition);
 			int iPos = 0;
-			CString strToken = strCurrent.Tokenize(_T("'="),iPos);
+			NString strToken = strCurrent.Tokenize(_T("'="),iPos);
 
 			int iFirstListPosition = FindListPosition(lFirstParts, strToken);
 			if (iFirstListPosition != -1){  
@@ -2288,8 +2292,8 @@ int CTranslateSALMain::GetTranslationType()
 	 *  @param updates The list of Strings of update statements to check,
 	 *  @param messageNames The list of the names of the messages involved in the updates.
 	 */
-void CTranslateSALMain::RemoveMessageConflicts(NList<CString, CString>& lUpdates, NList<CString, CString>& lMessageNames){
-	CString strMessage;
+void CTranslateSALMain::RemoveMessageConflicts(NList<NString, NString>& lUpdates, NList<NString, NString>& lMessageNames){
+	NString strMessage;
 	bool bContainsFalseMsg;
 	NPosition cMessagePosition;
 	cMessagePosition = lMessageNames.GetHeadPosition();
@@ -2324,7 +2328,7 @@ void CTranslateSALMain::RemoveMessageConflicts(NList<CString, CString>& lUpdates
 	 *  for translation type 4.
 	 *  @param m  the string to add.
 	 */
-void CTranslateSALMain::AddMessageString(CString strMessage){
+void CTranslateSALMain::AddMessageString(NString strMessage){
 	if (m_strMessageReady != _T("")){//If there's already an entry stored.
 		m_strMessageReady = m_strMessageReady + _T("OR ");
 		m_strMessageReady = m_strMessageReady + strMessage;
@@ -2400,19 +2404,19 @@ void CTranslateSALMain::TranslateInitNodes(int iRootNode, NList<int, int>& lInit
 			while (cInitPosition.IsNotNull()){
 				int iCurrentNode = lInitNodes.GetNext(cInitPosition);
 				CTranslateNode* pcCurrentNode = GetNode(iCurrentNode);
-				CString strComponentName;
+				NString strComponentName;
 				strComponentName = pcCurrentNode->GetComponentName();
-				CString strStateName;
+				NString strStateName;
 				strStateName = pcCurrentNode->GetStateName();
-				//CString strAction;
+				//NString strAction;
 				strComponentName = TrimChangeCase(strComponentName, false);
 				strStateName = TrimChangeCase(strStateName, false);
-				CString strFinalComp = strComponentName;
-				CString strFinalState = strComponentName + _T("_") + strStateName;
+				NString strFinalComp = strComponentName;
+				NString strFinalState = strComponentName + _T("_") + strStateName;
 				// Check for attributes.
 				int iTokenPos = 0;
-				CString strToken = strStateName.Tokenize(_T(":="), iTokenPos);
-				CString strToken2 = strStateName.Tokenize(_T(":="), iTokenPos);
+				NString strToken = strStateName.Tokenize(_T(":="), iTokenPos);
+				NString strToken2 = strStateName.Tokenize(_T(":="), iTokenPos);
 				if (strToken2 != _T("")){ // The state contains attributes.
 					strToken = TrimChangeCase(strToken, false);
 					strToken2 = TrimChangeCase(strToken2, false);
@@ -2476,7 +2480,7 @@ CTranslateNode* CTranslateSALMain::GetNode(int iNodeID)
 	for (int i = 0; i < pChildren->Getlength(); i++){
 		pXMLChild = pChildren->Getitem(i);
 		bstrChildName = pXMLChild->GetnodeName();
-		CString strChildName = bstrChildName;
+		NString strChildName = bstrChildName;
 		if (strChildName == _T("CHILDREN")){  // Ignore the other XML child nodes like "REQUIREMENTS" etc.
 			// The children of this node are the real BT nodes.
 			pRealChildren = pXMLChild->GetchildNodes();
@@ -2504,30 +2508,30 @@ CTranslateNode* CTranslateSALMain::ConvertToTranslateNode(MSXML::IXMLDOMNodePtr 
 	_bstr_t bstrSearchItem = _T("COMP_NAME");	
 	MSXML::IXMLDOMNodePtr pComponent = pmAttributes->getNamedItem(bstrSearchItem);
 	if (pComponent == NULL){  // Something is wrong since there should be a component name.
-		CString strError = _T("Could not find component name for node: ");
+		NString strError = _T("Could not find component name for node: ");
 		strError.Format(strError + _T("%d"), m_iHighestTranslateID);
 		strError.Append(_T("\r\nPossible cause may be incorrect format in XML file."));
 		AfxMessageBox(strError);
 		return NULL;
 	}
 	_variant_t vItemValue = pComponent->GetnodeValue();
-	CString strComponent = vItemValue.bstrVal;
+	NString strComponent = vItemValue.bstrVal;
 
 	bstrSearchItem = _T("NAME");
 	pComponent = pmAttributes->getNamedItem(bstrSearchItem);
 	if (pComponent == NULL){  // Something is wrong since there should be a behavior name.
-		CString strError = _T("Could not find behavior name for node:");
+		NString strError = _T("Could not find behavior name for node:");
 		strError.Format(strError + _T("%d"), m_iHighestTranslateID);
 		strError.Append(_T("\r\nPossible cause may be incorrect format in XML file."));
 		AfxMessageBox(strError);
 		return NULL;
 	}
 	vItemValue = pComponent->GetnodeValue();
-	CString strState = vItemValue.bstrVal;
+	NString strState = vItemValue.bstrVal;
 
 	bstrSearchItem = _T("OPERATOR");
 	pComponent = pmAttributes->getNamedItem(bstrSearchItem);
-	CString strFlags;
+	NString strFlags;
 	int iJumpType = GSE_J_NO;
 	if (pComponent.IsNotNull()){  
 		vItemValue = pComponent->GetnodeValue();
@@ -2551,7 +2555,7 @@ CTranslateNode* CTranslateSALMain::ConvertToTranslateNode(MSXML::IXMLDOMNodePtr 
 	bool bIsAtomic = false;
 	if (pComponent.IsNotNull()){
 		vItemValue = pComponent->GetnodeValue();
-		CString strLinkType = vItemValue.bstrVal;
+		NString strLinkType = vItemValue.bstrVal;
 		if (strLinkType == _T("atomic")){
 			bIsAtomic = true;
 		}
@@ -2562,14 +2566,14 @@ CTranslateNode* CTranslateSALMain::ConvertToTranslateNode(MSXML::IXMLDOMNodePtr 
 	pComponent = pmAttributes->getNamedItem(bstrSearchItem);
 	if (pComponent.IsNotNull()){
 		vItemValue = pComponent->GetnodeValue();
-		CString strBranchingType = vItemValue.bstrVal;
+		NString strBranchingType = vItemValue.bstrVal;
 		if (strBranchingType == _T("true")){
 			bIsNonDeter = true;
 		}
 	}
 
 	_bstr_t bstrNodeType = pXMLNode->GetnodeName();
-	CString strNodeType = bstrNodeType;
+	NString strNodeType = bstrNodeType;
 	int iType = GSE_T_STATE;  // Default to state realisation.
 	if (strNodeType == _T("STATE")){
 		iType = GSE_T_STATE;
@@ -2588,7 +2592,7 @@ CTranslateNode* CTranslateSALMain::ConvertToTranslateNode(MSXML::IXMLDOMNodePtr 
 	}else if (strNodeType == _T("INTERNAL_INPUT")){
 		iType = GSE_T_INPUT1;
 	}else{  // This is an error.
-		CString strError = _T("Could not find type (e.g. event/state/guard) for node:");
+		NString strError = _T("Could not find type (e.g. event/state/guard) for node:");
 		strError.Format(strError + _T("%d"), m_iHighestTranslateID);
 		strError.Append(_T("\r\nPossible cause may be incorrect format in XML file."));
 		AfxMessageBox(strError);
@@ -2643,12 +2647,12 @@ void CTranslateSALMain::GetLeafNodes(int iRootNode, NList<int, int>& cLeafNodes)
 	}
 }
 
-void CTranslateSALMain::ReadSetInformation(CString strPathName, CString strFileName){
+void CTranslateSALMain::ReadSetInformation(NString strPathName, NString strFileName){
 	FILE *pcFile;
-	CString strLine;
+	NString strLine;
 	char cLine[4096];
 	
-	// Read the selected file.
+/*	// Read the selected file.    //FOR DLL
 	_tfopen_s(&pcFile,(LPCTSTR)strPathName,_T("rt"));
 
 	while(!feof(pcFile)) {
@@ -2661,16 +2665,17 @@ void CTranslateSALMain::ReadSetInformation(CString strPathName, CString strFileN
 		}
 	}
 	fclose(pcFile);
+*/
 }
 
-void CTranslateSALMain::StoreSetInformation(CString strSet){
+void CTranslateSALMain::StoreSetInformation(NString strSet){
 	// Remove the last character as it is a line break character.
 	int iLength = strSet.GetLength();
 	strSet.Truncate(iLength - 1);
 	
 	// Store the set name, set type and the set it belongs to, if applicable.
 	int iTokenPos = 0;
-	CString strSetBelongsTo = strSet.Tokenize(_T(";"), iTokenPos);
+	NString strSetBelongsTo = strSet.Tokenize(_T(";"), iTokenPos);
 	
 	if (strSetBelongsTo == _T("NOTSET")){ // This is information about a non-set item.
 		// Get the name that this attribute is referred to in the BT.
@@ -2680,55 +2685,55 @@ void CTranslateSALMain::StoreSetInformation(CString strSet){
 		// data message passing is introduced.
 
 		if (iTokenPos == -1){
-			CString strMessage = _T("No 'NameInBT' found for a NOTSET item in the set info file.");
+			NString strMessage = _T("No 'NameInBT' found for a NOTSET item in the set info file.");
 			CTranslateException cException(strMessage);
 			throw cException;
 		}
 
-		CString strNameInBT = strSet.Tokenize(_T(";"), iTokenPos);
+		NString strNameInBT = strSet.Tokenize(_T(";"), iTokenPos);
 
 		if (iTokenPos == -1){
-			CString strMessage = _T("No component name found for a NOTSET item in the set info file.");
+			NString strMessage = _T("No component name found for a NOTSET item in the set info file.");
 			CTranslateException cException(strMessage);
 			throw cException;
 		}
 
 		// Get the name of the component owning this attribute.
-		CString strComponentName = strSet.Tokenize(_T(";"), iTokenPos);
+		NString strComponentName = strSet.Tokenize(_T(";"), iTokenPos);
 
 		if (iTokenPos == -1){
-			CString strMessage = _T("No attribute name found in the set info file for item: " + strNameInBT);
+			NString strMessage = _T("No attribute name found in the set info file for item: " + strNameInBT);
 			CTranslateException cException(strMessage);
 			throw cException;
 		}
 
 		// Get the name of the attribute.
-		CString strAttribute = strSet.Tokenize(_T(";"), iTokenPos);
+		NString strAttribute = strSet.Tokenize(_T(";"), iTokenPos);
 
 		if (iTokenPos == -1){
-			CString strMessage = _T("No type found in the set info file for item: " + strNameInBT);
+			NString strMessage = _T("No type found in the set info file for item: " + strNameInBT);
 			CTranslateException cException(strMessage);
 			throw cException;
 		}
 
 		// Get the type of the attribute.
-		CString strType = strSet.Tokenize(_T(";"), iTokenPos);
+		NString strType = strSet.Tokenize(_T(";"), iTokenPos);
 
 		if (iTokenPos == -1){
-			CString strMessage = _T("No elements found in the set info file for item: " + strNameInBT);
+			NString strMessage = _T("No elements found in the set info file for item: " + strNameInBT);
 			CTranslateException cException(strMessage);
 			throw cException;
 		}
 
 		// Get the elements of this type.
-		CString strElements = strSet.Tokenize(_T(";"), iTokenPos);
+		NString strElements = strSet.Tokenize(_T(";"), iTokenPos);
 
 		// Check if the type is a pre-defined type like Integer.
 		if (strType == _T("#INTEGER#")){
-			CString strStartValue = strElements;
-			CString strEndValue = strSet.Tokenize(_T(";"), iTokenPos);
+			NString strStartValue = strElements;
+			NString strEndValue = strSet.Tokenize(_T(";"), iTokenPos);
 			if (iTokenPos == -1){
-				CString strMessage = _T("No upper limit found in the set info file for the integer item: " + strNameInBT);
+				NString strMessage = _T("No upper limit found in the set info file for the integer item: " + strNameInBT);
 				CTranslateException cException(strMessage);
 				throw cException;
 			}
@@ -2780,13 +2785,13 @@ void CTranslateSALMain::StoreSetInformation(CString strSet){
 			int iElementPos = 0;
 			for (int i = 0; i < 5; i++){ // No more than 5 elements allowed.
 				if (iElementPos != -1){
-					CString strElement = strElements.Tokenize(_T(","), iElementPos);
+					NString strElement = strElements.Tokenize(_T(","), iElementPos);
 					// Associate the element with the set type.
 					if (strElement != _T("")){
 						AddElementToSet(strElement, strType);
 					}else{
 						if (i == 0){  // There are no elements specified at all.
-							CString strMessage = _T("No elements found in the set info file for item: " + strNameInBT);
+							NString strMessage = _T("No elements found in the set info file for item: " + strNameInBT);
 							CTranslateException cException(strMessage);
 							throw cException;
 						}
@@ -2797,21 +2802,21 @@ void CTranslateSALMain::StoreSetInformation(CString strSet){
 
 	}else{  // This is information about a set.
 		if (iTokenPos == -1){
-			CString strMessage = _T("No set name found in the set info file for a set item.");
+			NString strMessage = _T("No set name found in the set info file for a set item.");
 			CTranslateException cException(strMessage);
 			throw cException;
 		}
 
-		CString strSetName = strSet.Tokenize(_T(";"), iTokenPos);
+		NString strSetName = strSet.Tokenize(_T(";"), iTokenPos);
 		if (iTokenPos == -1){
-			CString strMessage = _T("No type found in the set info file for the set item: " + strSetName);
+			NString strMessage = _T("No type found in the set info file for the set item: " + strSetName);
 			CTranslateException cException(strMessage);
 			throw cException;
 		}
 
-		CString strSetType = strSet.Tokenize(_T(";"), iTokenPos);
+		NString strSetType = strSet.Tokenize(_T(";"), iTokenPos);
 		if (iTokenPos == -1){
-			CString strMessage = _T("No elements found in the set info file for item: " + strSetName);
+			NString strMessage = _T("No elements found in the set info file for item: " + strSetName);
 			CTranslateException cException(strMessage);
 			throw cException;
 		}
@@ -2848,25 +2853,25 @@ void CTranslateSALMain::StoreSetInformation(CString strSet){
 		}
 
 		// Store the list of possible elements in the set.
-		CString strSetRange = strSet.Tokenize(_T(";"), iTokenPos);
+		NString strSetRange = strSet.Tokenize(_T(";"), iTokenPos);
 		int iElementPos = 0;
 		for (int i = 0; i < 5; i++){ // No more than 5 elements allowed.
 			if (iElementPos != -1){
-				CString strElement = strSetRange.Tokenize(_T(","), iElementPos);
+				NString strElement = strSetRange.Tokenize(_T(","), iElementPos);
 				
 				// Associate the element with the set type.
 				if (strElement != _T("")){
 					AddElementToSet(strElement, strSetType);
 				}else{
 					if (i == 0){  // There are no elements specified at all.
-						CString strMessage = _T("No elements found in the set info file for item: " + strSetName);
+						NString strMessage = _T("No elements found in the set info file for item: " + strSetName);
 						CTranslateException cException(strMessage);
 						throw cException;
 					}
 				}
 			}
 		}
-		CString strSetInitial;
+		NString strSetInitial;
 		if (iTokenPos == -1){
 			strSetInitial = _T(""); 
 		}
@@ -2876,7 +2881,7 @@ void CTranslateSALMain::StoreSetInformation(CString strSet){
 			int iInitialPos = 0;
 			for (int i = 0; i < 5; i++){ // No more than 5 elements allowed.
 				if (iInitialPos != -1){
-					CString strElement = strSetInitial.Tokenize(_T(","), iInitialPos);
+					NString strElement = strSetInitial.Tokenize(_T(","), iInitialPos);
 					// Associate the element with the set name.
 					if (strElement != _T("")){		
 						AddInitialElement(strElement, strSetName);
@@ -2887,11 +2892,11 @@ void CTranslateSALMain::StoreSetInformation(CString strSet){
 
 		// Store the list of possible elements in the unique set.
 		// (see description in the header file next to the definition of m_cSetNamesToUniqueTypes).
-//		CString strSetRange2 = strSet.Tokenize(_T(";"), iTokenPos);
+//		NString strSetRange2 = strSet.Tokenize(_T(";"), iTokenPos);
 //		int iElementPos2 = 0;
 //		for (int i = 0; i < 5; i++){ // No more than 5 elements allowed.
 //			if (iElementPos2 != -1){
-//				CString strElement = strSetRange2.Tokenize(_T(","), iElementPos2);
+//				NString strElement = strSetRange2.Tokenize(_T(","), iElementPos2);
 //				// Associate the element with the set type.
 //				if (strElement != _T("")){
 //					AddUniqueElementToSet(strElement, strSetType);
@@ -2903,23 +2908,23 @@ void CTranslateSALMain::StoreSetInformation(CString strSet){
 
 // This function (despite its name), and the next three functions are for reading input from a TextBE file and 
 // converting it into TranslateNode objects.
-CTranslateNode* CTranslateSALMain::ReadSlice(CString strPathName, CString strFileName){
+CTranslateNode* CTranslateSALMain::ReadSlice(NString strPathName, NString strFileName){
 	FILE *pcFile;
-	CString strLine;
-	CString strLine2;
+	NString strLine;
+	NString strLine2;
 	char cLine[4096];
 	CTranslateNode* pcNode;
 	CTranslateNode* pcRoot;
-	NList<CString,CString>* plLastComponent; // This is for when the line is declaring state names
+	NList<NString,NString>* plLastComponent; // This is for when the line is declaring state names
 							// and the component name was specified on a previous line.
 	bool bReachedTree = false; // Indicates whether the tree section of the file
 							// has been reached.
 	
-	// Read the selected file.
+/*	// Read the selected file.                 //FOR DLL
 	// Note that this assumes that each definition (starting with a #)
 	// in the TextBT file is on a new line. 
-	_tfopen_s(&pcFile,(LPCTSTR)strPathName,_T("rt"));
-	plLastComponent = new NList<CString,CString>;
+	_tfopen_s(&pcFile,(LPCTSTR)strPathName,_T("rt"));  
+	plLastComponent = new NList<NString,NString>;
 
 	bool bOneMoreLine = false;
 	m_bReachedComp = false;
@@ -2930,7 +2935,7 @@ CTranslateNode* CTranslateSALMain::ReadSlice(CString strPathName, CString strFil
 		strLine = cLine;
 	//	if (!feof(pcFile) || (feof(pcFile) && strLine != _T(""))){ // To make it ignore the last blank line.
 			int iTokenPos = 0;
-			CString strToken = strLine.Tokenize(_T(" \t"), iTokenPos);
+			NString strToken = strLine.Tokenize(_T(" \t"), iTokenPos);
 			if ((strToken != _T("#T")) && !bReachedTree){
 				// This is still the component declarations section of the file.
 				// Store the information and pass the last component name,
@@ -2980,20 +2985,20 @@ CTranslateNode* CTranslateSALMain::ReadSlice(CString strPathName, CString strFil
 
 	if (m_bReachedComp == false){  // This is probably not a .bt file, since no component declarations were found.
 		// Throw an error.
-		CString strMessage = _T("No component declarations found. Please check that the file is a valid .bt (TextBE) file.");
+		NString strMessage = _T("No component declarations found. Please check that the file is a valid .bt (TextBE) file.");
 		CTranslateException cException(strMessage);
 		throw cException;
 	}
 
 	if (bReachedTree == false){  // This is probably not a .bt file, since tree information was not found.
 		// Throw an error.
-		CString strMessage = _T("No BT (#T) section found. Please check that the file is a valid .bt (TextBE) file.");
+		NString strMessage = _T("No BT (#T) section found. Please check that the file is a valid .bt (TextBE) file.");
 		CTranslateException cException(strMessage);
 		throw cException;
 	}
 
 	if (m_lBranchingNodes.GetSize() != 0){ // If there's anything still in the m_lBranchingNodes list.
-		CString strMessage = _T("Please check your .bt file. The number of brackets is incorrect.");
+		NString strMessage = _T("Please check your .bt file. The number of brackets is incorrect.");
 		CTranslateException cException(strMessage);
 		throw cException;
 	}
@@ -3007,9 +3012,10 @@ CTranslateNode* CTranslateSALMain::ReadSlice(CString strPathName, CString strFil
 	}
 
 	fclose(pcFile);
+*/
 /*	// Show a file dialog box.//////////////////////////////////////////
-	CString strTree = PrintTree(pcRoot);
-	CString strTempFile = _T("H:\\test.txt");
+	NString strTree = PrintTree(pcRoot);
+	NString strTempFile = _T("H:\\test.txt");
 		// Save the results to the specified file.
 		FILE *pcFile2;
 		_tfopen_s(&pcFile2,(LPCTSTR)strTempFile,_T("wt"));
@@ -3032,8 +3038,8 @@ CTranslateNode* CTranslateSALMain::ReadSlice(CString strPathName, CString strFil
 }
 
 // Please see the description for the previous function.
-NList<CString, CString>* CTranslateSALMain::StoreSliceInformation(CString strLine, NList<CString, CString>* plComponent){
-	CString strToken, strToken2, strToken3, strToken4;
+NList<NString, NString>* CTranslateSALMain::StoreSliceInformation(NString strLine, NList<NString, NString>* plComponent){
+	NString strToken, strToken2, strToken3, strToken4;
 	// Remove the last character as it is a line break character.
 	int iLength = strLine.GetLength();
 	strLine.Truncate(iLength - 1);
@@ -3044,7 +3050,6 @@ NList<CString, CString>* CTranslateSALMain::StoreSliceInformation(CString strLin
 	strToken.Trim();
 	if ((strToken == _T("#SC")) || (strToken == _T("#C"))){
 		// This is a component.
-
 		m_bReachedComp = true;  // The component declarations part has been reached.
 
 		// Get the component identifier.
@@ -3063,7 +3068,7 @@ NList<CString, CString>* CTranslateSALMain::StoreSliceInformation(CString strLin
 //		StoreComponentInfo(strToken2, strToken3);
 		// Return the new component name and ID in a list.
 		delete plComponent; // Delete the last list.
-		NList<CString,CString>* plCompList = new NList<CString,CString>;
+		NList<NString,NString>* plCompList = new NList<NString,NString>;
 		plCompList->AddTail(strToken2);
 		plCompList->AddTail(strToken3);
 		return plCompList;
@@ -3092,8 +3097,8 @@ NList<CString, CString>* CTranslateSALMain::StoreSliceInformation(CString strLin
 			return plComponent;
 		}
 		
-		CString strCompID = plComponent->GetHead();
-		CString strCompName = plComponent->GetTail();
+		NString strCompID = plComponent->GetHead();
+		NString strCompName = plComponent->GetTail();
 		strToken2 = strLine.Tokenize(_T(" \t"), iTokenPos);
 		while((!strToken2.IsEmpty()) && (strToken2 != _T("#R"))){
 			// Get the next state name.
@@ -3103,7 +3108,7 @@ NList<CString, CString>* CTranslateSALMain::StoreSliceInformation(CString strLin
 				// Note that it could also be that the behaviour ID was missing but the name was assumed to be the ID.
 				// e.g. #S 1 Something - If this error was thrown then either Something is missing or 1 is missing and
 				// Something was taken to be the ID value.
-				CString strMessage = _T("Missing behaviour name after the ID: " + strToken2);
+				NString strMessage = _T("Missing behaviour name after the ID: " + strToken2);
 				strMessage = strMessage + _T(" on line:\r\n" + strLine);
 				strMessage = strMessage + _T("\r\nThis may be due to a space in a behaviour name.");
 				CTranslateException cException(strMessage);
@@ -3144,19 +3149,19 @@ NList<CString, CString>* CTranslateSALMain::StoreSliceInformation(CString strLin
 
 	}
 /*
-	CString strNodeID = strLine.Tokenize(_T(" "), iTokenPos);
-	CString strComponentName = strLine.Tokenize(_T(","), iTokenPos);
-	CString strStateName = strLine.Tokenize(_T(","), iTokenPos);
-	CString strFlag = strLine.Tokenize(_T(","), iTokenPos);
-	CString strType = strLine.Tokenize(_T(","), iTokenPos);
-	CString strBranchingType = strLine.Tokenize(_T(","), iTokenPos);
-	CString strJumpType = strLine.Tokenize(_T(","), iTokenPos);
-	CString strSiblingNumber = strLine.Tokenize(_T(","), iTokenPos);
-	CString strChildrenNumber = strLine.Tokenize(_T(","), iTokenPos);
-	CString strParent = strLine.Tokenize(_T(","), iTokenPos);
-	CString strIsBlankNode = strLine.Tokenize(_T(","), iTokenPos);
-	CString strIsNodeNonDeter = strLine.Tokenize(_T(","), iTokenPos);
-	CString strIsAtomic = strLine.Tokenize(_T(","), iTokenPos);
+	NString strNodeID = strLine.Tokenize(_T(" "), iTokenPos);
+	NString strComponentName = strLine.Tokenize(_T(","), iTokenPos);
+	NString strStateName = strLine.Tokenize(_T(","), iTokenPos);
+	NString strFlag = strLine.Tokenize(_T(","), iTokenPos);
+	NString strType = strLine.Tokenize(_T(","), iTokenPos);
+	NString strBranchingType = strLine.Tokenize(_T(","), iTokenPos);
+	NString strJumpType = strLine.Tokenize(_T(","), iTokenPos);
+	NString strSiblingNumber = strLine.Tokenize(_T(","), iTokenPos);
+	NString strChildrenNumber = strLine.Tokenize(_T(","), iTokenPos);
+	NString strParent = strLine.Tokenize(_T(","), iTokenPos);
+	NString strIsBlankNode = strLine.Tokenize(_T(","), iTokenPos);
+	NString strIsNodeNonDeter = strLine.Tokenize(_T(","), iTokenPos);
+	NString strIsAtomic = strLine.Tokenize(_T(","), iTokenPos);
 
 	// Create a TranslateNode with this information.
 	CTranslateNode* pcNode = new CTranslateNode;
@@ -3209,7 +3214,7 @@ NList<CString, CString>* CTranslateSALMain::StoreSliceInformation(CString strLin
 }
 
 // Please see the description for the ReadSlice function.
-void CTranslateSALMain::StoreNodeInfo(CString strComponentID, CString strComponentName, CString strStateID, CString strStateName, int iType){
+void CTranslateSALMain::StoreNodeInfo(NString strComponentID, NString strComponentName, NString strStateID, NString strStateName, int iType){
 	// Create a TranslateNode with this information.
 	CTranslateNode* pcNode = new CTranslateNode;
 	pcNode->SetComponentName(strComponentName.Trim());
@@ -3219,7 +3224,7 @@ void CTranslateSALMain::StoreNodeInfo(CString strComponentID, CString strCompone
 	// This is not a proper node yet. After parsing the tree section of the TextBE
 	// file, this could become several similar nodes.
 	// Create a unique ID based on the TextBE ID's.
-	CString strNewID = strComponentID + _T("_") + strStateID;
+	NString strNewID = strComponentID + _T("_") + strStateID;
 	// Store this ID.
 	m_lTextBEList.AddTail(strNewID);
 	int iPosition = FindListPosition(m_lTextBEList, strNewID);
@@ -3227,9 +3232,9 @@ void CTranslateSALMain::StoreNodeInfo(CString strComponentID, CString strCompone
 }
 
 // Please see the description for the ReadSlice function
-CTranslateNode* CTranslateSALMain::StoreSliceNodeInformation(CString strLine){
-	CString strToken, strToken2, strToken3, strToken4;
-	CString strFirst, strSecond, strID;
+CTranslateNode* CTranslateSALMain::StoreSliceNodeInformation(NString strLine){
+	NString strToken, strToken2, strToken3, strToken4;
+	NString strFirst, strSecond, strID;
 	CTranslateNode* pcNode;
 	CTranslateNode* pcRoot = NULL;
 	CTranslateNode* pcBranchingParent;
@@ -3295,8 +3300,8 @@ CTranslateNode* CTranslateSALMain::StoreSliceNodeInformation(CString strLine){
 		bool bNodeIsBranching = false;
 		bool bEndOfLine = false;
 		bool bExtraCharacter = false;
-		CString strLabel = _T("");
-		CString strJumpingToLabel = _T("");
+		NString strLabel = _T("");
+		NString strJumpingToLabel = _T("");
 
 		strFirst = strToken;
 		strToken3 = _T("");
@@ -3452,7 +3457,7 @@ CTranslateNode* CTranslateSALMain::StoreSliceNodeInformation(CString strLine){
 										bNodeIsBranching = true;
 										bBranchingType = true;
 									}else if (strToken4 != _T("^") && strToken4 != _T("=>") && strToken4.Trim() != _T("")){
-										CString strMessage = _T("Please check your .bt file. There is either a missing ; or ;; or an unrecognised flag after the thread kill node:\r\n") +
+										NString strMessage = _T("Please check your .bt file. There is either a missing ; or ;; or an unrecognised flag after the thread kill node:\r\n") +
 											strID + _T(" on line:\r\n") + strLine;
 										CTranslateException cException(strMessage);
 										throw cException;
@@ -3536,7 +3541,7 @@ CTranslateNode* CTranslateSALMain::StoreSliceNodeInformation(CString strLine){
 
 													strToken3 = _T("=>");
 												}else{  // There was a => but something else before it.
-													CString strMessage = _T("Please check your .bt file. There is an unexpected symbol after the node:\r\n") +
+													NString strMessage = _T("Please check your .bt file. There is an unexpected symbol after the node:\r\n") +
 														strID + _T(" on line:\r\n") + strLine;
 													CTranslateException cException(strMessage);
 													throw cException;	
@@ -3577,7 +3582,7 @@ CTranslateNode* CTranslateSALMain::StoreSliceNodeInformation(CString strLine){
 														bAtomic = true;
 														bSequential = false;
 													}else{  // There was a ;; but something else before it.
-														CString strMessage = _T("Please check your .bt file. There is an unexpected symbol after the node:\r\n") +
+														NString strMessage = _T("Please check your .bt file. There is an unexpected symbol after the node:\r\n") +
 															strID + _T(" on line:\r\n") + strLine;
 														CTranslateException cException(strMessage);
 														throw cException;	
@@ -3601,7 +3606,7 @@ CTranslateNode* CTranslateSALMain::StoreSliceNodeInformation(CString strLine){
 															bAtomic = true;
 															bSequential = false;
 														}else{  // There was a ; but something else before it.
-															CString strMessage = _T("Please check your .bt file. There is an unexpected symbol after the node:\r\n") +
+															NString strMessage = _T("Please check your .bt file. There is an unexpected symbol after the node:\r\n") +
 																strID + _T(" on line:\r\n") + strLine;
 															CTranslateException cException(strMessage);
 															throw cException;	
@@ -3620,7 +3625,7 @@ CTranslateNode* CTranslateSALMain::StoreSliceNodeInformation(CString strLine){
 														strToken3 = _T("");
 
 													}else{   // This doesn't make sense (thread kills after a label are currently not allowed).
-														CString strMessage = _T("Please check your .bt file. Unrecognised symbol after the node:\r\n") +
+														NString strMessage = _T("Please check your .bt file. Unrecognised symbol after the node:\r\n") +
 																strID + _T(" on line:\r\n") + strLine;
 														CTranslateException cException(strMessage);
 														throw cException;	
@@ -3642,14 +3647,14 @@ CTranslateNode* CTranslateSALMain::StoreSliceNodeInformation(CString strLine){
 			strID = strFirst + _T("_") + strSecond;
 			iListPosition = FindListPosition(m_lTextBEList, strID);
 			if (iListPosition == -1){ // The string was not found.
-				CString strMessage = _T("Please check your .bt file. The following item was not defined: \r\n") + 
+				NString strMessage = _T("Please check your .bt file. The following item was not defined: \r\n") + 
 						strID + _T(" on line:\r\n") + strLine;
 				CTranslateException cException(strMessage);
 				throw cException;
 			}
 			int iSuccess = m_mTextBEMap.Lookup(iListPosition, pcNode);
 			if (iSuccess == 0){ // The string was not found.
-				CString strMessage = _T("Please check your .bt file. The following item was not defined: \r\n") + 
+				NString strMessage = _T("Please check your .bt file. The following item was not defined: \r\n") + 
 						strID + _T(" on line:\r\n") + strLine;
 				CTranslateException cException(strMessage);
 				throw cException;
@@ -3657,7 +3662,7 @@ CTranslateNode* CTranslateSALMain::StoreSliceNodeInformation(CString strLine){
 			// Create a new Translate Node with this information.
 			CTranslateNode* pcNewNode = new CTranslateNode;
 			pcNewNode->SetComponentName(pcNode->GetComponentName());
-			CString strStateName = pcNode->GetStateName();
+			NString strStateName = pcNode->GetStateName();
 			pcNewNode->SetType(pcNode->GetType());  // This line has to be here because if it is a forall or forone
 													// node, in TextBE it is also a state-change, so the forall/forone type 
 													// should override the state-change type.
@@ -3771,7 +3776,7 @@ CTranslateNode* CTranslateSALMain::StoreSliceNodeInformation(CString strLine){
 
 				if (strToken == _T("")){  // There is an error in the .bt file since 
 										  // the last node had a ; or ;; after it but now there's no next node.
-					CString strMessage = _T("Please check your .bt file. There is no node after the node:\r\n") + 
+					NString strMessage = _T("Please check your .bt file. There is no node after the node:\r\n") + 
 						strID + _T(" on line:\r\n") + strLine;
 					CTranslateException cException(strMessage);
 					throw cException;
@@ -3795,7 +3800,7 @@ CTranslateNode* CTranslateSALMain::StoreSliceNodeInformation(CString strLine){
 			}
 		}
 		}else{  // There is an error in the .bt file since there's a component name with no state name.
-				CString strMessage = _T("Please check your .bt file. There is no state name after the component with ID:\r\n") 
+				NString strMessage = _T("Please check your .bt file. There is no state name after the component with ID:\r\n") 
 					+ strToken + _T(" on line:\r\n") + strLine;
 				CTranslateException cException(strMessage);
 				throw cException;
@@ -3807,15 +3812,15 @@ CTranslateNode* CTranslateSALMain::StoreSliceNodeInformation(CString strLine){
 		return pcRoot;
 }
 
-void CTranslateSALMain::AddElementToSet(CString strElement, CString strSet){
+void CTranslateSALMain::AddElementToSet(NString strElement, NString strSet){
 	//// Do something here if the set name isn't already in the list
 	//// - this means that its type wasn't declared.
 
 	int iSetTypePosition = FindListPosition(m_cSetTypes, strSet);
-	NList<CString, CString>* plElements;
+	NList<NString, NString>* plElements;
 	int iSuccess = m_cSetElements.Lookup(iSetTypePosition, plElements);
 	if (iSuccess == 0){ // No elements are currently associated with this set type.
-		plElements = new NList<CString, CString>;
+		plElements = new NList<NString, NString>;
 		plElements->AddTail(strElement);
 		m_cSetElements.SetAt(iSetTypePosition, plElements);
 	
@@ -3828,15 +3833,15 @@ void CTranslateSALMain::AddElementToSet(CString strElement, CString strSet){
 	}
 }
 
-void CTranslateSALMain::AddUniqueElementToSet(CString strElement, CString strSet){
+void CTranslateSALMain::AddUniqueElementToSet(NString strElement, NString strSet){
 	//// Do something here if the set name isn't already in the list
 	//// - this means that its type wasn't declared.
 
 	int iSetTypePosition = FindListPosition(m_cUniqueSetTypes, strSet);
-	NList<CString, CString>* plElements;
+	NList<NString, NString>* plElements;
 	int iSuccess = m_cUniqueSetElements.Lookup(iSetTypePosition, plElements);
 	if (iSuccess == 0){ // No elements are currently associated with this set type.
-		plElements = new NList<CString, CString>;
+		plElements = new NList<NString, NString>;
 		plElements->AddTail(strElement);
 		m_cUniqueSetElements.SetAt(iSetTypePosition, plElements);
 	
@@ -3849,15 +3854,15 @@ void CTranslateSALMain::AddUniqueElementToSet(CString strElement, CString strSet
 	}
 }
 
-void CTranslateSALMain::AddInitialElement(CString strElement, CString strSet){
+void CTranslateSALMain::AddInitialElement(NString strElement, NString strSet){
 	//// Do something here if the set name isn't already in the list
 	//// - this means that its type wasn't declared.
 
 	int iSetNamePosition = FindListPosition(m_cSetNames, strSet);
-	NList<CString, CString>* plElements;
+	NList<NString, NString>* plElements;
 	int iSuccess = m_cInitSetElements.Lookup(iSetNamePosition, plElements);
 	if (iSuccess == 0){ // No elements are currently associated with this set type.
-		plElements = new NList<CString, CString>;
+		plElements = new NList<NString, NString>;
 		plElements->AddTail(strElement);
 		m_cInitSetElements.SetAt(iSetNamePosition, plElements);
 	
@@ -3872,7 +3877,7 @@ void CTranslateSALMain::AddInitialElement(CString strElement, CString strSet){
 /*
 void CTranslateSALMain::ReadSetElements(){
 	FILE *pcFile;
-	CString strLine;
+	NString strLine;
 	char cLine[4096];
 
 	// Show a file dialog box.
@@ -3882,8 +3887,8 @@ void CTranslateSALMain::ReadSetElements(){
    
 	if( cFileDlg.DoModal ()==IDOK )
 	{
-		CString strPathName = cFileDlg.GetPathName();
-		CString strFileName = cFileDlg.GetFileName();
+		NString strPathName = cFileDlg.GetPathName();
+		NString strFileName = cFileDlg.GetFileName();
 		
 		// Read the selected file.
 		_tfopen_s(&pcFile,(LPCTSTR)strPathName ,_T("rt"));
@@ -3897,18 +3902,18 @@ void CTranslateSALMain::ReadSetElements(){
 	}
 }
 
-void CTranslateSALMain::StoreElementInformation(CString strLine){
+void CTranslateSALMain::StoreElementInformation(NString strLine){
 	// Remove the last character as it is a line break character.
 	int iLength = strLine.GetLength();
 	strLine.Truncate(iLength - 1);
 	
 	// Get the set type.
 	int iTokenPos = 0;
-	CString strSetType = strLine.Tokenize(_T(","), iTokenPos);
+	NString strSetType = strLine.Tokenize(_T(","), iTokenPos);
 	
 	// Get the set elements.
 	for (int i = 0; i < 3; i++){
-		CString strElement = strLine.Tokenize(_T(","), iTokenPos);
+		NString strElement = strLine.Tokenize(_T(","), iTokenPos);
 		if (strElement != _T("")){ // Sometimes there may be less than 3 elements.
 			AddElementToSet(strElement, strSetType);
 		}
@@ -3919,20 +3924,20 @@ void CTranslateSALMain::StoreElementInformation(CString strLine){
 
 void CTranslateSALMain::MatchSetExpression(CTranslateNode* pcNode){
 //	FILE *pcFile;
-	CString strStateName;
-	CString strSetName;
-	CString strSetType;
-	CString strElement;
-	CString strToken1;
-	CString strToken2; 
-	CString strToken3;
-	CString strToken4;
-	CString strToken5;
-	CString strToken6;
+	NString strStateName;
+	NString strSetName;
+	NString strSetType;
+	NString strElement;
+	NString strToken1;
+	NString strToken2; 
+	NString strToken3;
+	NString strToken4;
+	NString strToken5;
+	NString strToken6;
 
 //	char cLine[4096];
 
-//	CString strPathName = _T("C:/sets/SetParserOutput.txt");
+//	NString strPathName = _T("C:/sets/SetParserOutput.txt");
 		
 //	// Read the selected file.
 //	_tfopen_s(&pcFile,(LPCTSTR)strPathName ,_T("rt"));
@@ -3955,7 +3960,7 @@ void CTranslateSALMain::MatchSetExpression(CTranslateNode* pcNode){
 //		int iNextLength = strNextLine.GetLength();
 //		strNextLine.Truncate(iNextLength - 1);
 
-	CString strComponentName = pcNode->GetComponentName();
+	NString strComponentName = pcNode->GetComponentName();
 	strComponentName = TrimChangeCase(strComponentName,false);
 	strStateName = pcNode->GetStateName();
 	int iType = pcNode->GetType();
@@ -3975,7 +3980,7 @@ void CTranslateSALMain::MatchSetExpression(CTranslateNode* pcNode){
 				if (strToken4 != _T("")){  // The string is in the format S := S + T or S := S + {x}
 					if (strToken3 != strSetName){
 						// The first part of the addition is not the same set.
-						CString strMessage = _T("Invalid set operation:\r\n");
+						NString strMessage = _T("Invalid set operation:\r\n");
 						strMessage = strMessage + _T("For set union or set addition, the set name after ':=' must be identical to the name before it.\r\n");
 						strMessage = strMessage + _T("Node: ") + pcNode->GetStateName();
 						CTranslateException cException(strMessage);
@@ -3988,7 +3993,7 @@ void CTranslateSALMain::MatchSetExpression(CTranslateNode* pcNode){
 						int iTokenPos4 = 0;
 						strToken6 = strToken5.Tokenize(_T("}"), iTokenPos4);
 						if (strToken6 == strToken5){  // The closing bracket wasn't found.
-							CString strMessage = _T("Invalid set operation:\r\n");
+							NString strMessage = _T("Invalid set operation:\r\n");
 							strMessage = strMessage + _T("Closing bracket not found for the set addition node:\r\n");
 							strMessage = strMessage + pcNode->GetStateName();
 							CTranslateException cException(strMessage);
@@ -4009,7 +4014,7 @@ void CTranslateSALMain::MatchSetExpression(CTranslateNode* pcNode){
 					if (strToken4 != _T("")){  // The string is in the format S := S - T or S := S - {x}
 						if (strToken3 != strSetName){
 							// The first part of the subtraction is not the same set.
-							CString strMessage = _T("Invalid set operation:\r\n");
+							NString strMessage = _T("Invalid set operation:\r\n");
 							strMessage = strMessage + _T("For set difference or set subtraction, the set name after ':=' must be identical to the name before it.\r\n");
 							strMessage = strMessage + _T("Node: ") + pcNode->GetStateName();
 							CTranslateException cException(strMessage);
@@ -4022,7 +4027,7 @@ void CTranslateSALMain::MatchSetExpression(CTranslateNode* pcNode){
 							int iTokenPos4 = 0;
 							strToken6 = strToken5.Tokenize(_T("}"), iTokenPos4);
 							if (strToken6 == strToken5){  // The closing bracket wasn't found.
-								CString strMessage = _T("Invalid set operation:\r\n");
+								NString strMessage = _T("Invalid set operation:\r\n");
 								strMessage = strMessage + _T("Closing bracket not found for the set subtraction node:\r\n");
 								strMessage = strMessage + pcNode->GetStateName();
 								CTranslateException cException(strMessage);
@@ -4042,7 +4047,7 @@ void CTranslateSALMain::MatchSetExpression(CTranslateNode* pcNode){
 						if (strToken4 != _T("")){  // The string is in the format S := S >< T 
 							if (strToken3 != strSetName){
 								// The first part of the expression is not the same set.
-								CString strMessage = _T("Invalid set operation:\r\n");
+								NString strMessage = _T("Invalid set operation:\r\n");
 								strMessage = strMessage + _T("For set intersection, the set name after ':=' must be identical to the name before it.\r\n");
 								strMessage = strMessage + _T("Node: ") + pcNode->GetStateName();
 								CTranslateException cException(strMessage);
@@ -4055,7 +4060,7 @@ void CTranslateSALMain::MatchSetExpression(CTranslateNode* pcNode){
 							strElement = _T("");
 							pcNode->AddSetRule(_T("empty"));
 						}else{  // The string is unrecognised.
-							CString strMessage = _T("Unrecognised set expression.\r\n");
+							NString strMessage = _T("Unrecognised set expression.\r\n");
 							strMessage = strMessage + _T("If it is not a set node, make sure its attribute name does not conflict with any names of sets.\r\n");
 							strMessage = strMessage + _T("Node: ") + pcNode->GetStateName();
 							CTranslateException cException(strMessage);
@@ -4120,7 +4125,7 @@ void CTranslateSALMain::MatchSetExpression(CTranslateNode* pcNode){
 							strToken2.Delete(0,1);
 							strElement = strToken2;
 						}else{ // The expression is not valid.
-							CString strMessage = _T("Unrecognised set expression.\r\n");
+							NString strMessage = _T("Unrecognised set expression.\r\n");
 							strMessage = strMessage + _T("If it is not a set node, please remove the '|' characters.\r\n");
 							strMessage = strMessage + _T("Node: ") + pcNode->GetStateName();
 							CTranslateException cException(strMessage);
@@ -4130,7 +4135,7 @@ void CTranslateSALMain::MatchSetExpression(CTranslateNode* pcNode){
 						pcNode->AddSetVariable(strElement);
 					}else{  // Either this is a set node that is missing a "|" or this is
 						    // a non-set node that has a "|" which it should not have.
-						CString strMessage = _T("Unrecognised set expression.\r\n");
+						NString strMessage = _T("Unrecognised set expression.\r\n");
 						strMessage = strMessage + _T("If it is not a set node, please remove the '|' characters.\r\n");
 						strMessage = strMessage + _T("Node: ") + pcNode->GetStateName();
 						CTranslateException cException(strMessage);
@@ -4162,13 +4167,13 @@ void CTranslateSALMain::MatchSetExpression(CTranslateNode* pcNode){
 			if (strNextLine.Right(4) == _T("Name")){
 				// It was a name of a variable.
 				// Ignore the first 6 characters which say "VALUE_".
-				CString strVariable = strLine.Mid(6); 
+				NString strVariable = strLine.Mid(6); 
 				pcNode->AddSetVariable(strVariable);
 
 			}else if (strNextLine.Right(3) == _T("Num")){
 				// It was a number - note: assuming that there can only be one
 				// number per expression.
-				CString strVariable = strLine.Mid(6); 
+				NString strVariable = strLine.Mid(6); 
 				pcNode->AddSetVariable(strVariable);
 		//////////// Note: The above line should be changed to convert the variable to an int
 				////////// and then store it as a number.
@@ -4184,7 +4189,7 @@ void CTranslateSALMain::MatchSetExpression(CTranslateNode* pcNode){
 			}else if (strLine.Mid(6,7) == _T("boolsym")){
 				// Store the "LessThan" or "GreaterThan", etc. part.
 				if (strLine.Mid(19) != _T("")){
-					CString strBoolSymbol = strLine.Mid(19);
+					NString strBoolSymbol = strLine.Mid(19);
 					if (strBoolSymbol != _T("")){
 						// The "LessThan", etc. part is there - It is not a case where it is blank.
 						pcNode->AddSetRule(strLine.Mid(19));
@@ -4218,13 +4223,13 @@ void CTranslateSALMain::MatchSetExpression(CTranslateNode* pcNode){
 //	fclose(pcFile);
 }
 
-CString CTranslateSALMain::GetSetType(CString strSetName, CTranslateNode* pcNode){
+NString CTranslateSALMain::GetSetType(NString strSetName, CTranslateNode* pcNode){
 	strSetName = TrimChangeCase(strSetName,true);
 	int iNamePosition = FindListPosition(m_cSetNames, strSetName);
 	int iTypePosition;
 	int iSuccess = m_cSetNamesToTypes.Lookup(iNamePosition, iTypePosition);
 	if (iSuccess != 0){
-		CString strType = GetListElement(m_cSetTypes, iTypePosition);
+		NString strType = GetListElement(m_cSetTypes, iTypePosition);
 		strType = TrimChangeCase(strType,true);
 		return strType;
 	}
@@ -4253,13 +4258,13 @@ CTranslateNode* CTranslateSALMain::ExpandNode(CTranslateNode* pcNode){
 		int iType = pcNode->GetType();
 		if ((iType == GSE_T_SETALL) || (iType == GSE_T_SETANY)){
 			int iSetTypeLocation;
-			CString strState = pcNode->GetStateName();
+			NString strState = pcNode->GetStateName();
 			int iPosition = 0;
 			// Get the name used in place of the element name, e.g. for all c:Courses
 			// would return "c".
-			CString strOriginal = strState.Tokenize(_T(":"),iPosition);
+			NString strOriginal = strState.Tokenize(_T(":"),iPosition);
 			// Get the name of the set, e.g. for all c:Courses would return "Courses".
-			CString strSetName = strState.Tokenize(_T(":"),iPosition);
+			NString strSetName = strState.Tokenize(_T(":"),iPosition);
 			strOriginal.Trim();
 			strSetName.Trim();
 			strSetName = TrimChangeCase(strSetName,true);
@@ -4268,21 +4273,21 @@ CTranslateNode* CTranslateSALMain::ExpandNode(CTranslateNode* pcNode){
 			int iSetNameLocation = FindListPosition(m_cSetNames, strSetName);
 			int iSuccess = m_cSetNamesToTypes.Lookup(iSetNameLocation,iSetTypeLocation);		
 			if (iSuccess == 0){  // The set name wasn't found.
-				CString strMessage = _T("Unknown set name: " + strSetName);
+				NString strMessage = _T("Unknown set name: " + strSetName);
 				strMessage = strMessage + _T("\n\rPlease check your set information file.");
 				CTranslateException cException(strMessage);
 				throw cException;
 			}
 
-			CString strSetType = GetListElement(m_cSetTypes,iSetTypeLocation);
+			NString strSetType = GetListElement(m_cSetTypes,iSetTypeLocation);
 			strSetType = TrimChangeCase(strSetType,true);
 			if (pcNode->GetComponentName() != strSetName){
 				strSetName = pcNode->GetComponentName() + _T("_") + strSetName;
 			}
-			NList<CString, CString>* plElements;
+			NList<NString, NString>* plElements;
 			int iSuccess2 = m_cSetElements.Lookup(iSetTypeLocation,plElements);
 			if (iSuccess2 == 0){  // The set elements weren't found.
-				CString strMessage = _T("Set elements not defined for set type:" + strSetType);
+				NString strMessage = _T("Set elements not defined for set type:" + strSetType);
 				strMessage = strMessage + _T("\n\rPlease check your set information file.");
 				CTranslateException cException(strMessage);
 				throw cException;
@@ -4293,7 +4298,7 @@ CTranslateNode* CTranslateSALMain::ExpandNode(CTranslateNode* pcNode){
 			int iSiblingNumber = pcNode->GetSiblingNumber();
 			if (iSiblingNumber == 0){   // This node is not part of a branch.
 				// Get this node's sets guard, if it has one.
-				CString strEarlierSetsGuard = pcNode->RetrieveSetsGuard();
+				NString strEarlierSetsGuard = pcNode->RetrieveSetsGuard();
 
 				// Create duplicate sub-trees for each element.
 				// Since there's already one present, create n-1 trees.
@@ -4309,8 +4314,8 @@ CTranslateNode* CTranslateSALMain::ExpandNode(CTranslateNode* pcNode){
 					pcParent->AddChild(iSubTreeRoot);
 					pcSubTreeRoot->SetSiblingNumber(iNumberOfElements-1);
 					// Add a guard for checking whether the element is currently in the set.
-					CString strElement = GetListElement(*plElements,i+1);
-					CString strGuard = _T("set{") + strSetType + _T("}!contains?(") 
+					NString strElement = GetListElement(*plElements,i+1);
+					NString strGuard = _T("set{") + strSetType + _T("}!contains?(") 
 						+ TrimChangeCase(strSetName, false) + _T(",") + strElement + _T(")");
 					if (strEarlierSetsGuard != _T("")){ // The set node had a sets guard already.
 						// i.e. The set node was a child of another set node.
@@ -4358,8 +4363,8 @@ CTranslateNode* CTranslateSALMain::ExpandNode(CTranslateNode* pcNode){
 				pcTopOfSubtree->SetSiblingNumber(iNumberOfElements-1);
 				
 				// Add a guard for checking whether the element is currently in the set.
-				CString strElement = GetListElement(*plElements,0);
-				CString strGuard = _T("set{") + strSetType + _T("}!contains?(") 
+				NString strElement = GetListElement(*plElements,0);
+				NString strGuard = _T("set{") + strSetType + _T("}!contains?(") 
 					+ TrimChangeCase(strSetName, false) + _T(",") + strElement + _T(")");
 				if (strEarlierSetsGuard != _T("")){ // The set node had a sets guard already.
 					// i.e. The set node was a child of another set node.
@@ -4391,7 +4396,7 @@ CTranslateNode* CTranslateSALMain::ExpandNode(CTranslateNode* pcNode){
 
 			}else{   // This node is part of a branch.
 				// Get this node's sets guard, if it has one.
-				CString strEarlierSetsGuard = pcNode->RetrieveSetsGuard();
+				NString strEarlierSetsGuard = pcNode->RetrieveSetsGuard();
 
 				// Create a blank node to hold the new sub-trees together.
 				CTranslateNode* pcBlankNode = new CTranslateNode;
@@ -4419,8 +4424,8 @@ CTranslateNode* CTranslateSALMain::ExpandNode(CTranslateNode* pcNode){
 					pcBlankNode->AddChild(iSubTreeRoot);
 					pcSubTreeRoot->SetSiblingNumber(iNumberOfElements-1);
 					// Add a guard for checking whether the element is currently in the set.
-					CString strElement = GetListElement(*plElements,i+1);
-					CString strGuard = _T("set{") + strSetType + _T("}!contains?(") 
+					NString strElement = GetListElement(*plElements,i+1);
+					NString strGuard = _T("set{") + strSetType + _T("}!contains?(") 
 						+ TrimChangeCase(strSetName, false) + _T(",") + strElement + _T(")");
 					if (strEarlierSetsGuard != _T("")){ // The set node had a sets guard already.
 						// i.e. The set node was a child of another set node.
@@ -4469,8 +4474,8 @@ CTranslateNode* CTranslateSALMain::ExpandNode(CTranslateNode* pcNode){
 				pcTopOfSubtree->SetParent(iBlankNode);
 				pcTopOfSubtree->SetSiblingNumber(iNumberOfElements-1);
 				// Add a guard for checking whether the element is currently in the set.
-				CString strElement = GetListElement(*plElements,0);
-				CString strGuard = _T("set{") + strSetType + _T("}!contains?(") 
+				NString strElement = GetListElement(*plElements,0);
+				NString strGuard = _T("set{") + strSetType + _T("}!contains?(") 
 					+ TrimChangeCase(strSetName, false) + _T(",") + strElement + _T(")");
 				if (strEarlierSetsGuard != _T("")){ // The set node had a sets guard already.
 					// i.e. The set node was a child of another set node.
@@ -4483,8 +4488,8 @@ CTranslateNode* CTranslateSALMain::ExpandNode(CTranslateNode* pcNode){
 				// e.g. for ||s:Staff, then all nodes with "s" are replaced
 				// with "s1", "s2", etc. if those were the element names.
 				int iPosition = 0;
-				CString strState = pcNode->GetStateName();
-				CString strOriginal = strState.Tokenize(_T(":"),iPosition);
+				NString strState = pcNode->GetStateName();
+				NString strOriginal = strState.Tokenize(_T(":"),iPosition);
 				for (int j = 0; j < iNumberOfElements; j++){
 					strElement = GetListElement(*plElements,j);
 					int iChildID = pcBlankNode->GetChildID(j);
@@ -4576,9 +4581,9 @@ CTranslateNode* CTranslateSALMain::CopySubTree(CTranslateNode *pcRoot){
 	return pcNode;
 }
 
-void CTranslateSALMain::RenameTree(CTranslateNode *pcRoot, CString strOriginalName, CString strNewName){
+void CTranslateSALMain::RenameTree(CTranslateNode *pcRoot, NString strOriginalName, NString strNewName){
 	// If the component name matches, then rename it.
-	CString strComponentName = pcRoot->GetComponentName();
+	NString strComponentName = pcRoot->GetComponentName();
 	// Remove spaces to ensure that 
 	// they are both compared correctly, e.g. it will still
 	// think that "Course" and "Course " are the same, even though
@@ -4593,7 +4598,7 @@ void CTranslateSALMain::RenameTree(CTranslateNode *pcRoot, CString strOriginalNa
 		pcRoot->StoreTheParentSet(strOriginalName);
 	}
 
-	CString strState = pcRoot->GetStateName();
+	NString strState = pcRoot->GetStateName();
 		
 	// If the node's state contains the name and it is a set expression,
 	// then rename it. Note that this only renames states that have the form:
@@ -4612,8 +4617,8 @@ void CTranslateSALMain::RenameTree(CTranslateNode *pcRoot, CString strOriginalNa
 //	}
 
 	// Replace states in the form: s:=t or s=t where t is the name being renamed.
-	CString strToken;
-	CString strToken2;
+	NString strToken;
+	NString strToken2;
 	int iTokenPos = 0;
 	if (strState.Find(_T(":=")) != -1){
 		strToken = strState.Tokenize(_T(":="), iTokenPos);
@@ -4661,20 +4666,20 @@ void CTranslateSALMain::ReplaceAttributes(CTranslateNode *pcRoot){
 	cPosition = m_lAlternateNames.GetHeadPosition();
 	int iAltLocation = 0;
 	while (cPosition.IsNotNull()){ // For each alternative name in the list.
-		CString strAltName = m_lAlternateNames.GetNext(cPosition);
-		CString strState = pcRoot->GetStateName();
-		CString strOriginalState = strState;
+		NString strAltName = m_lAlternateNames.GetNext(cPosition);
+		NString strState = pcRoot->GetStateName();
+		NString strOriginalState = strState;
 
 		// Get the component name and proper attribute name.
 		int iAttributeLocation;
 		int iSuccess = m_mAlternativesToAttributes.Lookup(iAltLocation,iAttributeLocation);
-		CString strAttribute = GetListElement(m_lAttributes,iAttributeLocation);
+		NString strAttribute = GetListElement(m_lAttributes,iAttributeLocation);
 		int iComponentLocation;
 		int iSuccess2 = m_mAttributesToComponents.Lookup(iAltLocation, iComponentLocation);
-		CString strComponentName = GetListElement(m_lAttributeComponents, iComponentLocation);
+		NString strComponentName = GetListElement(m_lAttributeComponents, iComponentLocation);
 		strComponentName = TrimChangeCase(strComponentName, false);
 		strAttribute = TrimChangeCase(strAttribute, false); 
-		CString strNewAttribute = strComponentName + _T("_") + strAttribute;
+		NString strNewAttribute = strComponentName + _T("_") + strAttribute;
 
 		// Replace any occurrences of the alternate name with the correct attribute name.
 		strState.Replace(strAltName, strNewAttribute);
@@ -4699,11 +4704,11 @@ void CTranslateSALMain::ReplaceAttributes(CTranslateNode *pcRoot){
 	}
 }
 
-int CTranslateSALMain::GetUserDefinedType(CString strComponent, CString strAttribute, CTranslateNode* pcNode){
-	CString strParentSet = pcNode->GetTheParentSet();
-//	CString strOriginalName = pcNode->GetTheOriginalName();
-	CString strFirstPart;
-	CString strSecondPart;
+int CTranslateSALMain::GetUserDefinedType(NString strComponent, NString strAttribute, CTranslateNode* pcNode){
+	NString strParentSet = pcNode->GetTheParentSet();
+//	NString strOriginalName = pcNode->GetTheOriginalName();
+	NString strFirstPart;
+	NString strSecondPart;
 //	if (strParentSet != _T("")){
 //		strFirstPart = strParentSet;
 //	}else{
@@ -4714,13 +4719,13 @@ int CTranslateSALMain::GetUserDefinedType(CString strComponent, CString strAttri
 //	}else{
 //	strSecondPart = strAttribute;
 //	}
-//	CString strAttributeName = strFirstPart + _T("_") + strSecondPart;
-	CString strAttributeName = strComponent + _T("_") + strAttribute;
+//	NString strAttributeName = strFirstPart + _T("_") + strSecondPart;
+	NString strAttributeName = strComponent + _T("_") + strAttribute;
 	NPosition cPosition;
 	cPosition = m_lAlternateNames.GetHeadPosition();
 	int iAltLocation = 0;
 	while (cPosition.IsNotNull()){ // For each alternative name in the list.
-		CString strAltName = m_lAlternateNames.GetNext(cPosition);
+		NString strAltName = m_lAlternateNames.GetNext(cPosition);
 		if (strAltName == strAttributeName){
 			// This is the attribute.
 			// Get the type of the attribute.
@@ -4737,9 +4742,9 @@ int CTranslateSALMain::GetUserDefinedType(CString strComponent, CString strAttri
 // This function returns true if the given string is a number that
 // can be successfully converted into an integer. Otherwise, it returns
 // false. To be used with GetNumber().
-bool CTranslateSALMain::IsStringANumber(CString strNumberString){
+bool CTranslateSALMain::IsStringANumber(NString strNumberString){
 	int iNumber;
-	iNumber = _ttoi(strNumberString);
+	iNumber = _ttoi(strNumberString.GetString().c_str());  // Need to convert the NString to a wstring to a wchar_t*.
 	if (iNumber == 0){
 		// This means that either the string was a "0" or the conversion failed.
 		if (strNumberString == _T("0")){
@@ -4761,9 +4766,9 @@ bool CTranslateSALMain::IsStringANumber(CString strNumberString){
 // an error 0 and the actual number 0, call IsStringANumber() first.
 // If that function returns true, GetNumber() will return the actual
 // number 0 with no errors.
-int CTranslateSALMain::GetNumber(CString strNumberString){
+int CTranslateSALMain::GetNumber(NString strNumberString){
 	int iNumber;
-	iNumber = _ttoi(strNumberString);
+	iNumber = _ttoi(strNumberString.GetString().c_str()); // Need to convert the NString to a wstring to a wchar_t*.
 	return iNumber;
 }
 
@@ -4772,7 +4777,7 @@ int CTranslateSALMain::GetNumber(CString strNumberString){
 // have been declared as such by the user using the user information file).
 // @param strVariable  The variable name,
 // @return true or false.
-bool CTranslateSALMain::IsInteger(CString strVariable){
+bool CTranslateSALMain::IsInteger(NString strVariable){
 	int iFind = FindListPosition(m_lIntegers, strVariable);
 	if (iFind == -1){ // The variable wasn't in the Integers list.
 		return false;
@@ -4808,9 +4813,9 @@ bool CTranslateSALMain::IsUppaal(){
 
 CTranslateNode* CTranslateSALMain::ConvertToTranslateNodeFromRandom(CTranslateNode* pcOriginal)
 {
-	CString strComponent = pcOriginal->GetComponentName();
-	CString strState = pcOriginal->GetStateName();
-	CString strFlags = pcOriginal->GetFlag();
+	NString strComponent = pcOriginal->GetComponentName();
+	NString strState = pcOriginal->GetStateName();
+	NString strFlags = pcOriginal->GetFlag();
 	int iType = pcOriginal->GetType();
 	int iJumpType = pcOriginal->GetJumpType();
 	int iBranching = pcOriginal->GetBranchingType();
@@ -4837,7 +4842,7 @@ CTranslateNode* CTranslateSALMain::ConvertToTranslateNodeFromRandom(CTranslateNo
 	return pcNode;
 } */
 
-void CTranslateSALMain::AddPCToInitialisation(CString strPC){
+void CTranslateSALMain::AddPCToInitialisation(NString strPC){
 	m_lInitialisationPCs.AddTail(strPC);
 }
 
@@ -4856,25 +4861,25 @@ void CTranslateSALMain::SetAtomicBlockCount(int iNode, int iCount){
 
 // This is for alternate selections only, to be used by TranslateRuleAltBranching.
 // It stores the opposite guard for a given selection node that is part of an alternate branching.
-void CTranslateSALMain::StoreOppositeBranch(int iNode, CString strGuard){
+void CTranslateSALMain::StoreOppositeBranch(int iNode, NString strGuard){
 	m_cAlternateNodesToGuards.SetAt(iNode, strGuard);
 }
 
-CString CTranslateSALMain::GetOppositeBranch(int iNode){
-	CString strGuard = _T("");
+NString CTranslateSALMain::GetOppositeBranch(int iNode){
+	NString strGuard = _T("");
 	int iSuccess = m_cAlternateNodesToGuards.Lookup(iNode,strGuard);
 	return strGuard;
 }
 
 // This is for debugging purposes, to look at the details of a tree.
-CString CTranslateSALMain::PrintTree(CTranslateNode* pcRoot){
-	CString strTheTree = _T("\r\n");
+NString CTranslateSALMain::PrintTree(CTranslateNode* pcRoot){
+	NString strTheTree = _T("\r\n");
 	strTheTree.Format(strTheTree + _T("%d"), pcRoot->GetNodeID());
-	CString strComponentName = pcRoot->GetComponentName();
-	CString strStateName = pcRoot->GetStateName();
+	NString strComponentName = pcRoot->GetComponentName();
+	NString strStateName = pcRoot->GetStateName();
 	int iChildren = pcRoot->GetNumberOfChildren();
 	strTheTree.Append(_T(" ") + strComponentName + _T(" ") + strStateName);
-	CString strTemp = _T("");
+	NString strTemp = _T("");
 	strTemp.Format(_T("%d"), pcRoot->GetType());
 	strTheTree.Append(_T(" (type) ") + strTemp);
 	strTemp = _T("");
@@ -4912,9 +4917,9 @@ CString CTranslateSALMain::PrintTree(CTranslateNode* pcRoot){
 }
 
 // This is for alternate selections that have an atomic branch.
-void CTranslateSALMain::UpdateExtraTransition(int iGuardPosition, CString strFullGuard){
+void CTranslateSALMain::UpdateExtraTransition(int iGuardPosition, NString strFullGuard){
 	// Get the current guard at that position.
-	CString strGuard = GetListElement(m_lExtraGuards, iGuardPosition);
+	NString strGuard = GetListElement(m_lExtraGuards, iGuardPosition);
 	// Add the new information to the guard.
 	if (strGuard != _T("")){
 		strGuard = strGuard + _T(" AND NOT(") + strFullGuard + _T(")");
@@ -4935,7 +4940,7 @@ void CTranslateSALMain::UpdateExtraTransition(int iGuardPosition, CString strFul
 		// is actually the element before, but cPosition will be pointing to the right one.
 		int iCounter = 1;  
 		while (cPosition.IsNotNull()){
-			CString strCurrentElement = m_lExtraGuards.GetNext(cPosition);
+			NString strCurrentElement = m_lExtraGuards.GetNext(cPosition);
 			if (iCounter == iGuardPosition){
 				m_lExtraGuards.SetAt(cPosition, strGuard);
 			}

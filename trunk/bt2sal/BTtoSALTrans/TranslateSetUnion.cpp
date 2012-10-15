@@ -35,13 +35,13 @@ bool CTranslateSetUnion::applyBackwards(CTranslateSALMain& cMain, NList<int, int
 		if (pcNode->IsNodeSetOperation()){
 			int iSiblingNumber = pcNode->GetSiblingNumber();
 			if ((iCurrentNode != iFinalNode) && ((iSiblingNumber == 0) || (bConsiderIfBranching == true))){   
-				CString strFlag = pcNode->GetFlag();
+				NString strFlag = pcNode->GetFlag();
 				if (strFlag == _T("")){ // Check that there is no flag, e.g. thread kill flag.
 					int iNumberOfSetRules = pcNode->GetNumberOfRules();
 				//	if ((iNumberOfSetRules == 1) || (iNumberOfSetRules == 2)){
-						CString strSetRule1 = pcNode->GetSetRule(0);
+						NString strSetRule1 = pcNode->GetSetRule(0);
 					//	if (iNumberOfSetRules == 2){
-						//	CString strSetRule2 = pcNode->GetSetRule(1);
+						//	NString strSetRule2 = pcNode->GetSetRule(1);
 						//	if (strSetRule1 == _T("union")){
 							//	if (strSetRule2 == _T("attribute")){
 									// This is a set add rule in the form s := s + t
@@ -92,13 +92,13 @@ bool CTranslateSetUnion::applyBackwards(CTranslateSALMain& cMain, NList<int, int
 
 void CTranslateSetUnion::translateToSAL(CTranslateSALMain& cMain, int iNode, int iOtherNode, NList<CTranslateParsingRule*, CTranslateParsingRule*>* plSecondaryRules) 
 {
-	CString strGuard = _T("");
-	CString strAction = _T("");
-	NList<CString, CString>* plActions = new NList<CString, CString>;
+	NString strGuard = _T("");
+	NString strAction = _T("");
+	NList<NString, NString>* plActions = new NList<NString, NString>;
 	CTranslateNode* pcNode = cMain.GetNode(iNode);
 	
-	CString strSetName;
-	CString strSecondSet;
+	NString strSetName;
+	NString strSecondSet;
 
 //	if (pcNode->GetNumberOfRules() == 1){ // It is in the form s + t
 		strSetName = pcNode->GetSetVariable(0);
@@ -109,7 +109,7 @@ void CTranslateSetUnion::translateToSAL(CTranslateSALMain& cMain, int iNode, int
 	//	strSetName = pcNode->GetSetVariable(0);
 	//	strSecondSet = pcNode->GetSetVariable(2);
 	//	strSecondSet = cMain.TrimChangeCase(strSecondSet,false);
-		CString strComponent = pcNode->GetComponentName();
+		NString strComponent = pcNode->GetComponentName();
 
 		// Assumed that the variable at index 1 is just the same as 
 		// the one at index 0, since it is just the set name.
@@ -122,7 +122,7 @@ void CTranslateSetUnion::translateToSAL(CTranslateSALMain& cMain, int iNode, int
 			strSetName = cMain.TrimChangeCase(strSetName,true);
 		}
 //	}
-	CString strSetType = cMain.GetSetType(strSetName, pcNode);
+	NString strSetType = cMain.GetSetType(strSetName, pcNode);
 	strAction = strSetName + _T("'=set{") + strSetType + _T("}!union(") + strSetName + _T(",") + strSecondSet + _T(")");
 	plActions->AddTail(strAction);
 

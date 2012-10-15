@@ -7,8 +7,8 @@
 
 CTranslateNode::CTranslateNode(void)
 {
-	m_plExtraInfoTags = new NList<CString, CString>;
-	m_plExtraInfoNames = new NList<CString, CString>;
+	m_plExtraInfoTags = new NList<NString, NString>;
+	m_plExtraInfoNames = new NList<NString, NString>;
 	m_bIsBlankNode = false;
 	m_bIsAtomic = false;
 	m_bIsSet = false;
@@ -27,13 +27,13 @@ CTranslateNode::~CTranslateNode(void)
 int CTranslateNode::GetNodeID(){
 	return m_iNodeID;
 }
-CString CTranslateNode::GetComponentName(){
+NString CTranslateNode::GetComponentName(){
 	return m_strComponentName;
 }
-CString CTranslateNode::GetStateName(){
+NString CTranslateNode::GetStateName(){
 	return m_strStateName;
 }
-CString CTranslateNode::GetFlag(){
+NString CTranslateNode::GetFlag(){
 	return m_strFlag;
 }
 int CTranslateNode::GetType(){
@@ -67,13 +67,13 @@ int CTranslateNode::GetBranchingType(){
 void CTranslateNode::SetNodeID(int iNodeID){
 	m_iNodeID = iNodeID;
 }
-void CTranslateNode::SetComponentName(CString strComponent){
+void CTranslateNode::SetComponentName(NString strComponent){
 	m_strComponentName = strComponent;
 }
-void CTranslateNode::SetStateName(CString strState){
+void CTranslateNode::SetStateName(NString strState){
 	m_strStateName = strState;
 }
-void CTranslateNode::SetFlag(CString strFlag){
+void CTranslateNode::SetFlag(NString strFlag){
 	m_strFlag = strFlag;
 }
 void CTranslateNode::SetType(int iType){
@@ -181,12 +181,12 @@ void CTranslateNode::SetIsBlankNode(bool bIsBlank){
 	m_bIsBlankNode = bIsBlank;
 }
 
-CString CTranslateNode::GetSetVariable(int iIndex){
+NString CTranslateNode::GetSetVariable(int iIndex){
 	int iCurrentIndex = 0;
 	NPosition cPosition;
 	cPosition = m_lSetVariables.GetHeadPosition();
 	while (cPosition.IsNotNull()){
-		CString strVariable = m_lSetVariables.GetNext(cPosition);
+		NString strVariable = m_lSetVariables.GetNext(cPosition);
 		if (iIndex == iCurrentIndex){
 			return strVariable;
 		}
@@ -195,16 +195,16 @@ CString CTranslateNode::GetSetVariable(int iIndex){
 	return NULL;
 }
 
-void CTranslateNode::AddSetVariable(CString strVariable){
+void CTranslateNode::AddSetVariable(NString strVariable){
 	m_lSetVariables.AddTail(strVariable);
 }
 
-CString CTranslateNode::GetSetRule(int iIndex){
+NString CTranslateNode::GetSetRule(int iIndex){
 	int iCurrentIndex = 0;
 	NPosition cPosition;
 	cPosition = m_lSetRules.GetHeadPosition();
 	while (cPosition.IsNotNull()){
-		CString strRule = m_lSetRules.GetNext(cPosition);
+		NString strRule = m_lSetRules.GetNext(cPosition);
 		if (iIndex == iCurrentIndex){
 			return strRule;
 		}
@@ -213,7 +213,7 @@ CString CTranslateNode::GetSetRule(int iIndex){
 	return NULL;
 }
 
-void CTranslateNode::AddSetRule(CString strRule){
+void CTranslateNode::AddSetRule(NString strRule){
 	m_lSetRules.AddTail(strRule);
 }
 
@@ -225,7 +225,7 @@ int CTranslateNode::GetNumberOfRules(){
 	return m_lSetRules.GetSize();
 }
 
-bool CTranslateNode::IsBoolSymbol(CString strRule){
+bool CTranslateNode::IsBoolSymbol(NString strRule){
 	if (strRule == _T("LessThan")){
 		return true;
 	}else if (strRule == _T("GreaterThan")){
@@ -240,19 +240,19 @@ bool CTranslateNode::IsBoolSymbol(CString strRule){
 	return false; // It didn't match one of those expressions.
 }
 
-void CTranslateNode::StoreTheParentSet(CString strSet){
+void CTranslateNode::StoreTheParentSet(NString strSet){
 	m_strParentSet = strSet;
 }
 
-CString CTranslateNode::GetTheParentSet(){
+NString CTranslateNode::GetTheParentSet(){
 	return m_strParentSet;
 }
 
-void CTranslateNode::StoreTheOriginalName(CString strOriginal){
+void CTranslateNode::StoreTheOriginalName(NString strOriginal){
 	m_strOriginal = strOriginal;
 }
 
-CString CTranslateNode::GetTheOriginalName(){
+NString CTranslateNode::GetTheOriginalName(){
 	return m_strOriginal;
 }
 
@@ -264,11 +264,11 @@ bool CTranslateNode::HasParentSet(){
 	}
 }
 
-void CTranslateNode::StoreSetsGuard(CString strGuard){
+void CTranslateNode::StoreSetsGuard(NString strGuard){
 	m_strSetsGuard = strGuard;
 }
 
-CString CTranslateNode::RetrieveSetsGuard(){
+NString CTranslateNode::RetrieveSetsGuard(){
 	return m_strSetsGuard;
 }
 
@@ -296,16 +296,16 @@ void CTranslateNode::SetIsIntegerExpression(bool bIsIntExp){
 	m_bIsIntegerExpression = bIsIntExp;
 }
 
-void CTranslateNode::AddExtraInfo(CString strTag, CString strName){
+void CTranslateNode::AddExtraInfo(NString strTag, NString strName){
 	m_plExtraInfoTags->AddTail(strTag);
 	m_plExtraInfoNames->AddTail(strName);
 }
 
-NList<CString, CString>* CTranslateNode::GetExtraInfoTags(){
+NList<NString, NString>* CTranslateNode::GetExtraInfoTags(){
 	return m_plExtraInfoTags;
 }
 
-NList<CString, CString>* CTranslateNode::GetExtraInfoNames(){
+NList<NString, NString>* CTranslateNode::GetExtraInfoNames(){
 	return m_plExtraInfoNames;
 }
 
@@ -334,19 +334,19 @@ void CTranslateNode::SetTextBEBranchingType(bool bTextBEType){
 	m_bTextBEBranching = bTextBEType;
 }
 
-void CTranslateNode::SetLabel(CString strLabel){
+void CTranslateNode::SetLabel(NString strLabel){
 	m_strLabel = strLabel;
 }
 
-CString CTranslateNode::GetLabel(){
+NString CTranslateNode::GetLabel(){
 	return m_strLabel;
 }
 
-void CTranslateNode::SetJumpingToLabel(CString strLabel){
+void CTranslateNode::SetJumpingToLabel(NString strLabel){
 	m_strJumpingToLabel = strLabel;
 }
 
-CString CTranslateNode::GetJumpingToLabel(){
+NString CTranslateNode::GetJumpingToLabel(){
 	return m_strJumpingToLabel;
 }
 
@@ -388,11 +388,11 @@ void CTranslateNode::SetTarget(int iTarget){
 	m_iTarget = iTarget;
 }
 
-void CTranslateNode::SetStringID(CString strID){
+void CTranslateNode::SetStringID(NString strID){
 	m_strLongID = strID;
 }
 
-CString CTranslateNode::GetStringID(){
+NString CTranslateNode::GetStringID(){
 	return m_strLongID;
 }
 
