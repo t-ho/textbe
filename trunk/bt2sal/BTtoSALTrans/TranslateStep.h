@@ -11,6 +11,7 @@
 
 #pragma once
 #include "NList.h"
+#include "NString.h"
 // #include "TranslateParsingRule.h"
 
 class CTranslateStep : public CObject

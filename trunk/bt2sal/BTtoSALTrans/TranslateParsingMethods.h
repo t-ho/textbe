@@ -13,6 +13,7 @@
 #include "TranslateSALMain.h"
 #include "TranslateAtomicBlock.h"
 #include "TranslateParsingRule.h"
+#include "NString.h"
 //#include "TranslateUPPAAL.h"
 
 class CTranslateParsingMethods : public CObject
@@ -24,9 +25,9 @@ public:
 public:
 	void CheckForAtomic(CTranslateSALMain& cMain, int iCurrentNode);
 public:
-	void StoreNodeTransition(CTranslateSALMain& cTranslateMain, int iNode, CString strGuard, NList<CString, CString>* plActions, int iParent, bool bIsExternal, bool bIsInternalInput);
+	void StoreNodeTransition(CTranslateSALMain& cTranslateMain, int iNode, NString strGuard, NList<NString, NString>* plActions, int iParent, bool bIsExternal, bool bIsInternalInput);
 	CTranslateParsingRule* GetRule(int iRuleID);
-	//void StoreUPPAALTransition(CTranslateUPPAAL& cTranslateMain, int iNode, CString strLabel, int iLabelType);
+	//void StoreUPPAALTransition(CTranslateUPPAAL& cTranslateMain, int iNode, NString strLabel, int iLabelType);
 	//void StoreMultipleUPPAALTransition(CTranslateUPPAAL& cTranslateMain, int iNode, NList<CTranslateUTrans*, CTranslateUTrans*>* plTransitions, bool bDoClocks);
-	//void StoreUPPAALManyLabels(CTranslateUPPAAL& cTranslateMain, int iNode, NList<CString, CString>* plLabels, NList<int, int>* plLabelTypes);
+	//void StoreUPPAALManyLabels(CTranslateUPPAAL& cTranslateMain, int iNode, NList<NString, NString>* plLabels, NList<int, int>* plLabelTypes);
 };

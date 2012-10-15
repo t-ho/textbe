@@ -10,6 +10,7 @@
 
 #pragma once
 #include "NList.h"
+#include "NString.h"
 
 class CTranslateAtomicBlock : public CObject
 {

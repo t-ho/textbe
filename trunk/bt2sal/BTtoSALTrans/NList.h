@@ -1,6 +1,7 @@
 #pragma once
 #include <list>
 #include "NPosition.h"
+#include "NString.h"
 
 template<class SomeType, class AnotherType> class NList 
 {

@@ -1,5 +1,3 @@
-#pragma once
-
 // File name: TranslateSetIntersection.h
 // Author/s : Nisansala Yatapanage
 // Date built: 2/11/2006
@@ -13,6 +11,7 @@
 #pragma once
 #include "TranslateParsingRule.h"
 #include "TranslateParsingMethods.h"
+#include "NString.h"
 
 class CTranslateSetIntersection : 
 	public CTranslateParsingRule

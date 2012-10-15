@@ -2,6 +2,7 @@
 #include <map>
 #include <list>
 #include "NPosition.h"
+#include "NString.h"
 
 template <class FirstType, class SecondType> class NMap 
 {

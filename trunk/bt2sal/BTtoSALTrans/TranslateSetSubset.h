@@ -11,6 +11,7 @@
 #pragma once
 #include "TranslateParsingRule.h"
 #include "TranslateParsingMethods.h"
+#include "NString.h"
 
 class CTranslateSetSubset : 
 	public CTranslateParsingRule

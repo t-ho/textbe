@@ -11,6 +11,7 @@
 #pragma once
 #include "TranslateParsingRule.h"
 #include "TranslateParsingMethods.h"
+#include "NString.h"
 
 class CTranslateRuleReversion : 
 	public CTranslateParsingRule
@@ -23,6 +24,6 @@ public:
 	bool applyBackwards(CTranslateSALMain& cMain, NList<int, int>& cLeafNodes, NList<int, int>& cAllNodes, int iFinalNode, NList<int, int>& cInitNodes, bool bConsiderIfBranching, NList<CTranslateParsingRule*, CTranslateParsingRule*>* plRules);
 	void translateToSAL(CTranslateSALMain& cMain, int iNode, int iOtherNode, NList<CTranslateParsingRule*, CTranslateParsingRule*>* plSecondaryRules);
 	void translateToUPPAAL(CTranslateUPPAAL& cMain, int iNode, int iOtherNode, NList<CTranslateParsingRule*, CTranslateParsingRule*>* plSecondaryRules);
-	bool ContainsPCUpdate(NList<CString, CString>* plList, CString strPCName);
+	bool ContainsPCUpdate(NList<NString, NString>* plList, NString strPCName);
 	CTranslateParsingMethods m_cParsingMethods;
 };
