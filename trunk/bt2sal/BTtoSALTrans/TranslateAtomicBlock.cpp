@@ -10,7 +10,6 @@
 
 #include "StdAfx.h"
 #include "TranslateAtomicBlock.h"
-#include "NList.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif

@@ -20,12 +20,12 @@ CTranslateException::~CTranslateException(void)
 {
 }
 
-CTranslateException::CTranslateException(CString strMessage)
+CTranslateException::CTranslateException(NString strMessage)
 {
 	m_strMessage = strMessage;
 }
 
-CString CTranslateException::GetMessage(void)
+NString CTranslateException::GetMessage(void)
 {
 	return m_strMessage;
 }

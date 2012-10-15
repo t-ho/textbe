@@ -34,11 +34,11 @@ bool CTranslateRuleThreadKill::applyBackwards(CTranslateSALMain& cMain, NList<in
 		iCurrentNode = cLeafNodes.GetNext(cCurrentNodePosition);
 		CTranslateNode* pcNode = cMain.GetNode(iCurrentNode);
 		int iSiblingNumber = pcNode->GetSiblingNumber();
-		CString strFlag = pcNode->GetFlag();
+		NString strFlag = pcNode->GetFlag();
 		if (strFlag == _T("--")){   // The node is a branch kill node.
 			if ((iCurrentNode != iFinalNode) && ((iSiblingNumber == 0) || (bConsiderIfBranching == true))){   
-				CString strComponent = pcNode->GetComponentName();
-				CString strState = pcNode->GetStateName();
+				NString strComponent = pcNode->GetComponentName();
+				NString strState = pcNode->GetStateName();
 				int iType = pcNode->GetType();
 
 				// Check if it is referring to a valid thread.
@@ -53,8 +53,8 @@ bool CTranslateRuleThreadKill::applyBackwards(CTranslateSALMain& cMain, NList<in
 
 					if (iAllNode != iCurrentNode){  // This is not the same node.
 					// Check if the node's details match.
-						CString strOtherComp = pcAllNode->GetComponentName();
-						CString strOtherState = pcAllNode->GetStateName();
+						NString strOtherComp = pcAllNode->GetComponentName();
+						NString strOtherState = pcAllNode->GetStateName();
 						int iOtherType = pcAllNode->GetType();
 						if (strComponent == strOtherComp){
 							if (strState == strOtherState){
@@ -69,7 +69,7 @@ bool CTranslateRuleThreadKill::applyBackwards(CTranslateSALMain& cMain, NList<in
 				}
 			    
 			    if(!bFoundThreadToKill){  // A valid thread was not found.
-					CString strMessage = _T("Branch kill not referring to a valid branch: ");
+					NString strMessage = _T("Branch kill not referring to a valid branch: ");
 					strMessage = strMessage + strComponent + _T(" ") + strState;
 					CTranslateException cException(strMessage);
 					throw cException;
@@ -105,15 +105,15 @@ bool CTranslateRuleThreadKill::applyBackwards(CTranslateSALMain& cMain, NList<in
 
 void CTranslateRuleThreadKill::translateToSAL(CTranslateSALMain& cMain, int iNode, int iOtherNode, NList<CTranslateParsingRule*, CTranslateParsingRule*>* plSecondaryRules) 
 {
-	CString strGuard = _T("");
-	CString strAction = _T("");
-	NList<CString, CString>* plActions = new NList<CString, CString>;
+	NString strGuard = _T("");
+	NString strAction = _T("");
+	NList<NString, NString>* plActions = new NList<NString, NString>;
 
 	// Get the program counter of the thread to kill.
-	CString strThreadPC = cMain.GetPCForNode(iOtherNode);
+	NString strThreadPC = cMain.GetPCForNode(iOtherNode);
 
 	// Get the list of program counters for all threads created by the killed thread.
-	NList<CString, CString>* plThreadsToKill;
+	NList<NString, NString>* plThreadsToKill;
 	plThreadsToKill = cMain.FindThreadsToKill(iOtherNode, false);
 	
 	// Create action updates to kill the threads.
@@ -150,7 +150,7 @@ void CTranslateRuleThreadKill::translateToUPPAAL(CTranslateUPPAAL& cMain, int iN
 	
 	// Create transitions to kill each process.
 	CTranslateUTrans* pcTransition;
-	CString strLabel;
+	NString strLabel;
 	int iLabelType = UPPAAL_SYNCH;
 	if (plProcessesToKill->GetCount() > 1){ // There's many threads to be killed.
 		NPosition cPos = plProcessesToKill->GetHeadPosition();

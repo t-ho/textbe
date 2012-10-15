@@ -34,15 +34,15 @@ bool CTranslateSetEmpty::applyBackwards(CTranslateSALMain& cMain, NList<int, int
 		if (pcNode->IsNodeSetOperation()){
 			int iSiblingNumber = pcNode->GetSiblingNumber();
 			if ((iCurrentNode != iFinalNode) && ((iSiblingNumber == 0) || (bConsiderIfBranching == true))){   
-				CString strFlag = pcNode->GetFlag();
+				NString strFlag = pcNode->GetFlag();
 				if (strFlag == _T("")){ // Check that there is no flag, e.g. thread kill flag.
 					int iNodeType = pcNode->GetType();
 					if (iNodeType == GSE_T_STATE){ // State-change, so either t[s:={}] or t[{}]
 					//	int iNumberOfSetRules = pcNode->GetNumberOfRules();
 					//	if ((iNumberOfSetRules == 1) || (iNumberOfSetRules == 2)){
-							CString strSetRule1 = pcNode->GetSetRule(0);
+							NString strSetRule1 = pcNode->GetSetRule(0);
 						//	if (iNumberOfSetRules == 2){
-							//	CString strSetRule2 = pcNode->GetSetRule(1);
+							//	NString strSetRule2 = pcNode->GetSetRule(1);
 						/*		if (strSetRule1 == _T("empty")){
 									if (strSetRule2 == _T("attribute")){
 										// This is a set empty rule in the form s := {}
@@ -71,9 +71,9 @@ bool CTranslateSetEmpty::applyBackwards(CTranslateSALMain& cMain, NList<int, int
 					}else if ((iNodeType == GSE_T_CONDITION) || (iNodeType == GSE_T_GUARD)){ // Selection, so t?s={}? or t?{}?
 						int iNumberOfSetRules = pcNode->GetNumberOfRules();
 				//		if ((iNumberOfSetRules == 1) || (iNumberOfSetRules == 2) || (iNumberOfSetRules == 3)){
-							CString strSetRule1 = pcNode->GetSetRule(0);
+							NString strSetRule1 = pcNode->GetSetRule(0);
 							if (iNumberOfSetRules == 1){
-						//		CString strSetRule2 = pcNode->GetSetRule(1);
+						//		NString strSetRule2 = pcNode->GetSetRule(1);
 						//		if (strSetRule1 == _T("EqualTo")){
 									if (strSetRule1 == _T("empty")){
 										// This is a set empty rule in the form s = {}
@@ -87,8 +87,8 @@ bool CTranslateSetEmpty::applyBackwards(CTranslateSALMain& cMain, NList<int, int
 									}
 						//		}
 							}else{
-								CString strSetRule2 = pcNode->GetSetRule(1);
-							//	CString strSetRule3 = pcNode->GetSetRule(2);
+								NString strSetRule2 = pcNode->GetSetRule(1);
+							//	NString strSetRule3 = pcNode->GetSetRule(2);
 							//	if (strSetRule1 == _T("EqualTo")){
 									if (strSetRule1 == _T("empty")){
 										if (strSetRule2 == _T("NOT")){
@@ -143,15 +143,15 @@ bool CTranslateSetEmpty::applyBackwards(CTranslateSALMain& cMain, NList<int, int
 
 void CTranslateSetEmpty::translateToSAL(CTranslateSALMain& cMain, int iNode, int iOtherNode, NList<CTranslateParsingRule*, CTranslateParsingRule*>* plSecondaryRules) 
 {
-	CString strGuard = _T("");
-	CString strAction = _T("");
-	NList<CString, CString>* plActions = new NList<CString, CString>;
+	NString strGuard = _T("");
+	NString strAction = _T("");
+	NList<NString, NString>* plActions = new NList<NString, NString>;
 	CTranslateNode* pcNode = cMain.GetNode(iNode);
-	CString strFullSetName;
+	NString strFullSetName;
 	
-	CString strSetName = pcNode->GetSetVariable(0);
-	CString strSetType = cMain.GetSetType(strSetName, pcNode);
-	CString strComponent = pcNode->GetComponentName();
+	NString strSetName = pcNode->GetSetVariable(0);
+	NString strSetType = cMain.GetSetType(strSetName, pcNode);
+	NString strComponent = pcNode->GetComponentName();
 	
 	if (strSetName != strComponent){
 		strFullSetName = cMain.TrimChangeCase(strComponent,false) + _T("_") + cMain.TrimChangeCase(strSetName,true);
@@ -173,13 +173,13 @@ void CTranslateSetEmpty::translateToSAL(CTranslateSALMain& cMain, int iNode, int
 
 		if (pcNode->GetType() == GSE_T_CONDITION){
 			// Create an extra transition for the opposite branch.
-			CString strProgramCounterName = cMain.GetPCForNode(iNode);
+			NString strProgramCounterName = cMain.GetPCForNode(iNode);
 			int iProgramCounterValue = cMain.GetPCValueForNode(iNode);
-			CString strOppositeGuard = strProgramCounterName + _T("=");
+			NString strOppositeGuard = strProgramCounterName + _T("=");
 			strOppositeGuard.Format(strOppositeGuard + _T("%d"), iProgramCounterValue);
 			strOppositeGuard = strOppositeGuard + _T(" AND NOT (");
 			strOppositeGuard = strOppositeGuard + strGuard + _T(")");
-			NList<CString, CString>* plOppositeActions = new NList<CString, CString>;
+			NList<NString, NString>* plOppositeActions = new NList<NString, NString>;
 			plOppositeActions->AddTail(strProgramCounterName + _T("'=0"));
 			if (cMain.GetTranslationType() == 4){
 				strOppositeGuard = strOppositeGuard + _T(" AND NOT(messageReady)");

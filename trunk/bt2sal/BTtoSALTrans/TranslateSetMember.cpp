@@ -35,11 +35,11 @@ bool CTranslateSetMember::applyBackwards(CTranslateSALMain& cMain, NList<int, in
 		if (pcNode->IsNodeSetOperation()){
 			int iSiblingNumber = pcNode->GetSiblingNumber();
 			if ((iCurrentNode != iFinalNode) && ((iSiblingNumber == 0) || (bConsiderIfBranching == true))){   
-				CString strFlag = pcNode->GetFlag();
+				NString strFlag = pcNode->GetFlag();
 				if (strFlag == _T("")){ // Check that there is no flag, e.g. thread kill flag.
 					int iNumberOfSetRules = pcNode->GetNumberOfRules();
 					if (iNumberOfSetRules == 1){
-						CString strSetRule1 = pcNode->GetSetRule(0);
+						NString strSetRule1 = pcNode->GetSetRule(0);
 						if (strSetRule1 == _T("membership")){
 							// This is a set membership rule in the form a : t
 							cMatchedNodes.AddTail(iCurrentNode);
@@ -51,8 +51,8 @@ bool CTranslateSetMember::applyBackwards(CTranslateSALMain& cMain, NList<int, in
 							bRuleMatched = true;
 						}
 					}else if (iNumberOfSetRules == 2){
-						CString strSetRule1 = pcNode->GetSetRule(0);
-						CString strSetRule2 = pcNode->GetSetRule(1);
+						NString strSetRule1 = pcNode->GetSetRule(0);
+						NString strSetRule2 = pcNode->GetSetRule(1);
 						if (strSetRule2 == _T("NOT")){
 							if (strSetRule1 == _T("membership")){
 								// This is a set membership rule in the form NOT(a : t)
@@ -91,17 +91,17 @@ bool CTranslateSetMember::applyBackwards(CTranslateSALMain& cMain, NList<int, in
 
 void CTranslateSetMember::translateToSAL(CTranslateSALMain& cMain, int iNode, int iOtherNode, NList<CTranslateParsingRule*, CTranslateParsingRule*>* plSecondaryRules) 
 {
-	CString strGuard = _T("");
-	CString strAction = _T("");
-	NList<CString, CString>* plActions = new NList<CString, CString>;
+	NString strGuard = _T("");
+	NString strAction = _T("");
+	NList<NString, NString>* plActions = new NList<NString, NString>;
 	CTranslateNode* pcNode = cMain.GetNode(iNode);
 	
 	int iNumberOfSetRules = pcNode->GetNumberOfRules();
 
-	CString strElement = pcNode->GetSetVariable(0);
-	CString strSetName = pcNode->GetSetVariable(1);
-	CString strComponent = pcNode->GetComponentName();
-	CString strSetType = cMain.GetSetType(strSetName, pcNode);
+	NString strElement = pcNode->GetSetVariable(0);
+	NString strSetName = pcNode->GetSetVariable(1);
+	NString strComponent = pcNode->GetComponentName();
+	NString strSetType = cMain.GetSetType(strSetName, pcNode);
 	
 	if (strComponent != strSetName){
 		// This is an attribute.
@@ -120,13 +120,13 @@ void CTranslateSetMember::translateToSAL(CTranslateSALMain& cMain, int iNode, in
 	
 	if (pcNode->GetType() == GSE_T_CONDITION){
 		// Create an extra transition for the opposite branch.
-		CString strProgramCounterName = cMain.GetPCForNode(iNode);
+		NString strProgramCounterName = cMain.GetPCForNode(iNode);
 		int iProgramCounterValue = cMain.GetPCValueForNode(iNode);
-		CString strOppositeGuard = strProgramCounterName + _T("=");
+		NString strOppositeGuard = strProgramCounterName + _T("=");
 		strOppositeGuard.Format(strOppositeGuard + _T("%d"), iProgramCounterValue);
 		strOppositeGuard = strOppositeGuard + _T(" AND NOT (");
 		strOppositeGuard = strOppositeGuard + strGuard + _T(")");
-		NList<CString, CString>* plOppositeActions = new NList<CString, CString>;
+		NList<NString, NString>* plOppositeActions = new NList<NString, NString>;
 		plOppositeActions->AddTail(strProgramCounterName + _T("'=0"));
 		if (cMain.GetTranslationType() == 4){
 			strOppositeGuard = strOppositeGuard + _T(" AND NOT(messageReady)");

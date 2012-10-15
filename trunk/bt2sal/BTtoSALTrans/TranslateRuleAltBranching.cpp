@@ -82,12 +82,12 @@ bool CTranslateRuleAltBranching::applyBackwards(CTranslateSALMain& cMain, NList<
 						}
 						if ((bFoundSelection == true) && (bFoundNonSelection == true)){
 							// This is invalid.
-							CString strParseError = _T("Mixed selections and non-selections are not allowed in alternate branching:\r\n");
+							NString strParseError = _T("Mixed selections and non-selections are not allowed in alternate branching:\r\n");
 							for (int i = 0; i < (iSiblingNumber + 1); i++){	
 								int iSibling = pcParent->GetChildID(i);
 								CTranslateNode* pcSibling = cMain.GetNode(iSibling);
-								CString strComponentName = pcSibling->GetComponentName();
-								CString strStateName = pcSibling->GetStateName();
+								NString strComponentName = pcSibling->GetComponentName();
+								NString strStateName = pcSibling->GetStateName();
 								strParseError.Append(strComponentName + _T(" "));
 								strParseError.Append(strStateName);
 								strParseError.Append(_T("\r\n"));
@@ -121,10 +121,10 @@ bool CTranslateRuleAltBranching::applyBackwards(CTranslateSALMain& cMain, NList<
 							}
 							if (bNodeParsed == false){
 								// The node could not be parsed.
-								CString strParseError = _T("No matching rules found for node: ");
+								NString strParseError = _T("No matching rules found for node: ");
 								CTranslateNode* pcSibling = cMain.GetNode(iSibling);
-								CString strComponentName = pcSibling->GetComponentName();
-								CString strStateName = pcSibling->GetStateName();
+								NString strComponentName = pcSibling->GetComponentName();
+								NString strStateName = pcSibling->GetStateName();
 								strParseError = strParseError + strComponentName + _T(" ");
 								strParseError = strParseError + strStateName;
 								CTranslateException cException(strParseError);
@@ -194,8 +194,8 @@ void CTranslateRuleAltBranching::translateToSAL(CTranslateSALMain& cMain, int iN
 			}
 
 			// Include the guard of the pc = 1.
-			CString strGuard;
-			CString strProgramCounterName = cMain.GetPCForNode(iCurrent);
+			NString strGuard;
+			NString strProgramCounterName = cMain.GetPCForNode(iCurrent);
 			strGuard = strProgramCounterName + _T("=1");
 			cMain.AddAtomicGuard(iCurrent, strGuard);
 		}
@@ -208,15 +208,15 @@ void CTranslateRuleAltBranching::translateToSAL(CTranslateSALMain& cMain, int iN
 		for (int j = 0; j < (iSiblingNum + 1); j++){
 			if (i != j){    // This is not the same current node.
 				int iSibling = pcParent->GetChildID(j);
-				CString zeroPC = cMain.GetPCForNode(iSibling);
+				NString zeroPC = cMain.GetPCForNode(iSibling);
 				cMain.AddExtraNodeAction(iCurrent, zeroPC + _T("'=0"));
 			}
 		}
 
 		// Add to the parent if this is a normal node.
 		if (!cMain.IsAtomic(iCurrent)){  // The node is not atomic.
- 			CString strProgramCounterName = cMain.GetPCForNode(iCurrent);
-			CString strParentAction = strProgramCounterName + _T("'=1");
+ 			NString strProgramCounterName = cMain.GetPCForNode(iCurrent);
+			NString strParentAction = strProgramCounterName + _T("'=1");
 			cMain.AddExtraNodeAction(iParent, strParentAction);
 		}else{	// The node is atomic.
 		// Add to the parent of this whole atomic path if this is an atomic node.
@@ -231,11 +231,11 @@ void CTranslateRuleAltBranching::translateToSAL(CTranslateSALMain& cMain, int iN
 			// Check whether the parent is the start node.
 			if (cMain.m_iStartNode == iParentOfBlock){
 				// It is the start node so add the action to the initialisation section.
-				CString strProgramCounterName = cMain.GetPCForNode(iCurrent);
+				NString strProgramCounterName = cMain.GetPCForNode(iCurrent);
 				cMain.AddPCToInitialisation(strProgramCounterName);
 			}else{
-				CString strProgramCounterName = cMain.GetPCForNode(iCurrent);
-				CString strParentAction = strProgramCounterName + _T("'=1");
+				NString strProgramCounterName = cMain.GetPCForNode(iCurrent);
+				NString strParentAction = strProgramCounterName + _T("'=1");
 				cMain.AddExtraNodeAction(iParentOfBlock, strParentAction);
 			}
 		}
@@ -244,15 +244,15 @@ void CTranslateRuleAltBranching::translateToSAL(CTranslateSALMain& cMain, int iN
 	// If this is a set of alternate selections then create the opposite transition (the NOT case).
 	int iType = pcNode->GetType();
 	if (iType == GSE_T_CONDITION){ // This is a set of alternate selections.
-		CString strOppositeGuard = _T("");
+		NString strOppositeGuard = _T("");
 		int iCounter = 0;
-		NList<CString, CString>* plOppositeActions = new NList<CString, CString>;
+		NList<NString, NString>* plOppositeActions = new NList<NString, NString>;
 		for (int i = 0; i < (iSiblingNum + 1); i++){
 			int iCurrent = pcParent->GetChildID(i);
 			
 			// Add pcx=1 to the guard and pcx'=0 to the actions, where pcx is the program counter
 			// for this sibling.
-			CString zeroPC = cMain.GetPCForNode(iCurrent);
+			NString zeroPC = cMain.GetPCForNode(iCurrent);
 			if (iCounter != 0){  // This is not the first sibling.
 				strOppositeGuard.Append(_T(" AND "));
 			}

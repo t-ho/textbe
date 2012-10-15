@@ -32,8 +32,8 @@ bool CTranslateRuleReversion::applyBackwards(CTranslateSALMain& cMain, NList<int
 		int iCurrentNode;
 		iCurrentNode = cAllNodes.GetNext(cCurrentNodePosition);
 		CTranslateNode* pcNode = cMain.GetNode(iCurrentNode);
-		CString strComponent = pcNode->GetComponentName();
-		CString strState = pcNode->GetStateName();
+		NString strComponent = pcNode->GetComponentName();
+		NString strState = pcNode->GetStateName();
 		int iType = pcNode->GetType();
 		int iJumpType = pcNode->GetJumpType();
 		if (iJumpType == 1){ // This is a reversion node.
@@ -46,13 +46,13 @@ bool CTranslateRuleReversion::applyBackwards(CTranslateSALMain& cMain, NList<int
 				int iTopNode;
 				CTranslateNode* pcNextParent;
 				// If there's already a jumpingToLabel use that node as the top reversion point.
-				CString strJumpingToLabel = pcNode->GetJumpingToLabel();
+				NString strJumpingToLabel = pcNode->GetJumpingToLabel();
 			
 				while ((bFoundTop != true) && (iNextParent != iFinalNode)){
 					// Search upwards.
 					pcNextParent = cMain.GetNode(iNextParent);
-					CString strNodeComp = pcNextParent->GetComponentName();
-					CString strNodeState = pcNextParent->GetStateName();
+					NString strNodeComp = pcNextParent->GetComponentName();
+					NString strNodeState = pcNextParent->GetStateName();
 					int iNodeType = pcNextParent->GetType();
 					// Check if the nodes match.
 					if ((iNodeType == iType) && (strNodeComp == strComponent) && (strNodeState == strState)){
@@ -71,7 +71,7 @@ bool CTranslateRuleReversion::applyBackwards(CTranslateSALMain& cMain, NList<int
 				}
 				if (bFoundTop == false){
 					// The top point was not found.
-					CString strMessage = _T("Top reversion point not found for: ");
+					NString strMessage = _T("Top reversion point not found for: ");
 					strMessage = strMessage + strComponent + _T(" ") + strState;
 					CTranslateException cException(strMessage);
 					throw cException;
@@ -89,7 +89,7 @@ bool CTranslateRuleReversion::applyBackwards(CTranslateSALMain& cMain, NList<int
 
 void CTranslateRuleReversion::translateToSAL(CTranslateSALMain& cMain, int iNode, int iOtherNode, NList<CTranslateParsingRule*, CTranslateParsingRule*>* plSecondaryRules) 
 {
-	NList<CString, CString>* plActions;
+	NList<NString, NString>* plActions;
 	if (!(cMain.UsingViews())){
 		if (cMain.IsAtomic(iOtherNode)){  // The top node is atomic.		
 			// Get the bottom node of the atomic block.
@@ -97,17 +97,17 @@ void CTranslateRuleReversion::translateToSAL(CTranslateSALMain& cMain, int iNode
 			///////////////////// Assuming there's only one atomic block.
 			CTranslateAtomicBlock* pcBlock = pcBlockList->GetHead();
 			int iAtomicEnd = pcBlock->GetBottomNode();
-			NList<CString, CString>* plTopActions = cMain.GetActions(iAtomicEnd);
-			NList<CString, CString>* plNodeActions = cMain.GetActions(iNode);
+			NList<NString, NString>* plTopActions = cMain.GetActions(iAtomicEnd);
+			NList<NString, NString>* plNodeActions = cMain.GetActions(iNode);
 			
 			// Create actions for killing all threads below the top reversion point.
-			NList<CString, CString>* plActions = cMain.FindThreadsToKill(iOtherNode, true);
+			NList<NString, NString>* plActions = cMain.FindThreadsToKill(iOtherNode, true);
 			
 			// Copy all the top node's actions to the new list.
 			NPosition cTopPosition;
 			cTopPosition = plTopActions->GetHeadPosition();
 			while (cTopPosition.IsNotNull()){
-				CString strAction = plTopActions->GetNext(cTopPosition);
+				NString strAction = plTopActions->GetNext(cTopPosition);
 				plActions->AddTail(strAction);
 			}
 
@@ -116,7 +116,7 @@ void CTranslateRuleReversion::translateToSAL(CTranslateSALMain& cMain, int iNode
 			NPosition cPosition;
 			cPosition = plNodeActions->GetHeadPosition();
 			while (cPosition.IsNotNull()){
-				CString strAction = plNodeActions->GetNext(cPosition);
+				NString strAction = plNodeActions->GetNext(cPosition);
 				// Don't add it if it's a program counter update.
 				if (strAction.Left(2) != _T("pc")){
 					plActions->AddHead(strAction);
@@ -126,7 +126,7 @@ void CTranslateRuleReversion::translateToSAL(CTranslateSALMain& cMain, int iNode
 	//		NPosition cThreadPosition;
 	//		cThreadPosition = plThreadsToKill->GetHeadPosition();
 	//		while (cThreadPosition.IsNotNull()){
-	//			CString strThreadPC = plThreadsToKill->GetNext(cThreadPosition);
+	//			NString strThreadPC = plThreadsToKill->GetNext(cThreadPosition);
 	//			if (!ContainsPCUpdate(plTopActions, strThreadPC)){
 	//				if (!ContainsPCUpdate(plActions, strThreadPC)){
 	//					plActions->AddTail(strThreadPC + _T("'=0"));	
@@ -138,14 +138,14 @@ void CTranslateRuleReversion::translateToSAL(CTranslateSALMain& cMain, int iNode
 
 
 		}else{  // The top node is not atomic.
-			NList<CString, CString>* plTopActions = cMain.GetActions(iOtherNode);
-			NList<CString, CString>* plNodeActions = cMain.GetActions(iNode);
+			NList<NString, NString>* plTopActions = cMain.GetActions(iOtherNode);
+			NList<NString, NString>* plNodeActions = cMain.GetActions(iNode);
 
 			// Remove any program counter updates from the reversion node's list.
 		//	NPosition cPosition;
 		//	cPosition = plActions->GetHeadPosition();
 		//	while (cPosition.IsNotNull()){
-		//		CString strAction = plActions->GetNext(cPosition);
+		//		NString strAction = plActions->GetNext(cPosition);
 		//		if (strAction.Left(2) == _T("pc")){
 		//			plActions->RemoveAt(cPosition);
 		//		}
@@ -154,7 +154,7 @@ void CTranslateRuleReversion::translateToSAL(CTranslateSALMain& cMain, int iNode
 //			NPosition cTopPosition;
 //			cTopPosition = plNodeActions->GetHeadPosition();
 //			while (cTopPosition.IsNotNull()){
-//				CString strAction = plNodeActions->GetNext(cTopPosition);
+//				NString strAction = plNodeActions->GetNext(cTopPosition);
 //				// Don't add it if it's a program counter update.
 //				if (strAction.Left(2) != _T("pc")){
 //					plTopActions->AddHead(strAction);
@@ -163,11 +163,11 @@ void CTranslateRuleReversion::translateToSAL(CTranslateSALMain& cMain, int iNode
 //			cMain.RemoveAssignmentRepeats(*plTopActions);
 
 			// Create actions for killing all threads below the top reversion point.
-			NList<CString, CString>* plActions  = cMain.FindThreadsToKill(iOtherNode, true);
+			NList<NString, NString>* plActions  = cMain.FindThreadsToKill(iOtherNode, true);
 	//		NPosition cThreadPosition;
 	//		cThreadPosition = plThreadsToKill->GetHeadPosition();
 	//		while (cThreadPosition.IsNotNull()){
-	//			CString strThreadPC = plThreadsToKill->GetNext(cThreadPosition);
+	//			NString strThreadPC = plThreadsToKill->GetNext(cThreadPosition);
 	//			if (!ContainsPCUpdate(plTopActions, strThreadPC)){
 	//				if (!ContainsPCUpdate(plActions, strThreadPC)){
 	//					plActions->AddTail(strThreadPC + _T("'=0"));	
@@ -180,7 +180,7 @@ void CTranslateRuleReversion::translateToSAL(CTranslateSALMain& cMain, int iNode
 			NPosition cActionPosition;
 			cActionPosition = plTopActions->GetHeadPosition();
 			while (cActionPosition.IsNotNull()){
-				CString strAction = plTopActions->GetNext(cActionPosition);
+				NString strAction = plTopActions->GetNext(cActionPosition);
 				plActions->AddTail(strAction);
 			}
 			
@@ -189,7 +189,7 @@ void CTranslateRuleReversion::translateToSAL(CTranslateSALMain& cMain, int iNode
 			NPosition cPosition;
 			cPosition = plNodeActions->GetHeadPosition();
 			while (cPosition.IsNotNull()){
-				CString strAction = plNodeActions->GetNext(cPosition);
+				NString strAction = plNodeActions->GetNext(cPosition);
 				// Don't add it if it's a program counter update.
 				if (strAction.Left(2) != _T("pc")){
 					plActions->AddHead(strAction);
@@ -205,11 +205,11 @@ void CTranslateRuleReversion::translateToSAL(CTranslateSALMain& cMain, int iNode
 	}	
 }
 
-bool CTranslateRuleReversion::ContainsPCUpdate(NList<CString, CString>* plList, CString strPCName){
+bool CTranslateRuleReversion::ContainsPCUpdate(NList<NString, NString>* plList, NString strPCName){
 	NPosition cPosition;
 	cPosition = plList->GetHeadPosition();
 	while (cPosition.IsNotNull()){
-		CString strAction = plList->GetNext(cPosition);
+		NString strAction = plList->GetNext(cPosition);
 		int iIndex = strAction.Find(strPCName);
 		if (iIndex != -1){
 			return true;
@@ -225,9 +225,9 @@ void CTranslateRuleReversion::translateToUPPAAL(CTranslateUPPAAL& cMain, int iNo
 			// This is not allowed at present.
 			// Throw an exception.
 			CTranslateNode* pcNode = cMain.GetNode(iNode);
-			CString strComponent = pcNode->GetComponentName();
-			CString strState = pcNode->GetStateName();
-			CString strMessage = _T("Jumping to an atomic node is not allowed: ");
+			NString strComponent = pcNode->GetComponentName();
+			NString strState = pcNode->GetStateName();
+			NString strMessage = _T("Jumping to an atomic node is not allowed: ");
 			strMessage = strMessage + strComponent + _T(" ") + strState;
 			CTranslateException cException(strMessage);
 			throw cException;
@@ -244,7 +244,7 @@ void CTranslateRuleReversion::translateToUPPAAL(CTranslateUPPAAL& cMain, int iNo
 
 		//	// Create transitions to kill each process.
 		//	CTranslateUTrans* pcTransition;
-		//	CString strLabel;
+		//	NString strLabel;
 		//	int iLabelType = UPPAAL_SYNCH;
 		//	NPosition cPos = plProcessesToKill->GetHeadPosition();
 		//	while (cPos.IsNotNull()){
@@ -277,9 +277,9 @@ void CTranslateRuleReversion::translateToUPPAAL(CTranslateUPPAAL& cMain, int iNo
 		//	CTranslateAtomicBlock* pcBlock = cMain.GetAtomicBlock(iOtherNode);
 		//	int iAtomicEnd = pcBlock->GetBottomNode();
 		//	CTranslateUTrans* pcOtherTransition = cMain.GetNodeTransition(iAtomicEnd);
-		//	CString strOtherGuard = pcOtherTransition->GetGuard();
-		//	CString strOtherAssignment = pcOtherTransition->GetAssignment();
-		//	CString strOtherSynch = pcOtherTransition->GetSynchronisation();
+		//	NString strOtherGuard = pcOtherTransition->GetGuard();
+		//	NString strOtherAssignment = pcOtherTransition->GetAssignment();
+		//	NString strOtherSynch = pcOtherTransition->GetSynchronisation();
 		//	if (strOtherGuard != _T("")){
 		//		pcTransition->AddLabel(strOtherGuard, 2);
 		//	}
@@ -312,12 +312,12 @@ void CTranslateRuleReversion::translateToUPPAAL(CTranslateUPPAAL& cMain, int iNo
 		//	
 		//	}else{  // The node is jumping to another process.
 		//		// Add a label to send out a jump message.
-		//		CString strJumpMessage = _T("jumpToPro");
+		//		NString strJumpMessage = _T("jumpToPro");
 		//		strJumpMessage.Format(strJumpMessage + _T("%d"), iOtherPC);
 		//		strJumpMessage.Append(_T("state"));
 		//		strJumpMessage.Format(strJumpMessage + _T("%d"), iOtherPCValue);
 		//		bool bSynchAdded = cMain.AddSynchronisation(strJumpMessage);
-		//		CString strLabel = strJumpMessage + _T("!");
+		//		NString strLabel = strJumpMessage + _T("!");
 		//		pcTransition->AddLabel(strLabel,3);
 		//		pcTransition->SetIsJumpNode(true);
 		//		
@@ -327,7 +327,7 @@ void CTranslateRuleReversion::translateToUPPAAL(CTranslateUPPAAL& cMain, int iNo
 		//			pcDisabledTransition->SetSource(iOtherProcess, 0, 0); // The disabled state of the other process.
 		//			pcDisabledTransition->SetTarget(iOtherPC, iNewValue, 0);
 		//			pcDisabledTransition->SetIsJumpNode(true);
-		//			CString strLabel2 = strJumpMessage + _T("?");
+		//			NString strLabel2 = strJumpMessage + _T("?");
 		//			pcDisabledTransition->AddLabel(strLabel2, 3);
 		//			pcDisabledTransition->SetIsJumpNode(true);
 		//			NList<CTranslateUTrans*, CTranslateUTrans*>* plOtherProcessTrans;
@@ -370,7 +370,7 @@ void CTranslateRuleReversion::translateToUPPAAL(CTranslateUPPAAL& cMain, int iNo
 
 			// Create transitions to kill each process.
 			CTranslateUTrans* pcTransition;
-			CString strLabel;
+			NString strLabel;
 			int iLabelType = UPPAAL_SYNCH;
 			NPosition cPos = plProcessesToKill->GetHeadPosition();
 			while (cPos.IsNotNull()){
@@ -424,12 +424,12 @@ void CTranslateRuleReversion::translateToUPPAAL(CTranslateUPPAAL& cMain, int iNo
 			}else{  // The node is jumping to another process.
 				
 				// Add a label to send out a jump message.
-				CString strJumpMessage = _T("jumpToPro");
+				NString strJumpMessage = _T("jumpToPro");
 				strJumpMessage.Format(strJumpMessage + _T("%d"), iOtherPC);
 				strJumpMessage.Append(_T("state"));
 				strJumpMessage.Format(strJumpMessage + _T("%d"), iOtherPCValue);
 				bool bSynchAdded = cMain.AddSynchronisation(strJumpMessage);
-				CString strLabel = strJumpMessage + _T("!");
+				NString strLabel = strJumpMessage + _T("!");
 				pcTransition->AddLabel(strLabel,3);
 				pcTransition->SetIsJumpNode(true);
 				
@@ -438,7 +438,7 @@ void CTranslateRuleReversion::translateToUPPAAL(CTranslateUPPAAL& cMain, int iNo
 					CTranslateUTrans* pcDisabledTransition = new CTranslateUTrans;
 					pcDisabledTransition->SetSource(iOtherProcess, 0, 0); // The disabled state of the other process.
 					pcDisabledTransition->SetTarget(iOtherPC, iOtherPCValue, 0);
-					CString strLabel2 = strJumpMessage + _T("?");
+					NString strLabel2 = strJumpMessage + _T("?");
 					pcDisabledTransition->AddLabel(strLabel2, 3);
 					pcDisabledTransition->SetIsJumpNode(true);
 					NList<CTranslateUTrans*, CTranslateUTrans*>* plOtherProcessTrans;

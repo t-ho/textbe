@@ -32,8 +32,8 @@ bool CTranslateRuleMacro::applyBackwards(CTranslateSALMain& cMain, NList<int, in
 		int iCurrentNode;
 		iCurrentNode = cAllNodes.GetNext(cCurrentNodePosition);
 		CTranslateNode* pcNode = cMain.GetNode(iCurrentNode);
-		CString strComponent = pcNode->GetComponentName();
-		CString strState = pcNode->GetStateName();
+		NString strComponent = pcNode->GetComponentName();
+		NString strState = pcNode->GetStateName();
 		int iType = pcNode->GetType();
 		int iJumpType = pcNode->GetJumpType();
 		if (iJumpType == 2){ // This is a go-to node.
@@ -48,22 +48,22 @@ bool CTranslateRuleMacro::applyBackwards(CTranslateSALMain& cMain, NList<int, in
 				cAllPosition = cAllNodes.GetHeadPosition();
 
 				// If there's already a jumpingToLabel use that node as the go-to point.
-				CString strJumpingToLabel = pcNode->GetJumpingToLabel();
+				NString strJumpingToLabel = pcNode->GetJumpingToLabel();
 				if (strJumpingToLabel != _T("")){
 					// Find the node with that label.
 					while (cAllPosition.IsNotNull()){
 						int iAllNode = cAllNodes.GetNext(cAllPosition);
 						CTranslateNode* pcAllNode = cMain.GetNode(iAllNode);
 						if (pcAllNode->GetLabel() == strJumpingToLabel){
-							CString strNodeComp = pcAllNode->GetComponentName();
-							CString strNodeState = pcAllNode->GetStateName();
+							NString strNodeComp = pcAllNode->GetComponentName();
+							NString strNodeState = pcAllNode->GetStateName();
 							int iNodeType = pcAllNode->GetType();
 							// Check if the nodes match and it is a different node to this one.
 							if ((iAllNode != iCurrentNode) && (iNodeType == iType) && (strNodeComp == strComponent) && (strNodeState == strState) && (pcAllNode->GetJumpType() == 0)){
 								iMatchCount++;
 								iOtherGoto = iAllNode;
 							}else{
-								CString strMessage = _T("Reference node trying to jump to a non-matching node (due to its label): ");
+								NString strMessage = _T("Reference node trying to jump to a non-matching node (due to its label): ");
 								strMessage = strMessage + strComponent + _T(" ") + strState;
 								CTranslateException cException(strMessage);
 								throw cException;
@@ -75,8 +75,8 @@ bool CTranslateRuleMacro::applyBackwards(CTranslateSALMain& cMain, NList<int, in
 					while (cAllPosition.IsNotNull()){
 						int iAllNode = cAllNodes.GetNext(cAllPosition);
 						CTranslateNode* pcAllNode = cMain.GetNode(iAllNode);
-						CString strNodeComp = pcAllNode->GetComponentName();
-						CString strNodeState = pcAllNode->GetStateName();
+						NString strNodeComp = pcAllNode->GetComponentName();
+						NString strNodeState = pcAllNode->GetStateName();
 						int iNodeType = pcAllNode->GetType();
 						// Check if the nodes match and it is a different node to this one.
 						if ((iAllNode != iCurrentNode) && (iNodeType == iType) && (strNodeComp == strComponent) && (strNodeState == strState) && (pcAllNode->GetJumpType() == 0)){
@@ -92,7 +92,7 @@ bool CTranslateRuleMacro::applyBackwards(CTranslateSALMain& cMain, NList<int, in
 					// a random BT that can be translated without this error occurring.
 					if (iMatchCount == 0){
 						// The matching node was not found.
-						CString strMessage = _T("Matching reference node not found for: ");
+						NString strMessage = _T("Matching reference node not found for: ");
 						strMessage = strMessage + strComponent + _T(" ") + strState;
 						CTranslateException cException(strMessage);
 						throw cException;
@@ -104,13 +104,13 @@ bool CTranslateRuleMacro::applyBackwards(CTranslateSALMain& cMain, NList<int, in
 				}else{ // This is a normal BT (not random).
 					if (iMatchCount == 0){
 						// The matching node was not found.
-						CString strMessage = _T("Matching reference node not found for: ");
+						NString strMessage = _T("Matching reference node not found for: ");
 						strMessage = strMessage + strComponent + _T(" ") + strState;
 						CTranslateException cException(strMessage);
 						throw cException;
 					}else if (iMatchCount > 1){
 						// Too many matching nodes found.
-						CString strMessage = _T("Too many matching reference nodes found for: ");
+						NString strMessage = _T("Too many matching reference nodes found for: ");
 						strMessage = strMessage + strComponent + _T(" ") + strState;
 						strMessage = strMessage + _T("\r\nUse a label to distinguish between them.");
 						CTranslateException cException(strMessage);
@@ -130,42 +130,42 @@ bool CTranslateRuleMacro::applyBackwards(CTranslateSALMain& cMain, NList<int, in
 
 void CTranslateRuleMacro::translateToSAL(CTranslateSALMain& cMain, int iNode, int iOtherNode, NList<CTranslateParsingRule*, CTranslateParsingRule*>* plSecondaryRules) 
 {
-	NList<CString, CString>* plActions;
+	NList<NString, NString>* plActions;
 	if (!(cMain.UsingViews())){
 		if (cMain.IsAtomic(iOtherNode)){
 		//	// This is not allowed at present.
 		//	// Throw an exception.
 		//	CTranslateNode* pcNode = cMain.GetNode(iNode);
-		//	CString strComponent = pcNode->GetComponentName();
-		//	CString strState = pcNode->GetStateName();
-		//	CString strMessage = _T("Jumping to an atomic node is not allowed: ");
+		//	NString strComponent = pcNode->GetComponentName();
+		//	NString strState = pcNode->GetStateName();
+		//	NString strMessage = _T("Jumping to an atomic node is not allowed: ");
 		//	strMessage = strMessage + strComponent + _T(" ") + strState;
 		//	CTranslateException cException(strMessage);
 		//	throw cException;
 			NList<CTranslateAtomicBlock*,CTranslateAtomicBlock*>* pcBlocks = cMain.GetAtomicBlocks(iOtherNode);
 			CTranslateAtomicBlock* pcBlock = pcBlocks->GetHead();
 			int iAtomicEnd = pcBlock->GetBottomNode();
-			NList<CString, CString>* plTopActions = cMain.GetActions(iAtomicEnd);
+			NList<NString, NString>* plTopActions = cMain.GetActions(iAtomicEnd);
 			plActions = cMain.GetActions(iNode);
 
 			// Copy all the top node's actions to the macro node.
 			NPosition cTopPosition;
 			cTopPosition = plTopActions->GetHeadPosition();
 			while (cTopPosition.IsNotNull()){
-				CString strAction = plTopActions->GetNext(cTopPosition);
+				NString strAction = plTopActions->GetNext(cTopPosition);
 				plActions->AddTail(strAction);
 			}
 			cMain.AddNodeAction(iNode,plActions);
 
 		}else{
-			NList<CString, CString>* plTopActions = cMain.GetActions(iOtherNode);
+			NList<NString, NString>* plTopActions = cMain.GetActions(iOtherNode);
 			plActions = cMain.GetActions(iNode);
 			
 			// Copy all the top node's actions to the macro node.
 			NPosition cTopPosition;
 			cTopPosition = plTopActions->GetHeadPosition();
 			while (cTopPosition.IsNotNull()){
-				CString strAction = plTopActions->GetNext(cTopPosition);
+				NString strAction = plTopActions->GetNext(cTopPosition);
 				plActions->AddTail(strAction);
 			}
 			cMain.AddNodeAction(iNode,plActions);
@@ -176,11 +176,11 @@ void CTranslateRuleMacro::translateToSAL(CTranslateSALMain& cMain, int iNode, in
 	}	
 }
 
-bool CTranslateRuleMacro::ContainsPCUpdate(NList<CString, CString>* plList, CString strPCName){
+bool CTranslateRuleMacro::ContainsPCUpdate(NList<NString, NString>* plList, NString strPCName){
 	NPosition cPosition;
 	cPosition = plList->GetHeadPosition();
 	while (cPosition.IsNotNull()){
-		CString strAction = plList->GetNext(cPosition);
+		NString strAction = plList->GetNext(cPosition);
 		int iIndex = strAction.Find(strPCName);
 		if (iIndex != -1){
 			return true;
@@ -196,9 +196,9 @@ void CTranslateRuleMacro::translateToUPPAAL(CTranslateUPPAAL& cMain, int iNode, 
 			// This is not allowed at present.
 			// Throw an exception.
 			CTranslateNode* pcNode = cMain.GetNode(iNode);
-			CString strComponent = pcNode->GetComponentName();
-			CString strState = pcNode->GetStateName();
-			CString strMessage = _T("Jumping to an atomic node is not allowed: ");
+			NString strComponent = pcNode->GetComponentName();
+			NString strState = pcNode->GetStateName();
+			NString strMessage = _T("Jumping to an atomic node is not allowed: ");
 			strMessage = strMessage + strComponent + _T(" ") + strState;
 			CTranslateException cException(strMessage);
 			throw cException;
@@ -219,9 +219,9 @@ void CTranslateRuleMacro::translateToUPPAAL(CTranslateUPPAAL& cMain, int iNode, 
 		//	int iAtomicEnd = pcBlock->GetBottomNode();
 
 		//	CTranslateUTrans* pcOtherTransition = cMain.GetNodeTransition(iAtomicEnd);
-		//	CString strOtherGuard = pcOtherTransition->GetGuard();
-		//	CString strOtherAssignment = pcOtherTransition->GetAssignment();
-		//	CString strOtherSynch = pcOtherTransition->GetSynchronisation();
+		//	NString strOtherGuard = pcOtherTransition->GetGuard();
+		//	NString strOtherAssignment = pcOtherTransition->GetAssignment();
+		//	NString strOtherSynch = pcOtherTransition->GetSynchronisation();
 		//	if (strOtherGuard != _T("")){
 		//		pcTransition->AddLabel(strOtherGuard, 2);
 		//	}
@@ -242,12 +242,12 @@ void CTranslateRuleMacro::translateToUPPAAL(CTranslateUPPAAL& cMain, int iNode, 
 		//		pcTransition->SetTarget(iPC, 0, 0);  // 0 for the value indicates the disabled state.
 		//		
 		//		// Add a label to send out a jump message.
-		//		CString strJumpMessage = _T("jumpToPro");
+		//		NString strJumpMessage = _T("jumpToPro");
 		//		strJumpMessage.Format(strJumpMessage + _T("%d"), iOtherPC);
 		//		strJumpMessage.Append(_T("state"));
 		//		strJumpMessage.Format(strJumpMessage + _T("%d"), iOtherPCValue);
 		//		bool bSynchAdded = cMain.AddSynchronisation(strJumpMessage);
-		//		CString strLabel = strJumpMessage + _T("!");
+		//		NString strLabel = strJumpMessage + _T("!");
 		//		pcTransition->AddLabel(strLabel, 3);
 		//		pcTransition->SetIsJumpNode(true);
 		//		
@@ -257,7 +257,7 @@ void CTranslateRuleMacro::translateToUPPAAL(CTranslateUPPAAL& cMain, int iNode, 
 		//			pcDisabledTransition->SetSource(iOtherProcess, 0, 0); // The disabled state of the other process.
 		//			pcDisabledTransition->SetTarget(iOtherPC, iNewValue, 0);
 		//			pcDisabledTransition->SetIsJumpNode(true);
-		//			CString strLabel2 = strJumpMessage + _T("?");
+		//			NString strLabel2 = strJumpMessage + _T("?");
 		//			pcDisabledTransition->AddLabel(strLabel2, 3);
 		//			NList<CTranslateUTrans*, CTranslateUTrans*>* plOtherProcessTrans;
 		//			plOtherProcessTrans = cMain.GetTransitions(iOtherProcess);
@@ -289,12 +289,12 @@ void CTranslateRuleMacro::translateToUPPAAL(CTranslateUPPAAL& cMain, int iNode, 
 				pcTransition->SetTarget(iPC, 0, 0);  // 0 for the value indicates the disabled state.
 				
 				// Add a label to send out a jump message.
-				CString strJumpMessage = _T("jumpToPro");
+				NString strJumpMessage = _T("jumpToPro");
 				strJumpMessage.Format(strJumpMessage + _T("%d"), iOtherPC);
 				strJumpMessage.Append(_T("state"));
 				strJumpMessage.Format(strJumpMessage + _T("%d"), iOtherPCValue);
 				bool bSynchAdded = cMain.AddSynchronisation(strJumpMessage);
-				CString strLabel = strJumpMessage + _T("!");
+				NString strLabel = strJumpMessage + _T("!");
 				pcTransition->AddLabel(strLabel,3);
 				pcTransition->SetIsJumpNode(true);
 				
@@ -303,7 +303,7 @@ void CTranslateRuleMacro::translateToUPPAAL(CTranslateUPPAAL& cMain, int iNode, 
 					CTranslateUTrans* pcDisabledTransition = new CTranslateUTrans;
 					pcDisabledTransition->SetSource(iOtherProcess, 0, 0); // The disabled state of the other process.
 					pcDisabledTransition->SetTarget(iOtherPC, iNewValue, 0);
-					CString strLabel2 = strJumpMessage + _T("?");
+					NString strLabel2 = strJumpMessage + _T("?");
 					pcDisabledTransition->AddLabel(strLabel2, 3);
 					pcDisabledTransition->SetIsJumpNode(true);
 					NList<CTranslateUTrans*, CTranslateUTrans*>* plOtherProcessTrans;

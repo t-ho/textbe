@@ -92,10 +92,10 @@ bool CTranslateRuleConBranching::applyBackwards(CTranslateSALMain& cMain, NList<
 							}
 							if (bNodeParsed == false){
 								// The node could not be parsed.
-								CString strParseError = _T("No matching rules found for node: ");
+								NString strParseError = _T("No matching rules found for node: ");
 								CTranslateNode* pcSibling = cMain.GetNode(iSibling);
-								CString strComponentName = pcSibling->GetComponentName();
-								CString strStateName = pcSibling->GetStateName();
+								NString strComponentName = pcSibling->GetComponentName();
+								NString strStateName = pcSibling->GetStateName();
 								strParseError = strParseError + strComponentName + _T(" ");
 								strParseError = strParseError + strStateName;
 								CTranslateException cException(strParseError);
@@ -155,8 +155,8 @@ void CTranslateRuleConBranching::translateToSAL(CTranslateSALMain& cMain, int iN
 		pcSecondaryRule->translateToSAL(cMain,iCurrent,NULL,NULL);
 
 		// Add to the parent.
-		CString strProgramCounterName = cMain.GetPCForNode(iCurrent);
-		CString strParentAction = strProgramCounterName + _T("'=1");
+		NString strProgramCounterName = cMain.GetPCForNode(iCurrent);
+		NString strParentAction = strProgramCounterName + _T("'=1");
 		cMain.AddExtraNodeAction(iParent, strParentAction);
 	}
 }
@@ -185,7 +185,7 @@ void CTranslateRuleConBranching::translateToUPPAAL(CTranslateUPPAAL& cMain, int 
 	CTranslateNode* pcParent = cMain.GetNode(iParent);
 	NList<CTranslateUTrans*, CTranslateUTrans*>* plTransitions = new NList<CTranslateUTrans*, CTranslateUTrans*>;
 	CTranslateUTrans* pcCurrentTransition;
-	CString strLabel;
+	NString strLabel;
 	int iCurrentPC;
 	int iLabelType;
 
