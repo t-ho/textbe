@@ -10,16 +10,17 @@
 //
 
 #pragma once
+#include "NString.h"
 
 class CTranslateException
 {
 public:
 	CTranslateException(void);
-	CTranslateException(CString strMessage);
+	CTranslateException(NString strMessage);
 public:
 	~CTranslateException(void);
 public:
-	CString GetMessage(void);
+	NString GetMessage(void);
 public:
-	CString m_strMessage;
+	NString m_strMessage;
 };

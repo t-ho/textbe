@@ -18,6 +18,7 @@
 // #include "TranslateRandom.h"
 #include "NList.h"
 #include "NMap.h"
+#include "NString.h"
 
 class CTranslateSALMain : public CTranslateMain
 {
@@ -29,39 +30,39 @@ public:
 public:
 	void SelectOptions(int iPriority, int iBuff, int iWithSets, const wchar_t* strSetsPath, const wchar_t* strInitPath);
 public:
-	CString ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE);
+	void ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE);
 public:
-	void AddInputVariable(CString strName);
-	void AddOutputVariable(CString strName);
-	void AddLocalBoolean(CString strName);
-	void AddIntegerAttribute(CString strName);
-	void AddLocalVariable(CString strName, CString strState);
+	void AddInputVariable(NString strName);
+	void AddOutputVariable(NString strName);
+	void AddLocalBoolean(NString strName);
+	void AddIntegerAttribute(NString strName);
+	void AddLocalVariable(NString strName, NString strState);
 	void AddInternalMsgAssociation(int iOutputNode, NList<int, int>* plInputNodes);
 	NList<int, int>* GetInternalMsgAssociation(int iOutputNode);
-	int FindListPosition(NList<CString, CString>& cList, CString strValue);
-	CString GetListElement(NList<CString, CString>& cList, int iPosition);
-	void RemoveFromList(NList<CString, CString>& cList, int iIndex);
-	void AddNodeGuard(int iNode, CString strGuard);
-	void AddNodeAction(int iNode, NList<CString, CString>* plActions);
+	int FindListPosition(NList<NString, NString>& cList, NString strValue);
+	NString GetListElement(NList<NString, NString>& cList, int iPosition);
+	void RemoveFromList(NList<NString, NString>& cList, int iIndex);
+	void AddNodeGuard(int iNode, NString strGuard);
+	void AddNodeAction(int iNode, NList<NString, NString>* plActions);
 	void RemoveNodeTransition(int iNode);
-	void AddExtraNodeAction(int iNode, CString strAction);
-	int AddExtraTransition(CString strGuard, NList<CString,CString>* plActions);
+	void AddExtraNodeAction(int iNode, NString strAction);
+	int AddExtraTransition(NString strGuard, NList<NString,NString>* plActions);
 	void AddPCRange(int iProgramCounter, int iValue);
-	CString GetNewProgramCounter();
-	CString GetPCForNode(int iNode);
+	NString GetNewProgramCounter();
+	NString GetPCForNode(int iNode);
 	int GetPC(int iNode);
 	int GetPCValueForNode(int iNode);
 	void SetPCValueForNode(int iNode, int iPCValue);
-	CString GetGuard(int iNode);
-	NList<CString, CString>* GetActions(int iNode);
-	NList<CString, CString>* FindThreadsToKill(int iNode, bool bCallingForReversion);
+	NString GetGuard(int iNode);
+	NList<NString, NString>* GetActions(int iNode);
+	NList<NString, NString>* FindThreadsToKill(int iNode, bool bCallingForReversion);
 	int FindNextHighestPC(int iNode);
-	void AddAtomicGuard(int iNode, CString strGuard);
-	void AddAtomicActions(int iNode, NList<CString, CString>* plActions);
-	CString GetAtomicGuard(int iNode);
-	NList<CString, CString>* GetAtomicActions(int iNode);
+	void AddAtomicGuard(int iNode, NString strGuard);
+	void AddAtomicActions(int iNode, NList<NString, NString>* plActions);
+	NString GetAtomicGuard(int iNode);
+	NList<NString, NString>* GetAtomicActions(int iNode);
 	void CreateIDValues(int iRootNode);
-	CString TrimChangeCase(CString strName, bool bToUpperCase);
+	NString TrimChangeCase(NString strName, bool bToUpperCase);
 	bool IsAtomic(int iNode);
 	NList<CTranslateAtomicBlock*,CTranslateAtomicBlock*>* GetAtomicBlocks(int iNode);
 	void SetAtomicBlock(int iNode, CTranslateAtomicBlock* pcAtomicBlock);
@@ -69,9 +70,9 @@ public:
 	bool UsingViews();
 	bool UsingRandomBT();
 	bool ShowTimes();
-	void RemoveAssignmentRepeats(NList<CString, CString>& lAssignments);
-	void RemoveMessageConflicts(NList<CString, CString>& lUpdates, NList<CString, CString>& lMessageNames);
-	void AddMessageString(CString strMessage);
+	void RemoveAssignmentRepeats(NList<NString, NString>& lAssignments);
+	void RemoveMessageConflicts(NList<NString, NString>& lUpdates, NList<NString, NString>& lMessageNames);
+	void AddMessageString(NString strMessage);
 	void TranslateInitNodes(int iRootNode, NList<int, int>& lInitNodes);
 	void StoreTranslationStep(int iNode, int iRuleID, int iOtherNode, NList<int, int>* plSecondaryRules);
 	CTranslateNode* GetNode(int iNodeID);
@@ -79,40 +80,40 @@ public:
 //	CTranslateNode* ConvertToTranslateNode(MSXML::IXMLDOMNodePtr pXMLNode);
 	void GetDescendents(NList<int, int>& cDescendents, int iNode);
 	void GetLeafNodes(int iRootNode, NList<int, int>& cLeafNodes);
-	void ReadSetInformation(CString strPathName, CString strFileName);
-	void StoreSetInformation(CString strSetInfo);
-	CTranslateNode* ReadSlice(CString strPathName, CString strFileName);
-	CTranslateNode* StoreSliceNodeInformation(CString strLine);
-	NList<CString, CString>* StoreSliceInformation(CString strLine, NList<CString, CString>* plComponent);
-	void StoreNodeInfo(CString strComponentID, CString strComponentName, CString strStateID, CString strStateName, int iType);
-	//void StoreStateInfo(CString strComponentID, CString strStateID, CString strStateName, int iType);
-	void AddElementToSet(CString strElement, CString strSet);
-	void AddUniqueElementToSet(CString strElement, CString strSet);
-	void AddInitialElement(CString strElement, CString strSet);
+	void ReadSetInformation(NString strPathName, NString strFileName);
+	void StoreSetInformation(NString strSetInfo);
+	CTranslateNode* ReadSlice(NString strPathName, NString strFileName);
+	CTranslateNode* StoreSliceNodeInformation(NString strLine);
+	NList<NString, NString>* StoreSliceInformation(NString strLine, NList<NString, NString>* plComponent);
+	void StoreNodeInfo(NString strComponentID, NString strComponentName, NString strStateID, NString strStateName, int iType);
+	//void StoreStateInfo(NString strComponentID, NString strStateID, NString strStateName, int iType);
+	void AddElementToSet(NString strElement, NString strSet);
+	void AddUniqueElementToSet(NString strElement, NString strSet);
+	void AddInitialElement(NString strElement, NString strSet);
 //	void ReadSetElements(void);
-//	void StoreElementInformation(CString strLine);
+//	void StoreElementInformation(NString strLine);
 	void MatchSetExpression(CTranslateNode* pcNode);
-	CString GetSetType(CString strSetName, CTranslateNode* pcNode);
+	NString GetSetType(NString strSetName, CTranslateNode* pcNode);
 	void ExpandBranches(CTranslateNode* pcRoot);
 	CTranslateNode* ExpandNode(CTranslateNode* pcNode);
 	CTranslateNode* CopySubTree(CTranslateNode* pcRoot);
 	CTranslateNode* CopyTreeBelow(CTranslateNode* pcRoot);
-	void RenameTree(CTranslateNode* pcRoot, CString strOriginalName, CString strNewName);
+	void RenameTree(CTranslateNode* pcRoot, NString strOriginalName, NString strNewName);
 	void ReplaceAttributes(CTranslateNode* pcRoot);
-	int GetUserDefinedType(CString strComponent, CString strAttribute, CTranslateNode* pcNode);
-	int GetNumber(CString strNumberString);
-	bool IsStringANumber(CString strNumberString);
-	bool IsInteger(CString strVariable);
+	int GetUserDefinedType(NString strComponent, NString strAttribute, CTranslateNode* pcNode);
+	int GetNumber(NString strNumberString);
+	bool IsStringANumber(NString strNumberString);
+	bool IsInteger(NString strVariable);
 	bool IsUppaal(void);
 //	CTranslateNode* CreateTranslateNodesFromRandom(CTranslateRandom* pcRandom, CTranslateNode* pcOriginal);
 //	CTranslateNode* ConvertToTranslateNodeFromRandom(CTranslateNode* pcOriginal);
-	void AddPCToInitialisation(CString strPC);
+	void AddPCToInitialisation(NString strPC);
 	void SetAtomicBlockCount(int iNode, int iCount);
 	int GetAtomicBlockCount(int iNode);
-	void StoreOppositeBranch(int iNode, CString strGuard);
-	CString GetOppositeBranch(int iNode);
-	void UpdateExtraTransition(int iGuardPosition, CString strFullGuard);
-	CString PrintTree(CTranslateNode* pcRoot);
+	void StoreOppositeBranch(int iNode, NString strGuard);
+	NString GetOppositeBranch(int iNode);
+	void UpdateExtraTransition(int iGuardPosition, NString strFullGuard);
+	NString PrintTree(CTranslateNode* pcRoot);
 	void MakeLongIDs(int iRootNode);
 
 
@@ -125,11 +126,11 @@ public:
 	bool m_bTranslateWithViews;
 	bool m_bDisplayTimes;
 	bool m_bUsingBESE; // true = translating from BESE, false = translating from TextBE.
-	CString m_strPathName;  // The file that contains set information.
-	CString m_strFileName;
-	CString m_strPathName2;  // The file that contains initialisation information for sets.
-	CString m_strFileName2;
-	CString m_strCriterion;   // The slicing criteria entered by the user.
+	NString m_strPathName;  // The file that contains set information.
+	NString m_strFileName;
+	NString m_strPathName2;  // The file that contains initialisation information for sets.
+	NString m_strFileName2;
+	NString m_strCriterion;   // The slicing criteria entered by the user.
 	NList<int, int> m_lAtomicNodes;
 	
 
@@ -145,63 +146,63 @@ public:
 	NMap<int, CTranslateNode*> m_mTranslateNodes;
 
 	// Maps nodes to guard strings.
-	NMap<int, CString> m_cNodesToGuards;
+	NMap<int, NString> m_cNodesToGuards;
 	// Maps nodes to lists of action strings.
-	NMap<int, NList<CString, CString>*> m_cNodesToActions;
+	NMap<int, NList<NString, NString>*> m_cNodesToActions;
 	
 	// Maps atomic nodes to guard strings.
-	NMap<int, CString> m_cAtomicNodesToGuards;
+	NMap<int, NString> m_cAtomicNodesToGuards;
 	// Maps atomic nodes to lists of action strings.
-	NMap<int, NList<CString, CString>*> m_cAtomicNodesToActions;
+	NMap<int, NList<NString, NString>*> m_cAtomicNodesToActions;
 
 	// Maps alternate selection nodes to their opposite guards (the NOT case).
-	NMap<int, CString> m_cAlternateNodesToGuards;
+	NMap<int, NString> m_cAlternateNodesToGuards;
 
 	// A list of guards not associated with any node.
-	NList<CString,CString> m_lExtraGuards;
+	NList<NString,NString> m_lExtraGuards;
 	/* Maps the position of extra guards in the list to
 	 * lists of extra actions.
 	 */
-	NMap<int, NList<CString, CString>*> m_cExtraActions; 
+	NMap<int, NList<NString, NString>*> m_cExtraActions; 
 
 	 // A list of the component names for local variables.
-	NList<CString, CString> m_cLocalComponents;
+	NList<NString, NString> m_cLocalComponents;
 	 /* A map from the position of local variables
 	  * in the component list to their list of states.
 	  */
-	NMap<int, NList<CString, CString>*> m_cLocalStates; 
+	NMap<int, NList<NString, NString>*> m_cLocalStates; 
 	
 	// A list of variables that are integers (as was declared in the user's information file).
-	NList<CString, CString> m_lIntegers;
+	NList<NString, NString> m_lIntegers;
 
 	// A list of the starting (minimum) values of the integers. (The first value in this list
 	// is the starting value for the first integer in the integers list and so on).
-	NList<CString, CString> m_lStartValues;
+	NList<NString, NString> m_lStartValues;
 
 	// A list of the end (maximum) values of the integers. (The first value in this list
 	// is the end value for the first integer in the integers list and so on).
-	NList<CString, CString> m_lEndValues;
+	NList<NString, NString> m_lEndValues;
 
 	// A list of set variable names.
-	NList<CString, CString> m_cSetNames;
+	NList<NString, NString> m_cSetNames;
 	 /* A map from the position of set names
 	  * in the list to the position of a set type in the types list.
 	  */
 	NMap<int, int> m_cSetNamesToTypes; 
 
 	// A list of the set types.
-	NList<CString, CString> m_cSetTypes;
+	NList<NString, NString> m_cSetTypes;
 
 	// A list of parent sets. (Sets that contain set attributes).
-	NList<CString, CString> m_cParentSets;
+	NList<NString, NString> m_cParentSets;
 
 	// A list of sets that are attributes of other sets.
-	NList<CString, CString> m_cAttributeSets;
+	NList<NString, NString> m_cAttributeSets;
 
 	 /* A map from the position of set types
 	  * in the list to their list of elements.
 	  */
-	NMap<int, NList<CString, CString>*> m_cSetElements; 
+	NMap<int, NList<NString, NString>*> m_cSetElements; 
 	
 	 /* A map from the position of set names
 	  * in the list to the position of their unique set type in the types list.
@@ -214,12 +215,12 @@ public:
 	NMap<int, int> m_cSetNamesToUniqueTypes; 
 
 	// A list of the unique set types, see above description.
-	NList<CString, CString> m_cUniqueSetTypes;
+	NList<NString, NString> m_cUniqueSetTypes;
 
 	 /* A map from the position of unique set types
 	  * in the list to their list of elements (see above description).
 	  */
-	NMap<int, NList<CString, CString>*> m_cUniqueSetElements; 
+	NMap<int, NList<NString, NString>*> m_cUniqueSetElements; 
 	
 
 	 /* A map from the position of set names
@@ -230,17 +231,17 @@ public:
 	/* A map from the position of set names
 	  * in the list to their list of initial elements.
 	  */
-	NMap<int, NList<CString, CString>*> m_cInitSetElements; 
+	NMap<int, NList<NString, NString>*> m_cInitSetElements; 
 
 	// A list of user-defined attributes (as obtained from the user-defined information text file).
-	NList<CString, CString> m_lAttributes;
+	NList<NString, NString> m_lAttributes;
 
 	// A map from the position of attributes in the list to the position of types in the set type list.
 	// (Although these are not set attributes, the set type list is still used).
 	NMap<int, int> m_mAttributesToTypes;
 
 	// A list of components that own user-defined attributes.
-	NList<CString, CString> m_lAttributeComponents;
+	NList<NString, NString> m_lAttributeComponents;
 
 	// A map from the position of attributes in the list to the position of owner components in the component list.
 	NMap<int, int> m_mAttributesToComponents; 
@@ -251,10 +252,10 @@ public:
 
 	// A list of alternate names used for user-defined attributes.
 	// (See TranslateSALMain.cpp, approx. line 1852 for a detailed description).
-	NList<CString, CString> m_lAlternateNames;
+	NList<NString, NString> m_lAlternateNames;
 
 	// A list of the final user-defined attributes (after set nodes have been expanded).
-	NList<CString, CString> m_lUserDefinedAttributes;
+	NList<NString, NString> m_lUserDefinedAttributes;
 
 	// A map from the position of final user-defined attributes in the list to the position of their type in the types list.
 	NMap<int, int> m_mUserAttributeTypes;
@@ -268,27 +269,27 @@ public:
 	// Maps nodes to PC values.
 	NMap<int, int> m_cNodesToPCValues;  
 	// Maps nodes to ID values.
-	NMap<int, CString> m_cNodesToIDs;	
+	NMap<int, NString> m_cNodesToIDs;	
 	// The current highest number used for a PC name.
 	int m_iHighestProgramCounter; 	
 	// Maps PC names to their highest value.
 	NMap<int, int> m_cPCRanges;  
 
 	// A list of the ID's of branching nodes.
-	NList<CString, CString> m_lBranchingIDs;
+	NList<NString, NString> m_lBranchingIDs;
 	// Maps the position of branching nodes in the ID list to their PC's.
 	NMap<int, int> m_cBranchingPCs;
 
 	// Lists of input and output variables and local Boolean variables.
-	NList<CString, CString> m_cOutputVariables;
-	NList<CString, CString> m_cInputVariables;
-	NList<CString, CString> m_cLocalBooleans;
-	NList<CString, CString> m_cIntegerAttributes;
+	NList<NString, NString> m_cOutputVariables;
+	NList<NString, NString> m_cInputVariables;
+	NList<NString, NString> m_cLocalBooleans;
+	NList<NString, NString> m_cIntegerAttributes;
 
 	//The string containing the definition of messageReady for translation type 4.					  
-	CString m_strMessageReady;
+	NString m_strMessageReady;
 
-	NList<CString, CString> m_lInitialisationPCs;
+	NList<NString, NString> m_lInitialisationPCs;
 
 	bool m_bIsUPPAAL;
 
@@ -300,7 +301,7 @@ public:
 	NMap<int, int> m_mCountOfBlocksUsingNode;
 
 	// A list of nodes that were created when parsing a TextBE file.
-	NList<CString, CString> m_lTextBEList;
+	NList<NString, NString> m_lTextBEList;
 
 	// A map from the position of nodes in the textBE list above to a TranslateNode 
 	// object that contains its name, type, etc. but could end up being several 
@@ -312,7 +313,7 @@ public:
 	NList<CTranslateNode*, CTranslateNode*> m_lBranchingNodes;
 
 	// A list of requirements tags to ignore. This is only used when parsing TextBE files.
-	NList<CString,CString> m_lReqTags;
+	NList<NString,NString> m_lReqTags;
 
 	// Indicates whether the component declarations part of the file has been reached.
 	// This is only used when parsing TextBE files.

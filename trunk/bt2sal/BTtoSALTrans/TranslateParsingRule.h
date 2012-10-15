@@ -11,6 +11,7 @@
 
 #include "TranslateSALMain.h"
 #include "TranslateUPPAAL.h"
+#include "NString.h"
 
 class CTranslateParsingRule : public CObject
 {
