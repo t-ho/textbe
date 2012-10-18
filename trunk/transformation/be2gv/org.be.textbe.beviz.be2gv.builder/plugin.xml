@@ -52,5 +52,13 @@
             value="true">
       </persistent>
    </extension>
+   <extension
+         point="org.eclipse.ui.ide.projectNatureImages">
+      <image
+            icon="icons/tree.gif"
+            id="org.be.textbe.beviz.be2gv.builder.beNature"
+            natureId="org.be.textbe.beviz.be2gv.builder.beNature">
+      </image>
+   </extension>
 
 </plugin>
