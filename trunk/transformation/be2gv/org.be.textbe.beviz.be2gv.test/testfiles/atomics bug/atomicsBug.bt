@@ -1,5 +1,25 @@
-#C C1 C
- #S 1 s
+#RT R1 R1
 
+#C C1 SYSTEM
+
+#C C2 ATP_SYSTEM
+#S 1 Located #R Where on C3
+
+#C C3 TRAIN
+
+#C C4 CENTRAL_CONTROLLER
+
+#C C5 BOUNDARY_SUBSYSTEM5
+#S 1 Manage #R What C6 #R What C7 #R What C8 #R What C9 #R What C10
  
-#T C1 1; C1 1;; C1 1; C1 1
+#C C6 SENSOR*
+
+#C C7 SPEEDOMETER
+
+#C C8 BRAKES
+
+#C C9 ALARM
+
+#C C10 RESET_MECHANISM
+
+#T R1 C2 1; R1 C5 1  
