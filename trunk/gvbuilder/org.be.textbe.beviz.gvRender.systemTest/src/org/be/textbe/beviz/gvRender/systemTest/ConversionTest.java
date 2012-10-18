@@ -18,8 +18,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.abstratt.graphviz.GraphVizActivator;
-
 public class ConversionTest {
 
 	@Test
@@ -28,9 +26,6 @@ public class ConversionTest {
 		/**
 		 * Ensure the binary is there
 		 */
-		GraphVizActivator instance = GraphVizActivator.getInstance();
-
-		instance.setManualDotPath("/usr/local/bin/dot");
 
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 
