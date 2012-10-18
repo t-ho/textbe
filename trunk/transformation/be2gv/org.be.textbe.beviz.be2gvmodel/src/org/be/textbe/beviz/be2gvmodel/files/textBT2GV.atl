@@ -59,7 +59,7 @@ helper def: validityStatusMap: Map(IN!Validity, String) =
 			'+'),
 			(#"-",
 			'&#8211;'),
-			(#"    --",
+			(#" --",
 			'&#8211; &#8211;'),
 			(#"+-",
 			'+&#8211;'),
@@ -73,7 +73,7 @@ helper def: validityColorMap: Map(IN!Validity, String) =
 			'FBF5AD'),
 			(#"-",
 			'F7A8AA'),
-			(#"    --",
+			(#" --",
 			'DDDDDD'),
 			(#"+-",
 			'FFFFFF'),
@@ -312,6 +312,7 @@ helper context IN!AbstractNode def: getRelations(): String =
 		self.getBehavior().relations
 	endif;
 
+-- top level rule that creates
 rule TextBT {
 	from
 		s: IN!TextBT
@@ -383,6 +384,8 @@ rule TextBT {
 	}
 }
 
+-- Produce a single Dot node from an abstract node.
+-- Does not process atomic nodes.
 rule Node {
 	from
 		s: IN!AbstractNode (
@@ -429,6 +432,8 @@ rule Node {
 	}
 }
 
+-- Add the label of the node
+-- applies to all nodes
 rule addNode(node: IN!AbstractNode) {
 	using{
 		output: String = '';
@@ -443,7 +448,7 @@ rule addNode(node: IN!AbstractNode) {
 					'' + ' CELLSPACING="2"' + ' CELLPADDING="0"><TR><TD>' + node.
 					getOperator() + '</TD></TR><TR><TD>' + node.getLabel() +
 					'</TD></TR></TABLE></TD></TR><TR><TD  HEIGHT="25" WIDTH="115"><TABLE'
-					+ ' BORDER="0" CELLBORDER="0" CELLSPACING="0"' + '' + '' + ''
+					+ ' BORDER="0" CELLBORDER="0" CELLSPACING="0"' + '' + '' + '' + ''
 					+ ' CELLPADDING="0"><TR><TD' + ' ALIGN="RIGHT">' + node.
 					getBehaviorLeftType() + '</TD><TD>' + node.getBehaviorName() + '' +
 					'' + ' </TD><TD ALIGN="LEFT">' + node.getBehaviorRightType() +
@@ -454,9 +459,9 @@ rule addNode(node: IN!AbstractNode) {
 						' CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"' + '' + '' + ''
 						+ ' PORT="p"><TR><TD><TABLE BORDER="1" CELLBORDER="0"' + '' + ''
 						+ ' CELLSPACING="2" CELLPADDING="0"><TR><TD  WIDTH="50"' + '' +
-						'' + ' HEIGHT="25">' + node.getRequirement() + '' + ''
+						'' + ' HEIGHT="25">' + node.getRequirement() + '' + '' + ''
 						+ ' </TD></TR><TR><TD ' + ' WIDTH="50" HEIGHT="25">' + node.
-						getValidity() + '' + '' + '' + '' + ''
+						getValidity() + '' + '' + '' + '' + '' + ''
 						+ ' </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0"'
 						+ ' CELLSPACING="2" CELLPADDING="0"><TR><TD  HEIGHT="25"' + '' +
 						' WIDTH="115" PORT="top">' + node.getComponent() + ' </TD><TD ' +
@@ -474,13 +479,13 @@ rule addNode(node: IN!AbstractNode) {
 						' CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"' + '' + '' + ''
 						+ ' PORT="p"><TR><TD><TABLE BORDER="1" CELLBORDER="0"' + '' + ''
 						+ ' CELLSPACING="2" CELLPADDING="0"><TR><TD  WIDTH="50"' + '' +
-						'' + ' HEIGHT="25">' + node.getRequirement() + '' + ''
+						'' + ' HEIGHT="25">' + node.getRequirement() + '' + '' + ''
 						+ ' </TD></TR><TR><TD ' + ' WIDTH="50" HEIGHT="25">' + node.
-						getValidity() + '' + '' + '' + '' + ''
+						getValidity() + '' + '' + '' + '' + '' + ''
 						+ ' </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0"'
 						+ ' CELLSPACING="2" CELLPADDING="0"><TR><TD  HEIGHT="25"' + '' +
 						' WIDTH="115" PORT="top">' + node.mci + ' ' + node.getComponent()
-						+ ':' + node.getComponentSet() + ' </TD><TD ' + '' + '' + ''
+						+ ':' + node.getComponentSet() + ' </TD><TD ' + '' + '' + '' + ''
 						+ ' WIDTH="15"' + ' HEIGHT="25"><TABLE BORDER="0" CELLBORDER="0"'
 						+ '' + '' + ' CELLSPACING="2" CELLPADDING="0"><TR><TD>' + node.
 						getOperator() + '</TD></TR><TR><TD>' + node.getLabel() +
@@ -493,7 +498,7 @@ rule addNode(node: IN!AbstractNode) {
 			}
 		}
 		
-		     -- Add Relational Behavior
+		      -- Add Relational Behavior
 		for (i in node.getRelations()){
 			output <- output + thisModule.addRelation(i);
 		}
@@ -522,6 +527,8 @@ rule addNode(node: IN!AbstractNode) {
 	}
 }
 
+-- called rule to add a relation
+-- called from addNode
 rule addRelation(relation: IN!Relation) {
 	using{
 		output: String = '';
@@ -538,12 +545,12 @@ rule addRelation(relation: IN!Relation) {
 						+ ' CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD ' + ''
 						+ ' WIDTH="30" HEIGHT="20">' + relation.getLevel() + ' ' +
 						relation.question.toString() + ' </TD></TR><TR><TD  WIDTH="30"' +
-						'' + ' HEIGHT="20"> (' + preposition + ')' + '' + '' + '' + ''
-						+ ' </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0"'
-						+ ' CELLSPACING="2" CELLPADDING="0"><TR><TD  HEIGHT="40"' + '' +
-						' WIDTH="82" PORT="top">' + relation.getComponent() + ' ' +
+						'' + ' HEIGHT="20"> (' + preposition + ')' + '' + '' + '' + '' +
+						' </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0"' +
+						' CELLSPACING="2" CELLPADDING="0"><TR><TD  HEIGHT="40"' + '' + ''
+						+ ' WIDTH="82" PORT="top">' + relation.getComponent() + ' ' +
 						relation.getComponentLevel() + ' </TD><TD  HEIGHT="40"' + '' + ''
-						+ ' WIDTH="1">' + '' + '' + '' + ''
+						+ ' WIDTH="1">' + '' + '' + '' + '' + ''
 						+ ' </TD></TR></TABLE></TD></TR></TABLE></TD></TR>';
 			}else{
 				output <- output + '<TR><TD><TABLE BORDER="0" CELLBORDER="0"' + '' + '' +
@@ -551,14 +558,14 @@ rule addRelation(relation: IN!Relation) {
 						+ ' CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD ' + ''
 						+ ' WIDTH="30" HEIGHT="20">' + relation.getLevel() + ' ' +
 						relation.question.toString() + ' </TD></TR><TR><TD  WIDTH="30"' +
-						'' + ' HEIGHT="20"> (' + preposition + ')' + '' + '' + '' + ''
-						+ ' </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0"'
-						+ ' CELLSPACING="2" CELLPADDING="0"><TR><TD  HEIGHT="20"' + '' +
-						' WIDTH="82" PORT="top">' + relation.getComponent() + ' ' +
+						'' + ' HEIGHT="20"> (' + preposition + ')' + '' + '' + '' + '' +
+						' </TD></TR></TABLE></TD><TD><TABLE BORDER="1" CELLBORDER="0"' +
+						' CELLSPACING="2" CELLPADDING="0"><TR><TD  HEIGHT="20"' + '' + ''
+						+ ' WIDTH="82" PORT="top">' + relation.getComponent() + ' ' +
 						relation.getComponentLevel() + ' </TD><TD  HEIGHT="20"' + '' + ''
 						+ ' WIDTH="1">' + ' </TD></TR><TR><TD  HEIGHT="20" WIDTH="82"' +
 						' PORT="top">' + relation.getBehaviorName() + '</TD><TD ' + '' +
-						' HEIGHT="20" WIDTH="1">' + '' + '' + '' + ''
+						' HEIGHT="20" WIDTH="1">' + '' + '' + '' + '' + ''
 						+ ' </TD></TABLE></TD></TR></TABLE></TD></TR>';
 				
 			}
@@ -569,24 +576,24 @@ rule addRelation(relation: IN!Relation) {
 							' CELLSPACING="2" CELLPADDING="0"><TR><TD  WIDTH="50"' + '' +
 							' HEIGHT="20">' + relation.getLevel() + ' ' + relation.
 							question.toString() + ' </TD></TR><TR><TD  WIDTH="50"' + '' +
-							' HEIGHT="20"> (' + preposition + ')' + '' + '' + '' + ''
+							' HEIGHT="20"> (' + preposition + ')' + '' + '' + '' + '' + ''
 							+ ' </TD></TR></TABLE></TD><TD><TABLE BORDER="1"' + '' + '' +
 							' CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD ' +
 							' HEIGHT="40" WIDTH="115" PORT="top">' + relation.
 							getComponent() + ' ' + relation.getComponentLevel() + '' + ''
-							+ ' </TD><TD  HEIGHT="40" WIDTH="15">' + '' + '' + '' + ''
-							+ ' </TD></TR></TABLE></TD></TR>';
+							+ ' </TD><TD  HEIGHT="40" WIDTH="15">' + '' + '' + '' + '' +
+							' </TD></TR></TABLE></TD></TR>';
 				}else{
 					output <- output + '<TR><TD><TABLE BORDER="1" CELLBORDER="0"' + '' +
 							' CELLSPACING="2" CELLPADDING="0"><TR><TD  WIDTH="50"' + '' +
 							' HEIGHT="20">' + relation.getLevel() + ' ' + relation.
 							question.toString() + ' </TD></TR><TR><TD  WIDTH="50"' + '' +
-							' HEIGHT="20"> (' + preposition + ')' + '' + '' + '' + ''
+							' HEIGHT="20"> (' + preposition + ')' + '' + '' + '' + '' + ''
 							+ ' </TD></TR></TABLE></TD><TD><TABLE BORDER="1"' + '' + '' +
 							' CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD ' +
 							' HEIGHT="40" WIDTH="115" PORT="top">' + relation.mci + ' ' +
 							relation.getComponent() + ':' + relation.getComponentSet() +
-							' </TD><TD  HEIGHT="40" WIDTH="15">' + '' + '' + '' + ''
+							' </TD><TD  HEIGHT="40" WIDTH="15">' + '' + '' + '' + '' + ''
 							+ ' </TD></TR></TABLE></TD></TR>';
 				}
 			}else{
@@ -595,14 +602,14 @@ rule addRelation(relation: IN!Relation) {
 							' CELLSPACING="2" CELLPADDING="0"><TR><TD  WIDTH="50"' + '' +
 							' HEIGHT="20">' + relation.getLevel() + ' ' + relation.
 							question.toString() + ' </TD></TR><TR><TD  WIDTH="50"' + '' +
-							' HEIGHT="20"> (' + preposition + ')' + '' + '' + '' + ''
+							' HEIGHT="20"> (' + preposition + ')' + '' + '' + '' + '' + ''
 							+ ' </TD></TR></TABLE></TD><TD><TABLE BORDER="1"' + '' + '' +
 							' CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD ' +
 							' HEIGHT="20" WIDTH="115" PORT="top">' + relation.
 							getComponent() + ' ' + relation.getComponentLevel() + '' + ''
 							+ ' </TD><TD  HEIGHT="20" WIDTH="15"> </TD></TR><TR><TD ' +
-							'' + ' HEIGHT="20" WIDTH="115"><TABLE BORDER="0"' + '' + ''
-							+ ' CELLBORDER="0"' + ' CELLSPACING="0"' + '' + ''
+							'' + ' HEIGHT="20" WIDTH="115"><TABLE BORDER="0"' + '' + '' +
+							' CELLBORDER="0"' + ' CELLSPACING="0"' + '' + '' + ''
 							+ ' CELLPADDING="0"><TR><TD ALIGN="RIGHT">' + relation.
 							getBehaviorLeftType() + '</TD><TD>' + relation.
 							getBehaviorName() + ' </TD><TD ALIGN="LEFT">' + relation.
@@ -613,14 +620,14 @@ rule addRelation(relation: IN!Relation) {
 							' CELLSPACING="2" CELLPADDING="0"><TR><TD  WIDTH="50"' + '' +
 							' HEIGHT="20">' + relation.getLevel() + ' ' + relation.
 							question.toString() + ' </TD></TR><TR><TD  WIDTH="50"' + '' +
-							' HEIGHT="20"> (' + preposition + ')' + '' + '' + '' + ''
+							' HEIGHT="20"> (' + preposition + ')' + '' + '' + '' + '' + ''
 							+ ' </TD></TR></TABLE></TD><TD><TABLE BORDER="1"' + '' + '' +
 							' CELLBORDER="0" CELLSPACING="2" CELLPADDING="0"><TR><TD ' +
 							' HEIGHT="20" WIDTH="115" PORT="top">' + relation.mci + ' ' +
 							relation.getComponent() + ':' + relation.getComponentSet() +
 							' </TD><TD  HEIGHT="20" WIDTH="15"> </TD></TR><TR><TD ' + ''
-							+ ' HEIGHT="20" WIDTH="115"><TABLE BORDER="0"' + '' + ''
-							+ ' CELLBORDER="0"' + ' CELLSPACING="0"' + '' + ''
+							+ ' HEIGHT="20" WIDTH="115"><TABLE BORDER="0"' + '' + '' + ''
+							+ ' CELLBORDER="0"' + ' CELLSPACING="0"' + '' + '' + ''
 							+ ' CELLPADDING="0"><TR><TD ALIGN="RIGHT">' + relation.
 							getBehaviorLeftType() + '</TD><TD>' + relation.
 							getBehaviorName() + ' </TD><TD ALIGN="LEFT">' + relation.
@@ -664,14 +671,14 @@ rule addAtomicNode(node: IN!AbstractNode) {
 					' WIDTH="115" PORT="top">' + node.getComponent() + ' </TD><TD ' + ''
 					+ ' WIDTH="10" HEIGHT="25">' + node.getOperator() + '' + '' + '' + ''
 					+ ' </TD></TR><TR><TD  HEIGHT="25" WIDTH="115"><TABLE' + '' + '' + ''
-					+ ' BORDER="0"' + ' CELLBORDER="0" CELLSPACING="0"' + '' + ''
+					+ ' BORDER="0"' + ' CELLBORDER="0" CELLSPACING="0"' + '' + '' + ''
 					+ ' CELLPADDING="0"><TR><TD' + '' + ' ALIGN="RIGHT">' + node.
 					getBehaviorLeftType() + '</TD><TD>' + node.getBehaviorName() + '' +
 					'' + ' </TD><TD ALIGN="LEFT">' + node.getBehaviorRightType() +
 					'</TD></TR></TABLE></TD></TR></TABLE></TD></TR>';
 		}
 		
-		     -- Add Relational Behavior
+		      -- Add Relational Behavior
 		for (i in node.getRelations()){
 			output <- output + thisModule.addRelation(i);
 		}
@@ -687,7 +694,7 @@ rule addAtomicNode(node: IN!AbstractNode) {
 				}else{
 					output <- output + '<TR><TD COLSPAN="2"><TABLE BORDER="1"' + '' + ''
 							+ ' CELLBORDER="0" CELLSPACING="2" CELLPADDING="0" ><TR><TD '
-							+ ' WIDTH="0" HEIGHT="20">[ ' + '' + '' + '' + ''
+							+ ' WIDTH="0" HEIGHT="20">[ ' + '' + '' + '' + '' + ''
 							+ ' ]</TD></TR></TABLE></TD></TR></TABLE>>';
 				}
 			}
@@ -716,7 +723,7 @@ rule nextElement(node: IN!AbstractNode){
 					if (nextElement = false){
 						foundBranch <- thisModule.findBranch(node);
 						if (foundBranch = false){
-							     -- Add Edges
+							      -- Add Edges
 							thisModule.visitor <- Map{};
 							thisModule.branchNum <- 1;
 							nextElement <- thisModule.findRootNode(node);
@@ -737,7 +744,7 @@ rule nextElement(node: IN!AbstractNode){
 		}else{
 			foundBranch <- thisModule.findBranch(node);
 			if (foundBranch = false){
-				     -- Add Edges
+				      -- Add Edges
 				thisModule.visitor <- Map{};
 				thisModule.branchNum <- 1;
 				nextElement <- thisModule.findRootNode(node);
