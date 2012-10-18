@@ -56,7 +56,7 @@ helper def: validityStatusMap: Map(IN!Validity, String) =
 			'+'),
 			(#"-",
 			'&#8211;'),
-			(#"   --",
+			(#"--",
 			'&#8211; &#8211;'),
 			(#"+-",
 			'+&#8211;'),
