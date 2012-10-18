@@ -80,13 +80,13 @@ public class GvModel2Text {
 			return out.getContent();
 	
 		} catch (BundleException e) {
-			assert false : "One of the plug-ins give in the array of pluginIDs cannot be loaded. Check the dependencies in the manifest and the current platform.";
+			assert false : "One of the plug-ins given in the array of pluginIDs cannot be loaded. Check the dependencies in the manifest and the current platform.";
 			return "";
 		} catch (NullPointerException e) {
 			assert false : "The array of pluginIDs is null, or at least one of its elements is null. Check the array.";
 			return "";
 		} catch (IllegalArgumentException e) {
-			assert false : "An entry in the array of pluginIDs  pluginIDs has zero length. Check the array.";
+			assert false : "An entry in the array of pluginIDs has zero length. Check the array.";
 			return "";
 		}
 	
