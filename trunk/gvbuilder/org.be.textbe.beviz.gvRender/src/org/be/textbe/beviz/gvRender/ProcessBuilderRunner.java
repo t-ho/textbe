@@ -12,12 +12,37 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 
 public class ProcessBuilderRunner implements DotRunner {
+
+	private static final class BufferedPipe implements Runnable {
+		private final InputStream source;
+		private final OutputStream target;
+
+		private BufferedPipe(InputStream source, OutputStream target) {
+			this.source = source;
+			this.target = target;
+		}
+
+		@Override
+		public void run() {
+			final byte[] buffer = new byte[65536];
+			try {
+				for (int count = source.read(buffer); count >= 0; count = source
+						.read(buffer)) {
+					target.write(buffer, 0, count);
+				}
+				source.close();
+				target.close();
+			} catch (IOException e) {
+				new RuntimeException(e);
+			}
+
+		}
+	}
 
 	private static final int DEFAULT_RESOLUTION_IN_DPI = 72;
 
@@ -27,16 +52,18 @@ public class ProcessBuilderRunner implements DotRunner {
 		final String pluginId = "org.be.textbe.beviz.gvRender";
 		try {
 			ByteArrayOutputStream stdErrBuffer = new ByteArrayOutputStream();
-			int exitCode = runDotWithStreams(new FileInputStream(inputFile), new FileOutputStream(outputFile), stdErrBuffer);
+			int exitCode = runDotWithStreams(new FileInputStream(inputFile),
+					new FileOutputStream(outputFile), stdErrBuffer);
 			switch (exitCode) {
 			case 0:
 				result = Status.OK_STATUS;
 				break;
 			default:
-				result = new Status(IStatus.ERROR, pluginId , "" + exitCode + ":" + stdErrBuffer.toString());
+				result = new Status(IStatus.ERROR, pluginId, "" + exitCode
+						+ ":" + stdErrBuffer.toString());
 				break;
 			}
-			
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return new Status(IStatus.ERROR, pluginId, e.getMessage());
@@ -52,48 +79,50 @@ public class ProcessBuilderRunner implements DotRunner {
 
 	@Override
 	public File getDotExecutable() {
-		return new File("/usr/local/bin/dot");
+		return new File("E:/Program Files/Graphviz 2.28/bin/dot.exe");
 	}
 
-	public final int runDotWithStreams(InputStream source, OutputStream fileOutputStream, OutputStream byteArrayOutputStream)
-			throws IOException, InterruptedException {
+	public final int runDotWithStreams(final InputStream source,
+			final OutputStream target, OutputStream error) throws IOException,
+			InterruptedException {
 		List<String> commandline = buildCommandline();
 		Map<String, String> environment = buildEnvironment();
-	
+
 		/**
 		 * Configure the process builder
 		 */
 		ProcessBuilder pb = new ProcessBuilder(commandline);
-		
+
 		pb.environment().putAll(environment);
-		
-		/**
+
+		/*
 		 * Obtain a process
 		 */
-	
-		Process p = pb.start();
-	
-		/**
-		 * Connect the pipes
+
+		final Process p = pb.start();
+
+		/*
+		 * Obtain the streams
 		 */
-		
-		OutputStream stdIn = p.getOutputStream();
-		IOUtils.copy(source, stdIn);
-		stdIn.close();
-	
-		InputStream stdErr = p.getErrorStream();
-		IOUtils.copy(stdErr, byteArrayOutputStream);
-		stdErr.close();
-	
-		InputStream stdOut = p.getInputStream();
-		IOUtils.copy(stdOut, fileOutputStream);
-		stdOut.close();
-	
-		/**
+
+		final OutputStream processIn = p.getOutputStream();
+		final InputStream processOut = p.getInputStream();
+		final InputStream processErr = p.getErrorStream();
+
+		/*
+		 * Attach pipes to the streams
+		 */
+
+		new Thread(new BufferedPipe(source, processIn), "InputPipe").start();
+		new Thread(new BufferedPipe(processOut, target), "OutputPipe").start();
+		new Thread(new BufferedPipe(processErr, error), "ErrorPipe").start();
+
+		/*
 		 * Wait for completion
 		 */
 		int exitCode = p.waitFor();
 		return exitCode;
+
 	}
 
 	public static final Map<String, String> buildEnvironment() {
@@ -141,22 +170,22 @@ public class ProcessBuilderRunner implements DotRunner {
 	}
 
 	public final List<String> buildCommandline() {
-	
+
 		List<String> command = new ArrayList<String>();
-	
+
 		File executable = getDotExecutable();
-	
+
 		command.add(executable.toString());
-	
+
 		boolean printVersion = false;
 		boolean setVerbose = false;
-	
+
 		GVOutputType outputType = GVOutputType.SVG;
-	
+
 		int resolution = DEFAULT_RESOLUTION_IN_DPI;
-	
+
 		boolean invertAxis = false;
-	
+
 		if (printVersion) {
 			/**
 			 * Print version and exit
@@ -169,76 +198,76 @@ public class ProcessBuilderRunner implements DotRunner {
 				 */
 				command.add("-v");
 			}
-	
+
 			/**
 			 * Omitted: Graph Attributes -Gname=val - Set graph attribute 'name'
 			 * to 'val'
 			 */
-	
+
 			/**
 			 * Omitted: Node Attributes -Nname=val - Set node attribute 'name'
 			 * to 'val'
 			 */
-	
+
 			/**
 			 * Omitted: Edge Attributes -Ename=val - Set edge attribute 'name'
 			 * to 'val'
 			 */
-	
+
 			/**
 			 * Set output format to 'v'
 			 */
 			command.add(String.format("-T%s", outputType.getExtension()));
-	
+
 			/**
 			 * Omitted: Layout Engine -Kv -Set layout engine to 'v' (overrides
 			 * default based on command name)
 			 */
-	
+
 			/**
 			 * Omitted: Libraries -lv -Use external library 'v'
 			 */
-	
+
 			/**
 			 * Omitted: Output files and formats -ofile - Write output to 'file'
 			 */
-	
+
 			/**
 			 * Omitted: Automatic derived file names -O - Automatically generate
 			 * an output filename based on the input filename with a .'format'
 			 * appended. (Causes all -ofile options to be ignored.)
 			 */
-	
+
 			/**
 			 * Omitted: Configuration graph -P - Internally generate a graph of
 			 * the current plugins.
 			 */
-	
+
 			/**
 			 * Ommitted: message compression -q[l] - Set level of message
 			 * suppression (=1)
 			 */
-	
+
 			/**
 			 * -s[v] - Scale input by 'v' (=72)
 			 */
 			if (resolution != DEFAULT_RESOLUTION_IN_DPI) {
 				command.add(String.format("-s%d", resolution));
 			}
-	
+
 			/**
 			 * -y - Invert y coordinate in output
 			 */
-	
+
 			if (invertAxis) {
 				command.add("-y");
 			}
-	
+
 			/**
 			 * Omitted: neato re-layout and reduce graph -n[v] - No layout mode
 			 * 'v' (=1) -x - Reduce graph
 			 */
-	
+
 			/**
 			 * Ommitted: Version dependent diagnostics
 			 * 
@@ -251,9 +280,9 @@ public class ProcessBuilderRunner implements DotRunner {
 			 * Needs write privilege.)
 			 */
 		}
-	
+
 		return command;
-	
+
 	}
 
 }

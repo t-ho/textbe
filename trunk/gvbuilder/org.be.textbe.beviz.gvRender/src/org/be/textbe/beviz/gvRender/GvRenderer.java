@@ -21,7 +21,7 @@ public class GvRenderer {
 		if (!inputFile.exists()) {
 			return new Status(IStatus.ERROR, BUNDLE_ID, "Input file does not exist.");
 		} else {
-			DotRunner runner = new GraphvizPluginRunner();
+			DotRunner runner = new ProcessBuilderRunner();
 			IFile outputIFile = outputFolder.getFile(new Path(outputFileBaseName + "."
 					+ outputType.getExtension()));
 			if (!outputIFile.getParent().exists()) {
@@ -29,7 +29,7 @@ public class GvRenderer {
 			} else {
 				File dotLocation = runner.getDotExecutable();
 				if (dotLocation == null) {
-					return new Status(IStatus.ERROR, BUNDLE_ID, "Dot executable could not be found does not exist.");
+					return new Status(IStatus.ERROR, BUNDLE_ID, "Dot executable could not be found.");
 				} else {
 					String extension = outputType.getExtension();
 					
