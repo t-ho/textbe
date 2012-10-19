@@ -174,7 +174,7 @@ public abstract class BehaviorImpl extends EObjectImpl implements Behavior
   public Component getComponent()
   {
     if (eContainerFeatureID() != TextbtPackage.BEHAVIOR__COMPONENT) return null;
-    return (Component)eContainer();
+    return (Component)eInternalContainer();
   }
 
   /**

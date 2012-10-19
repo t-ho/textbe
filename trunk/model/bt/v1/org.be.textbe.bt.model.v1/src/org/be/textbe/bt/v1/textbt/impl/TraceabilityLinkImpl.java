@@ -141,7 +141,7 @@ public class TraceabilityLinkImpl extends EObjectImpl implements TraceabilityLin
   public Node getNode()
   {
     if (eContainerFeatureID() != TextbtPackage.TRACEABILITY_LINK__NODE) return null;
-    return (Node)eContainer();
+    return (Node)eInternalContainer();
   }
 
   /**
