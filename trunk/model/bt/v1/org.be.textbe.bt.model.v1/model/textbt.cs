@@ -1,4 +1,4 @@
-SYNTAXDEF bt
+SYNTAXDEF bt1
 FOR <http://org.be.textbe/textbt/v1> 
 START Specification
  

@@ -176,7 +176,7 @@ public abstract class NamedBehaviorImpl extends NamedElementImpl implements Name
   public Component getComponent()
   {
     if (eContainerFeatureID() != TextbtPackage.NAMED_BEHAVIOR__COMPONENT) return null;
-    return (Component)eContainer();
+    return (Component)eInternalContainer();
   }
 
   /**
