@@ -175,7 +175,7 @@ public class ProcessBuilderRunner implements DotRunner {
 
 		File executable = getDotExecutable();
 
-		command.add(executable.toString());
+		command.add("dot");
 
 		boolean printVersion = false;
 		boolean setVerbose = false;
