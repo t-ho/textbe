@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://org.be.textbe/textbt"
+            class="org.be.textbe.bt.textbt.TextbtPackage"
+            genModel="metamodel/textbt.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://org.be.textbe/textbt/component"
+            class="org.be.textbe.bt.textbt.component.ComponentPackage"
+            genModel="metamodel/textbt.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://org.be.textbe/textbt/node"
+            class="org.be.textbe.bt.textbt.node.NodePackage"
+            genModel="metamodel/textbt.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://org.be.textbe/textbt/node/componentInstantiation"
+            class="org.be.textbe.bt.textbt.node.componentInstantiation.ComponentInstantiationPackage"
+            genModel="metamodel/textbt.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://org.be.textbe/textbt/node/operation"
+            class="org.be.textbe.bt.textbt.node.operation.OperationPackage"
+            genModel="metamodel/textbt.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://org.be.textbe/textbt/component/behavior"
+            class="org.be.textbe.bt.textbt.node.behavior.BehaviorPackage"
+            genModel="metamodel/textbt.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://org.be.textbe/textbt/component/behavior/event"
+            class="org.be.textbe.bt.textbt.node.behavior.event.EventPackage"
+            genModel="metamodel/textbt.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://org.be.textbe/textbt/component/behavior/state"
+            class="org.be.textbe.bt.textbt.node.behavior.state.StatePackage"
+            genModel="metamodel/textbt.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://org.be.textbe/textbt/activity"
+            class="org.be.textbe.bt.textbt.activity.ActivityPackage"
+            genModel="metamodel/textbt.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://org.be.textbe/textbt/activity/sequence"
+            class="org.be.textbe.bt.textbt.activity.sequence.SequencePackage"
+            genModel="metamodel/textbt.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://org.be.textbe/textbt/activity/gate"
+            class="org.be.textbe.bt.textbt.activity.gate.GatePackage"
+            genModel="metamodel/textbt.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://org.be.textbe/textbt/branch"
+            class="org.be.textbe.bt.textbt.branch.BranchPackage"
+            genModel="metamodel/textbt.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://org.be.textbe/textbt/traceability"
+            class="org.be.textbe.bt.textbt.traceability.TraceabilityPackage"
+            genModel="metamodel/textbt.genmodel"/>
+   </extension>
+
+</plugin>
