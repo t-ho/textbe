@@ -287,8 +287,39 @@
 
 	<h1>Behavior Tree Notation &amp; Syntax</h1>
 
-	<h2>Node Tags</h2>
+	<h2>Multiple Component Instances</h2>
+	<table>
+		<tr>
+			<th>Type</th>
+			<th>Graphical Notation</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>For All</td>
+			<td></td>
+			<td>Execute an instance of T for every element in CSET</td>
+		</tr>
+		<tr>
+			<td>For Some</td>
+			<td></td>
+			<td>Execute an instance of T for some number (including 0) of
+				elements in CSET</td>
+		</tr>
+		<tr>
+			<td>At Least One</td>
+			<td></td>
+			<td>Execute an instance of T for some number (but at least 1) of
+				elements in CSET</td>
+		</tr>
+		<tr>
+			<td>For One Arbitrary</td>
+			<td></td>
+			<td>Execute an instance of T for one element in CSET</td>
+		</tr>
 
+	</table>
+
+	<h2>Node Tags</h2>
 	<table>
 		<tr>
 			<th>Type</th>
@@ -531,6 +562,11 @@
 			<td><img src="document56x.png" alt=""></img></td>
 			<td>The node may execute normally, or may have no effect.</td>
 		</tr>
+	</table>
+
+	<h2>Condition Operators</h2>
+	
+	Condition Operators define a composite node that acts as a guard. The node executes only if the condition holds. These conditions can hence reference several components. <table>
 
 		<tr>
 			<td>Conjunction</td>
