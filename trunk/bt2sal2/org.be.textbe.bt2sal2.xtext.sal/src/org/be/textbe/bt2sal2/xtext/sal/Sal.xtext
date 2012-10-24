@@ -1,0 +1,282 @@
+//grammar org.be.textbe.bt2sal2.xtext.sal.Sal with org.eclipse.xtext.common.Terminals
+
+grammar org.be.textbe.bt2sal2.xtext.sal.Sal hidden(WS)
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+generate sal "http://www.be.org/textbe/bt2sal2/xtext/sal/Sal"
+
+Context:
+	identifier=IDENTIFIERS ": CONTEXT =" contextBody=ContextBody;
+
+ContextBody:
+	"BEGIN" declarations=Declarations "END"
+;
+
+Declarations:
+	(declaration+=Declaration ";")+
+;
+
+Declaration:
+	TypeDeclaration | ModuleDeclaration
+;
+
+//Type
+
+TypeDeclaration:
+	identifier=IDENTIFIERS ": TYPE" ("=" typeDef=TypeDef)?
+;
+
+TypeDef:
+	Type | ScalarType
+;
+
+Type:
+	//{Type} 
+	BasicType | Name  | QualifiedName | Subrange
+;
+
+BasicType:
+	type="BOOLEAN"
+;
+
+QualifiedName:
+	identifier1=IDENTIFIERS "{" (actualParameters=ActualParameters)? "}" "!" identifier2=IDENTIFIERS
+;
+
+ActualParameters:
+	//Something else
+	Type
+;
+
+Subrange:
+	"[" lowerBound=Bound ".." upperBound=Bound "]"
+;
+
+Bound:
+	Expression
+;
+
+ScalarType:
+	"{" firstType=IDENTIFIERS ("," nextType+=IDENTIFIERS)* "}"
+;
+
+//Module
+
+ModuleDeclaration:
+	identifier=IDENTIFIERS ": MODULE =" module=Module
+;
+
+Module:
+	BaseModule
+;
+
+BaseModule:
+	"BEGIN"	BaseDeclarations "END"
+;
+
+BaseDeclarations:
+	(baseDeclaration+=BaseDeclaration)*
+;
+
+BaseDeclaration:
+	InputDecl | OutputDecl | LocalDecl | DefDecl | InitDecl | TransDecl
+;
+
+//Declaration Blocks
+
+InputDecl:
+	"INPUT" varDecls=VarDecls
+;
+
+OutputDecl:
+	"OUTPUT" varDecls=VarDecls
+;
+
+LocalDecl:
+	"LOCAL" varDecls=VarDecls
+;
+
+DefDecl:
+	"DEFINITION" definitions=Definitions
+;
+
+InitDecl:
+	"INITIALIZATION" firstDefinitionOrCommand=DefinitionOrCommand (";" nextDefinitionOrCommand+=DefinitionOrCommand)* (";")?
+;
+
+TransDecl:
+	"TRANSITION" firstDefinitionOrCommand=DefinitionOrCommand (";" nextDefinitionOrCommand+=DefinitionOrCommand)* (";")?
+;
+
+//Declaration
+
+VarDecls:
+	firstVarDecl=VarDecl ("," nextVarDecl+=VarDecl)*
+;
+
+VarDecl:
+	firstVar=IDENTIFIERS ("," nextVar+=IDENTIFIERS)* ": " type=Type
+;
+
+Definitions:
+	firstDefinition=Definition (";" nextDefinition+=Definition)*
+;
+
+DefinitionOrCommand:
+	Definition | "[" SomeCommands "]"
+;
+
+Definition:
+	SimpleDefinition
+;
+
+SimpleDefinition:
+	lhs=Lhs RhsDefinition=RhsDefinition
+;
+
+Lhs:
+	identifier=IDENTIFIERS ("'")? 
+;
+
+RhsDefinition:
+	RhsExpression
+;
+
+RhsExpression:
+	"=" expression=Expression
+;
+
+SomeCommands:
+	firstSomeCommand=SomeCommand ("[]" nextSomeCommand+=SomeCommand)* ("[]" elseCommand=ElseCommand)?
+;
+
+SomeCommand:
+	NamedCommand
+;
+
+NamedCommand:
+	(identifier=IDENTIFIERS ": ")? guardedCommand=GuardedCommand
+;
+
+GuardedCommand:
+	guard=Guard "-->" assignment=Assignments
+;
+
+Guard:
+	Expression
+;
+
+Assignments:
+	(firstSimpleDefinition=SimpleDefinition)? (";" nextSimpleDefinition+=SimpleDefinition)* (";")?
+;
+
+ElseCommand:
+	(identifier=IDENTIFIERS ":")? "ELSE -->" assignments=Assignments
+;
+
+//Expression
+
+//This rule is reconstructed because Xtext does not support recursive rule
+//Expression:
+//	NameExpr | NextVariable | Numeral | Application | 
+//	InfixApplication | "(" Expression ")"
+//;
+
+Expression:
+	NameExpr | NextVariable | Numeral 
+	//| Application | InfixApplication 
+	| OuterInfixApplication
+	//| "(" Expression ")"
+	| BracketedExpression
+;
+
+BracketedExpression:
+	"(" expression=Expression ")"
+;
+
+OuterInfixApplication:
+	firstExpression=(Application | InfixApplication) (IDENTIFIERS nextExpression+=(Application | InfixApplication))*
+;
+
+NameExpr:
+	Name
+;
+
+NextVariable:
+	identifier=IDENTIFIERS "."
+;
+
+Application:
+	function=Function argument=Argument
+;
+
+Function:
+	//expression=[Expression]
+	expression=NameExpr
+;
+
+Argument:
+	//firstExpression=[Expression] ("," nextExpression+=[Expression])*
+	firstExpression=(NameExpr | BracketedExpression) ("," nextExpression+=(NameExpr | BracketedExpression))*
+;
+
+InfixApplication:
+	//firstExpression=[Expression] identifier=IDENTIFIERS secondExpression=[Expression]
+	//firstExpression=(NameExpr) identifier=IDENTIFIERS secondExpression=(NameExpr | Numeral | BracketedExpression)
+	firstExpression=(NameExpr) "=" secondExpression=(NameExpr | Numeral | BracketedExpression)
+;
+
+//Basic datatypes
+
+Name:
+	identifier=IDENTIFIERS
+;
+
+//This one need whitespace between character... So substitute with terminal
+//Identifier:
+//	firstChar=LETTER (nextChar+=(LETTER | DIGIT | '?' | '_'))*
+//	| (opchar+=OPCHAR)+
+//;
+
+//This one need whitespace between character... So substitute with terminal
+//But the terminal will be the same with terminal INT... so use INT instead...
+Numeral:
+	//(digit+=DIGIT)*
+	//number=INT
+	number=NUMERALS
+;
+
+//Terminals
+
+terminal IDENTIFIERS:
+	('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'0'..'9'|'?'|'_')*
+	| ( '+' | '-' | '*' | '/' | "=" )+
+;
+
+terminal NUMERALS:
+	('0'..'9')+
+;
+
+//Now we have terminal IDENTIFIER that comprise all these terminal below..
+//terminal OPCHAR:
+//	( '+' | '-' | '*' | '/' | '=' )
+//;
+
+//terminal SPECIALSYMBOL:
+//	( '(' | ')' | '[' | ']' | '{' | '}' | '%' | ',' | '.' | ';' | ':' | "'" | '!' | '#' | '?' | '_' )
+//;
+
+//terminal LETTER:
+//	('a'..'z'|'A'..'Z')
+//;
+
+//terminal DIGIT:
+//	('0'..'9')
+//;
+
+//terminal ID  		: ('a'..'z'|'A'..'Z'|'_'|'0'..'9'|'('|')')*;
+
+terminal WS			: (' '|'\t'|'\r'|'\n')+;
+
+terminal ANY_OTHER: .;

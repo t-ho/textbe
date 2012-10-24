@@ -1,0 +1,35 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.be.textbe.bt2sal2.xtext.sal
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.be.textbe.bt2sal2.xtext.sal; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext;visibility:=reexport,
+ org.eclipse.xtext.xbase;resolution:=optional;visibility:=reexport,
+ org.eclipse.xtext.generator;resolution:=optional,
+ org.apache.commons.logging;bundle-version="1.0.4";resolution:=optional,
+ org.eclipse.emf.codegen.ecore;resolution:=optional,
+ org.eclipse.emf.mwe.utils;resolution:=optional,
+ org.eclipse.emf.mwe2.launch;resolution:=optional,
+ org.eclipse.xtext.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.antlr.runtime,
+ org.eclipse.xtext.common.types
+Import-Package: org.apache.log4j,
+ org.eclipse.xtext.xbase.lib
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.be.textbe.bt2sal2.xtext.sal,
+ org.be.textbe.bt2sal2.xtext.sal.services,
+ org.be.textbe.bt2sal2.xtext.sal.sal,
+ org.be.textbe.bt2sal2.xtext.sal.sal.impl,
+ org.be.textbe.bt2sal2.xtext.sal.sal.util,
+ org.be.textbe.bt2sal2.xtext.sal.serializer,
+ org.be.textbe.bt2sal2.xtext.sal.parser.antlr,
+ org.be.textbe.bt2sal2.xtext.sal.parser.antlr.internal,
+ org.be.textbe.bt2sal2.xtext.sal.validation,
+ org.be.textbe.bt2sal2.xtext.sal.scoping,
+ org.be.textbe.bt2sal2.xtext.sal.generator,
+ org.be.textbe.bt2sal2.xtext.sal.formatting
+
