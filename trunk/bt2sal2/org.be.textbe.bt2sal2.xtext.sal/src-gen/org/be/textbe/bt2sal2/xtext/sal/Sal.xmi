@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xtext:Grammar xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:xtext="http://www.eclipse.org/2008/Xtext" name="org.be.textbe.bt2sal2.xtext.sal.Sal" definesHiddenTokens="true" hiddenTokens="//@rules.53">
+  <metamodelDeclarations xsi:type="xtext:ReferencedMetamodel" alias="ecore">
+    <ePackage href="http://www.eclipse.org/emf/2002/Ecore#/"/>
+  </metamodelDeclarations>
+  <metamodelDeclarations xsi:type="xtext:GeneratedMetamodel" name="sal">
+    <ePackage href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#/"/>
+  </metamodelDeclarations>
+  <rules xsi:type="xtext:ParserRule" name="Context">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//Context"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="identifier" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.51"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value=": CONTEXT ="/>
+      <elements xsi:type="xtext:Assignment" feature="contextBody" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.1"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="ContextBody">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//ContextBody"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="BEGIN"/>
+      <elements xsi:type="xtext:Assignment" feature="declarations" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.2"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="END"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Declarations">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//Declarations"/>
+    </type>
+    <alternatives xsi:type="xtext:Group" cardinality="+">
+      <elements xsi:type="xtext:Assignment" feature="declaration" operator="+=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.3"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value=";"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Declaration">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//Declaration"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.4"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.13"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="TypeDeclaration">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//TypeDeclaration"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="identifier" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.51"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value=": TYPE"/>
+      <elements xsi:type="xtext:Group" cardinality="?">
+        <elements xsi:type="xtext:Keyword" value="="/>
+        <elements xsi:type="xtext:Assignment" feature="typeDef" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.5"/>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="TypeDef">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//TypeDef"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.6"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.12"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Type">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//Type"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.7"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.49"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.8"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.10"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="BasicType">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//BasicType"/>
+    </type>
+    <alternatives xsi:type="xtext:Assignment" feature="type" operator="=">
+      <terminal xsi:type="xtext:Keyword" value="BOOLEAN"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="QualifiedName">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//QualifiedName"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="identifier1" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.51"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="{"/>
+      <elements xsi:type="xtext:Assignment" cardinality="?" feature="actualParameters" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.9"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="}"/>
+      <elements xsi:type="xtext:Keyword" value="!"/>
+      <elements xsi:type="xtext:Assignment" feature="identifier2" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.51"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="ActualParameters">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//ActualParameters"/>
+    </type>
+    <alternatives xsi:type="xtext:RuleCall" rule="//@rules.6"/>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Subrange">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//Subrange"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="["/>
+      <elements xsi:type="xtext:Assignment" feature="lowerBound" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.11"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value=".."/>
+      <elements xsi:type="xtext:Assignment" feature="upperBound" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.11"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="]"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Bound">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//Bound"/>
+    </type>
+    <alternatives xsi:type="xtext:RuleCall" rule="//@rules.40"/>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="ScalarType">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//ScalarType"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="{"/>
+      <elements xsi:type="xtext:Assignment" feature="firstType" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.51"/>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Keyword" value=","/>
+        <elements xsi:type="xtext:Assignment" feature="nextType" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.51"/>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="}"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="ModuleDeclaration">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//ModuleDeclaration"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="identifier" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.51"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value=": MODULE ="/>
+      <elements xsi:type="xtext:Assignment" feature="module" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.14"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Module">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//Module"/>
+    </type>
+    <alternatives xsi:type="xtext:RuleCall" rule="//@rules.15"/>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="BaseModule">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//BaseModule"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="BEGIN"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.16"/>
+      <elements xsi:type="xtext:Keyword" value="END"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="BaseDeclarations">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//BaseDeclarations"/>
+    </type>
+    <alternatives xsi:type="xtext:Assignment" cardinality="*" feature="baseDeclaration" operator="+=">
+      <terminal xsi:type="xtext:RuleCall" rule="//@rules.17"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="BaseDeclaration">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//BaseDeclaration"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.18"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.19"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.20"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.21"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.22"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.23"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="InputDecl">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//InputDecl"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="INPUT"/>
+      <elements xsi:type="xtext:Assignment" feature="varDecls" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.24"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="OutputDecl">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//OutputDecl"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="OUTPUT"/>
+      <elements xsi:type="xtext:Assignment" feature="varDecls" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.24"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="LocalDecl">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//LocalDecl"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="LOCAL"/>
+      <elements xsi:type="xtext:Assignment" feature="varDecls" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.24"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="DefDecl">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//DefDecl"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="DEFINITION"/>
+      <elements xsi:type="xtext:Assignment" feature="definitions" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.26"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="InitDecl">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//InitDecl"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="INITIALIZATION"/>
+      <elements xsi:type="xtext:Assignment" feature="firstDefinitionOrCommand" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.27"/>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Keyword" value=";"/>
+        <elements xsi:type="xtext:Assignment" feature="nextDefinitionOrCommand" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.27"/>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Keyword" cardinality="?" value=";"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="TransDecl">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//TransDecl"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="TRANSITION"/>
+      <elements xsi:type="xtext:Assignment" feature="firstDefinitionOrCommand" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.27"/>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Keyword" value=";"/>
+        <elements xsi:type="xtext:Assignment" feature="nextDefinitionOrCommand" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.27"/>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Keyword" cardinality="?" value=";"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="VarDecls">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//VarDecls"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="firstVarDecl" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.25"/>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Keyword" value=","/>
+        <elements xsi:type="xtext:Assignment" feature="nextVarDecl" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.25"/>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="VarDecl">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//VarDecl"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="firstVar" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.51"/>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Keyword" value=","/>
+        <elements xsi:type="xtext:Assignment" feature="nextVar" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.51"/>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value=": "/>
+      <elements xsi:type="xtext:Assignment" feature="type" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.6"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Definitions">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//Definitions"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="firstDefinition" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.28"/>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Keyword" value=";"/>
+        <elements xsi:type="xtext:Assignment" feature="nextDefinition" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.28"/>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="DefinitionOrCommand">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//DefinitionOrCommand"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.28"/>
+      <elements xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="["/>
+        <elements xsi:type="xtext:RuleCall" rule="//@rules.33"/>
+        <elements xsi:type="xtext:Keyword" value="]"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Definition">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//Definition"/>
+    </type>
+    <alternatives xsi:type="xtext:RuleCall" rule="//@rules.29"/>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="SimpleDefinition">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//SimpleDefinition"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="lhs" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+      </elements>
+      <elements xsi:type="xtext:Assignment" feature="RhsDefinition" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Lhs">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//Lhs"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="identifier" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.51"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" cardinality="?" value="'"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="RhsDefinition">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//RhsDefinition"/>
+    </type>
+    <alternatives xsi:type="xtext:RuleCall" rule="//@rules.32"/>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="RhsExpression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//RhsExpression"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="="/>
+      <elements xsi:type="xtext:Assignment" feature="expression" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.40"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="SomeCommands">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//SomeCommands"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="firstSomeCommand" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.34"/>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Keyword" value="[]"/>
+        <elements xsi:type="xtext:Assignment" feature="nextSomeCommand" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.34"/>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="?">
+        <elements xsi:type="xtext:Keyword" value="[]"/>
+        <elements xsi:type="xtext:Assignment" feature="elseCommand" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.39"/>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="SomeCommand">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//SomeCommand"/>
+    </type>
+    <alternatives xsi:type="xtext:RuleCall" rule="//@rules.35"/>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="NamedCommand">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//NamedCommand"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Group" cardinality="?">
+        <elements xsi:type="xtext:Assignment" feature="identifier" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.51"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=": "/>
+      </elements>
+      <elements xsi:type="xtext:Assignment" feature="guardedCommand" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.36"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="GuardedCommand">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//GuardedCommand"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="guard" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.37"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="-->"/>
+      <elements xsi:type="xtext:Assignment" feature="assignment" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.38"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Guard">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//Guard"/>
+    </type>
+    <alternatives xsi:type="xtext:RuleCall" rule="//@rules.40"/>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Assignments">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//Assignments"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" cardinality="?" feature="firstSimpleDefinition" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.29"/>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Keyword" value=";"/>
+        <elements xsi:type="xtext:Assignment" feature="nextSimpleDefinition" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.29"/>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Keyword" cardinality="?" value=";"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="ElseCommand">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//ElseCommand"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Group" cardinality="?">
+        <elements xsi:type="xtext:Assignment" feature="identifier" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.51"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value=":"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="ELSE -->"/>
+      <elements xsi:type="xtext:Assignment" feature="assignments" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.38"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Expression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//Expression"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.43"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.44"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.50"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.42"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.41"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="BracketedExpression">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//BracketedExpression"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Keyword" value="("/>
+      <elements xsi:type="xtext:Assignment" feature="expression" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.40"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value=")"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="OuterInfixApplication">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//OuterInfixApplication"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="firstExpression" operator="=">
+        <terminal xsi:type="xtext:Alternatives">
+          <elements xsi:type="xtext:RuleCall" rule="//@rules.45"/>
+          <elements xsi:type="xtext:RuleCall" rule="//@rules.48"/>
+        </terminal>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:RuleCall" rule="//@rules.51"/>
+        <elements xsi:type="xtext:Assignment" feature="nextExpression" operator="+=">
+          <terminal xsi:type="xtext:Alternatives">
+            <elements xsi:type="xtext:RuleCall" rule="//@rules.45"/>
+            <elements xsi:type="xtext:RuleCall" rule="//@rules.48"/>
+          </terminal>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="NameExpr">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//NameExpr"/>
+    </type>
+    <alternatives xsi:type="xtext:RuleCall" rule="//@rules.49"/>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="NextVariable">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//NextVariable"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="identifier" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.51"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="."/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Application">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//Application"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="function" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.46"/>
+      </elements>
+      <elements xsi:type="xtext:Assignment" feature="argument" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.47"/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Function">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//Function"/>
+    </type>
+    <alternatives xsi:type="xtext:Assignment" feature="expression" operator="=">
+      <terminal xsi:type="xtext:RuleCall" rule="//@rules.43"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Argument">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//Argument"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="firstExpression" operator="=">
+        <terminal xsi:type="xtext:Alternatives">
+          <elements xsi:type="xtext:RuleCall" rule="//@rules.43"/>
+          <elements xsi:type="xtext:RuleCall" rule="//@rules.41"/>
+        </terminal>
+      </elements>
+      <elements xsi:type="xtext:Group" cardinality="*">
+        <elements xsi:type="xtext:Keyword" value=","/>
+        <elements xsi:type="xtext:Assignment" feature="nextExpression" operator="+=">
+          <terminal xsi:type="xtext:Alternatives">
+            <elements xsi:type="xtext:RuleCall" rule="//@rules.43"/>
+            <elements xsi:type="xtext:RuleCall" rule="//@rules.41"/>
+          </terminal>
+        </elements>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="InfixApplication">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//InfixApplication"/>
+    </type>
+    <alternatives xsi:type="xtext:Group">
+      <elements xsi:type="xtext:Assignment" feature="firstExpression" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.43"/>
+      </elements>
+      <elements xsi:type="xtext:Keyword" value="="/>
+      <elements xsi:type="xtext:Assignment" feature="secondExpression" operator="=">
+        <terminal xsi:type="xtext:Alternatives">
+          <elements xsi:type="xtext:RuleCall" rule="//@rules.43"/>
+          <elements xsi:type="xtext:RuleCall" rule="//@rules.50"/>
+          <elements xsi:type="xtext:RuleCall" rule="//@rules.41"/>
+        </terminal>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Name">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//Name"/>
+    </type>
+    <alternatives xsi:type="xtext:Assignment" feature="identifier" operator="=">
+      <terminal xsi:type="xtext:RuleCall" rule="//@rules.51"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:ParserRule" name="Numeral">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//Numeral"/>
+    </type>
+    <alternatives xsi:type="xtext:Assignment" feature="number" operator="=">
+      <terminal xsi:type="xtext:RuleCall" rule="//@rules.52"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:TerminalRule" name="IDENTIFIERS">
+    <type metamodel="//@metamodelDeclarations.0">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Alternatives">
+          <elements xsi:type="xtext:CharacterRange">
+            <left value="a"/>
+            <right value="z"/>
+          </elements>
+          <elements xsi:type="xtext:CharacterRange">
+            <left value="A"/>
+            <right value="Z"/>
+          </elements>
+        </elements>
+        <elements xsi:type="xtext:Alternatives" cardinality="*">
+          <elements xsi:type="xtext:CharacterRange">
+            <left value="a"/>
+            <right value="z"/>
+          </elements>
+          <elements xsi:type="xtext:CharacterRange">
+            <left value="A"/>
+            <right value="Z"/>
+          </elements>
+          <elements xsi:type="xtext:CharacterRange">
+            <left value="0"/>
+            <right value="9"/>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value="?"/>
+          <elements xsi:type="xtext:Keyword" value="_"/>
+        </elements>
+      </elements>
+      <elements xsi:type="xtext:Alternatives" cardinality="+">
+        <elements xsi:type="xtext:Keyword" value="+"/>
+        <elements xsi:type="xtext:Keyword" value="-"/>
+        <elements xsi:type="xtext:Keyword" value="*"/>
+        <elements xsi:type="xtext:Keyword" value="/"/>
+        <elements xsi:type="xtext:Keyword" value="="/>
+      </elements>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:TerminalRule" name="NUMERALS">
+    <type metamodel="//@metamodelDeclarations.0">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </type>
+    <alternatives xsi:type="xtext:CharacterRange" cardinality="+">
+      <left value="0"/>
+      <right value="9"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:TerminalRule" name="WS">
+    <type metamodel="//@metamodelDeclarations.0">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives" cardinality="+">
+      <elements xsi:type="xtext:Keyword" value=" "/>
+      <elements xsi:type="xtext:Keyword" value="&#x9;"/>
+      <elements xsi:type="xtext:Keyword" value="&#xD;"/>
+      <elements xsi:type="xtext:Keyword" value="&#xA;"/>
+    </alternatives>
+  </rules>
+  <rules xsi:type="xtext:TerminalRule" name="ANY_OTHER">
+    <type metamodel="//@metamodelDeclarations.0">
+      <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </type>
+    <alternatives xsi:type="xtext:Wildcard"/>
+  </rules>
+</xtext:Grammar>
