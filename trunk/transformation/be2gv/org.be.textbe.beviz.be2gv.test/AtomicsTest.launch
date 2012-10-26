@@ -23,8 +23,8 @@
 <mapEntry key="OPTION_CONTENT_TYPE" value="true"/>
 <mapEntry key="OPTION_DERIVED" value="true"/>
 <mapEntry key="allowInterModelReferences" value="false"/>
-<mapEntry key="disassemblyMode" value="false"/>
-<mapEntry key="stopInMain" value="false"/>
+<mapEntry key="printExecutionTime" value="false"/>
+<mapEntry key="step" value="false"/>
 <mapEntry key="supportUML2Stereotypes" value="false"/>
 </mapAttribute>
 <listAttribute key="OrderedInput">
@@ -37,7 +37,7 @@
 <mapEntry key="GV" value="OUT"/>
 </mapAttribute>
 <mapAttribute key="Path">
-<mapEntry key="GV" value="/org.be.textbe.beviz.be2gv.test/testfiles/atomics bug/atomics.gv"/>
+<mapEntry key="GV" value="/org.be.textbe.beviz.be2gv.test/testfiles/atomics bug/atomics.xmi"/>
 <mapEntry key="IN" value="uri:http://org.be.textbe/textbt"/>
 <mapEntry key="OUT" value="/org.be.textbe.gv.model/metamodel/gv.ecore"/>
 <mapEntry key="TEXTBT" value="/org.be.textbe.beviz.be2gv.test/testfiles/atomics bug/atomicBugV3.bt"/>
