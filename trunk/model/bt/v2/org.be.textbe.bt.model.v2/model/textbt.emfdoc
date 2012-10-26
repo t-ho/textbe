@@ -1,8 +1,10 @@
-documentation for <platform:/resource/org.be.textbe.bt.model/model/textbt.ecore>
+documentation for <platform:/resource/org.be.textbe.bt.model.v2/model/textbt.ecore>
 
-Specification : "Every textbt model contains a specification of system behavior"
+Specification : "Every TextBT model contains a specification of system behavior. This element represents the specification."
 
 Specification.components : "The components that are used in this specification."
+
+Specification.root : "The root of the behavior tree."
 
 Specification.requirements : "The components that are used in this specification."
 
@@ -10,9 +12,29 @@ Specification.system : "The system component that contains all other components 
 
 BehaviorTree : "A tree-shaped analysis of a systems' components behavior and related requirements."
 
-Node.label : "An optional label for disambiguation, required in case a node with the same component and behaviour appears elsewhere in the tree"
+BehaviorTree.subtrees : "trees contained within the tree rooted at the node of interest. \"Branch\" is a synonym for \"subtree\"."
 
-Node.parent : "The immediate ancestor of this node"
+NamedElement : "An element of the model that has a name."
+
+NamedElement.name : "The name of this element."
+
+ComponentType : "An identifier for components that by manufacture have the same properties."
+
+ComponentType.behavior : "The behavior exhibited by all components that have this type."
+
+Component : "A physical assembly of functional parts, like an aircraft or part of a program in memory."
+
+Component.type : "The type of a component that determines its behavior."
+
+Singleton : "A component of which there is only one instance in the system."
+
+Member : "A component that is identified as part of a specified set."
+
+Node : "A location in a behavior tree, represented by a box with two compartments."
+
+Node.label : "An optional label for disambiguation, required in case a node with the same component and behavior appears elsewhere in the tree."
+
+Node.parent : "The immediate ancestor of this node."
 
 Node.parents : "nodes which appear in a direct line between this node and the root node of the tree"
 
@@ -26,7 +48,7 @@ Node.isLeaf : "The node is a leaf"
 
 Node.siblingBranches : "Trees with a sibling node as their root"
 
-StateRealization : "Component C realises state s"
+StateRealization : "Component C realizes state s"
 
 Selection : "Special"
 
@@ -70,26 +92,45 @@ May : "The node may execute normally, or may have no effect."
 
 Sequence : "A Sequence executes behavior of components in order."
 
-Gate : "A Gate triggers, as soon as the condition is true. The operator op may be one of &, |, or XOR, corresponding to logical conjunction, disjunction and exclusive or. Called 'Conditional Operator' in the original documentation."
-
 Activity : "An activity groups the behavior of nodes."
 
-Atomic : "Execute N1 immediately followed by N2, passing control to tree T . The behaviour of concurrent BTs may not be interleaved between N1 and N2.Called 'Atomic Composition' in original documentation. "
+AtomicSequence : "Execute N1 immediately followed by N2, passing control to tree T . The behavior of concurrent BTs may not be interleaved between N1 and N2.Called 'Atomic Composition' in original documentation. "
 
-Interleaving : "Execute node N, passing control to tree T . The behaviour of concurrent BTs may be interleaved between N and T . Called 'Sequential Composition' in original documentation. "
+InterleavingSequence : "Execute node N, passing control to tree T . The behavior of concurrent BTs may be interleaved between N and T . Called 'Sequential Composition' in original documentation. "
 
-Parallel : "Execute N, passing control to both T1 and T2."
+ForkBranch : "Execute N, passing control to both T1 and T2."
 
-Alternative : "A nondeterministic choice is made between T1 and T2, depending on which is ready to execute (not blocked)"
+Conjunction : "A Gate that triggers if all conditions are true. i.e. a Boolean AND operator."
 
-TraceabilityLink : "A reference to the requirements document"
+Disjunction : "A Gate that triggers if one or more conditions are true. i.e. a Boolean OR operator."
+
+MutualExclusion : "A Gate that triggers if exactly one condition is true. i.e. a Boolean XOR operator."
+
+RandomChoiceBranch : "A nondeterministic choice is made between T1 and T2, depending on which is ready to execute (not blocked)"
+
+TraceabilityLink : "A reference to the requirements document."
+
+Requirement : "A documented required property of the specified system."
+
+TraceabilityLink.requirement : "Indicates the requirements that are being covered by the behavior of this node."
 
 TraceabilityLink.status : "Indicates how the node relates to the link"
 
 TraceabilityLink.updatedInVersion : "The Traceability Status indicates that the behavior has been added in the post-development (PD) or maintenance phase. Where there are different series of changes / upgrades we use ++V1.0, ++V2.0, etc to indicate the particular upgrade series."
 
-BehaviorTree.subtrees : "trees contained within the tree rooted at the node of interest. \"Branch\" is a synonym for \"subtree\"."
+QuantifyingNode : "A Component Set Node binds a member variable to a component type. The variable can then be used in the descendant tree to refer to the behavior specified by the type of the component set."
 
-ComponentInstantiationNode : "A Component Set Node binds a variable to a component type. The variable can then be used in the descendant tree to refer to the behavior specified by the type of the component set."
+QuantifyingNode.componentSet : "The set of components that this node uses as base for Quantification"
+
+ComponentSet.expression : "An expression that defines how to create the node set at this time. The expression selects a subset of all components contained in the system and binds this set to member variables that can be addressed in the subtree."
+
+QuantifyingNode.variableBinding : "The member of the set defined by the expression that is being bound."
 
 LabelOnlyNode : "Label Only Nodes are used with as origins or destinations of node operators. They only have a label and no associated behavior. They are called \"Empty Nodes\" in original documentation."
+
+Branch: "A node that redirects the control flow to one or more other destinations in the behavior tree, marked by a labeled node."
+
+LogicalSelection : "A LogicalSelection triggers, as soon as the condition is true. The operator op may be one of &, |, or XOR, corresponding to logical conjunction, disjunction and exclusive or. Called 'Conditional Operator' in the original documentation. The nodes must be atomically connected selection nodes which all have the AND operator (or OR or XOR), and then it means 'if the conjunction (or disjunction etc.) of the selections hold'."
+
+Specification.componentTypes : "The types of components present in the specification."
+

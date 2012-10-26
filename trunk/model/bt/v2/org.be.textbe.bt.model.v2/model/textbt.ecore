@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="textbt"
-    nsURI="http://org.be.textbe/textbt" nsPrefix="textbt">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="textbt" nsURI="http://org.be.textbe/textbt" nsPrefix="textbt">
   <eClassifiers xsi:type="ecore:EClass" name="Specification">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="Every textbt model contains a specification of system behavior"/>
+      <details key="documentation" value="Every TextBT model contains a specification of system behavior. This element represents the specification."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="components" lowerBound="1"
         upperBound="-1" eType="#//component/Component" containment="true">
@@ -20,14 +18,22 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="root" eType="#//activity/Activity"
-        containment="true"/>
+        containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The root of the behavior tree."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="system" eType="#//component/Component">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The system component that contains all other components in this specification."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="componentTypes" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//component/ComponentType" containment="true"/>
+        lowerBound="1" upperBound="-1" eType="#//component/ComponentType" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The types of components present in the specification."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BehaviorTree" abstract="true" interface="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -41,35 +47,67 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="An element of the model that has a name."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The name of this element."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eSubpackages name="component" nsURI="http://org.be.textbe/textbt/component" nsPrefix="component">
     <eClassifiers xsi:type="ecore:EClass" name="ComponentType" eSuperTypes="#//NamedElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="An identifier for components that by manufacture have the same properties."/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="behavior" upperBound="-1"
-          eType="#//node/behavior/Behavior" containment="true"/>
+          eType="#//node/behavior/Behavior" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The behavior exhibited by all components that have this type."/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           iD="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Component" abstract="true" interface="true"
         eSuperTypes="#//NamedElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A physical assembly of functional parts, like an aircraft or part of a program in memory."/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
-          eType="#//component/ComponentType"/>
+          eType="#//component/ComponentType">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The type of a component that determines its behavior."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Singleton" eSuperTypes="#//component/Component"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Member" eSuperTypes="#//component/Component"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Singleton" eSuperTypes="#//component/Component">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A component of which there is only one instance in the system."/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Member" eSuperTypes="#//component/Component">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A component that is identified as part of a specified set."/>
+      </eAnnotations>
+    </eClassifiers>
   </eSubpackages>
   <eSubpackages name="node" nsURI="http://org.be.textbe/textbt/node" nsPrefix="node">
     <eClassifiers xsi:type="ecore:EClass" name="Node" abstract="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A location in a behavior tree, represented by a box with two compartments."/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="An optional label for disambiguation, required in case a node with the same component and behaviour appears elsewhere in the tree"/>
+          <details key="documentation" value="An optional label for disambiguation, required in case a node with the same component and behavior appears elsewhere in the tree."/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="operation" eType="#//node/operation/Operation"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//node/Node">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The immediate ancestor of this node"/>
+          <details key="documentation" value="The immediate ancestor of this node."/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="parents" upperBound="-1"
@@ -108,44 +146,56 @@
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="LabelOnlyNode" eSuperTypes="#//node/Node">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Label Only Nodes are used with as origins or destinations of node operators. They only have a label and no associated behavior. They are called &quot;Empty Nodes&quot; in original documentation."/>
-      </eAnnotations>
-    </eClassifiers>
-    <eSubpackages name="componentInstantiation" nsURI="http://org.be.textbe/textbt/node/componentInstantiation"
-        nsPrefix="componentInstantiation">
-      <eClassifiers xsi:type="ecore:EClass" name="ForAll" eSuperTypes="#//node/componentInstantiation/ComponentInstantiationNode">
+    <eSubpackages name="quantifying" nsURI="http://org.be.textbe/textbt/node/quantifying"
+        nsPrefix="quantifying">
+      <eClassifiers xsi:type="ecore:EClass" name="ForAll" eSuperTypes="#//node/quantifying/QuantifyingNode">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="Execute an instance of T for every element in CSET"/>
         </eAnnotations>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="ForSome" eSuperTypes="#//node/componentInstantiation/ComponentInstantiationNode">
+      <eClassifiers xsi:type="ecore:EClass" name="ForSome" eSuperTypes="#//node/quantifying/QuantifyingNode">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="Execute an instance of T for some number (including 0) of elements in CSET"/>
         </eAnnotations>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="AtLeastOne" eSuperTypes="#//node/componentInstantiation/ComponentInstantiationNode">
+      <eClassifiers xsi:type="ecore:EClass" name="AtLeastOne" eSuperTypes="#//node/quantifying/QuantifyingNode">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="Execute an instance of T for some number (but at least 1) of elements in CSET"/>
         </eAnnotations>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="ForOneArbitrary" eSuperTypes="#//node/componentInstantiation/ComponentInstantiationNode">
+      <eClassifiers xsi:type="ecore:EClass" name="ForOneArbitrary" eSuperTypes="#//node/quantifying/QuantifyingNode">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="Execute an instance of T for one element in CSET"/>
         </eAnnotations>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="ComponentInstantiationNode" abstract="true"
+      <eClassifiers xsi:type="ecore:EClass" name="QuantifyingNode" abstract="true"
           eSuperTypes="#//node/Node">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="A Component Set Node binds a variable to a component type. The variable can then be used in the descendant tree to refer to the behavior specified by the type of the component set."/>
+          <details key="documentation" value="A Component Set Node binds a member variable to a component type. The variable can then be used in the descendant tree to refer to the behavior specified by the type of the component set."/>
         </eAnnotations>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="member" lowerBound="1"
-            eType="#//component/Member"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" eType="#//node/componentInstantiation/ComponentSetDefinitionExpression"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="variableBinding" lowerBound="1"
+            eType="#//component/Member">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The member of the set defined by the expression that is being bound."/>
+          </eAnnotations>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="componentSet" eType="#//node/quantifying/ComponentSet">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The set of components that this node uses as base for Quantification"/>
+          </eAnnotations>
+        </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EDataType" name="ComponentSetDefinitionExpression"
           instanceTypeName="EString"/>
+      <eClassifiers xsi:type="ecore:EClass" name="ComponentSet" eSuperTypes="#//NamedElement">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" eType="#//node/quantifying/ComponentSetDefinitionExpression">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="An expression that defines how to create the node set at this time. The expression selects a subset of all components contained in the system and binds this set to member variables that can be addressed in the subtree."/>
+          </eAnnotations>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="componentType" lowerBound="1"
+            eType="#//component/ComponentType"/>
+      </eClassifiers>
     </eSubpackages>
     <eSubpackages name="operation" nsURI="http://org.be.textbe/textbt/node/operation"
         nsPrefix="operation">
@@ -186,6 +236,11 @@
       <eClassifiers xsi:type="ecore:EClass" name="StartNewNode" eSuperTypes="#//node/operation/Reversion">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="Behave as the destination tree. The destination node must be an ancestor, as with reversion. But in 'Start New' sibling behaviour is not terminated."/>
+        </eAnnotations>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="LabelOnlyNode" eSuperTypes="#//node/Node">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Label Only Nodes are used with as origins or destinations of node operators. They only have a label and no associated behavior. They are called &quot;Empty Nodes&quot; in original documentation."/>
         </eAnnotations>
       </eClassifiers>
     </eSubpackages>
@@ -255,7 +310,7 @@
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="StateRealization" eSuperTypes="#//node/behavior/state/StatefulBehavior">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-            <details key="documentation" value="Component C realises state s"/>
+            <details key="documentation" value="Component C realizes state s"/>
           </eAnnotations>
         </eClassifiers>
         <eClassifiers xsi:type="ecore:EClass" name="Selection" eSuperTypes="#//node/behavior/state/StatefulBehavior">
@@ -290,43 +345,57 @@
         <eStructuralFeatures xsi:type="ecore:EReference" name="step" lowerBound="1"
             upperBound="-1" eType="#//node/behavior/BehaviorNode" containment="true"/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="Atomic" eSuperTypes="#//activity/sequence/Sequence">
+      <eClassifiers xsi:type="ecore:EClass" name="AtomicSequence" eSuperTypes="#//activity/sequence/Sequence">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="Execute N1 immediately followed by N2, passing control to tree T . The behaviour of concurrent BTs may not be interleaved between N1 and N2.Called 'Atomic Composition' in original documentation. "/>
+          <details key="documentation" value="Execute N1 immediately followed by N2, passing control to tree T . The behavior of concurrent BTs may not be interleaved between N1 and N2.Called 'Atomic Composition' in original documentation. "/>
         </eAnnotations>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="Interleaving" eSuperTypes="#//activity/sequence/Sequence">
+      <eClassifiers xsi:type="ecore:EClass" name="InterleavingSequence" eSuperTypes="#//activity/sequence/Sequence">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="Execute node N, passing control to tree T . The behaviour of concurrent BTs may be interleaved between N and T . Called 'Sequential Composition' in original documentation. "/>
+          <details key="documentation" value="Execute node N, passing control to tree T . The behavior of concurrent BTs may be interleaved between N and T . Called 'Sequential Composition' in original documentation. "/>
         </eAnnotations>
       </eClassifiers>
-    </eSubpackages>
-    <eSubpackages name="gate" nsURI="http://org.be.textbe/textbt/activity/gate" nsPrefix="gate">
-      <eClassifiers xsi:type="ecore:EClass" name="Gate" abstract="true" eSuperTypes="#//activity/Activity">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="A Gate triggers, as soon as the condition is true. The operator op may be one of &amp;, |, or XOR, corresponding to logical conjunction, disjunction and exclusive or. Called 'Conditional Operator' in the original documentation."/>
-        </eAnnotations>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="triggers" lowerBound="1"
-            upperBound="-1" eType="#//node/behavior/BehaviorNode" containment="true"/>
-      </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="Conjunction" eSuperTypes="#//activity/gate/Gate"/>
-      <eClassifiers xsi:type="ecore:EClass" name="Disjunction" eSuperTypes="#//activity/gate/Gate"/>
-      <eClassifiers xsi:type="ecore:EClass" name="MutualExclusion" eSuperTypes="#//activity/gate/Gate"/>
+      <eSubpackages name="logicalSelection" nsURI="http://org.be.textbe/textbt/activity/logicalSelection"
+          nsPrefix="logicalSelection">
+        <eClassifiers xsi:type="ecore:EClass" name="LogicalSelection" abstract="true"
+            eSuperTypes="#//activity/sequence/AtomicSequence">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="A LogicalSelection triggers, as soon as the condition is true. The operator op may be one of &amp;, |, or XOR, corresponding to logical conjunction, disjunction and exclusive or. Called 'Conditional Operator' in the original documentation. The nodes must be atomically connected selection nodes which all have the AND operator (or OR or XOR), and then it means 'if the conjunction (or disjunction etc.) of the selections hold'."/>
+          </eAnnotations>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="Conjunction" eSuperTypes="#//activity/sequence/logicalSelection/LogicalSelection">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="A Gate that triggers if all conditions are true. i.e. a Boolean AND operator."/>
+          </eAnnotations>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="Disjunction" eSuperTypes="#//activity/sequence/logicalSelection/LogicalSelection">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="A Gate that triggers if one or more conditions are true. i.e. a Boolean OR operator."/>
+          </eAnnotations>
+        </eClassifiers>
+        <eClassifiers xsi:type="ecore:EClass" name="MutualExclusion" eSuperTypes="#//activity/sequence/logicalSelection/LogicalSelection">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="A Gate that triggers if exactly one condition is true. i.e. a Boolean XOR operator."/>
+          </eAnnotations>
+        </eClassifiers>
+      </eSubpackages>
     </eSubpackages>
   </eSubpackages>
   <eSubpackages name="branch" nsURI="http://org.be.textbe/textbt/branch" nsPrefix="branch">
     <eClassifiers xsi:type="ecore:EClass" name="Branch" abstract="true" interface="true"
         eSuperTypes="#//BehaviorTree">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="gotoDestination" eType="#//node/LabelOnlyNode"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A node that redirects the control flow to one or more other destinations in the behavior tree, marked by a labeled node."/>
+      </eAnnotations>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Parallel" eSuperTypes="#//branch/Branch">
+    <eClassifiers xsi:type="ecore:EClass" name="ForkBranch" eSuperTypes="#//branch/Branch">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Execute N, passing control to both T1 and T2."/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="processes" lowerBound="2"
           upperBound="-1" eType="#//BehaviorTree" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Alternative" eSuperTypes="#//branch/Branch">
+    <eClassifiers xsi:type="ecore:EClass" name="RandomChoiceBranch" eSuperTypes="#//branch/Branch">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="A nondeterministic choice is made between T1 and T2, depending on which is ready to execute (not blocked)"/>
       </eAnnotations>
@@ -337,6 +406,9 @@
   <eSubpackages name="traceability" nsURI="http://org.be.textbe/textbt/traceability"
       nsPrefix="traceability">
     <eClassifiers xsi:type="ecore:EClass" name="Requirement" eSuperTypes="#//NamedElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A documented required property of the specified system."/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           iD="true"/>
     </eClassifiers>
@@ -350,7 +422,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TraceabilityLink">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="A reference to the requirements document"/>
+        <details key="documentation" value="A reference to the requirements document."/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" eType="#//traceability/TraceabilityStatus">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -358,7 +430,11 @@
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="requirement" upperBound="-1"
-          eType="#//traceability/Requirement"/>
+          eType="#//traceability/Requirement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Indicates the requirements that are being covered by the behavior of this node."/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="node" eType="#//node/behavior/BehaviorNode"
           eOpposite="#//node/behavior/BehaviorNode/traceability"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="updatedInVersion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
