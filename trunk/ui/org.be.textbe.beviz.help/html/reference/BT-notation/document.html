@@ -4,7 +4,68 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></meta>
 </head>
 <body>
-	<h2>Variable Naming Conventions</h2>
+	<h1>Introduction</h1>
+
+	<p>Shown below is a part of a model that expresses the required
+		behavior of a microwave oven. The model is in the shape of a tree.
+		This model type is called a Behavior Tree (BT). Within the model we
+		notice:
+	<ul>
+		<li>Nodes, connected by arrows that seem to suggest a temporal
+			order. The terms used to to talk about relationships of nodes within
+			the tree are given in section.</li>
+		<li>Within the nodes we find two or three compartments. The
+			meaning of these elements is defined in section.
+			<ul>
+				<li>The left compartment seems to deal with <code>R</code>
+					items, which we assume refer to requirements.
+				</li>
+				<li>The right compartment seems to deal with parts of the
+					system like <code>OVEN</code>, <code>LIGHT</code> and <code>USER</code>
+					and their behavior.
+				</li>
+			</ul>
+		
+	</ul>
+	</p>
+
+	<img src="document2x.png" alt="PIC"
+		title="Behavior Tree Tree Naming Conventions" />
+
+	<table>
+		<tr>
+			<th>Label</th>
+			<th>Name</th>
+			<th>Description</th>
+		</tr>
+
+		<tr>
+			<td>A</td>
+			<td>Root Node</td>
+			<td>The first node in a tree (does not have a parent)</td>
+		</tr>
+
+		<tr>
+			<td>B</td>
+			<td>Edge</td>
+			<td>A connection between two nodes</td>
+		</tr>
+
+		<tr>
+			<td>C</td>
+			<td>Leaf Node</td>
+			<td>A node with no children</td>
+		</tr>
+
+		<tr>
+			<td>D</td>
+			<td>Branch</td>
+			<td>A subtree of the node of interest</td>
+		</tr>
+		<caption>Branches of a Behavior Tree</caption>
+	</table>
+
+	<h2>Object Naming Conventions</h2>
 
 	<ul>
 		<li>Component names should be capitalised e.g <code>OVEN</code></li>
@@ -61,6 +122,9 @@
 	</table>
 
 	<h2>Node Naming Conventions</h2>
+
+	<img src="document0x.png" title="Behavior Tree Node Naming Conventions"
+		alt="Behavior Tree Node Naming Conventions" />
 
 	<table>
 		<tr>
@@ -129,8 +193,7 @@
 		<caption>Elements of a Behavior Tree Node</caption>
 	</table>
 
-	<img src="document0x.png" title="Behavior Tree Node Naming Conventions"
-		alt="Behavior Tree Node Naming Conventions"></img>
+
 
 
 	<h2>Relation Naming Conventions</h2>
@@ -234,48 +297,13 @@
 		<caption>Nodes of a Behavior Tree</caption>
 	</table>
 
-	<p>
-		<img src="document2x.png" alt="PIC"></img>
-	</p>
 
-	<p>Figure 3: Behavior Tree Tree Naming Conventions</p>
 
-	<h2>1.5 Tree Branch Naming Convention</h2>
+	<h2>Tree Branch Naming Convention</h2>
 
 
 
-	<table>
-		<tr>
-			<th>Label</th>
-			<th>Name</th>
-			<th>Description</th>
-		</tr>
 
-		<tr>
-			<td>A</td>
-			<td>Root Node</td>
-			<td>The first node in a tree (does not have a parent)</td>
-		</tr>
-
-		<tr>
-			<td>B</td>
-			<td>Edge</td>
-			<td>A connection between two nodes</td>
-		</tr>
-
-		<tr>
-			<td>C</td>
-			<td>Leaf Node</td>
-			<td>A node with no children</td>
-		</tr>
-
-		<tr>
-			<td>D</td>
-			<td>Branch</td>
-			<td>A subtree of the node of interest</td>
-		</tr>
-		<caption>Branches of a Behavior Tree</caption>
-	</table>
 
 
 
@@ -488,6 +516,36 @@
 		<caption>Sequences</caption>
 	</table>
 
+	<h2>Condition Operators</h2>
+
+	Condition Operators define a composite node that acts as a guard. The
+	node executes only if the condition holds. These conditions can hence
+	reference several components.
+	<table>
+
+		<tr>
+			<td>Conjunction</td>
+			<td><img src="document57x.png" alt=""></img></td>
+			<td>The operator &amp; corresponds to logical conjunction.</td>
+		</tr>
+
+
+
+		<tr>
+			<td>Disjunction</td>
+			<td><img src="document58x.png" alt=""></img></td>
+			<td>The operator | corresponds to logical disjunction.</td>
+		</tr>
+
+
+
+		<tr>
+			<td>Exclusive OR</td>
+			<td><img src="document59x.png" alt=""></img></td>
+			<td>The operator XOR corresponds to logical mutual exclusion.</td>
+		</tr>
+	</table>
+
 	<h3>Branches</h3>
 	<table>
 		<tr>
@@ -564,32 +622,7 @@
 		</tr>
 	</table>
 
-	<h2>Condition Operators</h2>
-	
-	Condition Operators define a composite node that acts as a guard. The node executes only if the condition holds. These conditions can hence reference several components. <table>
 
-		<tr>
-			<td>Conjunction</td>
-			<td><img src="document57x.png" alt=""></img></td>
-			<td>The operator &amp; corresponds to logical conjunction.</td>
-		</tr>
-
-
-
-		<tr>
-			<td>Disjunction</td>
-			<td><img src="document58x.png" alt=""></img></td>
-			<td>The operator | corresponds to logical disjunction.</td>
-		</tr>
-
-
-
-		<tr>
-			<td>Exclusive OR</td>
-			<td><img src="document59x.png" alt=""></img></td>
-			<td>The operator XOR corresponds to logical mutual exclusion.</td>
-		</tr>
-	</table>
 </body>
 </html>
 
