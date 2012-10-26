@@ -36,6 +36,11 @@
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/tools/orbit/downloads/drops/R20120526062928/repository/</url>
 		</repository>
+		<repository>
+			<id>Combe</id>
+			<layout>p2</layout>
+			<url>http://itee.uq.edu.au/~jgsuess/update/combe/</url>
+		</repository>
 	</repositories>
 	<build>
 		<plugins>
