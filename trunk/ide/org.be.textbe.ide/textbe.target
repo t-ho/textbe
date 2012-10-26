@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde version="3.8"?>
 
-<target name="Eclipse Platform 4.2.1" sequenceNumber="22">
+<target name="Eclipse Platform 4.2.1" sequenceNumber="24">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.platform.ide" version="4.2.1.M20120914-1800"/>
@@ -55,6 +55,10 @@
 <unit id="org.emftext.sdk.feature.group" version="1.4.1.v201207310007"/>
 <unit id="org.emftext.commons.antlr3_3_0.feature.group" version="3.3.0.v201207310007"/>
 <repository location="http://emftext.org/update"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.behaviorengineering.combe.feature.feature.group" version="1.0.0.201210251302"/>
+<repository location="http://itee.uq.edu.au/~jgsuess/update/combe"/>
 </location>
 </locations>
 </target>
