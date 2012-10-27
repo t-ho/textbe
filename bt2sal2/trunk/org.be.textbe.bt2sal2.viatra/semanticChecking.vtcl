@@ -1,0 +1,279 @@
+import nemf.packages.textbt;
+import nemf.ecore.datatypes;
+
+machine semanticChecking
+
+{
+	rule main() = seq
+	{
+		println("Hello VIATRA2 world!");
+	}
+	
+	//Rule 1: Sequential Composition 
+	//can be atomic too(?)
+	gtrule sequentialComposition(out Node, in Sequence) = {
+		precondition pattern beforeSequentialComposition(Node,Sequence) = {
+			activity.sequence.Sequence(Sequence);
+			activity.sequence.Sequence.step(Step,Sequence,Node);
+			node.behavior.BehaviorNode(Node);
+			find notReversionOrMacro(Node);
+			// Leaf node
+			neg find childrenNode(Node,NoNewNode);
+		}
+		postcondition pattern afterSequentialComposition(Node,NewNode,Sequence) = {
+			node.behavior.BehaviorNode(Node);
+			activity.sequence.Sequence(Sequence);
+			activity.sequence.Sequence.step(NewStep,Sequence,NewNode);
+			node.behavior.BehaviorNode(NewNode);
+			find notInternalOutputEvent(NewNode);
+			
+			find childrenNode(Node,NewNode);
+		}
+	}
+	
+	pattern notInternalOutputEvent(Node) = {
+		node.behavior.BehaviorNode(Node);
+		neg find internalOutputEvent(Node);
+	}
+	
+	pattern internalOutputEvent(Node) = {
+		node.behavior.BehaviorNode(Node);
+		node.behavior.event.InternalOutput(Event);
+		node.behavior.BehaviorNode.behavior(Behavior,Node,Event);
+	}
+	
+	pattern notReversionOrMacro(Node) = {
+		node.behavior.BehaviorNode(Node);
+		neg find reversionNode(Operation,Node);
+		neg find macroNode(Operation,Node);
+	}
+	
+	pattern reversionNode(Operation,Node) = {
+		node.behavior.BehaviorNode(Node);
+		node.operation.Reversion(Operation);
+		node.Node.operation(Operand,Node,Operation);
+	}
+	
+	pattern macroNode(Operation,Node) = {
+		node.behavior.BehaviorNode(Node);
+		node.operation.Reference(Operation);
+		node.Node.operation(Operand,Node,Operation);
+	}
+	
+	pattern leafNode(Node) = {
+		node.behavior.BehaviorNode(Node);
+		neg find childrenNode(Node,Child);
+	}
+	
+	pattern childrenNode(Parent,Child) = {
+		node.behavior.BehaviorNode(Parent);
+		node.behavior.BehaviorNode(Child);
+		node.Node.children(Children,Parent,Child);
+	}
+	
+	pattern sequentialComposition(SequentialEdge) = {
+		activity.sequence.Interleaving(SequentialEdge);
+	}
+	
+	//Rule 2: Internal Event Communication
+	//half done
+	gtrule internalEventCommunication(out Node, in Sequence) = {
+		precondition pattern beforeInternalEventCommunication(Node,Input1,Input2,Sequence) = {
+			activity.sequence.Sequence(Sequence);
+			activity.sequence.Sequence.step(Step,Sequence,Node);
+			node.behavior.BehaviorNode(Node);
+			find notReversionOrMacro(Node);
+			// Leaf node (how to use Boolean isLeaf?)
+			neg find childrenNode(Node,NoNewNode);
+			
+			//Should be set of Internal Input Event
+			activity.sequence.Sequence(Process1);
+			activity.sequence.Sequence.step(Step1,Process1,Input1);
+			node.behavior.BehaviorNode(Input1);
+			activity.sequence.Sequence(Process2);
+			activity.sequence.Sequence.step(Step2,Process2,Input2);
+			node.behavior.BehaviorNode(Input2);
+			//and so on..
+			node.behavior.event.InternalInput(Event);
+			node.behavior.BehaviorNode.behavior(Behavior1,Input1,Event);
+			node.behavior.BehaviorNode.behavior(Behavior2,Input2,Event);
+		}
+		postcondition pattern afterInternalEventCommunication(Node,Sequence,NewNode) = {
+			node.behavior.BehaviorNode(Node);
+			activity.sequence.Sequence(Sequence);
+			activity.sequence.Sequence.step(NewStep,Sequence,NewNode);
+			node.behavior.BehaviorNode(NewNode);
+			node.behavior.event.InternalOutput(Event);
+			node.behavior.BehaviorNode.behavior(Behavior,NewNode,Event);
+			
+			find childrenNode(Node,NewNode);
+			
+			//Same qualifier between input and output
+			//To Do
+		}
+	}
+	
+	//Rule 3: Parallel Branching
+	//half done
+	gtrule parallelBranching(out Node, in Sequence) = {
+		precondition pattern beforeParallelBranching(Node,Sequence) = {
+			activity.sequence.Sequence(Sequence);
+			activity.sequence.Sequence.step(Step,Sequence,Node);
+			node.behavior.BehaviorNode(Node);
+			find notReversionOrMacro(Node);
+			// Leaf node (how to use Boolean isLeaf?)
+			neg find childSequence(Sequence,NoNewParallelBranch);
+		}
+		postcondition pattern afterParallelBranching(Sequence,NewParallelBranch) = {
+			activity.sequence.Sequence(Sequence);
+			branch.Parallel(NewParallelBranch);
+			find childSequence(Sequence,NewParallelBranch);
+			//Set of subtrees/process
+			branch.Parallel.processes(Process1,NewParallelBranch,ChildBranch1);
+			activity.sequence.Interleaving(ChildBranch1);
+			branch.Parallel.processes(Process2,NewParallelBranch,ChildBranch2);
+			activity.sequence.Interleaving(ChildBranch2);
+		}
+	}
+	
+	pattern childSequence(Sequence,ChildSequence) = {
+		activity.sequence.Sequence(Sequence);
+		BehaviorTree(ChildSequence);
+		activity.Activity.child(Child,Sequence,ChildSequence);
+	}
+	
+	//Rule 4: Alternative Branching
+	//half done
+	gtrule alternativeBranching(out Node, in Sequence) = {
+		precondition pattern beforeAlternativeBranching(Node,Sequence) = {
+			activity.sequence.Sequence(Sequence);
+			activity.sequence.Sequence.step(Step,Sequence,Node);
+			node.behavior.BehaviorNode(Node);
+			find notReversionOrMacro(Node);
+			// Leaf node (how to use Boolean isLeaf?)
+			neg find childrenNode(Node,NoNewNode);
+		}
+		postcondition pattern afterAlternativeBranching(Sequence,NewAlternativeBranch) = {
+			activity.sequence.Sequence(Sequence);
+			branch.Alternative(NewAlternativeBranch);
+			find childSequence(Sequence,NewParallelBranch);
+			//Set of subtrees/process
+			branch.Alternative.choices(Choices1,NewAlternativeBranch,ChildBranch1);
+			activity.sequence.Sequence(ChildBranch1);
+			branch.Alternative.choices(Choices2,NewAlternativeBranch,ChildBranch2);
+			activity.sequence.Sequence(ChildBranch2);
+			//Restriction which state: all are selection or none are selection
+			activity.sequence.Sequence.step(Step1,ChildBranch1,Node1);
+			node.behavior.BehaviorNode(Node1);
+			activity.sequence.Sequence.step(Step2,ChildBranch2,Node2);
+			node.behavior.BehaviorNode(Node2);
+			find allOrNoneSelection(Node1,Node2);
+		}
+	}
+	
+	pattern allOrNoneSelection(Node1,Node2) = {
+		node.behavior.BehaviorNode(Node1);
+		node.behavior.BehaviorNode(Node2);
+		find allSelection(Node1,Node2);
+	}
+	or {
+		node.behavior.BehaviorNode(Node1);
+		node.behavior.BehaviorNode(Node2);
+		neg find allSelection(Node1,Node2);
+	}
+	
+	pattern allSelection(Node1,Node2) = {
+		node.behavior.BehaviorNode(Node1);
+		node.behavior.BehaviorNode(Node2);
+		node.behavior.BehaviorNode.behavior(Behavior1,Node1,Selection1);
+		node.behavior.state.Selection(Selection1);
+		node.behavior.BehaviorNode.behavior(Behavior2,Node2,Selection2);
+		node.behavior.state.Selection(Selection2);
+	}
+	
+	//Rule 5: Macro
+	gtrule macro(out Node, in Sequence) = {
+		precondition pattern beforeMacro(Node,Sequence,TargetNode,TargetSequence) = {
+			activity.sequence.Sequence(Sequence);
+			activity.sequence.Sequence.step(Step,Sequence,Node);
+			node.behavior.BehaviorNode(Node);
+			find notReversionOrMacro(Node);
+			// Leaf node (how to use Boolean isLeaf?)
+			neg find childrenNode(Node,NoNewNode);
+			// Target node
+			activity.sequence.Sequence(TargetSequence);
+			activity.sequence.Sequence.step(TargetStep,TargetSequence,TargetNode);
+			node.behavior.BehaviorNode(TargetNode);
+			find normalNode(TargetNode);
+		}
+		postcondition pattern afterMacro(Node,Sequence) = {
+			activity.sequence.Sequence(Sequence);
+			activity.sequence.Sequence.step(Step,Sequence,NewMacroNode);
+			node.behavior.BehaviorNode(NewMacroNode);
+			node.Node.operation(Operand,NewMacroNode,Macro);
+			node.operation.Reference(Macro);
+			
+			find childrenNode(Node,NoNewNode);
+			
+			//Same qualifier between source and target node
+			//To Do
+		}
+	}
+	
+	pattern normalNode(Node) = {
+		node.behavior.BehaviorNode(Node);
+		neg find operationOfNode(Operation,Node);
+	}
+	
+	pattern operationOfNode(Operation,Node) = {
+		node.behavior.BehaviorNode(Node);
+		node.operation.Operation(Operation);
+		node.Node.operation(Operand,Node,Operation);
+	}
+	
+	//Rule 6: Synchronization
+	gtrule synchronization(out Node1, out Node2, in Sequence1, in Sequence2) = {
+		precondition pattern beforeSynchronization(Node1,Sequence1,Node2,Sequence2) = {
+			activity.sequence.Sequence(Sequence1);
+			activity.sequence.Sequence.step(Step1,Sequence1,Node1);
+			node.behavior.BehaviorNode(Node1);
+			find notReversionOrMacro(Node1);
+			// Leaf node (how to use Boolean isLeaf?)
+			neg find childrenNode(Node1,NoNewNode1);
+			
+			activity.sequence.Sequence(Sequence2);
+			activity.sequence.Sequence.step(Step2,Sequence2,Node2);
+			node.behavior.BehaviorNode(Node2);
+			find notReversionOrMacro(Node2);
+			// Leaf node (how to use Boolean isLeaf?)
+			neg find childrenNode(Node,NoNewNode2);
+		}
+		postcondition pattern afterSynchronization(Node1,Sequence1,Node2,Sequence2,NewSyncNode1,NewSyncNode2) = {
+			activity.sequence.Sequence(Sequence1);
+			activity.sequence.Sequence.step(Step1,Sequence1,NewSyncNode1);
+			node.behavior.BehaviorNode(NewSyncNode1);
+			node.Node.operation(Operand1,NewSyncNode1,Synchronisation1);
+			node.operation.Synchronisation(Synchronisation1);
+			
+			find childrenNode(Node1,NewSyncNode1);
+			
+			activity.sequence.Sequence(Sequence2);
+			activity.sequence.Sequence.step(Step2,Sequence2,NewSyncNode2);
+			node.behavior.BehaviorNode(NewSyncNode2);
+			node.Node.operation(Operand2,NewSyncNode2,Synchronisation2);
+			node.operation.Synchronisation(Synchronisation2);
+			
+			find childrenNode(Node2,NewSyncNode2);
+			
+			//Same qualifier between all new node
+			//To Do
+		}
+	}
+		
+	
+	//Rule 7: Branch Kill
+		
+	//Rule 8: Reversion
+	//Rule 9: Selection Conjuction & Selection Disjunction (Is this still implemented?)
+	
+}
