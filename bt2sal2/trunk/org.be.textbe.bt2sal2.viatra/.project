@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>org.be.textbe.bt2sal2.viatra</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.be.textbe.bt.textbt.resource.bt.builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.be.textbe.bt.textbt.resource.bt.nature</nature>
+	</natures>
+</projectDescription>
