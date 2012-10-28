@@ -156,7 +156,7 @@ machine semanticChecking
 		postcondition pattern afterAlternativeBranching(Sequence,NewAlternativeBranch) = {
 			activity.sequence.Sequence(Sequence);
 			branch.Alternative(NewAlternativeBranch);
-			find childSequence(Sequence,NewParallelBranch);
+			find childSequence(Sequence,NewAlternativeBranch);
 			//Set of subtrees/process
 			branch.Alternative.choices(Choices1,NewAlternativeBranch,ChildBranch1);
 			activity.sequence.Sequence(ChildBranch1);
@@ -205,6 +205,14 @@ machine semanticChecking
 			activity.sequence.Sequence.step(TargetStep,TargetSequence,TargetNode);
 			node.behavior.BehaviorNode(TargetNode);
 			find normalNode(TargetNode);
+			
+			//TargetSequence and Sequence in alternative branch
+			node.behavior.BehaviorNode(ParentNode);
+			activity.sequence.Sequence(ParentSequence);
+			branch.Alternative(Branch);
+			find childSequence(ParentSequence,Branch);
+			node.Node.parents(Ancestor1,Node,ParentNode);
+			node.Node.parents(Ancestor2,TargetNode,ParentNode);
 		}
 		postcondition pattern afterMacro(Node,Sequence) = {
 			activity.sequence.Sequence(Sequence);
@@ -213,7 +221,7 @@ machine semanticChecking
 			node.Node.operation(Operand,NewMacroNode,Macro);
 			node.operation.Reference(Macro);
 			
-			find childrenNode(Node,NoNewNode);
+			find childrenNode(Node,NewMacroNode);
 			
 			//Same qualifier between source and target node
 			//To Do
@@ -247,6 +255,14 @@ machine semanticChecking
 			find notReversionOrMacro(Node2);
 			// Leaf node (how to use Boolean isLeaf?)
 			neg find childrenNode(Node,NoNewNode2);
+			
+			//TargetSequence and Sequence in parallel branch
+			node.behavior.BehaviorNode(ParentNode);
+			activity.sequence.Sequence(ParentSequence);
+			branch.Parallel(Branch);
+			find childSequence(ParentSequence,Branch);
+			node.Node.parents(Ancestor1,Node1,ParentNode);
+			node.Node.parents(Ancestor2,Node2,ParentNode);
 		}
 		postcondition pattern afterSynchronization(Node1,Sequence1,Node2,Sequence2,NewSyncNode1,NewSyncNode2) = {
 			activity.sequence.Sequence(Sequence1);
@@ -272,8 +288,131 @@ machine semanticChecking
 		
 	
 	//Rule 7: Branch Kill
-		
-	//Rule 8: Reversion
-	//Rule 9: Selection Conjuction & Selection Disjunction (Is this still implemented?)
+	gtrule branchKill(out Node, in Sequence) = {
+		precondition pattern beforeBranchKill(Node,Sequence,TargetNode,TargetSequence) = {
+			activity.sequence.Sequence(Sequence);
+			activity.sequence.Sequence.step(Step,Sequence,Node);
+			node.behavior.BehaviorNode(Node);
+			find notReversionOrMacro(Node);
+			// Leaf node (how to use Boolean isLeaf?)
+			neg find childrenNode(Node,NoNewNode);
+			// Target node
+			activity.sequence.Sequence(TargetSequence);
+			activity.sequence.Sequence.step(TargetStep,TargetSequence,TargetNode);
+			node.behavior.BehaviorNode(TargetNode);
+			find normalNode(TargetNode);
+			
+			//TargetSequence and Sequence in parallel branch
+			//To Do
+			node.behavior.BehaviorNode(ParentNode);
+			activity.sequence.Sequence(ParentSequence);
+			branch.Alternative(Branch);
+			find childSequence(ParentSequence,Branch);
+			node.Node.parents(Ancestor1,Node,ParentNode);
+			node.Node.parents(Ancestor2,TargetNode,ParentNode);
+			
+		}
+		postcondition pattern afterBranchKill(Node,Sequence,TargetNode,NewBranchKillNode) = {
+			activity.sequence.Sequence(Sequence);
+			activity.sequence.Sequence.step(Step,Sequence,NewBranchKillNode);
+			node.behavior.BehaviorNode(NewBranchKillNode);
+			node.Node.operation(Operand,NewBranchKillNode,BranchKill);
+			node.operation.BranchKill(BranchKill);
+			
+			find childrenNode(Node,NewBranchKillNode);
+			
+			//Same qualifier between source and target node
+			//To Do
+		}
+	}
 	
+	//Rule 8: Reversion
+	gtrule reversion(out Node, in Sequence, out TargetNode) = {
+		precondition pattern beforeReversion(Node,Sequence,TargetNode) = {
+			activity.sequence.Sequence(Sequence);
+			activity.sequence.Sequence.step(Step,Sequence,Node);
+			node.behavior.BehaviorNode(Node);
+			find notReversionOrMacro(Node);
+			// Leaf node (how to use Boolean isLeaf?)
+			neg find childrenNode(Node,NoNewNode);
+			// Target node, an ancestor of the new node, hence an ancestor of Node also
+			node.behavior.BehaviorNode(TargetNode);
+			node.Node.parents(Parent,Node,TargetNode);
+		}
+		postcondition pattern afterReversion(Node,Sequence,TargetNode,NewReversionNode) = {
+			activity.sequence.Sequence(Sequence);
+			activity.sequence.Sequence.step(Step,Sequence,NewReversionNode);
+			node.behavior.BehaviorNode(NewReversionNode);
+			node.Node.operation(Operand,NewReversionNode,Reversion);
+			node.operation.Reference(Reversion);
+			
+			find childrenNode(Node,NewReversionNode);
+			
+			//Same qualifier between source and target node
+			//To Do
+		}
+	}
+	
+	//Rule 9: Selection Conjuction & Selection Disjunction (Is this still implemented?)
+	gtrule selectionConjunction(out Node, in Sequence) = {
+		precondition pattern beforeSelectionConjunction(Node,Sequence) = {
+			activity.sequence.Sequence(Sequence);
+			activity.sequence.Sequence.step(Step,Sequence,Node);
+			node.behavior.BehaviorNode(Node);
+			// Selection node
+			node.behavior.BehaviorNode(SelectionNode);
+			find selectionNode(SelectionNode);
+			find notReversionOrMacro(SelectionNode);
+			// Leaf node (how to use Boolean isLeaf?)
+			neg find childrenNode(SelectionNode,NoNewNode);
+		}
+		postcondition pattern afterSelectionConjunction(Node,NewGate,NewSelectionNode1,NewSelectionNode2) = {
+			node.behavior.BehaviorNode(Node);
+			// Create gate
+			activity.gate.Conjunction(NewGate);
+			// Add several selection node
+			node.behavior.BehaviorNode(NewSelectionNode1);
+			find selectionNode(NewSelectionNode1);
+			node.behavior.BehaviorNode(NewSelectionNode2);
+			find selectionNode(NewSelectionNode2);
+			// Add node to gate
+			activity.gate.Gate.triggers(Trg1,NewGate,Node);
+			activity.gate.Gate.triggers(Trg2,NewGate,NewSelectionNode1);
+			activity.gate.Gate.triggers(Trg3,NewGate,NewSelectionNode2);
+		}
+	}
+	
+	gtrule selectionDisjunction(out Node, in Sequence) = {
+		precondition pattern beforeSelectionDisjunction(Node,Sequence) = {
+			activity.sequence.Sequence(Sequence);
+			activity.sequence.Sequence.step(Step,Sequence,Node);
+			node.behavior.BehaviorNode(Node);
+			// Selection node
+			node.behavior.BehaviorNode(SelectionNode);
+			find selectionNode(SelectionNode);
+			find notReversionOrMacro(SelectionNode);
+			// Leaf node (how to use Boolean isLeaf?)
+			neg find childrenNode(SelectionNode,NoNewNode);
+		}
+		postcondition pattern afterSelectionDisjunction(Node,NewGate,NewSelectionNode1,NewSelectionNode2) = {
+			node.behavior.BehaviorNode(Node);
+			// Create gate
+			activity.gate.Disjunction(NewGate);
+			// Add several selection node
+			node.behavior.BehaviorNode(NewSelectionNode1);
+			find selectionNode(NewSelectionNode1);
+			node.behavior.BehaviorNode(NewSelectionNode2);
+			find selectionNode(NewSelectionNode2);
+			// Add node to gate
+			activity.gate.Gate.triggers(Trg1,NewGate,Node);
+			activity.gate.Gate.triggers(Trg2,NewGate,NewSelectionNode1);
+			activity.gate.Gate.triggers(Trg3,NewGate,NewSelectionNode2);
+		}
+	}
+	
+	pattern selectionNode(Node) = {
+		node.behavior.BehaviorNode(Node);
+		node.behavior.state.Selection(Selection);
+		node.behavior.BehaviorNode.behavior(Behavior,Node,Selection);
+	}
 }
