@@ -42,7 +42,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Bound"/>
   <eClassifiers xsi:type="ecore:EClass" name="ScalarType" eSuperTypes="#//TypeDef">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nextType" unique="false"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeValue" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModuleDeclaration" eSuperTypes="#//Declaration">

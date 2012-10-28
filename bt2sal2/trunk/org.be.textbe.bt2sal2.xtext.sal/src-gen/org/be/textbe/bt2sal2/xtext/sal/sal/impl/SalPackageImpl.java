@@ -746,7 +746,7 @@ public class SalPackageImpl extends EPackageImpl implements SalPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getScalarType_NextType()
+  public EAttribute getScalarType_TypeValue()
   {
     return (EAttribute)scalarTypeEClass.getEStructuralFeatures().get(0);
   }
@@ -1598,7 +1598,7 @@ public class SalPackageImpl extends EPackageImpl implements SalPackage
     boundEClass = createEClass(BOUND);
 
     scalarTypeEClass = createEClass(SCALAR_TYPE);
-    createEAttribute(scalarTypeEClass, SCALAR_TYPE__NEXT_TYPE);
+    createEAttribute(scalarTypeEClass, SCALAR_TYPE__TYPE_VALUE);
 
     moduleDeclarationEClass = createEClass(MODULE_DECLARATION);
     createEReference(moduleDeclarationEClass, MODULE_DECLARATION__MODULE);
@@ -1815,7 +1815,7 @@ public class SalPackageImpl extends EPackageImpl implements SalPackage
     initEClass(boundEClass, Bound.class, "Bound", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(scalarTypeEClass, ScalarType.class, "ScalarType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getScalarType_NextType(), ecorePackage.getEString(), "nextType", null, 0, -1, ScalarType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getScalarType_TypeValue(), ecorePackage.getEString(), "typeValue", null, 0, -1, ScalarType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(moduleDeclarationEClass, ModuleDeclaration.class, "ModuleDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getModuleDeclaration_Module(), this.getModule(), null, "module", null, 0, 1, ModuleDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

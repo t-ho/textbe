@@ -40,7 +40,7 @@
     </genClasses>
     <genClasses ecoreClass="Sal.ecore#//Bound"/>
     <genClasses ecoreClass="Sal.ecore#//ScalarType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sal.ecore#//ScalarType/nextType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sal.ecore#//ScalarType/typeValue"/>
     </genClasses>
     <genClasses ecoreClass="Sal.ecore#//ModuleDeclaration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sal.ecore#//ModuleDeclaration/module"/>

@@ -12,7 +12,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.be.textbe.bt2sal2.xtext.sal.sal.ScalarType#getNextType <em>Next Type</em>}</li>
+ *   <li>{@link org.be.textbe.bt2sal2.xtext.sal.sal.ScalarType#getTypeValue <em>Type Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -23,19 +23,19 @@ import org.eclipse.emf.common.util.EList;
 public interface ScalarType extends TypeDef
 {
   /**
-   * Returns the value of the '<em><b>Next Type</b></em>' attribute list.
+   * Returns the value of the '<em><b>Type Value</b></em>' attribute list.
    * The list contents are of type {@link java.lang.String}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Next Type</em>' attribute list isn't clear,
+   * If the meaning of the '<em>Type Value</em>' attribute list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Next Type</em>' attribute list.
-   * @see org.be.textbe.bt2sal2.xtext.sal.sal.SalPackage#getScalarType_NextType()
+   * @return the value of the '<em>Type Value</em>' attribute list.
+   * @see org.be.textbe.bt2sal2.xtext.sal.sal.SalPackage#getScalarType_TypeValue()
    * @model unique="false"
    * @generated
    */
-  EList<String> getNextType();
+  EList<String> getTypeValue();
 
 } // ScalarType

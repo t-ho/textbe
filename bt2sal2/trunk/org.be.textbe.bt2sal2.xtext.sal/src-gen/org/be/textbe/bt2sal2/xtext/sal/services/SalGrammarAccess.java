@@ -363,19 +363,19 @@ public class SalGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Assignment cNextTypeAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final RuleCall cNextTypeIDENTIFIERSTerminalRuleCall_1_0_0 = (RuleCall)cNextTypeAssignment_1_0.eContents().get(0);
+		private final Assignment cTypeValueAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cTypeValueIDENTIFIERSTerminalRuleCall_1_0_0 = (RuleCall)cTypeValueAssignment_1_0.eContents().get(0);
 		private final Keyword cCommaKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
 		private final Keyword cRightCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//ScalarType: //"{" firstType=IDENTIFIERS ("," nextType+=IDENTIFIERS)* "}"
 		//
-		//	"{" (nextType+=IDENTIFIERS ","?)+ "}";
+		//	"{" (typeValue+=IDENTIFIERS ","?)+ "}";
 		public ParserRule getRule() { return rule; }
 
 		////"{" firstType=IDENTIFIERS ("," nextType+=IDENTIFIERS)* "}"
 		//
-		//"{" (nextType+=IDENTIFIERS ","?)+ "}"
+		//"{" (typeValue+=IDENTIFIERS ","?)+ "}"
 		public Group getGroup() { return cGroup; }
 
 		////"{" firstType=IDENTIFIERS ("," nextType+=IDENTIFIERS)* "}"
@@ -383,14 +383,14 @@ public class SalGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_0() { return cLeftCurlyBracketKeyword_0; }
 
-		//(nextType+=IDENTIFIERS ","?)+
+		//(typeValue+=IDENTIFIERS ","?)+
 		public Group getGroup_1() { return cGroup_1; }
 
-		//nextType+=IDENTIFIERS
-		public Assignment getNextTypeAssignment_1_0() { return cNextTypeAssignment_1_0; }
+		//typeValue+=IDENTIFIERS
+		public Assignment getTypeValueAssignment_1_0() { return cTypeValueAssignment_1_0; }
 
 		//IDENTIFIERS
-		public RuleCall getNextTypeIDENTIFIERSTerminalRuleCall_1_0_0() { return cNextTypeIDENTIFIERSTerminalRuleCall_1_0_0; }
+		public RuleCall getTypeValueIDENTIFIERSTerminalRuleCall_1_0_0() { return cTypeValueIDENTIFIERSTerminalRuleCall_1_0_0; }
 
 		//","?
 		public Keyword getCommaKeyword_1_1() { return cCommaKeyword_1_1; }
@@ -1790,7 +1790,7 @@ public class SalGrammarAccess extends AbstractGrammarElementFinder {
 
 	//ScalarType: //"{" firstType=IDENTIFIERS ("," nextType+=IDENTIFIERS)* "}"
 	//
-	//	"{" (nextType+=IDENTIFIERS ","?)+ "}";
+	//	"{" (typeValue+=IDENTIFIERS ","?)+ "}";
 	public ScalarTypeElements getScalarTypeAccess() {
 		return (pScalarType != null) ? pScalarType : (pScalarType = new ScalarTypeElements());
 	}

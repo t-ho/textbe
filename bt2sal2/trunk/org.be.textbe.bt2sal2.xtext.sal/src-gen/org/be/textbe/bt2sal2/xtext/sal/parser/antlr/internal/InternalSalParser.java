@@ -1703,29 +1703,29 @@ public class InternalSalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleScalarType"
-    // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:684:1: ruleScalarType returns [EObject current=null] : (otherlv_0= '{' ( ( (lv_nextType_1_0= RULE_IDENTIFIERS ) ) (otherlv_2= ',' )? )+ otherlv_3= '}' ) ;
+    // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:684:1: ruleScalarType returns [EObject current=null] : (otherlv_0= '{' ( ( (lv_typeValue_1_0= RULE_IDENTIFIERS ) ) (otherlv_2= ',' )? )+ otherlv_3= '}' ) ;
     public final EObject ruleScalarType() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
-        Token lv_nextType_1_0=null;
+        Token lv_typeValue_1_0=null;
         Token otherlv_2=null;
         Token otherlv_3=null;
 
          enterRule(); 
             
         try {
-            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:687:28: ( (otherlv_0= '{' ( ( (lv_nextType_1_0= RULE_IDENTIFIERS ) ) (otherlv_2= ',' )? )+ otherlv_3= '}' ) )
-            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:688:1: (otherlv_0= '{' ( ( (lv_nextType_1_0= RULE_IDENTIFIERS ) ) (otherlv_2= ',' )? )+ otherlv_3= '}' )
+            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:687:28: ( (otherlv_0= '{' ( ( (lv_typeValue_1_0= RULE_IDENTIFIERS ) ) (otherlv_2= ',' )? )+ otherlv_3= '}' ) )
+            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:688:1: (otherlv_0= '{' ( ( (lv_typeValue_1_0= RULE_IDENTIFIERS ) ) (otherlv_2= ',' )? )+ otherlv_3= '}' )
             {
-            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:688:1: (otherlv_0= '{' ( ( (lv_nextType_1_0= RULE_IDENTIFIERS ) ) (otherlv_2= ',' )? )+ otherlv_3= '}' )
-            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:688:3: otherlv_0= '{' ( ( (lv_nextType_1_0= RULE_IDENTIFIERS ) ) (otherlv_2= ',' )? )+ otherlv_3= '}'
+            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:688:1: (otherlv_0= '{' ( ( (lv_typeValue_1_0= RULE_IDENTIFIERS ) ) (otherlv_2= ',' )? )+ otherlv_3= '}' )
+            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:688:3: otherlv_0= '{' ( ( (lv_typeValue_1_0= RULE_IDENTIFIERS ) ) (otherlv_2= ',' )? )+ otherlv_3= '}'
             {
             otherlv_0=(Token)match(input,15,FOLLOW_15_in_ruleScalarType1623); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getScalarTypeAccess().getLeftCurlyBracketKeyword_0());
                 
-            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:692:1: ( ( (lv_nextType_1_0= RULE_IDENTIFIERS ) ) (otherlv_2= ',' )? )+
+            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:692:1: ( ( (lv_typeValue_1_0= RULE_IDENTIFIERS ) ) (otherlv_2= ',' )? )+
             int cnt8=0;
             loop8:
             do {
@@ -1739,17 +1739,17 @@ public class InternalSalParser extends AbstractInternalAntlrParser {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:692:2: ( (lv_nextType_1_0= RULE_IDENTIFIERS ) ) (otherlv_2= ',' )?
+            	    // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:692:2: ( (lv_typeValue_1_0= RULE_IDENTIFIERS ) ) (otherlv_2= ',' )?
             	    {
-            	    // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:692:2: ( (lv_nextType_1_0= RULE_IDENTIFIERS ) )
-            	    // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:693:1: (lv_nextType_1_0= RULE_IDENTIFIERS )
+            	    // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:692:2: ( (lv_typeValue_1_0= RULE_IDENTIFIERS ) )
+            	    // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:693:1: (lv_typeValue_1_0= RULE_IDENTIFIERS )
             	    {
-            	    // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:693:1: (lv_nextType_1_0= RULE_IDENTIFIERS )
-            	    // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:694:3: lv_nextType_1_0= RULE_IDENTIFIERS
+            	    // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:693:1: (lv_typeValue_1_0= RULE_IDENTIFIERS )
+            	    // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:694:3: lv_typeValue_1_0= RULE_IDENTIFIERS
             	    {
-            	    lv_nextType_1_0=(Token)match(input,RULE_IDENTIFIERS,FOLLOW_RULE_IDENTIFIERS_in_ruleScalarType1641); 
+            	    lv_typeValue_1_0=(Token)match(input,RULE_IDENTIFIERS,FOLLOW_RULE_IDENTIFIERS_in_ruleScalarType1641); 
 
-            	    			newLeafNode(lv_nextType_1_0, grammarAccess.getScalarTypeAccess().getNextTypeIDENTIFIERSTerminalRuleCall_1_0_0()); 
+            	    			newLeafNode(lv_typeValue_1_0, grammarAccess.getScalarTypeAccess().getTypeValueIDENTIFIERSTerminalRuleCall_1_0_0()); 
             	    		
 
             	    	        if (current==null) {
@@ -1757,8 +1757,8 @@ public class InternalSalParser extends AbstractInternalAntlrParser {
             	    	        }
             	           		addWithLastConsumed(
             	           			current, 
-            	           			"nextType",
-            	            		lv_nextType_1_0, 
+            	           			"typeValue",
+            	            		lv_typeValue_1_0, 
             	            		"IDENTIFIERS");
             	    	    
 
