@@ -683,10 +683,10 @@ public class InternalSalLexer extends Lexer {
         try {
             int _type = RULE_IDENTIFIERS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2804:18: ( ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '?' | '_' )* | ( '+' | '-' | '*' | '/' | '=' )+ ) )
-            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2804:20: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '?' | '_' )* | ( '+' | '-' | '*' | '/' | '=' )+ )
+            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2688:18: ( ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '?' | '_' )* | ( '+' | '-' | '*' | '/' | '=' )+ ) )
+            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2688:20: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '?' | '_' )* | ( '+' | '-' | '*' | '/' | '=' )+ )
             {
-            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2804:20: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '?' | '_' )* | ( '+' | '-' | '*' | '/' | '=' )+ )
+            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2688:20: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '?' | '_' )* | ( '+' | '-' | '*' | '/' | '=' )+ )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -704,7 +704,7 @@ public class InternalSalLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2804:21: ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '?' | '_' )*
+                    // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2688:21: ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '?' | '_' )*
                     {
                     if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                         input.consume();
@@ -715,7 +715,7 @@ public class InternalSalLexer extends Lexer {
                         recover(mse);
                         throw mse;}
 
-                    // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2804:41: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '?' | '_' )*
+                    // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2688:41: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '?' | '_' )*
                     loop1:
                     do {
                         int alt1=2;
@@ -752,9 +752,9 @@ public class InternalSalLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2804:79: ( '+' | '-' | '*' | '/' | '=' )+
+                    // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2688:79: ( '+' | '-' | '*' | '/' | '=' )+
                     {
-                    // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2804:79: ( '+' | '-' | '*' | '/' | '=' )+
+                    // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2688:79: ( '+' | '-' | '*' | '/' | '=' )+
                     int cnt2=0;
                     loop2:
                     do {
@@ -814,10 +814,10 @@ public class InternalSalLexer extends Lexer {
         try {
             int _type = RULE_NUMERALS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2806:15: ( ( '0' .. '9' )+ )
-            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2806:17: ( '0' .. '9' )+
+            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2690:15: ( ( '0' .. '9' )+ )
+            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2690:17: ( '0' .. '9' )+
             {
-            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2806:17: ( '0' .. '9' )+
+            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2690:17: ( '0' .. '9' )+
             int cnt4=0;
             loop4:
             do {
@@ -831,7 +831,7 @@ public class InternalSalLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2806:18: '0' .. '9'
+            	    // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2690:18: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -863,10 +863,10 @@ public class InternalSalLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2808:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2808:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2692:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2692:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2808:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2692:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt5=0;
             loop5:
             do {
@@ -920,8 +920,8 @@ public class InternalSalLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2810:16: ( . )
-            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2810:18: .
+            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2694:16: ( . )
+            // ../org.be.textbe.bt2sal2.xtext.sal/src-gen/org/be/textbe/bt2sal2/xtext/sal/parser/antlr/internal/InternalSal.g:2694:18: .
             {
             matchAny(); 
 

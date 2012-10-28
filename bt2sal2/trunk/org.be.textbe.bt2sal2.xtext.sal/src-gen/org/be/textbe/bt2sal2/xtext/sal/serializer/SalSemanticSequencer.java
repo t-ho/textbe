@@ -464,7 +464,7 @@ public class SalSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (firstDefinition=Definition nextDefinition+=Definition*)
+	 *     definition+=Definition+
 	 */
 	protected void sequence_Definitions(EObject context, Definitions semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -526,7 +526,7 @@ public class SalSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (firstDefinitionOrCommand=DefinitionOrCommand nextDefinitionOrCommand+=DefinitionOrCommand*)
+	 *     definitionOrCommand+=DefinitionOrCommand+
 	 */
 	protected void sequence_InitDecl(EObject context, InitDecl semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -709,7 +709,7 @@ public class SalSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (firstType=IDENTIFIERS nextType+=IDENTIFIERS*)
+	 *     nextType+=IDENTIFIERS+
 	 */
 	protected void sequence_ScalarType(EObject context, ScalarType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -765,7 +765,7 @@ public class SalSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (firstDefinitionOrCommand=DefinitionOrCommand nextDefinitionOrCommand+=DefinitionOrCommand*)
+	 *     definitionOrCommand+=DefinitionOrCommand+
 	 */
 	protected void sequence_TransDecl(EObject context, TransDecl semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -783,7 +783,7 @@ public class SalSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (firstVar=IDENTIFIERS nextVar+=IDENTIFIERS* type=Type)
+	 *     (var+=IDENTIFIERS+ type=Type)
 	 */
 	protected void sequence_VarDecl(EObject context, VarDecl semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -792,7 +792,7 @@ public class SalSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (firstVarDecl=VarDecl nextVarDecl+=VarDecl*)
+	 *     varDecl+=VarDecl+
 	 */
 	protected void sequence_VarDecls(EObject context, VarDecls semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

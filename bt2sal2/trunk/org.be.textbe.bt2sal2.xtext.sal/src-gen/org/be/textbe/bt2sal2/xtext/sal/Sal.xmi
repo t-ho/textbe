@@ -150,14 +150,11 @@
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Keyword" value="{"/>
-      <elements xsi:type="xtext:Assignment" feature="firstType" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.51"/>
-      </elements>
-      <elements xsi:type="xtext:Group" cardinality="*">
-        <elements xsi:type="xtext:Keyword" value=","/>
+      <elements xsi:type="xtext:Group" cardinality="+">
         <elements xsi:type="xtext:Assignment" feature="nextType" operator="+=">
           <terminal xsi:type="xtext:RuleCall" rule="//@rules.51"/>
         </elements>
+        <elements xsi:type="xtext:Keyword" cardinality="?" value=","/>
       </elements>
       <elements xsi:type="xtext:Keyword" value="}"/>
     </alternatives>
@@ -263,16 +260,12 @@
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Keyword" value="INITIALIZATION"/>
-      <elements xsi:type="xtext:Assignment" feature="firstDefinitionOrCommand" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.27"/>
-      </elements>
-      <elements xsi:type="xtext:Group" cardinality="*">
-        <elements xsi:type="xtext:Keyword" value=";"/>
-        <elements xsi:type="xtext:Assignment" feature="nextDefinitionOrCommand" operator="+=">
+      <elements xsi:type="xtext:Group" cardinality="+">
+        <elements xsi:type="xtext:Assignment" feature="definitionOrCommand" operator="+=">
           <terminal xsi:type="xtext:RuleCall" rule="//@rules.27"/>
         </elements>
+        <elements xsi:type="xtext:Keyword" cardinality="?" value=";"/>
       </elements>
-      <elements xsi:type="xtext:Keyword" cardinality="?" value=";"/>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="TransDecl">
@@ -281,32 +274,23 @@
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Keyword" value="TRANSITION"/>
-      <elements xsi:type="xtext:Assignment" feature="firstDefinitionOrCommand" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.27"/>
-      </elements>
-      <elements xsi:type="xtext:Group" cardinality="*">
-        <elements xsi:type="xtext:Keyword" value=";"/>
-        <elements xsi:type="xtext:Assignment" feature="nextDefinitionOrCommand" operator="+=">
+      <elements xsi:type="xtext:Group" cardinality="+">
+        <elements xsi:type="xtext:Assignment" feature="definitionOrCommand" operator="+=">
           <terminal xsi:type="xtext:RuleCall" rule="//@rules.27"/>
         </elements>
+        <elements xsi:type="xtext:Keyword" cardinality="?" value=";"/>
       </elements>
-      <elements xsi:type="xtext:Keyword" cardinality="?" value=";"/>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="VarDecls">
     <type metamodel="//@metamodelDeclarations.1">
       <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//VarDecls"/>
     </type>
-    <alternatives xsi:type="xtext:Group">
-      <elements xsi:type="xtext:Assignment" feature="firstVarDecl" operator="=">
+    <alternatives xsi:type="xtext:Group" cardinality="+">
+      <elements xsi:type="xtext:Assignment" feature="varDecl" operator="+=">
         <terminal xsi:type="xtext:RuleCall" rule="//@rules.25"/>
       </elements>
-      <elements xsi:type="xtext:Group" cardinality="*">
-        <elements xsi:type="xtext:Keyword" value=","/>
-        <elements xsi:type="xtext:Assignment" feature="nextVarDecl" operator="+=">
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.25"/>
-        </elements>
-      </elements>
+      <elements xsi:type="xtext:Keyword" cardinality="?" value=","/>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="VarDecl">
@@ -314,14 +298,11 @@
       <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//VarDecl"/>
     </type>
     <alternatives xsi:type="xtext:Group">
-      <elements xsi:type="xtext:Assignment" feature="firstVar" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.51"/>
-      </elements>
-      <elements xsi:type="xtext:Group" cardinality="*">
-        <elements xsi:type="xtext:Keyword" value=","/>
-        <elements xsi:type="xtext:Assignment" feature="nextVar" operator="+=">
+      <elements xsi:type="xtext:Group" cardinality="+">
+        <elements xsi:type="xtext:Assignment" feature="var" operator="+=">
           <terminal xsi:type="xtext:RuleCall" rule="//@rules.51"/>
         </elements>
+        <elements xsi:type="xtext:Keyword" cardinality="?" value=","/>
       </elements>
       <elements xsi:type="xtext:Keyword" value=": "/>
       <elements xsi:type="xtext:Assignment" feature="type" operator="=">
@@ -333,16 +314,11 @@
     <type metamodel="//@metamodelDeclarations.1">
       <classifier xsi:type="ecore:EClass" href="http://www.be.org/textbe/bt2sal2/xtext/sal/Sal#//Definitions"/>
     </type>
-    <alternatives xsi:type="xtext:Group">
-      <elements xsi:type="xtext:Assignment" feature="firstDefinition" operator="=">
+    <alternatives xsi:type="xtext:Group" cardinality="+">
+      <elements xsi:type="xtext:Assignment" feature="definition" operator="+=">
         <terminal xsi:type="xtext:RuleCall" rule="//@rules.28"/>
       </elements>
-      <elements xsi:type="xtext:Group" cardinality="*">
-        <elements xsi:type="xtext:Keyword" value=";"/>
-        <elements xsi:type="xtext:Assignment" feature="nextDefinition" operator="+=">
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.28"/>
-        </elements>
-      </elements>
+      <elements xsi:type="xtext:Keyword" cardinality="?" value=";"/>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="DefinitionOrCommand">
