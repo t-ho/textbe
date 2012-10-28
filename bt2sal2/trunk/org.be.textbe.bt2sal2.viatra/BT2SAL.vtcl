@@ -1,0 +1,155 @@
+import nemf.packages.textbt;
+import nemf.packages.sal;
+import nemf.ecore.datatypes;
+
+machine BT2SAL
+{
+	rule main() = seq
+	{
+		println("Let the translation begins...");
+	}
+	
+	gtrule component2Type(out Component, in TypeDeclaration) = {
+		precondition pattern untranslatedComponentType(Component) = {
+			component.ComponentType(Component);
+		}
+		postcondition pattern translatedComponentType(Component,TypeDeclaration,Type) = {
+			component.ComponentType(Component);
+			'ScalarType'(Type);
+			find typeOfTypeDeclaration(Type,TypeDeclaration);
+		}
+		action {
+			call copyNameUpperCase(Component,Type);
+			forall StateRealization with apply stateRealization2TypeValue(StateRealization,Component,Type) do skip;
+		}
+	}
+	
+	pattern typeOfTypeDeclaration(Type,TypeDeclaration) = {
+		'TypeDef'(Type);
+		'TypeDeclaration'(TypeDeclaration);
+		'TypeDeclaration'.typeDef(Def,TypeDeclaration,Type);
+	}
+	
+	gtrule stateRealization2TypeValue(out StateRealization, out Component, in Type) = {
+		precondition pattern untranslatedStateRealization(StateRealization,Component) = {
+			component.ComponentType(Component);
+			node.behavior.state.StateRealization(StateRealization);
+			component.ComponentType.behavior(Behavior,Component,StateRealization);
+		}
+		postcondition pattern translatedStateRealization(StateRealization,Type,TypeValue) = {
+			node.behavior.state.StateRealization(StateRealization);
+			'ScalarType'(Type);
+			'EString'(TypeValue);
+			ScalarType.typeValue(Value,Type,TypeValue);
+		}
+		action {
+			call copyNameLowerCase(StateRealization,TypeValue);
+		}
+	}
+	
+	gtrule component2LocalVariable(out Component, in LocalVarDecls) = {
+		precondition pattern untranslatedComponentVariable(Component) = {
+			component.ComponentType(Component);
+		}
+		postcondition pattern translatedComponentVariable(Component,Variable,VarDecl,LocalVarDecls) = {
+			component.ComponentType(Component);
+			'EString'(Variable);
+			'VarDecl'(VarDecl);
+			'VarDecl'.var(Var,VarDecl,Variable);
+			//To Do: add type
+			'VarDecls'(LocalVarDecls);
+			'VarDecls'.varDecl(Decl,LocalVarDecls,VarDecl);
+		}
+		action {
+			call copyNameLowerCase(Component,Variable);
+		}
+	}
+	
+	gtrule externalInput2InputVariable(out ExternalInput, out Component, in InputVarDecl) = {
+		precondition pattern untranslatedExternalInputVariable(ExternalInput,Component) = {
+			component.ComponentType(Component);
+			node.behavior.event.InternalInput(ExternalInput);
+			component.ComponentType.behavior(Behavior,Component,ExternalInput);
+		}
+		postcondition pattern translatedExternalInputVariable(ExternalInput,InputVarDecl,Variable) = {
+			node.behavior.event.InternalInput(ExternalInput);
+			'EString'(Variable);
+			'VarDecl'(InputVarDecl);
+			'VarDecl'.var(Var,InputVarDecl,Variable);
+		}
+		action {
+			call copyNameExternalInput(Component,ExternalInput,Variable);
+		}
+	}
+	
+	gtrule externalOutput2OutputVariable(out ExternalOutput, out Component, in OutputVarDecl) = {
+		precondition pattern untranslatedExternalOutputVariable(ExternalOutput,Component) = {
+			component.ComponentType(Component);
+			node.behavior.event.ExternalOutput(ExternalOutput);
+			component.ComponentType.behavior(Behavior,Component,ExternalOutput);
+		}
+		postcondition pattern translatedExternalOutputVariable(ExternalOutput,OutputVarDecl,Variable) = {
+			node.behavior.event.ExternalOutput(ExternalOutput);
+			'EString'(Variable);
+			'VarDecl'(OutputVarDecl);
+			'VarDecl'.var(Var,OutputVarDecl,Variable);
+		}
+		action {
+			call copyNameExternalOutput(Component,ExternalOutput,Variable);
+		}
+	}
+	
+	
+	
+	rule copyName(in BTElement, in SALElement) = 
+	let NameStr = undef, NameEdge = undef, Name = undef in seq {
+		rename(SALElement, name(BTElement));
+		//To Do: Copy name string
+		new ('EString'.name(NameStr) in SALElement);
+		new ('EString'.nameRel(NameEdge, SALElement, NameStr)); 
+		setValue(NameStr, name(BTElement));
+	}
+	
+	rule copyNameUpperCase(in BTElement, in SALElement) = 
+	let NameStr = undef, NameEdge = undef, Name = undef in seq {
+		rename(SALElement, name(BTElement));
+		//To Do: Copy name string
+		new ('EString'.name(NameStr) in SALElement);
+		new ('EString'.nameRel(NameEdge, SALElement, NameStr)); 
+		setValue(NameStr, str.toUpperCase(name(BTElement)));
+	}
+	
+	rule copyNameLowerCase(in BTElement, in SALElement) = 
+	let NameStr = undef, NameEdge = undef, Name = undef in seq {
+		rename(SALElement, name(BTElement));
+		//To Do: Copy name string
+		new ('EString'.name(NameStr) in SALElement);
+		new ('EString'.nameRel(NameEdge, SALElement, NameStr)); 
+		setValue(NameStr, str.toLowerCase(name(BTElement)));
+	}
+	
+	rule copyNameExternalInput(in BTComponent, in BTExtInput, in SALVariable) = 
+	let NameStr = undef, NameEdge = undef, Name = undef in seq {
+		//To Do: Copy name string
+		new ('EString'.name(NameStr) in SALVariable);
+		new ('EString'.nameRel(NameEdge, SALVariable, NameStr)); 
+		setValue(NameStr, "extIn_"+str.toLowerCase(name(BTComponent)+"_"+name(BTExtInput)));
+		rename(SALVariable, NameStr);
+	}
+	
+	rule copyNameExternalOutput(in BTComponent, in BTExtInput, in SALVariable) = 
+	let NameStr = undef, NameEdge = undef, Name = undef in seq {
+		//To Do: Copy name string
+		new ('EString'.name(NameStr) in SALVariable);
+		new ('EString'.nameRel(NameEdge, SALVariable, NameStr)); 
+		setValue(NameStr, "extOut_"+str.toLowerCase(name(BTComponent)+"_"+name(BTExtInput)));
+		rename(SALVariable, NameStr);
+	}
+	
+	pattern BTElementName(BTElement,Name) = {
+		NamedElement(BTElement);
+		'EString'(Name);
+		NamedElement.name(TheName,BTElement,Name);
+	}
+	
+}
