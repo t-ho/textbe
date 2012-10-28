@@ -59,7 +59,7 @@ Bound:
 
 ScalarType:
 	//"{" firstType=IDENTIFIERS ("," nextType+=IDENTIFIERS)* "}"
-	"{" (nextType+=IDENTIFIERS (",")?)+ "}"
+	"{" (typeValue+=IDENTIFIERS (",")?)+ "}"
 ;
 
 //Module

@@ -709,7 +709,7 @@ public class SalSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     nextType+=IDENTIFIERS+
+	 *     typeValue+=IDENTIFIERS+
 	 */
 	protected void sequence_ScalarType(EObject context, ScalarType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

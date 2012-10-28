@@ -691,9 +691,9 @@ ruleScalarType returns [EObject current=null]
     }
 ((
 (
-		lv_nextType_1_0=RULE_IDENTIFIERS
+		lv_typeValue_1_0=RULE_IDENTIFIERS
 		{
-			newLeafNode(lv_nextType_1_0, grammarAccess.getScalarTypeAccess().getNextTypeIDENTIFIERSTerminalRuleCall_1_0_0()); 
+			newLeafNode(lv_typeValue_1_0, grammarAccess.getScalarTypeAccess().getTypeValueIDENTIFIERSTerminalRuleCall_1_0_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -701,8 +701,8 @@ ruleScalarType returns [EObject current=null]
 	        }
        		addWithLastConsumed(
        			$current, 
-       			"nextType",
-        		lv_nextType_1_0, 
+       			"typeValue",
+        		lv_typeValue_1_0, 
         		"IDENTIFIERS");
 	    }
 

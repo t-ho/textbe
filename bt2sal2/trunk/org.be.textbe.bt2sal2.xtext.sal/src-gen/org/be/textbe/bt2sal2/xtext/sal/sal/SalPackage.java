@@ -412,13 +412,13 @@ public interface SalPackage extends EPackage
   int SCALAR_TYPE = 12;
 
   /**
-   * The feature id for the '<em><b>Next Type</b></em>' attribute list.
+   * The feature id for the '<em><b>Type Value</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SCALAR_TYPE__NEXT_TYPE = TYPE_DEF_FEATURE_COUNT + 0;
+  int SCALAR_TYPE__TYPE_VALUE = TYPE_DEF_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Scalar Type</em>' class.
@@ -1784,15 +1784,15 @@ public interface SalPackage extends EPackage
   EClass getScalarType();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.be.textbe.bt2sal2.xtext.sal.sal.ScalarType#getNextType <em>Next Type</em>}'.
+   * Returns the meta object for the attribute list '{@link org.be.textbe.bt2sal2.xtext.sal.sal.ScalarType#getTypeValue <em>Type Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Next Type</em>'.
-   * @see org.be.textbe.bt2sal2.xtext.sal.sal.ScalarType#getNextType()
+   * @return the meta object for the attribute list '<em>Type Value</em>'.
+   * @see org.be.textbe.bt2sal2.xtext.sal.sal.ScalarType#getTypeValue()
    * @see #getScalarType()
    * @generated
    */
-  EAttribute getScalarType_NextType();
+  EAttribute getScalarType_TypeValue();
 
   /**
    * Returns the meta object for class '{@link org.be.textbe.bt2sal2.xtext.sal.sal.ModuleDeclaration <em>Module Declaration</em>}'.
@@ -2864,12 +2864,12 @@ public interface SalPackage extends EPackage
     EClass SCALAR_TYPE = eINSTANCE.getScalarType();
 
     /**
-     * The meta object literal for the '<em><b>Next Type</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Type Value</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute SCALAR_TYPE__NEXT_TYPE = eINSTANCE.getScalarType_NextType();
+    EAttribute SCALAR_TYPE__TYPE_VALUE = eINSTANCE.getScalarType_TypeValue();
 
     /**
      * The meta object literal for the '{@link org.be.textbe.bt2sal2.xtext.sal.sal.impl.ModuleDeclarationImpl <em>Module Declaration</em>}' class.

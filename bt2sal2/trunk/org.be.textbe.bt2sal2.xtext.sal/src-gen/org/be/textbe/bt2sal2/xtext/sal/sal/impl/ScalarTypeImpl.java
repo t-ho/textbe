@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.be.textbe.bt2sal2.xtext.sal.sal.impl.ScalarTypeImpl#getNextType <em>Next Type</em>}</li>
+ *   <li>{@link org.be.textbe.bt2sal2.xtext.sal.sal.impl.ScalarTypeImpl#getTypeValue <em>Type Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -29,14 +29,14 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
 public class ScalarTypeImpl extends TypeDefImpl implements ScalarType
 {
   /**
-   * The cached value of the '{@link #getNextType() <em>Next Type</em>}' attribute list.
+   * The cached value of the '{@link #getTypeValue() <em>Type Value</em>}' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getNextType()
+   * @see #getTypeValue()
    * @generated
    * @ordered
    */
-  protected EList<String> nextType;
+  protected EList<String> typeValue;
 
   /**
    * <!-- begin-user-doc -->
@@ -64,13 +64,13 @@ public class ScalarTypeImpl extends TypeDefImpl implements ScalarType
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getNextType()
+  public EList<String> getTypeValue()
   {
-    if (nextType == null)
+    if (typeValue == null)
     {
-      nextType = new EDataTypeEList<String>(String.class, this, SalPackage.SCALAR_TYPE__NEXT_TYPE);
+      typeValue = new EDataTypeEList<String>(String.class, this, SalPackage.SCALAR_TYPE__TYPE_VALUE);
     }
-    return nextType;
+    return typeValue;
   }
 
   /**
@@ -83,8 +83,8 @@ public class ScalarTypeImpl extends TypeDefImpl implements ScalarType
   {
     switch (featureID)
     {
-      case SalPackage.SCALAR_TYPE__NEXT_TYPE:
-        return getNextType();
+      case SalPackage.SCALAR_TYPE__TYPE_VALUE:
+        return getTypeValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -100,9 +100,9 @@ public class ScalarTypeImpl extends TypeDefImpl implements ScalarType
   {
     switch (featureID)
     {
-      case SalPackage.SCALAR_TYPE__NEXT_TYPE:
-        getNextType().clear();
-        getNextType().addAll((Collection<? extends String>)newValue);
+      case SalPackage.SCALAR_TYPE__TYPE_VALUE:
+        getTypeValue().clear();
+        getTypeValue().addAll((Collection<? extends String>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -118,8 +118,8 @@ public class ScalarTypeImpl extends TypeDefImpl implements ScalarType
   {
     switch (featureID)
     {
-      case SalPackage.SCALAR_TYPE__NEXT_TYPE:
-        getNextType().clear();
+      case SalPackage.SCALAR_TYPE__TYPE_VALUE:
+        getTypeValue().clear();
         return;
     }
     super.eUnset(featureID);
@@ -135,8 +135,8 @@ public class ScalarTypeImpl extends TypeDefImpl implements ScalarType
   {
     switch (featureID)
     {
-      case SalPackage.SCALAR_TYPE__NEXT_TYPE:
-        return nextType != null && !nextType.isEmpty();
+      case SalPackage.SCALAR_TYPE__TYPE_VALUE:
+        return typeValue != null && !typeValue.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -152,8 +152,8 @@ public class ScalarTypeImpl extends TypeDefImpl implements ScalarType
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (nextType: ");
-    result.append(nextType);
+    result.append(" (typeValue: ");
+    result.append(typeValue);
     result.append(')');
     return result.toString();
   }
