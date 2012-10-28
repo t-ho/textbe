@@ -42,7 +42,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Bound"/>
   <eClassifiers xsi:type="ecore:EClass" name="ScalarType" eSuperTypes="#//TypeDef">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nextType" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -74,33 +73,24 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InitDecl" eSuperTypes="#//BaseDeclaration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="firstDefinitionOrCommand"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definitionOrCommand" upperBound="-1"
         eType="#//DefinitionOrCommand" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="nextDefinitionOrCommand"
-        upperBound="-1" eType="#//DefinitionOrCommand" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TransDecl" eSuperTypes="#//BaseDeclaration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="firstDefinitionOrCommand"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definitionOrCommand" upperBound="-1"
         eType="#//DefinitionOrCommand" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="nextDefinitionOrCommand"
-        upperBound="-1" eType="#//DefinitionOrCommand" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VarDecls">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="firstVarDecl" eType="#//VarDecl"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="nextVarDecl" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="varDecl" upperBound="-1"
         eType="#//VarDecl" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VarDecl">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstVar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nextVar" unique="false"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="var" unique="false" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Definitions">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="firstDefinition" eType="#//Definition"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="nextDefinition" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definition" upperBound="-1"
         eType="#//Definition" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DefinitionOrCommand"/>

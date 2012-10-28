@@ -28,8 +28,7 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.be.textbe.bt2sal2.xtext.sal.sal.impl.VarDeclImpl#getFirstVar <em>First Var</em>}</li>
- *   <li>{@link org.be.textbe.bt2sal2.xtext.sal.sal.impl.VarDeclImpl#getNextVar <em>Next Var</em>}</li>
+ *   <li>{@link org.be.textbe.bt2sal2.xtext.sal.sal.impl.VarDeclImpl#getVar <em>Var</em>}</li>
  *   <li>{@link org.be.textbe.bt2sal2.xtext.sal.sal.impl.VarDeclImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
@@ -39,34 +38,14 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
 public class VarDeclImpl extends MinimalEObjectImpl.Container implements VarDecl
 {
   /**
-   * The default value of the '{@link #getFirstVar() <em>First Var</em>}' attribute.
+   * The cached value of the '{@link #getVar() <em>Var</em>}' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getFirstVar()
+   * @see #getVar()
    * @generated
    * @ordered
    */
-  protected static final String FIRST_VAR_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getFirstVar() <em>First Var</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getFirstVar()
-   * @generated
-   * @ordered
-   */
-  protected String firstVar = FIRST_VAR_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getNextVar() <em>Next Var</em>}' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getNextVar()
-   * @generated
-   * @ordered
-   */
-  protected EList<String> nextVar;
+  protected EList<String> var;
 
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
@@ -104,36 +83,13 @@ public class VarDeclImpl extends MinimalEObjectImpl.Container implements VarDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getFirstVar()
+  public EList<String> getVar()
   {
-    return firstVar;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setFirstVar(String newFirstVar)
-  {
-    String oldFirstVar = firstVar;
-    firstVar = newFirstVar;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, SalPackage.VAR_DECL__FIRST_VAR, oldFirstVar, firstVar));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<String> getNextVar()
-  {
-    if (nextVar == null)
+    if (var == null)
     {
-      nextVar = new EDataTypeEList<String>(String.class, this, SalPackage.VAR_DECL__NEXT_VAR);
+      var = new EDataTypeEList<String>(String.class, this, SalPackage.VAR_DECL__VAR);
     }
-    return nextVar;
+    return var;
   }
 
   /**
@@ -210,10 +166,8 @@ public class VarDeclImpl extends MinimalEObjectImpl.Container implements VarDecl
   {
     switch (featureID)
     {
-      case SalPackage.VAR_DECL__FIRST_VAR:
-        return getFirstVar();
-      case SalPackage.VAR_DECL__NEXT_VAR:
-        return getNextVar();
+      case SalPackage.VAR_DECL__VAR:
+        return getVar();
       case SalPackage.VAR_DECL__TYPE:
         return getType();
     }
@@ -231,12 +185,9 @@ public class VarDeclImpl extends MinimalEObjectImpl.Container implements VarDecl
   {
     switch (featureID)
     {
-      case SalPackage.VAR_DECL__FIRST_VAR:
-        setFirstVar((String)newValue);
-        return;
-      case SalPackage.VAR_DECL__NEXT_VAR:
-        getNextVar().clear();
-        getNextVar().addAll((Collection<? extends String>)newValue);
+      case SalPackage.VAR_DECL__VAR:
+        getVar().clear();
+        getVar().addAll((Collection<? extends String>)newValue);
         return;
       case SalPackage.VAR_DECL__TYPE:
         setType((Type)newValue);
@@ -255,11 +206,8 @@ public class VarDeclImpl extends MinimalEObjectImpl.Container implements VarDecl
   {
     switch (featureID)
     {
-      case SalPackage.VAR_DECL__FIRST_VAR:
-        setFirstVar(FIRST_VAR_EDEFAULT);
-        return;
-      case SalPackage.VAR_DECL__NEXT_VAR:
-        getNextVar().clear();
+      case SalPackage.VAR_DECL__VAR:
+        getVar().clear();
         return;
       case SalPackage.VAR_DECL__TYPE:
         setType((Type)null);
@@ -278,10 +226,8 @@ public class VarDeclImpl extends MinimalEObjectImpl.Container implements VarDecl
   {
     switch (featureID)
     {
-      case SalPackage.VAR_DECL__FIRST_VAR:
-        return FIRST_VAR_EDEFAULT == null ? firstVar != null : !FIRST_VAR_EDEFAULT.equals(firstVar);
-      case SalPackage.VAR_DECL__NEXT_VAR:
-        return nextVar != null && !nextVar.isEmpty();
+      case SalPackage.VAR_DECL__VAR:
+        return var != null && !var.isEmpty();
       case SalPackage.VAR_DECL__TYPE:
         return type != null;
     }
@@ -299,10 +245,8 @@ public class VarDeclImpl extends MinimalEObjectImpl.Container implements VarDecl
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (firstVar: ");
-    result.append(firstVar);
-    result.append(", nextVar: ");
-    result.append(nextVar);
+    result.append(" (var: ");
+    result.append(var);
     result.append(')');
     return result.toString();
   }

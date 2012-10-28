@@ -40,7 +40,6 @@
     </genClasses>
     <genClasses ecoreClass="Sal.ecore#//Bound"/>
     <genClasses ecoreClass="Sal.ecore#//ScalarType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sal.ecore#//ScalarType/firstType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sal.ecore#//ScalarType/nextType"/>
     </genClasses>
     <genClasses ecoreClass="Sal.ecore#//ModuleDeclaration">
@@ -65,25 +64,20 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sal.ecore#//DefDecl/definitions"/>
     </genClasses>
     <genClasses ecoreClass="Sal.ecore#//InitDecl">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sal.ecore#//InitDecl/firstDefinitionOrCommand"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sal.ecore#//InitDecl/nextDefinitionOrCommand"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sal.ecore#//InitDecl/definitionOrCommand"/>
     </genClasses>
     <genClasses ecoreClass="Sal.ecore#//TransDecl">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sal.ecore#//TransDecl/firstDefinitionOrCommand"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sal.ecore#//TransDecl/nextDefinitionOrCommand"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sal.ecore#//TransDecl/definitionOrCommand"/>
     </genClasses>
     <genClasses ecoreClass="Sal.ecore#//VarDecls">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sal.ecore#//VarDecls/firstVarDecl"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sal.ecore#//VarDecls/nextVarDecl"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sal.ecore#//VarDecls/varDecl"/>
     </genClasses>
     <genClasses ecoreClass="Sal.ecore#//VarDecl">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sal.ecore#//VarDecl/firstVar"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sal.ecore#//VarDecl/nextVar"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sal.ecore#//VarDecl/var"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sal.ecore#//VarDecl/type"/>
     </genClasses>
     <genClasses ecoreClass="Sal.ecore#//Definitions">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sal.ecore#//Definitions/firstDefinition"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sal.ecore#//Definitions/nextDefinition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sal.ecore#//Definitions/definition"/>
     </genClasses>
     <genClasses ecoreClass="Sal.ecore#//DefinitionOrCommand"/>
     <genClasses ecoreClass="Sal.ecore#//Definition"/>

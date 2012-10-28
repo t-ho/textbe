@@ -7,13 +7,9 @@ import java.util.Collection;
 import org.be.textbe.bt2sal2.xtext.sal.sal.SalPackage;
 import org.be.textbe.bt2sal2.xtext.sal.sal.ScalarType;
 
-import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 
@@ -24,7 +20,6 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.be.textbe.bt2sal2.xtext.sal.sal.impl.ScalarTypeImpl#getFirstType <em>First Type</em>}</li>
  *   <li>{@link org.be.textbe.bt2sal2.xtext.sal.sal.impl.ScalarTypeImpl#getNextType <em>Next Type</em>}</li>
  * </ul>
  * </p>
@@ -33,26 +28,6 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  */
 public class ScalarTypeImpl extends TypeDefImpl implements ScalarType
 {
-  /**
-   * The default value of the '{@link #getFirstType() <em>First Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getFirstType()
-   * @generated
-   * @ordered
-   */
-  protected static final String FIRST_TYPE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getFirstType() <em>First Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getFirstType()
-   * @generated
-   * @ordered
-   */
-  protected String firstType = FIRST_TYPE_EDEFAULT;
-
   /**
    * The cached value of the '{@link #getNextType() <em>Next Type</em>}' attribute list.
    * <!-- begin-user-doc -->
@@ -89,29 +64,6 @@ public class ScalarTypeImpl extends TypeDefImpl implements ScalarType
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getFirstType()
-  {
-    return firstType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setFirstType(String newFirstType)
-  {
-    String oldFirstType = firstType;
-    firstType = newFirstType;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, SalPackage.SCALAR_TYPE__FIRST_TYPE, oldFirstType, firstType));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EList<String> getNextType()
   {
     if (nextType == null)
@@ -131,8 +83,6 @@ public class ScalarTypeImpl extends TypeDefImpl implements ScalarType
   {
     switch (featureID)
     {
-      case SalPackage.SCALAR_TYPE__FIRST_TYPE:
-        return getFirstType();
       case SalPackage.SCALAR_TYPE__NEXT_TYPE:
         return getNextType();
     }
@@ -150,9 +100,6 @@ public class ScalarTypeImpl extends TypeDefImpl implements ScalarType
   {
     switch (featureID)
     {
-      case SalPackage.SCALAR_TYPE__FIRST_TYPE:
-        setFirstType((String)newValue);
-        return;
       case SalPackage.SCALAR_TYPE__NEXT_TYPE:
         getNextType().clear();
         getNextType().addAll((Collection<? extends String>)newValue);
@@ -171,9 +118,6 @@ public class ScalarTypeImpl extends TypeDefImpl implements ScalarType
   {
     switch (featureID)
     {
-      case SalPackage.SCALAR_TYPE__FIRST_TYPE:
-        setFirstType(FIRST_TYPE_EDEFAULT);
-        return;
       case SalPackage.SCALAR_TYPE__NEXT_TYPE:
         getNextType().clear();
         return;
@@ -191,8 +135,6 @@ public class ScalarTypeImpl extends TypeDefImpl implements ScalarType
   {
     switch (featureID)
     {
-      case SalPackage.SCALAR_TYPE__FIRST_TYPE:
-        return FIRST_TYPE_EDEFAULT == null ? firstType != null : !FIRST_TYPE_EDEFAULT.equals(firstType);
       case SalPackage.SCALAR_TYPE__NEXT_TYPE:
         return nextType != null && !nextType.isEmpty();
     }
@@ -210,9 +152,7 @@ public class ScalarTypeImpl extends TypeDefImpl implements ScalarType
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (firstType: ");
-    result.append(firstType);
-    result.append(", nextType: ");
+    result.append(" (nextType: ");
     result.append(nextType);
     result.append(')');
     return result.toString();

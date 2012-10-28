@@ -8,15 +8,12 @@ import org.be.textbe.bt2sal2.xtext.sal.sal.DefinitionOrCommand;
 import org.be.textbe.bt2sal2.xtext.sal.sal.SalPackage;
 import org.be.textbe.bt2sal2.xtext.sal.sal.TransDecl;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -28,8 +25,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.be.textbe.bt2sal2.xtext.sal.sal.impl.TransDeclImpl#getFirstDefinitionOrCommand <em>First Definition Or Command</em>}</li>
- *   <li>{@link org.be.textbe.bt2sal2.xtext.sal.sal.impl.TransDeclImpl#getNextDefinitionOrCommand <em>Next Definition Or Command</em>}</li>
+ *   <li>{@link org.be.textbe.bt2sal2.xtext.sal.sal.impl.TransDeclImpl#getDefinitionOrCommand <em>Definition Or Command</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,24 +34,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class TransDeclImpl extends BaseDeclarationImpl implements TransDecl
 {
   /**
-   * The cached value of the '{@link #getFirstDefinitionOrCommand() <em>First Definition Or Command</em>}' containment reference.
+   * The cached value of the '{@link #getDefinitionOrCommand() <em>Definition Or Command</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getFirstDefinitionOrCommand()
+   * @see #getDefinitionOrCommand()
    * @generated
    * @ordered
    */
-  protected DefinitionOrCommand firstDefinitionOrCommand;
-
-  /**
-   * The cached value of the '{@link #getNextDefinitionOrCommand() <em>Next Definition Or Command</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getNextDefinitionOrCommand()
-   * @generated
-   * @ordered
-   */
-  protected EList<DefinitionOrCommand> nextDefinitionOrCommand;
+  protected EList<DefinitionOrCommand> definitionOrCommand;
 
   /**
    * <!-- begin-user-doc -->
@@ -83,61 +69,13 @@ public class TransDeclImpl extends BaseDeclarationImpl implements TransDecl
    * <!-- end-user-doc -->
    * @generated
    */
-  public DefinitionOrCommand getFirstDefinitionOrCommand()
+  public EList<DefinitionOrCommand> getDefinitionOrCommand()
   {
-    return firstDefinitionOrCommand;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetFirstDefinitionOrCommand(DefinitionOrCommand newFirstDefinitionOrCommand, NotificationChain msgs)
-  {
-    DefinitionOrCommand oldFirstDefinitionOrCommand = firstDefinitionOrCommand;
-    firstDefinitionOrCommand = newFirstDefinitionOrCommand;
-    if (eNotificationRequired())
+    if (definitionOrCommand == null)
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SalPackage.TRANS_DECL__FIRST_DEFINITION_OR_COMMAND, oldFirstDefinitionOrCommand, newFirstDefinitionOrCommand);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
+      definitionOrCommand = new EObjectContainmentEList<DefinitionOrCommand>(DefinitionOrCommand.class, this, SalPackage.TRANS_DECL__DEFINITION_OR_COMMAND);
     }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setFirstDefinitionOrCommand(DefinitionOrCommand newFirstDefinitionOrCommand)
-  {
-    if (newFirstDefinitionOrCommand != firstDefinitionOrCommand)
-    {
-      NotificationChain msgs = null;
-      if (firstDefinitionOrCommand != null)
-        msgs = ((InternalEObject)firstDefinitionOrCommand).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SalPackage.TRANS_DECL__FIRST_DEFINITION_OR_COMMAND, null, msgs);
-      if (newFirstDefinitionOrCommand != null)
-        msgs = ((InternalEObject)newFirstDefinitionOrCommand).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SalPackage.TRANS_DECL__FIRST_DEFINITION_OR_COMMAND, null, msgs);
-      msgs = basicSetFirstDefinitionOrCommand(newFirstDefinitionOrCommand, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, SalPackage.TRANS_DECL__FIRST_DEFINITION_OR_COMMAND, newFirstDefinitionOrCommand, newFirstDefinitionOrCommand));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<DefinitionOrCommand> getNextDefinitionOrCommand()
-  {
-    if (nextDefinitionOrCommand == null)
-    {
-      nextDefinitionOrCommand = new EObjectContainmentEList<DefinitionOrCommand>(DefinitionOrCommand.class, this, SalPackage.TRANS_DECL__NEXT_DEFINITION_OR_COMMAND);
-    }
-    return nextDefinitionOrCommand;
+    return definitionOrCommand;
   }
 
   /**
@@ -150,10 +88,8 @@ public class TransDeclImpl extends BaseDeclarationImpl implements TransDecl
   {
     switch (featureID)
     {
-      case SalPackage.TRANS_DECL__FIRST_DEFINITION_OR_COMMAND:
-        return basicSetFirstDefinitionOrCommand(null, msgs);
-      case SalPackage.TRANS_DECL__NEXT_DEFINITION_OR_COMMAND:
-        return ((InternalEList<?>)getNextDefinitionOrCommand()).basicRemove(otherEnd, msgs);
+      case SalPackage.TRANS_DECL__DEFINITION_OR_COMMAND:
+        return ((InternalEList<?>)getDefinitionOrCommand()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -168,10 +104,8 @@ public class TransDeclImpl extends BaseDeclarationImpl implements TransDecl
   {
     switch (featureID)
     {
-      case SalPackage.TRANS_DECL__FIRST_DEFINITION_OR_COMMAND:
-        return getFirstDefinitionOrCommand();
-      case SalPackage.TRANS_DECL__NEXT_DEFINITION_OR_COMMAND:
-        return getNextDefinitionOrCommand();
+      case SalPackage.TRANS_DECL__DEFINITION_OR_COMMAND:
+        return getDefinitionOrCommand();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -187,12 +121,9 @@ public class TransDeclImpl extends BaseDeclarationImpl implements TransDecl
   {
     switch (featureID)
     {
-      case SalPackage.TRANS_DECL__FIRST_DEFINITION_OR_COMMAND:
-        setFirstDefinitionOrCommand((DefinitionOrCommand)newValue);
-        return;
-      case SalPackage.TRANS_DECL__NEXT_DEFINITION_OR_COMMAND:
-        getNextDefinitionOrCommand().clear();
-        getNextDefinitionOrCommand().addAll((Collection<? extends DefinitionOrCommand>)newValue);
+      case SalPackage.TRANS_DECL__DEFINITION_OR_COMMAND:
+        getDefinitionOrCommand().clear();
+        getDefinitionOrCommand().addAll((Collection<? extends DefinitionOrCommand>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -208,11 +139,8 @@ public class TransDeclImpl extends BaseDeclarationImpl implements TransDecl
   {
     switch (featureID)
     {
-      case SalPackage.TRANS_DECL__FIRST_DEFINITION_OR_COMMAND:
-        setFirstDefinitionOrCommand((DefinitionOrCommand)null);
-        return;
-      case SalPackage.TRANS_DECL__NEXT_DEFINITION_OR_COMMAND:
-        getNextDefinitionOrCommand().clear();
+      case SalPackage.TRANS_DECL__DEFINITION_OR_COMMAND:
+        getDefinitionOrCommand().clear();
         return;
     }
     super.eUnset(featureID);
@@ -228,10 +156,8 @@ public class TransDeclImpl extends BaseDeclarationImpl implements TransDecl
   {
     switch (featureID)
     {
-      case SalPackage.TRANS_DECL__FIRST_DEFINITION_OR_COMMAND:
-        return firstDefinitionOrCommand != null;
-      case SalPackage.TRANS_DECL__NEXT_DEFINITION_OR_COMMAND:
-        return nextDefinitionOrCommand != null && !nextDefinitionOrCommand.isEmpty();
+      case SalPackage.TRANS_DECL__DEFINITION_OR_COMMAND:
+        return definitionOrCommand != null && !definitionOrCommand.isEmpty();
     }
     return super.eIsSet(featureID);
   }

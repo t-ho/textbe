@@ -412,22 +412,13 @@ public interface SalPackage extends EPackage
   int SCALAR_TYPE = 12;
 
   /**
-   * The feature id for the '<em><b>First Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SCALAR_TYPE__FIRST_TYPE = TYPE_DEF_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Next Type</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SCALAR_TYPE__NEXT_TYPE = TYPE_DEF_FEATURE_COUNT + 1;
+  int SCALAR_TYPE__NEXT_TYPE = TYPE_DEF_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Scalar Type</em>' class.
@@ -436,7 +427,7 @@ public interface SalPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SCALAR_TYPE_FEATURE_COUNT = TYPE_DEF_FEATURE_COUNT + 2;
+  int SCALAR_TYPE_FEATURE_COUNT = TYPE_DEF_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.be.textbe.bt2sal2.xtext.sal.sal.impl.ModuleDeclarationImpl <em>Module Declaration</em>}' class.
@@ -683,22 +674,13 @@ public interface SalPackage extends EPackage
   int INIT_DECL = 22;
 
   /**
-   * The feature id for the '<em><b>First Definition Or Command</b></em>' containment reference.
+   * The feature id for the '<em><b>Definition Or Command</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INIT_DECL__FIRST_DEFINITION_OR_COMMAND = BASE_DECLARATION_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Next Definition Or Command</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INIT_DECL__NEXT_DEFINITION_OR_COMMAND = BASE_DECLARATION_FEATURE_COUNT + 1;
+  int INIT_DECL__DEFINITION_OR_COMMAND = BASE_DECLARATION_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Init Decl</em>' class.
@@ -707,7 +689,7 @@ public interface SalPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INIT_DECL_FEATURE_COUNT = BASE_DECLARATION_FEATURE_COUNT + 2;
+  int INIT_DECL_FEATURE_COUNT = BASE_DECLARATION_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.be.textbe.bt2sal2.xtext.sal.sal.impl.TransDeclImpl <em>Trans Decl</em>}' class.
@@ -720,22 +702,13 @@ public interface SalPackage extends EPackage
   int TRANS_DECL = 23;
 
   /**
-   * The feature id for the '<em><b>First Definition Or Command</b></em>' containment reference.
+   * The feature id for the '<em><b>Definition Or Command</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TRANS_DECL__FIRST_DEFINITION_OR_COMMAND = BASE_DECLARATION_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Next Definition Or Command</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TRANS_DECL__NEXT_DEFINITION_OR_COMMAND = BASE_DECLARATION_FEATURE_COUNT + 1;
+  int TRANS_DECL__DEFINITION_OR_COMMAND = BASE_DECLARATION_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Trans Decl</em>' class.
@@ -744,7 +717,7 @@ public interface SalPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TRANS_DECL_FEATURE_COUNT = BASE_DECLARATION_FEATURE_COUNT + 2;
+  int TRANS_DECL_FEATURE_COUNT = BASE_DECLARATION_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.be.textbe.bt2sal2.xtext.sal.sal.impl.VarDeclsImpl <em>Var Decls</em>}' class.
@@ -757,22 +730,13 @@ public interface SalPackage extends EPackage
   int VAR_DECLS = 24;
 
   /**
-   * The feature id for the '<em><b>First Var Decl</b></em>' containment reference.
+   * The feature id for the '<em><b>Var Decl</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int VAR_DECLS__FIRST_VAR_DECL = 0;
-
-  /**
-   * The feature id for the '<em><b>Next Var Decl</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int VAR_DECLS__NEXT_VAR_DECL = 1;
+  int VAR_DECLS__VAR_DECL = 0;
 
   /**
    * The number of structural features of the '<em>Var Decls</em>' class.
@@ -781,7 +745,7 @@ public interface SalPackage extends EPackage
    * @generated
    * @ordered
    */
-  int VAR_DECLS_FEATURE_COUNT = 2;
+  int VAR_DECLS_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.be.textbe.bt2sal2.xtext.sal.sal.impl.VarDeclImpl <em>Var Decl</em>}' class.
@@ -794,22 +758,13 @@ public interface SalPackage extends EPackage
   int VAR_DECL = 25;
 
   /**
-   * The feature id for the '<em><b>First Var</b></em>' attribute.
+   * The feature id for the '<em><b>Var</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int VAR_DECL__FIRST_VAR = 0;
-
-  /**
-   * The feature id for the '<em><b>Next Var</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int VAR_DECL__NEXT_VAR = 1;
+  int VAR_DECL__VAR = 0;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -818,7 +773,7 @@ public interface SalPackage extends EPackage
    * @generated
    * @ordered
    */
-  int VAR_DECL__TYPE = 2;
+  int VAR_DECL__TYPE = 1;
 
   /**
    * The number of structural features of the '<em>Var Decl</em>' class.
@@ -827,7 +782,7 @@ public interface SalPackage extends EPackage
    * @generated
    * @ordered
    */
-  int VAR_DECL_FEATURE_COUNT = 3;
+  int VAR_DECL_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.be.textbe.bt2sal2.xtext.sal.sal.impl.DefinitionsImpl <em>Definitions</em>}' class.
@@ -840,22 +795,13 @@ public interface SalPackage extends EPackage
   int DEFINITIONS = 26;
 
   /**
-   * The feature id for the '<em><b>First Definition</b></em>' containment reference.
+   * The feature id for the '<em><b>Definition</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DEFINITIONS__FIRST_DEFINITION = 0;
-
-  /**
-   * The feature id for the '<em><b>Next Definition</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DEFINITIONS__NEXT_DEFINITION = 1;
+  int DEFINITIONS__DEFINITION = 0;
 
   /**
    * The number of structural features of the '<em>Definitions</em>' class.
@@ -864,7 +810,7 @@ public interface SalPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DEFINITIONS_FEATURE_COUNT = 2;
+  int DEFINITIONS_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.be.textbe.bt2sal2.xtext.sal.sal.impl.DefinitionOrCommandImpl <em>Definition Or Command</em>}' class.
@@ -1838,17 +1784,6 @@ public interface SalPackage extends EPackage
   EClass getScalarType();
 
   /**
-   * Returns the meta object for the attribute '{@link org.be.textbe.bt2sal2.xtext.sal.sal.ScalarType#getFirstType <em>First Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>First Type</em>'.
-   * @see org.be.textbe.bt2sal2.xtext.sal.sal.ScalarType#getFirstType()
-   * @see #getScalarType()
-   * @generated
-   */
-  EAttribute getScalarType_FirstType();
-
-  /**
    * Returns the meta object for the attribute list '{@link org.be.textbe.bt2sal2.xtext.sal.sal.ScalarType#getNextType <em>Next Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2026,26 +1961,15 @@ public interface SalPackage extends EPackage
   EClass getInitDecl();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.be.textbe.bt2sal2.xtext.sal.sal.InitDecl#getFirstDefinitionOrCommand <em>First Definition Or Command</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.be.textbe.bt2sal2.xtext.sal.sal.InitDecl#getDefinitionOrCommand <em>Definition Or Command</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>First Definition Or Command</em>'.
-   * @see org.be.textbe.bt2sal2.xtext.sal.sal.InitDecl#getFirstDefinitionOrCommand()
+   * @return the meta object for the containment reference list '<em>Definition Or Command</em>'.
+   * @see org.be.textbe.bt2sal2.xtext.sal.sal.InitDecl#getDefinitionOrCommand()
    * @see #getInitDecl()
    * @generated
    */
-  EReference getInitDecl_FirstDefinitionOrCommand();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.be.textbe.bt2sal2.xtext.sal.sal.InitDecl#getNextDefinitionOrCommand <em>Next Definition Or Command</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Next Definition Or Command</em>'.
-   * @see org.be.textbe.bt2sal2.xtext.sal.sal.InitDecl#getNextDefinitionOrCommand()
-   * @see #getInitDecl()
-   * @generated
-   */
-  EReference getInitDecl_NextDefinitionOrCommand();
+  EReference getInitDecl_DefinitionOrCommand();
 
   /**
    * Returns the meta object for class '{@link org.be.textbe.bt2sal2.xtext.sal.sal.TransDecl <em>Trans Decl</em>}'.
@@ -2058,26 +1982,15 @@ public interface SalPackage extends EPackage
   EClass getTransDecl();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.be.textbe.bt2sal2.xtext.sal.sal.TransDecl#getFirstDefinitionOrCommand <em>First Definition Or Command</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.be.textbe.bt2sal2.xtext.sal.sal.TransDecl#getDefinitionOrCommand <em>Definition Or Command</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>First Definition Or Command</em>'.
-   * @see org.be.textbe.bt2sal2.xtext.sal.sal.TransDecl#getFirstDefinitionOrCommand()
+   * @return the meta object for the containment reference list '<em>Definition Or Command</em>'.
+   * @see org.be.textbe.bt2sal2.xtext.sal.sal.TransDecl#getDefinitionOrCommand()
    * @see #getTransDecl()
    * @generated
    */
-  EReference getTransDecl_FirstDefinitionOrCommand();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.be.textbe.bt2sal2.xtext.sal.sal.TransDecl#getNextDefinitionOrCommand <em>Next Definition Or Command</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Next Definition Or Command</em>'.
-   * @see org.be.textbe.bt2sal2.xtext.sal.sal.TransDecl#getNextDefinitionOrCommand()
-   * @see #getTransDecl()
-   * @generated
-   */
-  EReference getTransDecl_NextDefinitionOrCommand();
+  EReference getTransDecl_DefinitionOrCommand();
 
   /**
    * Returns the meta object for class '{@link org.be.textbe.bt2sal2.xtext.sal.sal.VarDecls <em>Var Decls</em>}'.
@@ -2090,26 +2003,15 @@ public interface SalPackage extends EPackage
   EClass getVarDecls();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.be.textbe.bt2sal2.xtext.sal.sal.VarDecls#getFirstVarDecl <em>First Var Decl</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.be.textbe.bt2sal2.xtext.sal.sal.VarDecls#getVarDecl <em>Var Decl</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>First Var Decl</em>'.
-   * @see org.be.textbe.bt2sal2.xtext.sal.sal.VarDecls#getFirstVarDecl()
+   * @return the meta object for the containment reference list '<em>Var Decl</em>'.
+   * @see org.be.textbe.bt2sal2.xtext.sal.sal.VarDecls#getVarDecl()
    * @see #getVarDecls()
    * @generated
    */
-  EReference getVarDecls_FirstVarDecl();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.be.textbe.bt2sal2.xtext.sal.sal.VarDecls#getNextVarDecl <em>Next Var Decl</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Next Var Decl</em>'.
-   * @see org.be.textbe.bt2sal2.xtext.sal.sal.VarDecls#getNextVarDecl()
-   * @see #getVarDecls()
-   * @generated
-   */
-  EReference getVarDecls_NextVarDecl();
+  EReference getVarDecls_VarDecl();
 
   /**
    * Returns the meta object for class '{@link org.be.textbe.bt2sal2.xtext.sal.sal.VarDecl <em>Var Decl</em>}'.
@@ -2122,26 +2024,15 @@ public interface SalPackage extends EPackage
   EClass getVarDecl();
 
   /**
-   * Returns the meta object for the attribute '{@link org.be.textbe.bt2sal2.xtext.sal.sal.VarDecl#getFirstVar <em>First Var</em>}'.
+   * Returns the meta object for the attribute list '{@link org.be.textbe.bt2sal2.xtext.sal.sal.VarDecl#getVar <em>Var</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>First Var</em>'.
-   * @see org.be.textbe.bt2sal2.xtext.sal.sal.VarDecl#getFirstVar()
+   * @return the meta object for the attribute list '<em>Var</em>'.
+   * @see org.be.textbe.bt2sal2.xtext.sal.sal.VarDecl#getVar()
    * @see #getVarDecl()
    * @generated
    */
-  EAttribute getVarDecl_FirstVar();
-
-  /**
-   * Returns the meta object for the attribute list '{@link org.be.textbe.bt2sal2.xtext.sal.sal.VarDecl#getNextVar <em>Next Var</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Next Var</em>'.
-   * @see org.be.textbe.bt2sal2.xtext.sal.sal.VarDecl#getNextVar()
-   * @see #getVarDecl()
-   * @generated
-   */
-  EAttribute getVarDecl_NextVar();
+  EAttribute getVarDecl_Var();
 
   /**
    * Returns the meta object for the containment reference '{@link org.be.textbe.bt2sal2.xtext.sal.sal.VarDecl#getType <em>Type</em>}'.
@@ -2165,26 +2056,15 @@ public interface SalPackage extends EPackage
   EClass getDefinitions();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.be.textbe.bt2sal2.xtext.sal.sal.Definitions#getFirstDefinition <em>First Definition</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.be.textbe.bt2sal2.xtext.sal.sal.Definitions#getDefinition <em>Definition</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>First Definition</em>'.
-   * @see org.be.textbe.bt2sal2.xtext.sal.sal.Definitions#getFirstDefinition()
+   * @return the meta object for the containment reference list '<em>Definition</em>'.
+   * @see org.be.textbe.bt2sal2.xtext.sal.sal.Definitions#getDefinition()
    * @see #getDefinitions()
    * @generated
    */
-  EReference getDefinitions_FirstDefinition();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.be.textbe.bt2sal2.xtext.sal.sal.Definitions#getNextDefinition <em>Next Definition</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Next Definition</em>'.
-   * @see org.be.textbe.bt2sal2.xtext.sal.sal.Definitions#getNextDefinition()
-   * @see #getDefinitions()
-   * @generated
-   */
-  EReference getDefinitions_NextDefinition();
+  EReference getDefinitions_Definition();
 
   /**
    * Returns the meta object for class '{@link org.be.textbe.bt2sal2.xtext.sal.sal.DefinitionOrCommand <em>Definition Or Command</em>}'.
@@ -2984,14 +2864,6 @@ public interface SalPackage extends EPackage
     EClass SCALAR_TYPE = eINSTANCE.getScalarType();
 
     /**
-     * The meta object literal for the '<em><b>First Type</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SCALAR_TYPE__FIRST_TYPE = eINSTANCE.getScalarType_FirstType();
-
-    /**
      * The meta object literal for the '<em><b>Next Type</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3148,20 +3020,12 @@ public interface SalPackage extends EPackage
     EClass INIT_DECL = eINSTANCE.getInitDecl();
 
     /**
-     * The meta object literal for the '<em><b>First Definition Or Command</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Definition Or Command</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference INIT_DECL__FIRST_DEFINITION_OR_COMMAND = eINSTANCE.getInitDecl_FirstDefinitionOrCommand();
-
-    /**
-     * The meta object literal for the '<em><b>Next Definition Or Command</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference INIT_DECL__NEXT_DEFINITION_OR_COMMAND = eINSTANCE.getInitDecl_NextDefinitionOrCommand();
+    EReference INIT_DECL__DEFINITION_OR_COMMAND = eINSTANCE.getInitDecl_DefinitionOrCommand();
 
     /**
      * The meta object literal for the '{@link org.be.textbe.bt2sal2.xtext.sal.sal.impl.TransDeclImpl <em>Trans Decl</em>}' class.
@@ -3174,20 +3038,12 @@ public interface SalPackage extends EPackage
     EClass TRANS_DECL = eINSTANCE.getTransDecl();
 
     /**
-     * The meta object literal for the '<em><b>First Definition Or Command</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Definition Or Command</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference TRANS_DECL__FIRST_DEFINITION_OR_COMMAND = eINSTANCE.getTransDecl_FirstDefinitionOrCommand();
-
-    /**
-     * The meta object literal for the '<em><b>Next Definition Or Command</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference TRANS_DECL__NEXT_DEFINITION_OR_COMMAND = eINSTANCE.getTransDecl_NextDefinitionOrCommand();
+    EReference TRANS_DECL__DEFINITION_OR_COMMAND = eINSTANCE.getTransDecl_DefinitionOrCommand();
 
     /**
      * The meta object literal for the '{@link org.be.textbe.bt2sal2.xtext.sal.sal.impl.VarDeclsImpl <em>Var Decls</em>}' class.
@@ -3200,20 +3056,12 @@ public interface SalPackage extends EPackage
     EClass VAR_DECLS = eINSTANCE.getVarDecls();
 
     /**
-     * The meta object literal for the '<em><b>First Var Decl</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Var Decl</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference VAR_DECLS__FIRST_VAR_DECL = eINSTANCE.getVarDecls_FirstVarDecl();
-
-    /**
-     * The meta object literal for the '<em><b>Next Var Decl</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference VAR_DECLS__NEXT_VAR_DECL = eINSTANCE.getVarDecls_NextVarDecl();
+    EReference VAR_DECLS__VAR_DECL = eINSTANCE.getVarDecls_VarDecl();
 
     /**
      * The meta object literal for the '{@link org.be.textbe.bt2sal2.xtext.sal.sal.impl.VarDeclImpl <em>Var Decl</em>}' class.
@@ -3226,20 +3074,12 @@ public interface SalPackage extends EPackage
     EClass VAR_DECL = eINSTANCE.getVarDecl();
 
     /**
-     * The meta object literal for the '<em><b>First Var</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Var</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute VAR_DECL__FIRST_VAR = eINSTANCE.getVarDecl_FirstVar();
-
-    /**
-     * The meta object literal for the '<em><b>Next Var</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute VAR_DECL__NEXT_VAR = eINSTANCE.getVarDecl_NextVar();
+    EAttribute VAR_DECL__VAR = eINSTANCE.getVarDecl_Var();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
@@ -3260,20 +3100,12 @@ public interface SalPackage extends EPackage
     EClass DEFINITIONS = eINSTANCE.getDefinitions();
 
     /**
-     * The meta object literal for the '<em><b>First Definition</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Definition</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DEFINITIONS__FIRST_DEFINITION = eINSTANCE.getDefinitions_FirstDefinition();
-
-    /**
-     * The meta object literal for the '<em><b>Next Definition</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DEFINITIONS__NEXT_DEFINITION = eINSTANCE.getDefinitions_NextDefinition();
+    EReference DEFINITIONS__DEFINITION = eINSTANCE.getDefinitions_Definition();
 
     /**
      * The meta object literal for the '{@link org.be.textbe.bt2sal2.xtext.sal.sal.impl.DefinitionOrCommandImpl <em>Definition Or Command</em>}' class.

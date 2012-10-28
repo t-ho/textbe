@@ -746,19 +746,9 @@ public class SalPackageImpl extends EPackageImpl implements SalPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getScalarType_FirstType()
-  {
-    return (EAttribute)scalarTypeEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EAttribute getScalarType_NextType()
   {
-    return (EAttribute)scalarTypeEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)scalarTypeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -926,19 +916,9 @@ public class SalPackageImpl extends EPackageImpl implements SalPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getInitDecl_FirstDefinitionOrCommand()
+  public EReference getInitDecl_DefinitionOrCommand()
   {
     return (EReference)initDeclEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getInitDecl_NextDefinitionOrCommand()
-  {
-    return (EReference)initDeclEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -956,19 +936,9 @@ public class SalPackageImpl extends EPackageImpl implements SalPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getTransDecl_FirstDefinitionOrCommand()
+  public EReference getTransDecl_DefinitionOrCommand()
   {
     return (EReference)transDeclEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getTransDecl_NextDefinitionOrCommand()
-  {
-    return (EReference)transDeclEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -986,19 +956,9 @@ public class SalPackageImpl extends EPackageImpl implements SalPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getVarDecls_FirstVarDecl()
+  public EReference getVarDecls_VarDecl()
   {
     return (EReference)varDeclsEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getVarDecls_NextVarDecl()
-  {
-    return (EReference)varDeclsEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1016,7 +976,7 @@ public class SalPackageImpl extends EPackageImpl implements SalPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getVarDecl_FirstVar()
+  public EAttribute getVarDecl_Var()
   {
     return (EAttribute)varDeclEClass.getEStructuralFeatures().get(0);
   }
@@ -1026,19 +986,9 @@ public class SalPackageImpl extends EPackageImpl implements SalPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getVarDecl_NextVar()
-  {
-    return (EAttribute)varDeclEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getVarDecl_Type()
   {
-    return (EReference)varDeclEClass.getEStructuralFeatures().get(2);
+    return (EReference)varDeclEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1056,19 +1006,9 @@ public class SalPackageImpl extends EPackageImpl implements SalPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDefinitions_FirstDefinition()
+  public EReference getDefinitions_Definition()
   {
     return (EReference)definitionsEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getDefinitions_NextDefinition()
-  {
-    return (EReference)definitionsEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1658,7 +1598,6 @@ public class SalPackageImpl extends EPackageImpl implements SalPackage
     boundEClass = createEClass(BOUND);
 
     scalarTypeEClass = createEClass(SCALAR_TYPE);
-    createEAttribute(scalarTypeEClass, SCALAR_TYPE__FIRST_TYPE);
     createEAttribute(scalarTypeEClass, SCALAR_TYPE__NEXT_TYPE);
 
     moduleDeclarationEClass = createEClass(MODULE_DECLARATION);
@@ -1686,25 +1625,20 @@ public class SalPackageImpl extends EPackageImpl implements SalPackage
     createEReference(defDeclEClass, DEF_DECL__DEFINITIONS);
 
     initDeclEClass = createEClass(INIT_DECL);
-    createEReference(initDeclEClass, INIT_DECL__FIRST_DEFINITION_OR_COMMAND);
-    createEReference(initDeclEClass, INIT_DECL__NEXT_DEFINITION_OR_COMMAND);
+    createEReference(initDeclEClass, INIT_DECL__DEFINITION_OR_COMMAND);
 
     transDeclEClass = createEClass(TRANS_DECL);
-    createEReference(transDeclEClass, TRANS_DECL__FIRST_DEFINITION_OR_COMMAND);
-    createEReference(transDeclEClass, TRANS_DECL__NEXT_DEFINITION_OR_COMMAND);
+    createEReference(transDeclEClass, TRANS_DECL__DEFINITION_OR_COMMAND);
 
     varDeclsEClass = createEClass(VAR_DECLS);
-    createEReference(varDeclsEClass, VAR_DECLS__FIRST_VAR_DECL);
-    createEReference(varDeclsEClass, VAR_DECLS__NEXT_VAR_DECL);
+    createEReference(varDeclsEClass, VAR_DECLS__VAR_DECL);
 
     varDeclEClass = createEClass(VAR_DECL);
-    createEAttribute(varDeclEClass, VAR_DECL__FIRST_VAR);
-    createEAttribute(varDeclEClass, VAR_DECL__NEXT_VAR);
+    createEAttribute(varDeclEClass, VAR_DECL__VAR);
     createEReference(varDeclEClass, VAR_DECL__TYPE);
 
     definitionsEClass = createEClass(DEFINITIONS);
-    createEReference(definitionsEClass, DEFINITIONS__FIRST_DEFINITION);
-    createEReference(definitionsEClass, DEFINITIONS__NEXT_DEFINITION);
+    createEReference(definitionsEClass, DEFINITIONS__DEFINITION);
 
     definitionOrCommandEClass = createEClass(DEFINITION_OR_COMMAND);
 
@@ -1881,7 +1815,6 @@ public class SalPackageImpl extends EPackageImpl implements SalPackage
     initEClass(boundEClass, Bound.class, "Bound", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(scalarTypeEClass, ScalarType.class, "ScalarType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getScalarType_FirstType(), ecorePackage.getEString(), "firstType", null, 0, 1, ScalarType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getScalarType_NextType(), ecorePackage.getEString(), "nextType", null, 0, -1, ScalarType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(moduleDeclarationEClass, ModuleDeclaration.class, "ModuleDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1909,25 +1842,20 @@ public class SalPackageImpl extends EPackageImpl implements SalPackage
     initEReference(getDefDecl_Definitions(), this.getDefinitions(), null, "definitions", null, 0, 1, DefDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(initDeclEClass, InitDecl.class, "InitDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getInitDecl_FirstDefinitionOrCommand(), this.getDefinitionOrCommand(), null, "firstDefinitionOrCommand", null, 0, 1, InitDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getInitDecl_NextDefinitionOrCommand(), this.getDefinitionOrCommand(), null, "nextDefinitionOrCommand", null, 0, -1, InitDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getInitDecl_DefinitionOrCommand(), this.getDefinitionOrCommand(), null, "definitionOrCommand", null, 0, -1, InitDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(transDeclEClass, TransDecl.class, "TransDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getTransDecl_FirstDefinitionOrCommand(), this.getDefinitionOrCommand(), null, "firstDefinitionOrCommand", null, 0, 1, TransDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getTransDecl_NextDefinitionOrCommand(), this.getDefinitionOrCommand(), null, "nextDefinitionOrCommand", null, 0, -1, TransDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTransDecl_DefinitionOrCommand(), this.getDefinitionOrCommand(), null, "definitionOrCommand", null, 0, -1, TransDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(varDeclsEClass, VarDecls.class, "VarDecls", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getVarDecls_FirstVarDecl(), this.getVarDecl(), null, "firstVarDecl", null, 0, 1, VarDecls.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getVarDecls_NextVarDecl(), this.getVarDecl(), null, "nextVarDecl", null, 0, -1, VarDecls.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getVarDecls_VarDecl(), this.getVarDecl(), null, "varDecl", null, 0, -1, VarDecls.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(varDeclEClass, VarDecl.class, "VarDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getVarDecl_FirstVar(), ecorePackage.getEString(), "firstVar", null, 0, 1, VarDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getVarDecl_NextVar(), ecorePackage.getEString(), "nextVar", null, 0, -1, VarDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getVarDecl_Var(), ecorePackage.getEString(), "var", null, 0, -1, VarDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getVarDecl_Type(), this.getType(), null, "type", null, 0, 1, VarDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(definitionsEClass, Definitions.class, "Definitions", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDefinitions_FirstDefinition(), this.getDefinition(), null, "firstDefinition", null, 0, 1, Definitions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDefinitions_NextDefinition(), this.getDefinition(), null, "nextDefinition", null, 0, -1, Definitions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDefinitions_Definition(), this.getDefinition(), null, "definition", null, 0, -1, Definitions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(definitionOrCommandEClass, DefinitionOrCommand.class, "DefinitionOrCommand", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

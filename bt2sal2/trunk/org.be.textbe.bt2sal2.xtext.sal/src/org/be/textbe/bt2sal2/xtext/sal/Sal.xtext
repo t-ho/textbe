@@ -58,7 +58,8 @@ Bound:
 ;
 
 ScalarType:
-	"{" firstType=IDENTIFIERS ("," nextType+=IDENTIFIERS)* "}"
+	//"{" firstType=IDENTIFIERS ("," nextType+=IDENTIFIERS)* "}"
+	"{" (nextType+=IDENTIFIERS (",")?)+ "}"
 ;
 
 //Module
@@ -102,25 +103,30 @@ DefDecl:
 ;
 
 InitDecl:
-	"INITIALIZATION" firstDefinitionOrCommand=DefinitionOrCommand (";" nextDefinitionOrCommand+=DefinitionOrCommand)* (";")?
+	//"INITIALIZATION" firstDefinitionOrCommand=DefinitionOrCommand (";" nextDefinitionOrCommand+=DefinitionOrCommand)* (";")?
+	"INITIALIZATION" (definitionOrCommand+=DefinitionOrCommand (";")?)+ //(";")?
 ;
 
 TransDecl:
-	"TRANSITION" firstDefinitionOrCommand=DefinitionOrCommand (";" nextDefinitionOrCommand+=DefinitionOrCommand)* (";")?
+	//"TRANSITION" firstDefinitionOrCommand=DefinitionOrCommand (";" nextDefinitionOrCommand+=DefinitionOrCommand)* (";")?
+	"TRANSITION" (definitionOrCommand+=DefinitionOrCommand (";")?)+ //(";")?
 ;
 
 //Declaration
 
 VarDecls:
-	firstVarDecl=VarDecl ("," nextVarDecl+=VarDecl)*
+	//firstVarDecl=VarDecl ("," nextVarDecl+=VarDecl)*
+	(varDecl+=VarDecl (",")?)+
 ;
 
 VarDecl:
-	firstVar=IDENTIFIERS ("," nextVar+=IDENTIFIERS)* ": " type=Type
+	//firstVar=IDENTIFIERS ("," nextVar+=IDENTIFIERS)* ": " type=Type
+	(var+=IDENTIFIERS (",")?)+ ": " type=Type
 ;
 
 Definitions:
-	firstDefinition=Definition (";" nextDefinition+=Definition)*
+	//firstDefinition=Definition (";" nextDefinition+=Definition)*
+	(definition+=Definition (";")?)+
 ;
 
 DefinitionOrCommand:
@@ -149,6 +155,7 @@ RhsExpression:
 
 SomeCommands:
 	firstSomeCommand=SomeCommand ("[]" nextSomeCommand+=SomeCommand)* ("[]" elseCommand=ElseCommand)?
+	//(nextSomeCommand+=SomeCommand ("[]")?)+ ("[]" elseCommand=ElseCommand)?
 ;
 
 SomeCommand:
