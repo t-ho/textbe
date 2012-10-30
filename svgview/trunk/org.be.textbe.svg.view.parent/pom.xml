@@ -9,7 +9,7 @@
 
 	<packaging>pom</packaging>
 	<modules>
-		<module>../org.be.textbe.svg.view.parent</module>
+		<module>../org.be.textbe.svg.view</module>
 	</modules>
 
 	<properties>
@@ -21,6 +21,11 @@
 			<id>juno</id>
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/releases/juno</url>
+		</repository>
+		<repository>
+			<id>Orbit</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/tools/orbit/downloads/drops/R20120526062928/repository/</url>
 		</repository>
 	</repositories>
 	<build>
