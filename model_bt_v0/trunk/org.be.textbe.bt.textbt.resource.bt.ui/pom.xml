@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>org.be.textbe.bt.parent</artifactId>
 		<groupId>org.be.textbe</groupId>
-		<version>1.0.0</version>
+		<version>1.0.1-SNAPSHOT</version>
 		<relativePath>../org.be.textbe.bt.parent</relativePath>
 	</parent>
 	<artifactId>org.be.textbe.bt.textbt.resource.bt.ui</artifactId>
