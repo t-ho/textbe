@@ -17,6 +17,10 @@
       %license
    </license>
 
+   <url>
+      <discovery label="New discovery site" url="http://newsite"/>
+   </url>
+
    <plugin
          id="org.apache.batik.dom.svg"
          download-size="0"
