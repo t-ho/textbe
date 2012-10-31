@@ -2,12 +2,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.be.textbe</groupId>
-	<artifactId>org.be.textbe-parent</artifactId>
+	<artifactId>org.be.textbe.feature.parent</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
-		<tycho-version>0.15.0</tycho-version>
+		<tycho-version>0.16.0</tycho-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<repositories>
@@ -174,4 +174,11 @@ TextBE provides a textual editor for defining BE models using textual representa
 			</build>
 		</profile>
 	</profiles>
+	<modules>
+		<module>../org.be.textbe.beviz.branding</module>
+		<module>../org.be.textbe.beviz.help</module>
+		<module>../org.be.textbe.dependencies.feature</module>
+		<module>../org.be.textbe.feature</module>
+		<module>../org.be.textbe.repository</module>
+	</modules>
 </project>
