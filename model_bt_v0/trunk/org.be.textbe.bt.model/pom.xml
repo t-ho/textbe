@@ -7,7 +7,7 @@
 		<artifactId>org.be.textbe.bt.parent</artifactId>
 		<groupId>org.be.textbe</groupId>
 		<relativePath>../org.be.textbe.bt.parent</relativePath>
-		<version>1.0.0</version>
+		<version>1.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>org.be.textbe.bt.model</artifactId>
 	<packaging>eclipse-plugin</packaging>
