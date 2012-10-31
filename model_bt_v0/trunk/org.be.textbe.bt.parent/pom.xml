@@ -14,10 +14,11 @@
 		<module>../org.be.textbe.bt.textbt.resource.bt</module>
 		<module>../org.be.textbe.bt.textbt.resource.bt.ui</module>
 		<module>../org.be.textbe.bt.examples</module>
+		<module>../org.be.textbe.bt.repository</module>
 	</modules>
 
 	<properties>
-		<tycho-version>0.15.0</tycho-version>
+		<tycho-version>0.16.0</tycho-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<repositories>
