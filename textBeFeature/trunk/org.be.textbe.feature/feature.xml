@@ -2,7 +2,7 @@
 <feature
       id="org.be.textbe.feature"
       label="%Feature-Name"
-      version="1.1.0.qualifier"
+      version="1.0.0.qualifier"
       provider-name="%Feature-Vendor"
       plugin="org.be.textbe.beviz.branding">
 
@@ -41,7 +41,6 @@
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.jet"/>
       <import plugin="org.eclipse.m2m.atl.core.emf" version="3.2.1" match="greaterOrEqual"/>
-      <import plugin="com.abstratt.graphviz" version="1.7.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.jdt.ui" version="3.7.1" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui.editors" version="3.7.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui.ide" version="3.7.0" match="greaterOrEqual"/>
@@ -57,13 +56,6 @@
 
    <plugin
          id="org.be.textbe.bt.examples"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.be.textbe.st.examples"
          download-size="0"
          install-size="0"
          version="0.0.0"
