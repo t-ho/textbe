@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include "TranslateSALMain.h"
 #include "SALTrans.h"
+#include "Test.h"
 
 #include <iostream>
 #include <stdexcept>
@@ -50,14 +51,15 @@ namespace MathFuncs
 */
 const wchar_t* SALTrans::Translate(const wchar_t* strTree, int iPriority, int iBuff, int iWithSets, const wchar_t* strSets, const wchar_t* strInit){
 	CTranslateSALMain cTranslator; 
-//	const wchar_t* result2 = _T("This worked!!");
 	cTranslator.SelectOptions(strTree, iPriority, iBuff, iWithSets, strSets, strInit);
 	NString strNResult = cTranslator.ParseBT(0, false, false);
 	static std::wstring strWResult = strNResult.GetString();
-	//static const wchar_t* strFirstResult = strWResult.c_str();
-	//strResult4 = strWResult.c_str();
-	//strResult4 = wcscpy(strResult4, strFirstResult); 
 	return strWResult.c_str();
 }
+
+JNIEXPORT jint JNICALL Java_Test_translateToSAL(JNIEnv* env, jobject jobj){
+	//return env->NewStringUTF("Hello."); 
+	return 5;
+} 
 
 }
