@@ -12,5 +12,5 @@
 <booleanAttribute key="M2_SKIP_TESTS" value="false"/>
 <booleanAttribute key="M2_UPDATE_SNAPSHOTS" value="true"/>
 <booleanAttribute key="M2_WORKSPACE_RESOLUTION" value="false"/>
-<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="E:/textbe_workspace/org.be.textbe.gv.parent"/>
+<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc:/org.be.textbe.gv.parent}"/>
 </launchConfiguration>
