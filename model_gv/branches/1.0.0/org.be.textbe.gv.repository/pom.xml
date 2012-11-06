@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>org.be.textbe.gv.parent</artifactId>
 		<groupId>org.be.textbe</groupId>
-		<version>1.0.1-SNAPSHOT</version>
+		<version>1.0.0</version>
 		<relativePath>../org.be.textbe.gv.parent</relativePath>
 	</parent>
 	  <artifactId>org.be.textbe.gv.repository</artifactId>

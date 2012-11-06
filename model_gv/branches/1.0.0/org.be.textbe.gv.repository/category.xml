@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.be.textbe.gv.model.feature_1.0.0.qualifier.jar" id="org.be.textbe.gv.model.feature" version="1.0.0.qualifier">
+   <feature url="features/org.be.textbe.gv.model.feature_1.0.0.jar" id="org.be.textbe.gv.model.feature" version="1.0.0">
       <category name="org.be.textbe.bt"/>
    </feature>
    <category-def name="org.be.textbe.bt" label="%org_be_textbe_gv_category_label">
