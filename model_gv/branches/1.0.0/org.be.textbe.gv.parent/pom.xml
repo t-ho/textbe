@@ -12,7 +12,7 @@
 		<module>../org.be.textbe.gv.model.feature</module>
 		<module>../org.be.textbe.gv.repository</module>
 	</modules>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<groupId>org.be.textbe</groupId>
 
 	<properties>
