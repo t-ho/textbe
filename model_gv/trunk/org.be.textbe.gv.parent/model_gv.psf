@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.eclipse.team.svn.core.svnnature">
+<project reference="1.0.1,https://textbe.googlecode.com/svn/model_gv/trunk/org.be.textbe.gv.gv2text,org.be.textbe.gv.gv2text,7086b48fb9aa00111f0ebe68bd7b4e4b;https://textbe.googlecode.com/svn;TextBE;branches;tags;trunk;true;f0832461-7c65-4917-3b45-1a57d2e10441;https://textbe.googlecode.com/svn;;false;;;0"/>
+<project reference="1.0.1,https://textbe.googlecode.com/svn/model_gv/trunk/org.be.textbe.gv.model,org.be.textbe.gv.model,7086b48fb9aa00111f0ebe68bd7b4e4b;https://textbe.googlecode.com/svn;TextBE;branches;tags;trunk;true;f0832461-7c65-4917-3b45-1a57d2e10441;https://textbe.googlecode.com/svn;;false;;;0"/>
+<project reference="1.0.1,https://textbe.googlecode.com/svn/model_gv/trunk/org.be.textbe.gv.model.feature,org.be.textbe.gv.model.feature,7086b48fb9aa00111f0ebe68bd7b4e4b;https://textbe.googlecode.com/svn;TextBE;branches;tags;trunk;true;f0832461-7c65-4917-3b45-1a57d2e10441;https://textbe.googlecode.com/svn;;false;;;0"/>
+<project reference="1.0.1,https://textbe.googlecode.com/svn/model_gv/trunk/org.be.textbe.gv.parent,org.be.textbe.gv.parent,7086b48fb9aa00111f0ebe68bd7b4e4b;https://textbe.googlecode.com/svn;TextBE;branches;tags;trunk;true;f0832461-7c65-4917-3b45-1a57d2e10441;https://textbe.googlecode.com/svn;;false;;;0"/>
+<project reference="1.0.1,https://textbe.googlecode.com/svn/model_gv/trunk/org.be.textbe.gv.repository,org.be.textbe.gv.repository,7086b48fb9aa00111f0ebe68bd7b4e4b;https://textbe.googlecode.com/svn;TextBE;branches;tags;trunk;true;f0832461-7c65-4917-3b45-1a57d2e10441;https://textbe.googlecode.com/svn;;false;;;0"/>
+</provider>
+</psf>
