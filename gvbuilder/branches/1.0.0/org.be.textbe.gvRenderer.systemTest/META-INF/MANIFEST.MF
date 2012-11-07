@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-SymbolicName: org.be.textbe.gvRenderer.systemTest
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.be.textbe.gvRenderer.systemTest.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ org.be.textbe.gvRenderer;bundle-version="1.0.0",
+ org.junit,
+ org.apache.commons.io,
+ org.eclipse.core.resources
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: %Bundle-Vendor
+Bundle-Localization: OSGI-INF/l10n/bundle
