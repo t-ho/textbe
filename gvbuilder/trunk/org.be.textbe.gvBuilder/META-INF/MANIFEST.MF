@@ -1,13 +1,13 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
-Bundle-SymbolicName: org.be.textbe.beviz.gvBuilder;singleton:=true
+Bundle-SymbolicName: org.be.textbe.gvBuilder;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;bundle-version="3.7.101",
  org.apache.commons.io;bundle-version="2.0.1",
  org.eclipse.ui;bundle-version="3.7.0",
- org.be.textbe.beviz.gvRender;bundle-version="1.0.0"
+ org.be.textbe.gvRenderer;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: %Bundle-Vendor

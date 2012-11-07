@@ -1,10 +1,10 @@
-package org.be.textbe.beviz.gvbuilder.builder;
+package org.be.textbe.gvbuilder.builder;
 
 import java.util.Map;
 
 import org.apache.commons.io.FilenameUtils;
-import org.be.textbe.beviz.gvRender.GVOutputType;
-import org.be.textbe.beviz.gvRender.GvRenderer;
+import org.be.textbe.gvRenderer.GVOutputType;
+import org.be.textbe.gvRenderer.GvRenderer;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -57,9 +57,9 @@ public class GvBuilder extends IncrementalProjectBuilder {
 		}
 	}
 
-	public static final String BUILDER_ID = "org.be.textbe.beviz.gvBuilder";
+	public static final String BUILDER_ID = "org.be.textbe.gvBuilder";
 
-	private static final String MARKER_TYPE = "org.be.textbe.beviz.gvBuilder.gvProblem";
+	private static final String MARKER_TYPE = "org.be.textbe.gvBuilder.gvProblem";
 
 	private void addMarker(IFile file, String message, int lineNumber,
 			int severity) {
