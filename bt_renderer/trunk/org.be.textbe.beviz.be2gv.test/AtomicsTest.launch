@@ -37,10 +37,10 @@
 <mapEntry key="GV" value="OUT"/>
 </mapAttribute>
 <mapAttribute key="Path">
-<mapEntry key="GV" value="/org.be.textbe.beviz.be2gv.test/testfiles/atomics bug/atomics.xmi"/>
+<mapEntry key="GV" value="/org.be.textbe.bt2gv.test/testfiles/atomics bug/atomics.xmi"/>
 <mapEntry key="IN" value="uri:http://org.be.textbe/textbt"/>
 <mapEntry key="OUT" value="/org.be.textbe.gv.model/metamodel/gv.ecore"/>
-<mapEntry key="TEXTBT" value="/org.be.textbe.beviz.be2gv.test/testfiles/atomics bug/atomicBugV3.bt"/>
+<mapEntry key="TEXTBT" value="/org.be.textbe.bt2gv.test/testfiles/atomics bug/atomicBugV3.bt"/>
 </mapAttribute>
 <stringAttribute key="Port" value="6060"/>
 <listAttribute key="Superimpose"/>

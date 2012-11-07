@@ -1,4 +1,4 @@
-package org.be.textbe.beviz.be2gv.test;
+package org.be.textbe.bt2gv.test;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.util.Enumeration;
 
 import junit.framework.Assert;
 
-import org.be.textbe.beviz.be2gv.Be2Gv;
+import org.be.textbe.bt2gv.Be2Gv;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
@@ -20,7 +20,7 @@ public class ConversionTest {
 	@Test
 	public void test() throws IOException {
 
-		final String symbolicName = "org.be.textbe.beviz.be2gv.test";
+		final String symbolicName = "org.be.textbe.bt2gv.test";
 		final String testFileFolder = "testfiles";
 		final String btFilePattern = "*.bt";
 
