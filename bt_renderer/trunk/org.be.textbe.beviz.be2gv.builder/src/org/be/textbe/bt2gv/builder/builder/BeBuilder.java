@@ -1,4 +1,4 @@
-package org.be.textbe.beviz.be2gv.builder.builder;
+package org.be.textbe.bt2gv.builder.builder;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.util.Map;
 
 import org.apache.commons.io.FilenameUtils;
-import org.be.textbe.beviz.be2gv.Be2Gv;
+import org.be.textbe.bt2gv.Be2Gv;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -69,9 +69,9 @@ public class BeBuilder extends IncrementalProjectBuilder {
 		}
 	}
 
-	public static final String BUILDER_ID = "org.be.textbe.beviz.be2gv.builder.beBuilder";
+	public static final String BUILDER_ID = "org.be.textbe.bt2gv.builder.beBuilder";
 
-	private static final String MARKER_TYPE = "org.be.textbe.beviz.be2gv.builder.beProblem";
+	private static final String MARKER_TYPE = "org.be.textbe.bt2gv.builder.beProblem";
 
 	public void transformBe2GvNoParams(final BeBuilder beBuilder,
 			final IResource resource) {
