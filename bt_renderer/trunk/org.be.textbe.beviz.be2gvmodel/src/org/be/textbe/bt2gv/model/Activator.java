@@ -8,7 +8,7 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
-package org.be.textbe.beviz.be2gvmodel;
+package org.be.textbe.bt2gv.model;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
@@ -21,7 +21,7 @@ public class Activator extends Plugin {
 	/**
 	 * The plug-in ID.
 	 */
-	public static final String PLUGIN_ID = "org.be.textbe.beviz.be2gvmodel";
+	public static final String PLUGIN_ID = "org.be.textbe.bt2gv.model";
 
 	/**
 	 * The shared instance.
