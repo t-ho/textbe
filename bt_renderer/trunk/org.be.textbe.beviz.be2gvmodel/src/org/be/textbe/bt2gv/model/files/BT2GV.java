@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010 Obeo.
+ * Copyright (c) 2010, 2012 Obeo.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,15 +8,12 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
-package org.be.textbe.beviz.be2gvmodel.files;
+package org.be.textbe.bt2gv.model.files;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Map.Entry;
@@ -42,9 +39,9 @@ import org.eclipse.m2m.atl.core.launch.ILauncher;
 import org.eclipse.m2m.atl.engine.emfvm.launch.EMFVMLauncher;
 
 /**
- * Entry point of the 'TextBT2GV' transformation module.
+ * Entry point of the 'BT2GV' transformation module.
  */
-public class TextBT2GV {
+public class BT2GV {
 
 	/**
 	 * The property file. Stores module list, the metamodel and library locations.
@@ -76,9 +73,9 @@ public class TextBT2GV {
 			if (args.length < 2) {
 				System.out.println("Arguments not valid : {TEXTBT_model_path, GV_model_path}.");
 			} else {
-				TextBT2GV runner = new TextBT2GV();
+				BT2GV runner = new BT2GV();
 				runner.loadModels(args[0]);
-				runner.doTextBT2GV(new NullProgressMonitor());
+				runner.doBT2GV(new NullProgressMonitor());
 				runner.saveModels(args[1]);
 			}
 		} catch (ATLCoreException e) {
@@ -95,9 +92,9 @@ public class TextBT2GV {
 	 *
 	 * @generated
 	 */
-	public TextBT2GV() throws IOException {
+	public BT2GV() throws IOException {
 		properties = new Properties();
-		properties.load(getFileURL("TextBT2GV.properties").openStream());
+		properties.load(getFileURL("BT2GV.properties").openStream());
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
 	}
 	
@@ -152,7 +149,7 @@ public class TextBT2GV {
 	 *
 	 * @generated
 	 */
-	public Object doTextBT2GV(IProgressMonitor monitor) throws ATLCoreException, IOException, ATLExecutionException {
+	public Object doBT2GV(IProgressMonitor monitor) throws ATLCoreException, IOException, ATLExecutionException {
 		ILauncher launcher = new EMFVMLauncher();
 		Map<String, Object> launcherOptions = getOptions();
 		launcher.initialize(launcherOptions);
@@ -173,7 +170,7 @@ public class TextBT2GV {
 	 */
 	protected InputStream[] getModulesList() throws IOException {
 		InputStream[] modules = null;
-		String modulesList = properties.getProperty("TextBT2GV.modules");
+		String modulesList = properties.getProperty("BT2GV.modules");
 		if (modulesList != null) {
 			String[] moduleNames = modulesList.split(",");
 			modules = new InputStream[moduleNames.length];
@@ -195,7 +192,7 @@ public class TextBT2GV {
 	 * @generated
 	 */
 	protected String getMetamodelUri(String metamodelName) {
-		return properties.getProperty("TextBT2GV.metamodels." + metamodelName);
+		return properties.getProperty("BT2GV.metamodels." + metamodelName);
 	}
 	
 	/**
@@ -208,7 +205,7 @@ public class TextBT2GV {
 	 * @generated
 	 */
 	protected InputStream getLibraryAsStream(String libraryName) throws IOException {
-		return getFileURL(properties.getProperty("TextBT2GV.libraries." + libraryName)).openStream();
+		return getFileURL(properties.getProperty("BT2GV.libraries." + libraryName)).openStream();
 	}
 	
 	/**
@@ -221,8 +218,8 @@ public class TextBT2GV {
 	protected Map<String, Object> getOptions() {
 		Map<String, Object> options = new HashMap<String, Object>();
 		for (Entry<Object, Object> entry : properties.entrySet()) {
-			if (entry.getKey().toString().startsWith("TextBT2GV.options.")) {
-				options.put(entry.getKey().toString().replaceFirst("TextBT2GV.options.", ""), 
+			if (entry.getKey().toString().startsWith("BT2GV.options.")) {
+				options.put(entry.getKey().toString().replaceFirst("BT2GV.options.", ""), 
 				entry.getValue().toString());
 			}
 		}
@@ -243,14 +240,14 @@ public class TextBT2GV {
 	protected static URL getFileURL(String fileName) throws IOException {
 		final URL fileURL;
 		if (isEclipseRunning()) {
-			URL resourceURL = TextBT2GV.class.getResource(fileName);
+			URL resourceURL = BT2GV.class.getResource(fileName);
 			if (resourceURL != null) {
 				fileURL = FileLocator.toFileURL(resourceURL);
 			} else {
 				fileURL = null;
 			}
 		} else {
-			fileURL = TextBT2GV.class.getResource(fileName);
+			fileURL = BT2GV.class.getResource(fileName);
 		}
 		if (fileURL == null) {
 			throw new IOException("'" + fileName + "' not found");
