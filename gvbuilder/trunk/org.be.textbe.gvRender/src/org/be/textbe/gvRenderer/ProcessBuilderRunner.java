@@ -1,4 +1,4 @@
-package org.be.textbe.beviz.gvRender;
+package org.be.textbe.gvRenderer;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -49,7 +49,7 @@ public class ProcessBuilderRunner implements DotRunner {
 	@Override
 	public IStatus runDot(File inputFile, String extension, File outputFile) {
 		final IStatus result;
-		final String pluginId = "org.be.textbe.beviz.gvRender";
+		final String pluginId = "org.be.textbe.gvRenderer";
 		try {
 			ByteArrayOutputStream stdErrBuffer = new ByteArrayOutputStream();
 			int exitCode = runDotWithStreams(new FileInputStream(inputFile),
