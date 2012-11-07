@@ -1,4 +1,4 @@
-package org.be.textbe.beviz.gvRender;
+package org.be.textbe.gvRenderer;
 
 import java.io.File;
 
@@ -13,7 +13,7 @@ import org.eclipse.core.runtime.Status;
 
 public class GvRenderer {
 
-	static final String BUNDLE_ID = "org.be.textbe.beviz.gvRender";
+	static final String BUNDLE_ID = "org.be.textbe.gvRenderer";
 
 	public static final IStatus renderOutput(final File inputFile,
 			final IContainer outputFolder, final String outputFileBaseName,

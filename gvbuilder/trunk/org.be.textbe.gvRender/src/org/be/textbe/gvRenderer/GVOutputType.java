@@ -1,4 +1,4 @@
-package org.be.textbe.beviz.gvRender;
+package org.be.textbe.gvRenderer;
 
 public enum GVOutputType {
 
