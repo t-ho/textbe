@@ -1,4 +1,4 @@
-package org.be.textbe.beviz.be2gv.builder.builder;
+package org.be.textbe.bt2gv.builder.builder;
 
 import org.eclipse.core.resources.ICommand;
 import org.eclipse.core.resources.IProject;
@@ -11,7 +11,7 @@ public class BeNature implements IProjectNature {
 	/**
 	 * ID of this project nature
 	 */
-	public static final String NATURE_ID = "org.be.textbe.beviz.be2gv.builder.beNature";
+	public static final String NATURE_ID = "org.be.textbe.bt2gv.builder.beNature";
 
 	private IProject project;
 

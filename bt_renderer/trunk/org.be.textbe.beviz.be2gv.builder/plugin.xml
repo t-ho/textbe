@@ -8,7 +8,7 @@
       <builder
             hasNature="true">
          <run
-               class="org.be.textbe.beviz.be2gv.builder.builder.BeBuilder">
+               class="org.be.textbe.bt2gv.builder.builder.BeBuilder">
          </run>
       </builder>
    </extension>
@@ -18,24 +18,24 @@
          point="org.eclipse.core.resources.natures">
       <runtime>
          <run
-               class="org.be.textbe.beviz.be2gv.builder.builder.BeNature">
+               class="org.be.textbe.bt2gv.builder.builder.BeNature">
          </run>
       </runtime>
       <builder
-            id="org.be.textbe.beviz.be2gv.builder.beBuilder">
+            id="org.be.textbe.bt2gv.builder.beBuilder">
       </builder>
    </extension>
    <extension
          point="org.eclipse.ui.popupMenus">
       <objectContribution
             adaptable="true"
-            id="org.be.textbe.beviz.be2gv.builder.contribution1"
+            id="org.be.textbe.bt2gv.builder.contribution1"
             nameFilter="*"
             objectClass="org.eclipse.core.resources.IProject">
          <action
-               class="org.be.textbe.beviz.be2gv.builder.builder.ToggleNatureAction"
+               class="org.be.textbe.bt2gv.builder.builder.ToggleNatureAction"
                enablesFor="+"
-               id="org.be.textbe.beviz.be2gv.builder.addRemoveNatureAction"
+               id="org.be.textbe.bt2gv.builder.addRemoveNatureAction"
                label="%action.label"
                menubarPath="additions">
          </action>
@@ -56,8 +56,8 @@
          point="org.eclipse.ui.ide.projectNatureImages">
       <image
             icon="icons/tree.gif"
-            id="org.be.textbe.beviz.be2gv.builder.beNature"
-            natureId="org.be.textbe.beviz.be2gv.builder.beNature">
+            id="org.be.textbe.bt2gv.builder.beNature"
+            natureId="org.be.textbe.bt2gv.builder.beNature">
       </image>
    </extension>
 

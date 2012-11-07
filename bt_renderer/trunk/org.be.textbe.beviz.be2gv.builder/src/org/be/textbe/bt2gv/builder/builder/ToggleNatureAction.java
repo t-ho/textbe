@@ -1,4 +1,4 @@
-package org.be.textbe.beviz.be2gv.builder.builder;
+package org.be.textbe.bt2gv.builder.builder;
 
 import java.util.Iterator;
 
