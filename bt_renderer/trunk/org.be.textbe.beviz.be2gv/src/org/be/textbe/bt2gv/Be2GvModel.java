@@ -1,4 +1,4 @@
-package org.be.textbe.beviz.be2gv;
+package org.be.textbe.bt2gv;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -47,7 +47,7 @@ public class Be2GvModel {
 	/**
 	 * Bundle holding the transformation
 	 */
-	private static final String BUNDLE_ID = "org.be.textbe.beviz.be2gv";
+	private static final String BUNDLE_ID = "org.be.textbe.bt2gv";
 
 	/**
 	 * Path leading to the compiled transformation code in the bundle
