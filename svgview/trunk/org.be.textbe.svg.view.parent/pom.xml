@@ -10,10 +10,12 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>../org.be.textbe.svg.view</module>
+		<module>../org.be.textbe.svg.view.feature</module>
+		<module>../org.be.textbe.svg.view.repository</module>
 	</modules>
 
 	<properties>
-		<tycho-version>0.15.0</tycho-version>
+		<tycho-version>0.16.0</tycho-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<repositories>
