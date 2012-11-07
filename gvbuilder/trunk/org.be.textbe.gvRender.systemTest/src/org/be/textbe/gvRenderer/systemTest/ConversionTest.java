@@ -1,12 +1,12 @@
-package org.be.textbe.beviz.gvRender.systemTest;
+package org.be.textbe.gvRenderer.systemTest;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import org.be.textbe.beviz.gvRender.GVOutputType;
-import org.be.textbe.beviz.gvRender.GvRenderer;
+import org.be.textbe.gvRenderer.GVOutputType;
+import org.be.textbe.gvRenderer.GvRenderer;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
@@ -47,7 +47,7 @@ public class ConversionTest {
 		for (int i = 1; i < 10; i++) {
 
 			String outputFileBaseName = "RBT" + i;
-			String pathName = "/org.be.textbe.beviz.gvRender.systemTest/testfiles/"
+			String pathName = "/org.be.textbe.gvRenderer.systemTest/testfiles/"
 					+ outputFileBaseName;
 
 			URL url = new URL("platform:/plugin" + pathName + ".dot");

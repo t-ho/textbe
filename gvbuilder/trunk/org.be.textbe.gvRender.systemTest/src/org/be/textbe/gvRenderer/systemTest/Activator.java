@@ -1,4 +1,4 @@
-package org.be.textbe.beviz.gvRender.systemTest;
+package org.be.textbe.gvRenderer.systemTest;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
