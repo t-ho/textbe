@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.eclipse.team.svn.core.svnnature">
+<project reference="1.0.1,https://textbe.googlecode.com/svn/gvbuilder/trunk/org.be.textbe.gvBuilder,org.be.textbe.gvBuilder,7086b48fb9aa00111f0ebe68bd7b4e4b;https://textbe.googlecode.com/svn;TextBE;branches;tags;trunk;true;f0832461-7c65-4917-3b45-1a57d2e10441;https://textbe.googlecode.com/svn;;false;;;0"/>
+<project reference="1.0.1,https://textbe.googlecode.com/svn/gvbuilder/trunk/org.be.textbe.gvBuilder.feature,org.be.textbe.gvBuilder.feature,7086b48fb9aa00111f0ebe68bd7b4e4b;https://textbe.googlecode.com/svn;TextBE;branches;tags;trunk;true;f0832461-7c65-4917-3b45-1a57d2e10441;https://textbe.googlecode.com/svn;;false;;;0"/>
+<project reference="1.0.1,https://textbe.googlecode.com/svn/gvbuilder/trunk/org.be.textbe.gvBuilder.parent,org.be.textbe.gvBuilder.parent,7086b48fb9aa00111f0ebe68bd7b4e4b;https://textbe.googlecode.com/svn;TextBE;branches;tags;trunk;true;f0832461-7c65-4917-3b45-1a57d2e10441;https://textbe.googlecode.com/svn;;false;;;0"/>
+<project reference="1.0.1,https://textbe.googlecode.com/svn/gvbuilder/trunk/org.be.textbe.gvBuilder.repository,org.be.textbe.gvBuilder.repository,7086b48fb9aa00111f0ebe68bd7b4e4b;https://textbe.googlecode.com/svn;TextBE;branches;tags;trunk;true;f0832461-7c65-4917-3b45-1a57d2e10441;https://textbe.googlecode.com/svn;;false;;;0"/>
+<project reference="1.0.1,https://textbe.googlecode.com/svn/gvbuilder/trunk/org.be.textbe.gvRenderer,org.be.textbe.gvRenderer,7086b48fb9aa00111f0ebe68bd7b4e4b;https://textbe.googlecode.com/svn;TextBE;branches;tags;trunk;true;f0832461-7c65-4917-3b45-1a57d2e10441;https://textbe.googlecode.com/svn;;false;;;0"/>
+<project reference="1.0.1,https://textbe.googlecode.com/svn/gvbuilder/trunk/org.be.textbe.gvRenderer.systemTest,org.be.textbe.gvRenderer.systemTest,7086b48fb9aa00111f0ebe68bd7b4e4b;https://textbe.googlecode.com/svn;TextBE;branches;tags;trunk;true;f0832461-7c65-4917-3b45-1a57d2e10441;https://textbe.googlecode.com/svn;;false;;;0"/>
+</provider>
+</psf>
