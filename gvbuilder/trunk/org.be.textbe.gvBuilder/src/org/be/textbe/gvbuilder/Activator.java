@@ -1,4 +1,4 @@
-package org.be.textbe.beviz.gvbuilder;
+package org.be.textbe.gvbuilder;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
