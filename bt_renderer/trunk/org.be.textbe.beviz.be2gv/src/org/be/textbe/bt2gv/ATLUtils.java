@@ -1,4 +1,4 @@
-package org.be.textbe.beviz.be2gv;
+package org.be.textbe.bt2gv;
 
 /*******************************************************************************
  * Copyright (c) 2009 INRIA. 
