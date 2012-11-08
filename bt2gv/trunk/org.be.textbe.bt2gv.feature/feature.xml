@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.be.textbe.bt2gv.feature"
+      label="%Feature-Name"
+      version="1.0.0.qualifier"
+      provider-name="%Feature-Vendor">
+
+   <description url="%descriptionURL">
+      %description
+   </description>
+
+   <copyright url="%copyrightURL">
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <url>
+      <discovery label="EclipseGraphViz" url="http://abstratt.com/update/"/>
+      <discovery label="EMFText" url="http://emftext.org/update"/>
+   </url>
+
+   <requires>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.jet"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.ui.ide" version="3.7.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.m2m.atl.engine.emfvm.launch" version="3.2.1" match="greaterOrEqual"/>
+      <import plugin="org.be.textbe.gv.model" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.be.textbe.bt.model" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.be.textbe.bt.textbt.resource.bt" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.be.textbe.gv.gv2text" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.be.textbe.bt2gv" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.apache.commons.io" version="2.0.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.m2m.atl.engine.emfvm"/>
+   </requires>
+
+   <plugin
+         id="org.be.textbe.bt2gv"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.be.textbe.bt2gv.builder"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.be.textbe.bt2gv.model"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
