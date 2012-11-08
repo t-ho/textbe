@@ -25,11 +25,6 @@
 
    <includes
          id="org.be.textbe.bt.model.feature"
-         version="0.0.0"
-         search-location="self"/>
-
-   <includes
-         id="org.be.textbe.gv.model.feature"
          version="0.0.0"/>
 
    <requires>
@@ -79,14 +74,14 @@
          unpack="false"/>
 
    <plugin
-         id="org.be.textbe.be2gv"
+         id="org.be.textbe.bt2gv"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.be.textbe.be2gv.builder"
+         id="org.be.textbe.bt2gv.builder"
          download-size="0"
          install-size="0"
          version="0.0.0"
