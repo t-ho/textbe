@@ -1,0 +1,70 @@
+#RT R3 R3
+
+#C C2 ATP_SYSTEM
+#S 1 Located #R Where on C3
+#S 2 Operating
+
+#C C3 TRAIN
+#E 1 Approaches #R What C11   
+
+#C C4 CENTRAL_CONTROLLER 
+
+#C C5 BOUNDARY_SUBSYSTEM5
+#S 1 Manage #R What C6 #R What C7 #R What C8 #R What C9 #R What C10
+ 
+#C C6 SENSOR3
+#S 1 Attached #R What to C15 / #R / What of C3
+
+#C C7 SPEEDOMETER
+
+#C C8 BRAKES
+
+#C C9 ALARM
+
+#C C10 RESET_MECHANISM  
+
+#C C11 SIGNAL# 
+#S 1 Display #R What C12 #R Who to C13
+#E 2 Display #R What C12 0
+#E 3 Display #R What C12 1
+#E 4 Display #R What C12 2
+#E 5 Display #R What C12 3 
+ 
+#C C12 INFORMATION
+#S 0 Danger 1 Caution 2 Proceed 3 Undefined
+ 
+#C C13 TRAIN_DRIVER
+
+#C C14 SENSOR# 
+#E 1 Detect #R What C12 / #R / What that C11 // 2 #R // Who to C13
+#E 2 Detect #R What C12 0
+#E 3 Detect #R What C12 1
+#E 4 Detect #R What C12 2
+#E 5 Detect #R What C12 3
+#S 6 value:=0
+#S 7 value:=1
+#S 8 value:=2
+#S 9 value:=3
+
+#C C15 SIDE  
+
+#C C16 NOISE
+#S 1 Exist #R Where between C11 #R Where between C14
+
+#T R3 + || C14 : C6 #P{
+	R3 + C11 2 #N{
+		R3 C14 2; R3 C14 6
+		R3 C14 5 =>
+	} 
+	R3 + C11 3 #N{
+		R3 C14 3; R3 C14 7
+		R3 C14 5 =>
+	}
+	R3 + C11 4 #N{
+		R3 C14 4; R3 C14 8
+		R3 C14 5 #P{
+			R3 C14 9
+			R3 + C16 1 %
+		}
+	} 
+}  
