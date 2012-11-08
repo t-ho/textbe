@@ -4,7 +4,7 @@
       label="%Feature-Name"
       version="1.0.0.qualifier"
       provider-name="%Feature-Vendor"
-      plugin="org.be.textbe.beviz.branding">
+      plugin="org.be.textbe.feature.branding">
 
    <description url="%descriptionURL">
       %description
@@ -65,42 +65,42 @@
          unpack="false"/>
 
    <plugin
-         id="org.be.textbe.beviz.gvBuilder"
+         id="org.be.textbe.gvBuilder"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.be.textbe.beviz.gvRender"
+         id="org.be.textbe.gvRenderer"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.be.textbe.beviz.be2gv"
+         id="org.be.textbe.be2gv"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.be.textbe.beviz.be2gv.builder"
+         id="org.be.textbe.be2gv.builder"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.be.textbe.beviz.help"
+         id="org.be.textbe.feature.help"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.be.textbe.beviz.branding"
+         id="org.be.textbe.feature.branding"
          download-size="0"
          install-size="0"
          version="0.0.0"
