@@ -7,7 +7,7 @@
 		<artifactId>org.be.textbe.feature.parent</artifactId>
 		<groupId>org.be.textbe</groupId>
 		<version>1.0.0-SNAPSHOT</version>
-		<relativePath>../org.be.textbe-parent</relativePath>
+		<relativePath>../org.be.textbe.feature.parent</relativePath>
 	</parent>
 	<artifactId>org.be.textbe.feature</artifactId>
 
