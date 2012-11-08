@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-SymbolicName: org.be.textbe.bt2gv.model;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.be.textbe.bt2gv.model.Activator
+Bundle-Vendor: %Bundle-Vendor
+Require-Bundle: org.eclipse.core.runtime, 
+ org.eclipse.m2m.atl.engine.emfvm
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Eclipse-LazyStart: true
+Export-Package: org.be.textbe.bt2gv.model.files
+Bundle-Localization: OSGI-INF/l10n/bundle
