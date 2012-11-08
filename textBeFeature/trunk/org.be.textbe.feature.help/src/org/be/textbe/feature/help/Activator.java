@@ -1,4 +1,4 @@
-package org.be.textbe.beviz.help;
+package org.be.textbe.feature.help;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
