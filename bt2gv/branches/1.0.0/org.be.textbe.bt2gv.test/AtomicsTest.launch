@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.m2m.atl.adt.launching.atlTransformation">
+<stringAttribute key="ATL File Name" value="/org.be.textbe.beviz.be2gvmodel/src/org/be/textbe/beviz/be2gvmodel/files/textBT2GV.atl"/>
+<stringAttribute key="ATL VM" value="EMF-specific VM"/>
+<stringAttribute key="ATL_COMPILER" value="atl2006"/>
+<booleanAttribute key="IS_REFINING" value="false"/>
+<mapAttribute key="Input">
+<mapEntry key="TEXTBT" value="IN"/>
+</mapAttribute>
+<mapAttribute key="Libs"/>
+<mapAttribute key="Model Handler">
+<mapEntry key="IN" value="EMF"/>
+<mapEntry key="OUT" value="EMF"/>
+</mapAttribute>
+<mapAttribute key="ModelType">
+<mapEntry key="GV" value="MODELOUTPUT"/>
+<mapEntry key="IN" value="METAMODELINPUT"/>
+<mapEntry key="OUT" value="METAMODELOUTPUT"/>
+<mapEntry key="TEXTBT" value="MODELINPUT"/>
+</mapAttribute>
+<mapAttribute key="Options">
+<mapEntry key="OPTION_CLEAR" value="true"/>
+<mapEntry key="OPTION_CONTENT_TYPE" value="true"/>
+<mapEntry key="OPTION_DERIVED" value="true"/>
+<mapEntry key="allowInterModelReferences" value="false"/>
+<mapEntry key="printExecutionTime" value="false"/>
+<mapEntry key="step" value="false"/>
+<mapEntry key="supportUML2Stereotypes" value="false"/>
+</mapAttribute>
+<listAttribute key="OrderedInput">
+<listEntry value="TEXTBT"/>
+</listAttribute>
+<listAttribute key="OrderedOutput">
+<listEntry value="GV"/>
+</listAttribute>
+<mapAttribute key="Output">
+<mapEntry key="GV" value="OUT"/>
+</mapAttribute>
+<mapAttribute key="Path">
+<mapEntry key="GV" value="/org.be.textbe.bt2gv.test/testfiles/atomics bug/atomics.xmi"/>
+<mapEntry key="IN" value="uri:http://org.be.textbe/textbt"/>
+<mapEntry key="OUT" value="/org.be.textbe.gv.model/metamodel/gv.ecore"/>
+<mapEntry key="TEXTBT" value="/org.be.textbe.bt2gv.test/testfiles/atomics bug/atomicBugV3.bt"/>
+</mapAttribute>
+<stringAttribute key="Port" value="6060"/>
+<listAttribute key="Superimpose"/>
+</launchConfiguration>
