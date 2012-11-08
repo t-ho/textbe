@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.be.textbe.bt2gv.feature_1.0.0.qualifier.jar" id="org.be.textbe.bt2gv.feature" version="1.0.0.qualifier">
+      <category name="org.be.textbe.v1"/>
+   </feature>
+   <category-def name="org.be.textbe.v1" label="%org_be_textbe_bt2gv_category_label">
+      <description>
+         %org_be_textbe_bt2gv_category_description
+      </description>
+   </category-def>
+</site>
