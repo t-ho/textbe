@@ -9,7 +9,7 @@
 		<version>1.0.0-SNAPSHOT</version>
 		<relativePath>../org.be.textbe.bt2gv.parent</relativePath>
 	</parent>
-	<artifactId>org.be.textbe.bt2gv.mod</artifactId>
+	<artifactId>org.be.textbe.bt2gv.model</artifactId>
 
 	<packaging>eclipse-plugin</packaging>
 </project>
