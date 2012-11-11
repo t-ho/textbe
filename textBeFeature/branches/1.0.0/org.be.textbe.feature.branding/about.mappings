@@ -1,0 +1,5 @@
+0=${unqualifiedVersion}
+1=${unqualifiedVersion}.${buildQualifier}
+2=${timestamp}
+3=${os.name} ${os.version} ${os.arch} 
+4=${hostname}
