@@ -1,0 +1,628 @@
+<html xmlns="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+<title>Behavior Tree Notation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></meta>
+</head>
+<body>
+	<h1>Introduction</h1>
+
+	<p>Shown below is a part of a model that expresses the required
+		behavior of a microwave oven. The model is in the shape of a tree.
+		This model type is called a Behavior Tree (BT). Within the model we
+		notice:
+	<ul>
+		<li>Nodes, connected by arrows that seem to suggest a temporal
+			order. The terms used to to talk about relationships of nodes within
+			the tree are given in section.</li>
+		<li>Within the nodes we find two or three compartments. The
+			meaning of these elements is defined in section.
+			<ul>
+				<li>The left compartment seems to deal with <code>R</code>
+					items, which we assume refer to requirements.
+				</li>
+				<li>The right compartment seems to deal with parts of the
+					system like <code>OVEN</code>, <code>LIGHT</code> and <code>USER</code>
+					and their behavior.
+				</li>
+			</ul>
+		
+	</ul>
+	</p>
+
+	<img src="document2x.png" alt="PIC"
+		title="Behavior Tree Tree Naming Conventions" />
+
+	<table>
+		<tr>
+			<th>Label</th>
+			<th>Name</th>
+			<th>Description</th>
+		</tr>
+
+		<tr>
+			<td>A</td>
+			<td>Root Node</td>
+			<td>The first node in a tree (does not have a parent)</td>
+		</tr>
+
+		<tr>
+			<td>B</td>
+			<td>Edge</td>
+			<td>A connection between two nodes</td>
+		</tr>
+
+		<tr>
+			<td>C</td>
+			<td>Leaf Node</td>
+			<td>A node with no children</td>
+		</tr>
+
+		<tr>
+			<td>D</td>
+			<td>Branch</td>
+			<td>A subtree of the node of interest</td>
+		</tr>
+		<caption>Branches of a Behavior Tree</caption>
+	</table>
+
+	<h2>Object Naming Conventions</h2>
+
+	<ul>
+		<li>Component names should be capitalised e.g <code>OVEN</code></li>
+		<li>The first letter of a behavior should be capitalised e.g <code>Open</code></li>
+		<li>The first letter of an attribute should be lowercase e.g. <code>timer</code></li>
+	</ul>
+
+	<table>
+		<tr>
+			<th>Variable</th>
+			<th>Description</th>
+		</tr>
+
+		<tr>
+			<td>N,N<sub>i</sub></td>
+			<td>Behavior Tree Nodes</td>
+		</tr>
+
+		<tr>
+			<td>T,T<sub>i</sub></td>
+			<td>Behavior Trees</td>
+		</tr>
+
+		<tr>
+			<td>C,C<sub>i</sub></td>
+			<td>Components</td>
+		</tr>
+
+		<tr>
+			<td>C#</td>
+			<td>A Component Instance</td>
+		</tr>
+
+		<tr>
+			<td>s</td>
+			<td>A State of a Component</td>
+		</tr>
+
+		<tr>
+			<td>e</td>
+			<td>An Event</td>
+		</tr>
+
+		<tr>
+			<td>a</td>
+			<td>An Attribute of a Component</td>
+		</tr>
+
+		<tr>
+			<td>b</td>
+			<td>A Branching Condition of a Component</td>
+		</tr>
+		<caption>Variable Naming Conventions</caption>
+	</table>
+
+	<h2>Node Naming Conventions</h2>
+
+	<img src="document0x.png" title="Behavior Tree Node Naming Conventions"
+		alt="Behavior Tree Node Naming Conventions" />
+
+	<table>
+		<tr>
+			<th>Label</th>
+			<th>Name</th>
+			<th>Description</th>
+		</tr>
+
+		<tr>
+			<td>A</td>
+			<td>Component Name</td>
+			<td>Specifies a component</td>
+		</tr>
+
+		<tr>
+			<td>B</td>
+			<td>Behavior</td>
+			<td>Specifies the behavior associated with the component</td>
+		</tr>
+
+		<tr>
+			<td>C</td>
+			<td>Operator</td>
+			<td>Describes threaded behavior that is linked to the matching
+				node in the tree</td>
+		</tr>
+
+		<tr>
+			<td>D</td>
+			<td>Label</td>
+			<td>An optional label for disambiguation (in case a node appears
+				elsewhere with the same component and behavior)</td>
+		</tr>
+
+		<tr>
+			<td>E</td>
+			<td>Behavior Type</td>
+			<td>Delimiters on the behavior indicating the type of behavior
+				involved</td>
+		</tr>
+
+		<tr>
+			<td>F</td>
+			<td>Traceability Link</td>
+			<td>A reference to the requirements document</td>
+		</tr>
+
+		<tr>
+			<td>G</td>
+			<td>Traceability Status</td>
+			<td>Indicates how the node relates to the traceability link</td>
+		</tr>
+
+		<tr>
+			<td>H</td>
+			<td>Tag</td>
+			<td>The box on the left-hand side of the node (may be omitted in
+				different contexts)</td>
+		</tr>
+
+		<tr>
+			<td>I</td>
+			<td>Behavior Tree Node</td>
+			<td>A node consisting of all or some of the information above</td>
+		</tr>
+		<caption>Elements of a Behavior Tree Node</caption>
+	</table>
+
+
+
+
+	<h2>Relation Naming Conventions</h2>
+
+	<p></p>
+
+	<table>
+		<tr>
+			<th>Label</th>
+			<th>Name</th>
+			<th>Description</th>
+		</tr>
+
+		<tr>
+			<td>A</td>
+			<td>Primary Component &amp; Behavior</td>
+			<td>The component and behavior that form the relation</td>
+		</tr>
+
+		<tr>
+			<td>B</td>
+			<td>Related Component</td>
+			<td>Component (and optional behavior) related to the primary
+				component and behavior</td>
+		</tr>
+
+		<tr>
+			<td>C</td>
+			<td>Qualifier</td>
+			<td>Specifies the type of the relation. Must be one of What,
+				Where, When, Why, Who or How</td>
+		</tr>
+
+		<tr>
+			<td>D</td>
+			<td>Preposition</td>
+			<td>Further qualifies the relation to remove potential ambiguity
+			</td>
+		</tr>
+
+		<tr>
+			<td>E</td>
+			<td>Secondary Relation</td>
+			<td>The related component is linked to the primary component
+				using a forward slash (/). Multi-level relations can be formed by
+				using multiple forward slashes</td>
+		</tr>
+		<caption>Elements of a Behavior Tree Relation</caption>
+	</table>
+
+	<img src="document1x.png" alt="PIC"
+		title="Behavior Tree Relation Naming Conventions"></img>
+
+	<h2>Tree Naming Conventions</h2>
+
+
+
+	<table>
+		<tr>
+			<th>Label</th>
+			<th>Name</th>
+			<th>Description</th>
+		</tr>
+
+		<tr>
+			<td>A</td>
+			<td>Ancestor Node</td>
+			<td>Any node which appears in a direct line between the node of
+				interest and the root node of the tree</td>
+		</tr>
+
+		<tr>
+			<td>B</td>
+			<td>Parent Node</td>
+			<td>An immediate ancestor</td>
+		</tr>
+
+		<tr>
+			<td>C</td>
+			<td>Sibling Node</td>
+			<td>A node which shares the same parent</td>
+		</tr>
+
+		<tr>
+			<td>D</td>
+			<td>Sibling Branch</td>
+			<td>A subtree with a sibling node as its root</td>
+		</tr>
+
+		<tr>
+			<td>E</td>
+			<td>Child Node</td>
+			<td>A node immediately below the node of interest</td>
+		</tr>
+
+		<tr>
+			<td>F</td>
+			<td>Descendant</td>
+			<td>Any node appearing below the node of interest</td>
+		</tr>
+		<caption>Nodes of a Behavior Tree</caption>
+	</table>
+
+
+
+	<h2>Tree Branch Naming Convention</h2>
+
+
+
+
+
+
+
+	<p>
+		<img src="document3x.png" alt=""></img>
+	</p>
+
+	<p>Figure 4: Tree Branch Naming Convention</p>
+
+	<h1>Behavior Tree Notation &amp; Syntax</h1>
+
+	<h2>Multiple Component Instances</h2>
+	<table>
+		<tr>
+			<th>Type</th>
+			<th>Graphical Notation</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>For All</td>
+			<td></td>
+			<td>Execute an instance of T for every element in CSET</td>
+		</tr>
+		<tr>
+			<td>For Some</td>
+			<td></td>
+			<td>Execute an instance of T for some number (including 0) of
+				elements in CSET</td>
+		</tr>
+		<tr>
+			<td>At Least One</td>
+			<td></td>
+			<td>Execute an instance of T for some number (but at least 1) of
+				elements in CSET</td>
+		</tr>
+		<tr>
+			<td>For One Arbitrary</td>
+			<td></td>
+			<td>Execute an instance of T for one element in CSET</td>
+		</tr>
+
+	</table>
+
+	<h2>Node Tags</h2>
+	<table>
+		<tr>
+			<th>Type</th>
+			<th>Graphical Notation</th>
+			<th>Description</th>
+		</tr>
+
+		<tr>
+			<td>Original</td>
+			<td><img src="document10x.png" alt=""></img></td>
+			<td>No traceability status indicates that the behavior is stated
+				in the original requirements. The color green is used for original
+				requirements.</td>
+		</tr>
+
+		<tr>
+			<td>Implied</td>
+			<td><img src="document11x.png" alt=""></img></td>
+			<td>The + traceability status indicates that the behavior is not
+				explicitly stated in the original requirements but is implied by the
+				requirement. The color yellow is used for implied behavior.</td>
+		</tr>
+
+		<tr>
+			<td>Missing</td>
+			<td><img src="document12x.png" alt=""></img></td>
+			<td>The - traceability status indicates that the behavior is
+				missing from the original requirements and is needed for
+				completeness. The color red is used for missing behavior.</td>
+		</tr>
+
+		<tr>
+			<td>Design</td>
+			<td><img src="document13x.png" alt=""></img></td>
+			<td>The +- traceability status indicates that the behavior is a
+				refinement of the original requirements, indicating that the
+				behavior is implied but the detail to describe it is missing.</td>
+		</tr>
+
+		<tr>
+			<td>Updated</td>
+			<td><img src="document14x.png" alt=""></img></td>
+			<td>The ++ traceability status indicates that the behavior has
+				been added in the post-development or maintainence phase. The color
+				blue is used for updated behavior. Where there are different series
+				of changes / upgrades we use ++v1.0, ++v2.0, etc to indicate the
+				particular upgrade series.</td>
+		</tr>
+
+		<tr>
+			<td>Deleted</td>
+			<td><img src="document15x.png" alt=""></img></td>
+			<td>The -- traceability status indicates that the behavior has
+				been deleted from the behavior tree. The color grey is used for
+				deleted behavior, but the nodes may also be hidden optionally by
+				using tool support.</td>
+		</tr>
+		<caption>Node Tags</caption>
+	</table>
+
+	<h2>Basic Nodes</h2>
+
+	<table>
+		<tr>
+			<th>Type</th>
+			<th>Graphical Notation</th>
+			<th>Description</th>
+		</tr>
+
+		<tr>
+			<td>State Realisation</td>
+			<td><img src="document26x.png" alt=""></img></td>
+			<td>Component C realises state s.</td>
+		</tr>
+
+		<tr>
+			<td>System State Realisation</td>
+			<td><img src="document27x.png" alt=""></img></td>
+			<td>This is a state realisation decorated with a double box to
+				indicate the component is a system component in the current context.
+				There can only be one system component in each context.</td>
+		</tr>
+
+		<tr>
+			<td>Selection</td>
+			<td><img src="document28x.png" alt=""></img></td>
+			<td>If condition b evaluates to true, then pass control to child
+				nodes otherwise terminate.</td>
+		</tr>
+
+		<tr>
+			<td>Event</td>
+			<td><img src="document29x.png" alt=""></img></td>
+			<td>Wait until event e is received.</td>
+		</tr>
+
+		<tr>
+			<td>Guard</td>
+			<td><img src="document30x.png" alt=""></img></td>
+			<td>Wait until condition b evaluates to true, then pass control
+				to child nodes.</td>
+		</tr>
+
+		<tr>
+			<td>Internal Output</td>
+			<td><img src="document31x.png" alt=""></img></td>
+			<td>Generate input e and send to the system.</td>
+		</tr>
+
+		<tr>
+			<td>Internal Input</td>
+			<td><img src="document32x.png" alt=""></img></td>
+			<td>Wait for input e from the system.</td>
+		</tr>
+
+		<tr>
+			<td>External Output</td>
+			<td><img src="document33x.png" alt=""></img></td>
+			<td>Generate output e and send to the environment.</td>
+		</tr>
+
+		<tr>
+			<td>External Input</td>
+			<td><img src="document34x.png" alt=""></img></td>
+			<td>Wait for input e to be received from the environment.</td>
+		</tr>
+
+		<tr>
+			<td>Empty Node</td>
+			<td><img src="document35x.png" alt=""></img></td>
+			<td>Empty Nodes can be used together with labels to be origins
+				or destinations of node operators. Empty Nodes are also useful for
+				grouping child nodes into multiple branch types.</td>
+		</tr>
+		<caption>Basic Nodes</caption>
+	</table>
+
+	<h2>Behavior Tree Composition</h2>
+
+	<h3>Sequences</h3>
+
+	<table>
+		<tr>
+			<th>Type</th>
+			<th>Graphical Notation</th>
+			<th>Description</th>
+		</tr>
+
+		<tr>
+			<td>Sequential Composition</td>
+			<td><img src="document40x.png" alt=""></img></td>
+			<td>Execute N, passing control to tree T. The behavior of
+				concurrent BTs may be interleaved between N and T.</td>
+		</tr>
+
+
+
+		<tr>
+			<td>Atomic Composition</td>
+			<td><img src="document41x.png" alt=""></img></td>
+			<td>Execute N<sub>1</sub> immediately followed by N<sub>2</sub>,passing
+				control to tree T. The behavior of concurrent BTs may not be
+				interleaved between N<sub>1</sub> and N<sub>2</sub>.
+			</td>
+		</tr>
+		<caption>Sequences</caption>
+	</table>
+
+	<h2>Condition Operators</h2>
+
+	Condition Operators define a composite node that acts as a guard. The
+	node executes only if the condition holds. These conditions can hence
+	reference several components.
+	<table>
+
+		<tr>
+			<td>Conjunction</td>
+			<td><img src="document57x.png" alt=""></img></td>
+			<td>The operator &amp; corresponds to logical conjunction.</td>
+		</tr>
+
+
+
+		<tr>
+			<td>Disjunction</td>
+			<td><img src="document58x.png" alt=""></img></td>
+			<td>The operator | corresponds to logical disjunction.</td>
+		</tr>
+
+
+
+		<tr>
+			<td>Exclusive OR</td>
+			<td><img src="document59x.png" alt=""></img></td>
+			<td>The operator XOR corresponds to logical mutual exclusion.</td>
+		</tr>
+	</table>
+
+	<h3>Branches</h3>
+	<table>
+		<tr>
+			<th>Type</th>
+			<th>Graphical Notation</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>Parallel Branching</td>
+			<td><img src="document42x.png" alt=""></img></td>
+			<td>Execute N, passing control to both T<sub>1</sub> and T<sub>2</sub>.
+			</td>
+		</tr>
+
+		<tr>
+			<td>Alternative Branching</td>
+			<td><img src="document43x.png" alt=""></img></td>
+			<td>A nondeterministic choice is made between T<sub>1</sub> and
+				T<sub>2</sub>, depending on which is ready to execute (not blocked)
+			</td>
+		</tr>
+		<caption>Branches</caption>
+	</table>
+
+	<h2>Node Operators</h2>
+
+	<ul>
+		<li>Operators on source nodes match against the Component,
+			Behavior, Behavior Type and Label (if present) of the destination
+			node.</li>
+
+		<li>An operator may be prefixed by a label and a fullstop to
+			refer to a destination node with a label e.g. lbl.^ indicates to
+			revert to destination node with label lbl.</li>
+	</ul>
+
+	<table>
+		<tr>
+			<th>Type</th>
+			<th>Graphical Notation</th>
+			<th>Description</th>
+		</tr>
+
+		<tr>
+			<td>Reference</td>
+			<td><img src="document52x.png" alt=""></img></td>
+			<td>Behave as the destination node. The destination node must
+				appear in an alternative branch to the origin.</td>
+		</tr>
+
+		<tr>
+			<td>Reversion</td>
+			<td><img src="document53x.png" alt=""></img></td>
+			<td>Behave as the destination node. The destination node must be
+				an ancestor. All sibling behaviour is terminated.</td>
+		</tr>
+
+		<tr>
+			<td>Branch Kill</td>
+			<td><img src="document54x.png" alt=""></img></td>
+			<td>Terminate all behavior associated with destination tree.</td>
+		</tr>
+
+		<tr>
+			<td>Synchronisation</td>
+			<td><img src="document55x.png" alt=""></img></td>
+			<td>Wait for destination node (or nodes).</td>
+		</tr>
+
+		<tr>
+			<td>May</td>
+			<td><img src="document56x.png" alt=""></img></td>
+			<td>The node may execute normally, or may have no effect.</td>
+		</tr>
+	</table>
+
+
+</body>
+</html>
+
