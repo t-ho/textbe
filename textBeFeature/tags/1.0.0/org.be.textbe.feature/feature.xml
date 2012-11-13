@@ -19,60 +19,91 @@
    </license>
 
    <url>
-      <discovery label="EclipseGraphViz" url="http://abstratt.com/update/"/>
       <discovery label="EMFText" url="http://emftext.org/update"/>
+      <discovery label="Orbit" url="http://download.eclipse.org/tools/orbit/downloads/drops/R20120526062928/repository/"/>
+      <discovery label="Juno" url="http://download.eclipse.org/releases/juno"/>
+      <discovery label="M2T" url="http://download.eclipse.org/modeling/m2t/updates/releases/"/>
    </url>
 
    <includes
          id="org.be.textbe.bt.model.feature"
          version="0.0.0"/>
 
+   <includes
+         id="org.be.textbe.bt2gv.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.be.textbe.gv.model.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.be.textbe.gvBuilder.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.be.textbe.svg.view.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.jet.core"
+         version="0.0.0"
+         search-location="self"/>
+
+   <includes
+         id="org.eclipse.m2m.atl"
+         version="0.0.0"
+         search-location="self"/>
+
+   <includes
+         id="org.emftext.access"
+         version="0.0.0"
+         search-location="self"/>
+
+   <includes
+         id="org.emftext.commons.antlr3_3_0"
+         version="0.0.0"
+         search-location="self"/>
+
+   <includes
+         id="org.emftext.commons.antlr3_4_0"
+         version="0.0.0"
+         search-location="self"/>
+
+   <includes
+         id="org.eclipse.emf"
+         version="0.0.0"
+         search-location="self"/>
+
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.help"/>
+      <import plugin="org.apache.batik.css" version="1.6.0" match="equivalent"/>
+      <import plugin="org.apache.batik.dom" version="1.6.0" match="equivalent"/>
+      <import plugin="org.apache.batik.dom.svg" version="1.6.0" match="equivalent"/>
+      <import plugin="org.apache.batik.ext.awt" version="1.6.0" match="equivalent"/>
+      <import plugin="org.apache.batik.parser" version="1.6.0" match="equivalent"/>
+      <import plugin="org.apache.batik.util" version="1.6.0" match="equivalent"/>
+      <import plugin="org.apache.batik.util.gui" version="1.6.0" match="equivalent"/>
+      <import plugin="org.apache.batik.xml" version="1.6.0" match="equivalent"/>
+      <import plugin="org.w3c.dom.svg" version="1.1.0"/>
+      <import plugin="org.apache.batik.util" version="1.7.0" match="equivalent"/>
+      <import plugin="org.w3c.dom.events"/>
+      <import plugin="org.w3c.css.sac"/>
+      <import plugin="org.w3c.css.sac" version="1.3.0" match="equivalent"/>
+      <import plugin="org.eclipse.osgi"/>
+      <import plugin="org.w3c.dom.smil" version="1.0.0" match="equivalent"/>
+      <import plugin="org.apache.batik.bridge" version="1.7.0" match="equivalent"/>
+      <import plugin="org.apache.batik.css" version="1.7.0" match="equivalent"/>
+      <import plugin="org.apache.batik.dom" version="1.7.0" match="equivalent"/>
+      <import plugin="org.apache.batik.dom.svg" version="1.7.0" match="equivalent"/>
+      <import plugin="org.apache.batik.ext.awt" version="1.7.0" match="equivalent"/>
+      <import plugin="org.apache.batik.parser" version="1.7.0" match="equivalent"/>
+      <import plugin="org.apache.batik.util.gui" version="1.7.0" match="equivalent"/>
+      <import plugin="org.apache.batik.xml" version="1.7.0" match="equivalent"/>
+      <import plugin="org.apache.batik.bridge" version="1.6.0" match="equivalent"/>
+      <import plugin="org.apache.batik.svggen" version="1.6.0" match="equivalent"/>
    </requires>
-
-   <plugin
-         id="org.be.textbe.bt.examples"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.be.textbe.svg.view"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.be.textbe.gvBuilder"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.be.textbe.gvRenderer"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.be.textbe.bt2gv"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.be.textbe.bt2gv.builder"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
 
    <plugin
          id="org.be.textbe.feature.help"
@@ -83,6 +114,97 @@
 
    <plugin
          id="org.be.textbe.feature.branding"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.batik.bridge"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.batik.css"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.batik.dom"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.batik.dom.svg"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.batik.ext.awt"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.batik.extension"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.batik.parser"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.batik.svggen"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.batik.swing"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.batik.transcoder"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.batik.util"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.batik.util.gui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.batik.xml"
          download-size="0"
          install-size="0"
          version="0.0.0"
