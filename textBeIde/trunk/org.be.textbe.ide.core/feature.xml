@@ -2,7 +2,10 @@
 <feature
       id="org.be.textbe.ide.rcp.reuse"
       label="Core"
-      version="2.0.0.qualifier">
+      version="1.0.0.qualifier"
+      os="linux,macosx,win32"
+      ws="cocoa,gtk,win32"
+      arch="x86,x86_64">
 
    <description url="http://www.example.com/description">
       [Enter Feature Description here.]
@@ -487,35 +490,28 @@
          unpack="false"/>
 
    <plugin
-         id="org.be.textbe.beviz.be2gv"
+         id="org.be.textbe.bt2gv"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.be.textbe.beviz.be2gv.builder"
+         id="org.be.textbe.bt2gv.builder"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.be.textbe.beviz.gvBuilder"
+         id="org.be.textbe.gvBuilder"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.be.textbe.beviz.gvRender"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.be.textbe.beviz.help"
+         id="org.be.textbe.gvRenderer"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -536,13 +532,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.be.textbe.bt.model.v1"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.be.textbe.bt.textbt.resource.bt"
          download-size="0"
          install-size="0"
@@ -551,20 +540,6 @@
 
    <plugin
          id="org.be.textbe.bt.textbt.resource.bt.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.be.textbe.bt.v1.textbt.resource.bt"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.be.textbe.bt.v1.textbt.resource.bt.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -731,14 +706,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.core.filesystem.win32.x86"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.core.jobs"
          download-size="0"
          install-size="0"
@@ -753,26 +720,10 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.core.net.win32.x86"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.core.resources"
          download-size="0"
          install-size="0"
          version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.core.resources.win32.x86"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
          unpack="false"/>
 
    <plugin
@@ -781,13 +732,6 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-
-   <plugin
-         id="org.eclipse.core.runtime.compatibility.registry"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"/>
 
    <plugin
          id="org.eclipse.core.variables"
@@ -1161,13 +1105,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.equinox.launcher.win32.win32.x86"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"/>
-
-   <plugin
          id="org.eclipse.equinox.p2.artifact.repository"
          download-size="0"
          install-size="0"
@@ -1340,14 +1277,6 @@
          download-size="0"
          install-size="0"
          version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.equinox.security.win32.x86"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
          unpack="false"/>
 
    <plugin
@@ -1856,14 +1785,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.swt.win32.win32.x86"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.team.core"
          download-size="0"
          install-size="0"
@@ -1979,14 +1900,6 @@
          download-size="0"
          install-size="0"
          version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.ui.win32"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
          unpack="false"/>
 
    <plugin
@@ -2268,6 +2181,20 @@
 
    <plugin
          id="org.w3c.dom.svg"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.be.textbe.feature.help"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.be.textbe.feature.branding"
          download-size="0"
          install-size="0"
          version="0.0.0"
