@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="TextBe" uid="org.be.textbe" id="org.be.textbe.ide.product" application="org.eclipse.ui.ide.workbench" version="2.0.0.qualifier" useFeatures="true" includeLaunchers="true">
+<product name="TextBe" uid="org.be.textbe" id="org.be.textbe.ide.product" application="org.eclipse.ui.ide.workbench" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/org.be.textbe.ide.branding/about/tree_of_knowledge.png"/>
@@ -25,13 +25,19 @@
       startupMessageRect="5,90,445,20"
       startupForegroundColor="000000" />
    <launcher name="textbe">
-      <macosx icon="/org.be.textbe.ide.branding/launcher/macosx/textbe.icns"/>
-      <solaris/>
+      <linux icon="textbe.xpm"/>
+      <macosx icon="textbe.icns"/>
+      <solaris
+            solarisLarge="textbe.l.pm"
+            solarisMedium="textbe.m.pm"
+            solarisSmall="textbe.s.pm"
+            solarisTiny="textbe.t.pm"/>
       <win useIco="true">
-         <ico path="/org.be.textbe.ide.branding/launcher/win32/textbe.ico"/>
+         <ico path="textbe.ico"/>
          <bmp/>
       </win>
    </launcher>
+
 
    <vm>
       <windows include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6</windows>
@@ -41,14 +47,12 @@
    </plugins>
 
    <features>
-      <feature id="org.be.textbe.ide.rcp.configuration" version="2.0.0.qualifier"/>
+      <feature id="org.be.textbe.ide.rcp.configuration" version="1.0.0.qualifier"/>
       <feature id="org.eclipse.rcp"/>
       <feature id="org.eclipse.emf.ecore"/>
       <feature id="org.eclipse.e4.rcp"/>
       <feature id="org.eclipse.emf.common"/>
-      <feature id="org.be.textbe.ide.rcp.reuse" version="2.0.0.qualifier"/>
-      <feature id="org.be.textbe.bt.model.feature"/>
-      <feature id="org.be.textbe.gv.model.feature"/>
+      <feature id="org.be.textbe.ide.rcp.reuse" version="1.0.0.qualifier"/>
       <feature id="org.behaviorengineering.combe.feature"/>
       <feature id="org.strategoxt.imp"/>
    </features>
