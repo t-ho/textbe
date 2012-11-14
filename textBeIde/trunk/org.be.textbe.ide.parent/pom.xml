@@ -3,17 +3,171 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<artifactId>org.be.textbe-parent</artifactId>
-		<groupId>org.be.textbe</groupId>
-		<version>2.0.0-SNAPSHOT</version>
-	</parent>
 	<artifactId>org.be.textbe.ide.parent</artifactId>
 
 	<packaging>pom</packaging>
+
+	<properties>
+		<tycho-version>0.16.0</tycho-version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<repositories>
+		<repository>
+			<id>juno</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/releases/juno</url>
+		</repository>
+		<repository>
+			<id>model_bt_v0_1.0.0</id>
+			<layout>p2</layout>
+			<url>http://textbe.googlecode.com/svn/model_bt_v0/p2/1.0.0</url>
+		</repository>
+		<repository>
+			<id>bt2gv_1.0.0</id>
+			<layout>p2</layout>
+			<url>http://textbe.googlecode.com/svn/bt2gv/p2/1.0.0</url>
+		</repository>
+		<repository>
+			<id>model_gv_1.0.0</id>
+			<layout>p2</layout>
+			<url>http://textbe.googlecode.com/svn/model_gv/p2/1.0.0</url>
+		</repository>
+		<repository>
+			<id>svgview_1.0.0</id>
+			<layout>p2</layout>
+			<url>http://textbe.googlecode.com/svn/svgview/p2/1.0.0</url>
+		</repository>
+		<repository>
+			<id>gvbuilder_1.0.0</id>
+			<layout>p2</layout>
+			<url>http://textbe.googlecode.com/svn/gvbuilder/p2/1.0.0</url>
+		</repository>
+		<repository>
+			<id>textbeFeature_1.0.0</id>
+			<layout>p2</layout>
+			<url>http://textbe.googlecode.com/svn/textBeFeature/p2/1.0.0</url>
+		</repository>
+		<repository>
+			<id>emftext</id>
+			<layout>p2</layout>
+			<url>http://emftext.org/update</url>
+		</repository>
+		<repository>
+			<id>JET2</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/modeling/m2t/updates/releases/</url>
+		</repository>
+		<repository>
+			<id>Orbit_R20120526062928</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/tools/orbit/downloads/drops/R20120526062928/repository/</url>
+		</repository>
+		<repository>
+			<id>Combe</id>
+			<layout>p2</layout>
+			<url>http://itee.uq.edu.au/~jgsuess/update/combe</url>
+		</repository>
+	</repositories>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-source-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<executions>
+					<execution>
+						<id>plugin-source</id>
+						<goals>
+							<goal>plugin-source</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-packaging-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<!-- <configuration> -->
+				<!-- <qualifier>myprefix_${buildQualifier}</qualifier> -->
+				<!-- </configuration> -->
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<dependency-resolution>
+						<optionalDependencies>ignore</optionalDependencies>
+					</dependency-resolution>
+					<environments>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>macosx</os>
+							<ws>cocoa</ws>
+							<arch>x86_64</arch>
+						</environment>
+					</environments>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<url>http://code.google.com/p/textbe</url>
+	<description>Behavior Engineering (BE) is an integrated discipline that supports the systems and software engineering of large-scale, dependable software-intensive systems. Behavior Engineering employs a graphical Behavior Modeling Language (BML) that is used to construct complete behavioral, compositional and structural integrated views from natural language descriptions of a large set of requirements for a proposed system.
+
+TextBE provides a textual editor for defining BE models using textual representations of the three integrated views (Behavior Trees (BT), Composition Trees (CT), Structure Trees (ST)) of the Behavior Modeling Language. TextBE converts the textual representation into a graphical visualisation for use whilst editing that can also be saved into various file formats for use outside of TextBE.</description>
+	<name>Textual Editor for Behavior Engineering</name>
+	<inceptionYear>2006</inceptionYear>
+	<organization>
+		<name>Behavior Engineering</name>
+		<url>http://www.behaviorengineering.org</url>
+	</organization>
+	<scm>
+		<developerConnection>scm:svn:https://textbe.googlecode.com/svn</developerConnection>
+		<connection>scm:svn:https://textbe.googlecode.com/svn</connection>
+		<url>http://code.google.com/p/textbe/source/browse/</url>
+		<tag>HEAD</tag>
+	</scm>
+	<issueManagement>
+		<url>http://code.google.com/p/textbe/issues/list</url>
+		<system>Issue Tracker</system>
+	</issueManagement>
+	<ciManagement>
+		<url>http://emory.eait.uq.edu.au:8080/</url>
+		<system>University of Queensland ITEE Jenkins Server</system>
+	</ciManagement>
 	<modules>
-	<module>../org.be.textbe.ide.product</module>
-	<module>../org.be.textbe.ide.rcp.configuration</module>
-	<module>../org.be.textbe.ide.rcp.reuse</module>
+		<module>../org.be.textbe.ide.product</module>
+		<module>../org.be.textbe.ide.rcp.configuration</module>
+		<module>../org.be.textbe.ide.rcp.reuse</module>
+		<module>../org.be.textbe.ide.branding</module>
+		<module>../org.be.textbe.ide</module>
 	</modules>
+	<groupId>org.be.textbe</groupId>
+	<version>1.0.0-SNAPSHOT</version>
 </project>
