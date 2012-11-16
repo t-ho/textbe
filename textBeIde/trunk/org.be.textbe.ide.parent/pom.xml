@@ -167,6 +167,7 @@ TextBE provides a textual editor for defining BE models using textual representa
 		<module>../org.be.textbe.ide.rcp.reuse</module>
 		<module>../org.be.textbe.ide.branding</module>
 		<module>../org.be.textbe.ide</module>
+		<module>../org.be.textbe.ide.intro</module>
 	</modules>
 	<groupId>org.be.textbe</groupId>
 	<version>1.0.0-SNAPSHOT</version>
