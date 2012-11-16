@@ -150,26 +150,56 @@ void NPosition::IncrementMapPointer(){
 void NPosition::SetMapPointer(std::map<int,int> &intMap){
 	m_intMapPointer = intMap.begin();
 	m_iType = 7;
+	if (m_intMapPointer == intMap.end()){ // This would happen if the list is empty.
+		m_IsNotAtEnd = false;
+	}else{
+		m_IsNotAtEnd = true;
+	}
 }
 void NPosition::SetMapPointer(std::map<int,NString> &stringMap){
 	m_stringMapPointer = stringMap.begin();
 	m_iType = 8;
+	if (m_stringMapPointer == stringMap.end()){ // This would happen if the list is empty.
+		m_IsNotAtEnd = false;
+	}else{
+		m_IsNotAtEnd = true;
+	}
 }
 void NPosition::SetMapPointer(std::map<int,NList<int, int>*> &intListMap){
 	m_intListMapPointer = intListMap.begin();
 	m_iType = 9;
+	if (m_intListMapPointer == intListMap.end()){ // This would happen if the list is empty.
+		m_IsNotAtEnd = false;
+	}else{
+		m_IsNotAtEnd = true;
+	}
 }
 void NPosition::SetMapPointer(std::map<int,NList<NString, NString>*> &stringListMap){
 	m_stringListMapPointer = stringListMap.begin();
 	m_iType = 10;
+	if (m_stringListMapPointer == stringListMap.end()){ // This would happen if the list is empty.
+		m_IsNotAtEnd = false;
+	}else{
+		m_IsNotAtEnd = true;
+	}
 }
 void NPosition::SetMapPointer(std::map<int,CTranslateNode*> &nodeMap){
 	m_nodeMapPointer = nodeMap.begin();
 	m_iType = 11;
+	if (m_nodeMapPointer == nodeMap.end()){ // This would happen if the list is empty.
+		m_IsNotAtEnd = false;
+	}else{
+		m_IsNotAtEnd = true;
+	}
 }
 void NPosition::SetMapPointer(std::map<int,NList<CTranslateAtomicBlock*, CTranslateAtomicBlock*>*> &blockMap){
 	m_blockMapPointer = blockMap.begin();
 	m_iType = 12;
+	if (m_blockMapPointer == blockMap.end()){ // This would happen if the list is empty.
+		m_IsNotAtEnd = false;
+	}else{
+		m_IsNotAtEnd = true;
+	}
 }
 
 std::map<int,int>::iterator NPosition::GetMapPointer(int iType,int iType2){

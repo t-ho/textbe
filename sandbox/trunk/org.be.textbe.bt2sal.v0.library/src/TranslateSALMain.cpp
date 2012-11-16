@@ -102,6 +102,7 @@ NString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 	
 	bool bError = false;
 	m_bUsingBESE = bUsingBESE;
+	NString strText = ""; // This is to hold the final string.
 
 	m_bIsUPPAAL = false;
 //	m_iTreeID = iTreeID;
@@ -260,7 +261,7 @@ NString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 				cTranslateMain.m_iHighestTranslateID = 1;
 				pcTranslateRoot = cTranslateMain.ReadSlice();
 				if (pcTranslateRoot == NULL){
-					NString strMessage = "";
+					NString strMessage = "Error: The .bt file has incorrect syntax.";
 					CTranslateException cException(strMessage);
 					throw cException;
 				}
@@ -492,7 +493,7 @@ NString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 
 		// Write the context name at the top, using the name of the file.
 		NString strFileName = "";  
-		NString strText = strFileName + ":CONTEXT=\r\n";	
+		strText = strFileName + ":CONTEXT=\r\n";	
 
 		// Write the BEGIN line.
 		strText.Append("BEGIN\r\n");
@@ -1398,13 +1399,14 @@ NString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 		// Show the translation.
 	//	cResultsDialog.SetResultsText(strText);
 	//	cResultsDialog.DoModal();	
-		return strText; // This is the final SAL translation.
+		
 		}
 	}catch (CTranslateException salEx){
 //		if (salEx.GetMessage() != ""){
 //			AfxMessageBox(salEx.GetMessage()); 
 
 //		}
+		strText = salEx.GetMessage();
 		bError = true;
 	}
 
@@ -1534,9 +1536,7 @@ NString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 		//	pcRandom = NULL;
 //		}
 //	}
-	if (bError){
-
-	}
+	return strText; // This is the final SAL translation or an error message.
 	
 }
 
@@ -2899,6 +2899,7 @@ CTranslateNode* CTranslateSALMain::ReadSlice(){
 //	char cLine[4096];
 	CTranslateNode* pcNode;
 	CTranslateNode* pcRoot;
+	
 	NList<NString,NString>* plLastComponent; // This is for when the line is declaring state names
 							// and the component name was specified on a previous line.
 	bool bReachedTree = false; // Indicates whether the tree section of the file
@@ -2912,11 +2913,15 @@ CTranslateNode* CTranslateSALMain::ReadSlice(){
 
 	bool bOneMoreLine = false;
 	m_bReachedComp = false;
+	bool bWrongTypeOfLine = false;
 
 	try{
 //	fgets(cLine,4096,pcFile); 
 	int iFilePos1 = 0;
 	strLine = m_strTree.Tokenize("\n", iFilePos1);
+	if (iFilePos1 == -1){
+		bWrongTypeOfLine = true;
+	}
 	while(iFilePos1 != -1){
 	//	while(!feof(pcFile) || (bOneMoreLine == true)) {
 //		strLine = cLine;
@@ -2931,21 +2936,20 @@ CTranslateNode* CTranslateSALMain::ReadSlice(){
 				plLastComponent = StoreSliceInformation(strLine, plLastComponent);
 			}else if (strToken == "#T"){
 			//	if (!feof(pcFile)){
-					// Remove the last character as it is a line break character.
-					int iLength = strLine.GetLength();
-					strLine.Truncate(iLength - 1);
-			//	}
+				int iLineBreakPos1 = 0;
+				// Remove the last character as it is a line break character.
+				strLine = strLine.Tokenize("\r", iLineBreakPos1);
+							
 				bReachedTree = true;
 				delete plLastComponent; // The component declarations are finished so delete it.
 				plLastComponent = NULL;
 				pcNode = StoreSliceNodeInformation(strLine);
 				pcRoot = pcNode;
 			}else{ //bReachedTree == true.
-			//	if (!feof(pcFile)){
-					// Remove the last character as it is a line break character.
-					int iLength = strLine.GetLength();
-					strLine.Truncate(iLength - 1);
-			//	}
+				int iLineBreakPos1 = 0;
+				// Remove the last character as it is a line break character.
+				strLine = strLine.Tokenize("\r", iLineBreakPos1);
+							
 				pcNode = StoreSliceNodeInformation(strLine);
 			}
 		//	if (bOneMoreLine == true){
@@ -2953,6 +2957,43 @@ CTranslateNode* CTranslateSALMain::ReadSlice(){
 		//	}else{
 				strLine = m_strTree.Tokenize("\n", iFilePos1);
 		//	}			
+	}
+	if(bWrongTypeOfLine == true){  // Check whether this was a file with \r's only and no \n's. 
+		iFilePos1 = 0;
+		strLine = m_strTree.Tokenize("\r", iFilePos1);
+		while(iFilePos1 != -1){
+			int iTokenPos = 0;
+				NString strToken = strLine.Tokenize(" \t", iTokenPos);
+				if ((strToken != "#T") && !bReachedTree){
+					// This is still the component declarations section of the file.
+					// Store the information and pass the last component name,
+					// in case this is a state declarations line and the component name
+					// that was previously parsed on another line is now needed.
+					plLastComponent = StoreSliceInformation(strLine, plLastComponent);
+				}else if (strToken == "#T"){
+				//	if (!feof(pcFile)){
+						// Remove the last character as it is a line break character.
+					//	int iLength = strLine.GetLength();
+					//	strLine.Truncate(iLength - 1);
+				//	}
+					bReachedTree = true;
+					delete plLastComponent; // The component declarations are finished so delete it.
+					plLastComponent = NULL;
+					pcNode = StoreSliceNodeInformation(strLine);
+					pcRoot = pcNode;
+				}else{ //bReachedTree == true.
+				//	if (!feof(pcFile)){
+						// Remove the last character as it is a line break character.
+					//	int iLength = strLine.GetLength();
+						//strLine.Truncate(iLength - 1);
+				//	}
+					pcNode = StoreSliceNodeInformation(strLine);
+				}
+			//	if (bOneMoreLine == true){
+			//		bOneMoreLine = false; // Stop it reading anymore.
+			//	}else{
+					strLine = m_strTree.Tokenize("\r", iFilePos1);
+		}
 	}
 
 	if (m_bReachedComp == false){  // This is probably not a .bt file, since no component declarations were found.
@@ -2981,6 +3022,18 @@ CTranslateNode* CTranslateSALMain::ReadSlice(){
 			delete plLastComponent; 
 		}
 		pcRoot = NULL;
+		// Free the memory.
+		NPosition cNodePosition = m_mTextBEMap.GetStartPosition();
+		while(cNodePosition.IsNotNull()){
+			CTranslateNode* pcTheNode;
+			int iID;
+			m_mTextBEMap.GetNextAssoc(cNodePosition,iID,pcTheNode);
+			delete pcTheNode;
+			pcTheNode = NULL;
+		}
+		m_mTextBEMap.RemoveAll();
+		// Send the exception back so that the message can be returned.
+		throw salEx;
 	}
 
 //	fclose(pcFile);
@@ -3013,8 +3066,13 @@ CTranslateNode* CTranslateSALMain::ReadSlice(){
 NList<NString, NString>* CTranslateSALMain::StoreSliceInformation(NString strLine, NList<NString, NString>* plComponent){
 	NString strToken, strToken2, strToken3, strToken4;
 	// Remove the last character as it is a line break character.
-	int iLength = strLine.GetLength();
-	strLine.Truncate(iLength - 1);
+	int iLineBreakPos1 = 0;
+	strLine = strLine.Tokenize("\r", iLineBreakPos1);
+	// Remove the last character as it is a line break character.
+//	if (iLineBreakPos1 != -1){
+//		int iLength = strLine.GetLength();
+//		strLine.Truncate(iLength - 1);
+//	}
 	int iTokenPos = 0;
 	strToken = strLine.Tokenize(" \t", iTokenPos);
 	
@@ -3120,69 +3178,7 @@ NList<NString, NString>* CTranslateSALMain::StoreSliceInformation(NString strLin
 		return plComponent;  // It will actually be null anyway.
 
 	}
-/*
-	NString strNodeID = strLine.Tokenize(" "), iTokenPos;
-	NString strComponentName = strLine.Tokenize(","), iTokenPos;
-	NString strStateName = strLine.Tokenize(","), iTokenPos;
-	NString strFlag = strLine.Tokenize(","), iTokenPos;
-	NString strType = strLine.Tokenize(","), iTokenPos;
-	NString strBranchingType = strLine.Tokenize(","), iTokenPos;
-	NString strJumpType = strLine.Tokenize(","), iTokenPos;
-	NString strSiblingNumber = strLine.Tokenize(","), iTokenPos;
-	NString strChildrenNumber = strLine.Tokenize(","), iTokenPos;
-	NString strParent = strLine.Tokenize(","), iTokenPos;
-	NString strIsBlankNode = strLine.Tokenize(","), iTokenPos;
-	NString strIsNodeNonDeter = strLine.Tokenize(","), iTokenPos;
-	NString strIsAtomic = strLine.Tokenize(","), iTokenPos;
-
-	// Create a TranslateNode with this information.
-	CTranslateNode* pcNode = new CTranslateNode;
-	pcNode->SetComponentName(strComponentName);
-	pcNode->SetStateName(strStateName);
-	if (strFlag == " "){  // It was meant to be a blank flag so delete the space.
-		strFlag = "";
-	}
-	pcNode->SetFlag(strFlag);
-	int iType = GetNumber(strType);
-	pcNode->SetType(iType);
-	int iJumpType = GetNumber(strJumpType);
-	pcNode->SetJumpType(iJumpType);
-	int iBranchingType = GetNumber(strBranchingType);
-	pcNode->SetBranchingType(iBranchingType);
-	if (strIsAtomic == "true;"){
-		pcNode->SetIsNodeAtomic(true);
-	}else{
-		pcNode->SetIsNodeAtomic(false);
-	}
-	if (strIsNodeNonDeter == "true"){
-		pcNode->SetIsNodeNonDeterministic(true);
-	}else{
-		pcNode->SetIsNodeNonDeterministic(false);
-	}
-	pcNode->SetIsNodeSetOperation(false);
-	int iSiblingNumber = GetNumber(strSiblingNumber);
-	pcNode->SetSiblingNumber(iSiblingNumber);
-	if (strIsBlankNode == "true"){
-		pcNode->SetIsBlankNode(true);
-	}else{
-		pcNode->SetIsBlankNode(false);
-	}
-	pcNode->SetIsUserDefinedAttribute(false);
-	int iNodeID = GetNumber(strNodeID);
-	pcNode->SetNodeID(iNodeID);
-	m_mTranslateNodes.SetAt(iNodeID, pcNode);
-	m_iHighestTranslateID = iNodeID;
-	int iParent = GetNumber(strParent);
-	pcNode->SetParent(iParent);
-
-	// Add this node to the parent's list of children.
-	if (iParent != 0){
-		CTranslateNode* pcParent; 
-		int iSuccess = m_mTranslateNodes.Lookup(iParent, pcParent);
-		pcParent->AddChild(iNodeID);
-	}
-
-	return pcNode;*/
+	return NULL;
 }
 
 // Please see the description for the ReadSlice function.
