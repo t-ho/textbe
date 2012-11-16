@@ -89,7 +89,6 @@ bool CTranslateRuleReversion::applyBackwards(CTranslateSALMain& cMain, NList<int
 
 void CTranslateRuleReversion::translateToSAL(CTranslateSALMain& cMain, int iNode, int iOtherNode, NList<CTranslateParsingRule*, CTranslateParsingRule*>* plSecondaryRules) 
 {
-	NList<NString, NString>* plActions;
 	if (!(cMain.UsingViews())){
 		if (cMain.IsAtomic(iOtherNode)){  // The top node is atomic.		
 			// Get the bottom node of the atomic block.
