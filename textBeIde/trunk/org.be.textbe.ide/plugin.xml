@@ -3,7 +3,7 @@
 <plugin>
 
    <extension
-         id="product"
+         id="org.be.textbe"
          name="TextBe"
          point="org.eclipse.core.runtime.products">
       <product
@@ -61,7 +61,7 @@
       </intro>
       <introProductBinding
             introId="org.eclipse.ui.intro.universal"
-            productId="org.be.textbe.ide.product">
+            productId="org.be.textbe">
       </introProductBinding>
    </extension>
 
@@ -77,5 +77,41 @@
          <keywordReference id="org.eclipse.ui.ide.appearance"/>
       </page>
    </extension>
+      <extension
+            id="product"
+            point="org.eclipse.core.runtime.products">
+         <product
+               application="org.eclipse.ui.ide.workbench"
+               name="TextBe">
+            <property
+                  name="windowImages"
+                  value="platform:/plugin/org.be.textbe.ide.branding/icons/alt_window_16.gif,platform:/plugin/org.be.textbe.ide.branding/icons/alt_window_32.gif,platform:/plugin/org.be.textbe.ide.branding/icons/alt_window_48.gif,platform:/plugin/org.be.textbe.ide.branding/icons/alt_window_64.gif,platform:/plugin/org.be.textbe.ide.branding/icons/alt_window_128.gif">
+            </property>
+            <property
+                  name="aboutText"
+                  value="http://commons.wikimedia.org/wiki/File:Tree_of_Knowledge.jpg">
+            </property>
+            <property
+                  name="aboutImage"
+                  value="platform:/plugin/org.be.textbe.ide.branding/about/tree_of_knowledge.png">
+            </property>
+            <property
+                  name="startupForegroundColor"
+                  value="000000">
+            </property>
+            <property
+                  name="startupProgressRect"
+                  value="5,70,445,15">
+            </property>
+            <property
+                  name="startupMessageRect"
+                  value="5,90,445,20">
+            </property>
+            <property
+                  name="preferenceCustomization"
+                  value="plugin_customization.ini">
+            </property>
+         </product>
+      </extension>
 
 </plugin>
