@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.0.0.201210141325
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: Intro
 Bundle-Activator: org.be.textbe.ide.intro.Activator
 Bundle-ManifestVersion: 2
