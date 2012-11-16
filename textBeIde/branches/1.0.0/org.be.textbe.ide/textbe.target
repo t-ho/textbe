@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?>
+
+<target name="Eclipse Platform 4.2.1" sequenceNumber="24">
+<locations>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.platform.ide" version="4.2.1.M20120914-1800"/>
+<unit id="org.eclipse.platform.sdk" version="4.2.1.M20120914-1800"/>
+<unit id="org.eclipse.sdk.ide" version="4.2.1.M20120914-1800"/>
+<repository location="http://download.eclipse.org/eclipse/updates/4.2"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.emf.sdk.feature.group" version="2.8.1.v20120917-0436"/>
+<unit id="org.eclipse.m2m.atl.sdk.feature.group" version="3.3.1.v201209061455"/>
+<unit id="org.eclipse.emf.transaction.sdk.feature.group" version="1.6.0.v20120328-0001-777Z-9A_WsZmcPluNecyPkvrPKlH"/>
+<unit id="org.eclipse.emf.validation.sdk.feature.group" version="1.6.0.v20120328-0001-67T-96SGR75UNqZNTdeQnghI6uFA"/>
+<repository location="http://download.eclipse.org/releases/juno"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.jet.sdk.feature.group" version="1.1.1.v201101271243-42186A5NsKEQPHRQeFaJS4A35"/>
+<repository location="http://download.eclipse.org/modeling/m2t/updates/releases/"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.apache.batik.ext.awt" version="1.7.0.v201011041433"/>
+<unit id="org.apache.batik.ext.awt.source" version="1.7.0.v201011041433"/>
+<unit id="org.apache.batik.bridge" version="1.7.0.v201011041433"/>
+<unit id="org.apache.batik.bridge.source" version="1.7.0.v201011041433"/>
+<unit id="org.apache.batik.css" version="1.7.0.v201011041433"/>
+<unit id="org.apache.batik.css.source" version="1.7.0.v201011041433"/>
+<unit id="org.apache.batik.dom" version="1.7.0.v201011041433"/>
+<unit id="org.apache.batik.dom.source" version="1.7.0.v201011041433"/>
+<unit id="org.apache.batik.extension" version="1.7.0.v201011041433"/>
+<unit id="org.apache.batik.extension.source" version="1.7.0.v201011041433"/>
+<unit id="org.apache.batik.util.gui" version="1.7.0.v200903091627"/>
+<unit id="org.apache.batik.util.gui.source" version="1.7.0.v200903091627"/>
+<unit id="org.apache.batik.parser" version="1.7.0.v201011041433"/>
+<unit id="org.apache.batik.parser.source" version="1.7.0.v201011041433"/>
+<unit id="org.apache.batik.pdf" version="1.6.0.v201105071520"/>
+<unit id="org.apache.batik.dom.svg" version="1.7.0.v201011041433"/>
+<unit id="org.apache.batik.dom.svg.source" version="1.7.0.v201011041433"/>
+<unit id="org.apache.batik.svggen.source" version="1.7.0.v201011041433"/>
+<unit id="org.apache.batik.swing" version="1.7.0.v201011041433"/>
+<unit id="org.apache.batik.swing.source" version="1.7.0.v201011041433"/>
+<unit id="org.apache.batik.transcoder" version="1.7.0.v201011041433"/>
+<unit id="org.apache.batik.transcoder.source" version="1.7.0.v201011041433"/>
+<unit id="org.apache.batik.util" version="1.7.0.v201011041433"/>
+<unit id="org.apache.batik.util.source" version="1.7.0.v201011041433"/>
+<unit id="org.apache.batik.xml" version="1.7.0.v201011041433"/>
+<unit id="org.apache.batik.xml.source" version="1.7.0.v201011041433"/>
+<unit id="org.apache.commons.io" version="2.0.1.v201105210651"/>
+<unit id="org.apache.commons.io.source" version="2.0.1.v201105210651"/>
+<repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20120526062928/repository/"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.emftext.sdk.feature.group" version="1.4.1.v201207310007"/>
+<unit id="org.emftext.commons.antlr3_3_0.feature.group" version="3.3.0.v201207310007"/>
+<repository location="http://emftext.org/update"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.behaviorengineering.combe.feature.feature.group" version="1.0.0.201210251302"/>
+<repository location="http://itee.uq.edu.au/~jgsuess/update/combe"/>
+</location>
+</locations>
+</target>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="product"
+         name="TextBe"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.eclipse.ui.ide.workbench"
+            name="TextBe">
+         <property
+               name="windowImages"
+               value="platform:/plugin/org.be.textbe.ide.branding/icons/alt_window_16.gif,platform:/plugin/org.be.textbe.ide.branding/icons/alt_window_32.gif,platform:/plugin/org.be.textbe.ide.branding/icons/alt_window_48.gif,platform:/plugin/org.be.textbe.ide.branding/icons/alt_window_64.gif,platform:/plugin/org.be.textbe.ide.branding/icons/alt_window_128.gif">
+         </property>
+         <property
+               name="appName"
+               value="TextBe">
+         </property>
+         <property
+               name="startupProgressRect"
+               value="5,70,445,15">
+         </property>
+         <property
+               name="preferenceCustomization"
+               value="plugin_customization.ini">
+         </property>
+         <property
+               name="startupForegroundColor"
+               value="000000">
+         </property>
+         <property
+               name="startupMessageRect"
+               value="5,90,445,20">
+         </property>
+         <property
+               name="aboutImage"
+               value="platform:/plugin/org.be.textbe.ide.branding/about/tree_of_knowledge.png">
+         </property>
+         <property
+               name="aboutText"
+               value="http://commons.wikimedia.org/wiki/File:Tree_of_Knowledge.jpg">
+         </property>
+         <property
+            name="introTitle"
+            value="Welcome to TextBe"/>
+      <property
+            name="introBrandingImage"
+            value="product:introBrandingImage.png"/>
+      <property
+            name="introBrandingImageText"
+            value="The TextBe Project"/>
+      </product>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.intro">
+      <intro
+            class="org.eclipse.ui.intro.config.CustomizableIntroPart"
+            id="org.be.textbe.ide.intro">
+      </intro>
+      <introProductBinding
+            introId="org.eclipse.ui.intro.universal"
+            productId="org.be.textbe.ide.product">
+      </introProductBinding>
+   </extension>
+
+   
+   
+      <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.ui.preferencePages.Workbench"
+            class="org.eclipse.ui.intro.universal.ExtensionFactory:welcomeCustomization"
+            id="com.example.intro.introCustomization"
+            name="%introCustomizationPreference.name">
+         <keywordReference id="org.eclipse.ui.ide.appearance"/>
+      </page>
+   </extension>
+
+</plugin>
