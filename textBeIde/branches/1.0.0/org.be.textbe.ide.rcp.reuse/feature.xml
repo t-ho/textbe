@@ -2,7 +2,7 @@
 <feature
       id="org.be.textbe.ide.rcp.reuse"
       label="Core"
-      version="1.0.0.qualifier"
+      version="1.0.0"
       os="linux,macosx,win32"
       ws="cocoa,gtk,win32"
       arch="x86,x86_64">
