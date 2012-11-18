@@ -37,9 +37,7 @@
 					<products>
 						<product>
 							<id>org.be.textbe</id>
-							<includeVersion>true</includeVersion>
-							<version>${project.version}</version>
-							<archiveFileName>textbe</archiveFileName>
+							<archiveFileName>textbe-${unqualifiedVersion}.${buildQualifier}</archiveFileName>
 						</product>
 					</products>
 				</configuration>
