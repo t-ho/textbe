@@ -97,9 +97,7 @@ public class TextBT2GV {
 	 */
 	public TextBT2GV() throws IOException {
 		properties = new Properties();
-		InputStream propertiesInputStream = getFileURL("TextBT2GV.properties").openStream();
-		properties.load(propertiesInputStream);
-		propertiesInputStream.close();
+		properties.load(getFileURL("TextBT2GV.properties").openStream());
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
 	}
 	
@@ -156,18 +154,11 @@ public class TextBT2GV {
 	 */
 	public Object doTextBT2GV(IProgressMonitor monitor) throws ATLCoreException, IOException, ATLExecutionException {
 		ILauncher launcher = new EMFVMLauncher();
-		List<InputStream> inputStreamsToClose = new ArrayList<InputStream>();
 		Map<String, Object> launcherOptions = getOptions();
 		launcher.initialize(launcherOptions);
 		launcher.addInModel(textbtModel, "TEXTBT", "IN");
 		launcher.addOutModel(gvModel, "GV", "OUT");
-		InputStream[] modulesStreams = getModulesList();
-		inputStreamsToClose.addAll(Arrays.asList(modulesStreams));
-		Object result = launcher.launch("run", monitor, launcherOptions, (Object[]) modulesStreams);
-		for (InputStream inputStream : inputStreamsToClose) {
-			inputStream.close();
-		}
-		return result;
+		return launcher.launch("run", monitor, launcherOptions, (Object[]) getModulesList());
 	}
 	
 	/**
