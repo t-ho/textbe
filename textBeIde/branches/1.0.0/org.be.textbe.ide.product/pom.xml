@@ -33,6 +33,16 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<products>
+						<product>
+							<id>org.be.textbe</id>
+							<includeVersion>true</includeVersion>
+							<version>${project.version}</version>
+							<archiveFileName>textbe</archiveFileName>
+						</product>
+					</products>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
