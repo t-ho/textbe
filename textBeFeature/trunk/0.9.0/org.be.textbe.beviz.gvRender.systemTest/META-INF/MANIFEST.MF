@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.be.textbe.beviz.gvRender.systemTest
 Bundle-Version: 0.9.0
 Bundle-Activator: org.be.textbe.beviz.gvRender.systemTest.Activator
 Require-Bundle: org.eclipse.core.runtime,
- org.be.textbe.beviz.gvRender;bundle-version="1.0.0",
+ org.be.textbe.beviz.gvRender;bundle-version="0.9.0",
  org.junit,
  org.apache.commons.io,
  org.eclipse.core.resources;bundle-version="3.7.101",
