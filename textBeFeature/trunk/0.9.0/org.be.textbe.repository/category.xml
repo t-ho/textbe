@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.be.textbe.feature_0.9.0.jar" id="org.be.textbe.feature" version="1.1.0">
+   <feature url="features/org.be.textbe.feature_0.9.0.jar" id="org.be.textbe.feature" version="0.9.0">
       <category name="org.be.textbe.v1"/>
    </feature>
-   <feature url="features/org.be.textbe.bttrace.feature_0.9.0.jar" id="org.be.textbe.bttrace.feature" version="1.1.0">
+   <feature url="features/org.be.textbe.bttrace.feature_0.9.0.jar" id="org.be.textbe.bttrace.feature" version="0.9.0">
       <category name="org.be.textbe.v1"/>
    </feature>
-   <feature url="features/org.be.textbe.ct.model.feature_0.9.0.jar" id="org.be.textbe.ct.model.feature" version="1.1.0">
+   <feature url="features/org.be.textbe.ct.model.feature_0.9.0.jar" id="org.be.textbe.ct.model.feature" version="0.9.0">
       <category name="org.be.textbe.v1"/>
    </feature>
-   <feature url="features/org.be.textbe.st.model.feature_0.9.0.jar" id="org.be.textbe.st.model.feature" version="1.1.0">
+   <feature url="features/org.be.textbe.st.model.feature_0.9.0.jar" id="org.be.textbe.st.model.feature" version="0.9.0">
       <category name="org.be.textbe.v1"/>
    </feature>
    <category-def name="org.be.textbe.v1" label="%org_be_textbe_v1_category_label">
