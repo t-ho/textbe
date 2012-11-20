@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Visualiser_experiment
+Bundle-SymbolicName: visualiser_experiment
+Bundle-Version: 1.0.1.qualifier.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: org.be.textbe.bt.textbt.resource.bt;bundle-version="1.0.0",
+ org.junit,
+ org.eclipse.emf.ecore;bundle-version="2.7.0",
+ org.be.textbe.bt.model;bundle-version="1.0.0"
