@@ -12,7 +12,7 @@
 #include "TranslateSetSubtract.h"
 #include "TranslateStep.h"
 #include "GSEMethod.h"
-#include <tchar.h>
+
 
 CTranslateSetSubtract::CTranslateSetSubtract(void)
 {

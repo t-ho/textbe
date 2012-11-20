@@ -92,7 +92,9 @@ void CTranslateNode::AddChildAtPosition(int iChildID, int iPosition){
 		cPos = m_lChildren.GetHeadPosition();
 		int iLocation = 0;
 		while (cPos.IsNotNull()){
-			int iCurrentChild = m_lChildren.GetNext(cPos);
+			// Note that the following line is needed even though iCurrentChild
+			// is never used. The purpose is to call GetNext to move the position.
+			int iCurrentChild = m_lChildren.GetNext(cPos); 
 			if (iLocation == (iPosition-1)){
 				// cPos is now at the position just before the place 
 				// where the ID is to be inserted.

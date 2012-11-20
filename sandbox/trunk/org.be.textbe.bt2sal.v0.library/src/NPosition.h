@@ -2,7 +2,7 @@
 #include <list>
 #include <map>
 #include "NString.h"
-#include <tchar.h>
+
 //#include "TranslateNode.h"
 //#include "TranslateAtomicBlock.h"
 class CTranslateNode;

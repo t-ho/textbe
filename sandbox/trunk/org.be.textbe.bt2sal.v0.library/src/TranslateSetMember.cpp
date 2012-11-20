@@ -12,7 +12,7 @@
 #include "TranslateSetMember.h"
 #include "TranslateStep.h"
 #include "GSEMethod.h"
-#include <tchar.h>
+
 
 CTranslateSetMember::CTranslateSetMember(void)
 {

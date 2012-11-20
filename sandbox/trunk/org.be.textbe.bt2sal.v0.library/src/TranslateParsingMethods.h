@@ -14,7 +14,7 @@
 #include "TranslateAtomicBlock.h"
 #include "TranslateParsingRule.h"
 #include "NString.h"
-#include <tchar.h>
+
 //#include "TranslateUPPAAL.h"
 
 class CTranslateParsingMethods

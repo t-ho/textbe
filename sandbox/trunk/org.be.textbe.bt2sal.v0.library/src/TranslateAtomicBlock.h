@@ -11,7 +11,7 @@
 #pragma once
 #include "NList.h"
 #include "NString.h"
-#include <tchar.h>
+
 
 class CTranslateAtomicBlock
 {

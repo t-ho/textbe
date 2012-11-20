@@ -12,7 +12,7 @@
 #include "TranslateSetCardinality.h"
 #include "TranslateStep.h"
 #include "GSEMethod.h"
-#include <tchar.h>
+
 
 CTranslateSetCardinality::CTranslateSetCardinality(void)
 {

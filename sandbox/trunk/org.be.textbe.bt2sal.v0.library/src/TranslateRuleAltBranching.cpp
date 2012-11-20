@@ -259,7 +259,9 @@ void CTranslateRuleAltBranching::translateToSAL(CTranslateSALMain& cMain, int iN
 			
 			if (!cMain.IsAtomic(iCurrent)){  // Don't add the guard if the node is atomic; it will be 
 											// added later by TranslateParsingMethods.
-				strOppositeGuard.Append(" AND NOT(" + cMain.GetOppositeBranch(iCurrent) + ")");
+				strOppositeGuard.Append(" AND NOT(");
+				strOppositeGuard.Append(cMain.GetOppositeBranch(iCurrent));
+				strOppositeGuard.Append(")");
 			}	
 			iCounter++;
 		}
