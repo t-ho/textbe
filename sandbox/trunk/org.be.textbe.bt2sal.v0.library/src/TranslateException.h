@@ -11,7 +11,7 @@
 
 #pragma once
 #include "NString.h"
-#include <tchar.h>
+
 
 class CTranslateException
 {

@@ -12,7 +12,7 @@
 #include "TranslateSetDifference.h"
 #include "TranslateStep.h"
 #include "GSEMethod.h"
-#include <tchar.h>
+
 
 CTranslateSetDifference::CTranslateSetDifference(void)
 {

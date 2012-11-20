@@ -11,7 +11,7 @@
 #include "TranslateSetEmpty.h"
 #include "TranslateStep.h"
 #include "GSEMethod.h"
-#include <tchar.h>
+
 
 CTranslateSetEmpty::CTranslateSetEmpty(void)
 {

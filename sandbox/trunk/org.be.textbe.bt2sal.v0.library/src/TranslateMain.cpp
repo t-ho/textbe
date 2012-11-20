@@ -22,7 +22,7 @@
 #include "GSEMethod.h"
 #include "TranslateException.h"
 #include "TranslateStep.h"
-#include <tchar.h>
+
 
 
 CTranslateMain::CTranslateMain(void)

@@ -11,7 +11,7 @@
 #include "TranslateSetUnion.h"
 #include "TranslateStep.h"
 #include "GSEMethod.h"
-#include <tchar.h>
+
 
 CTranslateSetUnion::CTranslateSetUnion(void)
 {

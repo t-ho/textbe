@@ -11,7 +11,7 @@
 #include "TranslateSetIntersection.h"
 #include "TranslateStep.h"
 #include "GSEMethod.h"
-#include <tchar.h>
+
 
 CTranslateSetIntersection::CTranslateSetIntersection(void)
 {

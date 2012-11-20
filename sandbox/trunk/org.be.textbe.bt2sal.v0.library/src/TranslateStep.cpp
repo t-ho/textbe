@@ -10,7 +10,7 @@
 //
 
 #include "TranslateStep.h"
-#include <tchar.h>
+
 
 CTranslateStep::CTranslateStep(int iNode, int iRule, int iOther, NList<int, int>* plSecondRules)
 {

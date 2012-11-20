@@ -10,7 +10,7 @@
 
 
 #include "TranslateAtomicBlock.h"
-#include <tchar.h>
+
 //#ifdef _DEBUG
 //#define new DEBUG_NEW
 //#endif
@@ -44,7 +44,6 @@ int CTranslateAtomicBlock::GetBottomNode(void)
 
 bool CTranslateAtomicBlock::ContainsNode(int iNode)
 {
-int s = m_lNodes.GetHead();
 	NPosition cPosition = m_lNodes.Find(iNode);
 	if (!cPosition.IsNotNull()){
 		return false;

@@ -11,7 +11,7 @@
 
 #include "TranslateSALMain.h"
 #include "NString.h"
-#include <tchar.h>
+
 
 class CTranslateParsingRule
 {
