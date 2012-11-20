@@ -11,7 +11,7 @@ JNIEXPORT jstring JNICALL Java_org_be_textbe_bt2sal_v0_Bt2Sal_translateToSal(JNI
 //	const jchar* strJSets = env->GetStringUTFChars(strSets, NULL); 
 	const char* strConvertedSets = env->GetStringUTFChars(strSets, NULL);// = (const char*) strJSets;
 //	const jchar* strJInit = env->GetStringUTFChars(strInit, NULL); 
-	const char* strConvertedInit = env->GetStringUTFChars(strSets, NULL);// = (const char*) strJInit;
+	const char* strConvertedInit = env->GetStringUTFChars(strInit, NULL);// = (const char*) strJInit;
 	
 	// Call the translator.
 	cTranslator.SelectOptions(strConvertedTree, iPriority, iBuff, iWithSets, strConvertedSets, strConvertedInit);

@@ -4,6 +4,7 @@
 #include "NPosition.h"
 #include "NString.h"
 
+
 template <class FirstType, class SecondType> class NMap 
 {
 public:
@@ -15,7 +16,7 @@ public:
 	}
 
 	void RemoveKey(FirstType item){
-
+		m_map.erase(item);
 	}
 
 	void GetNextAssoc(NPosition &cPosition, FirstType &item, SecondType &item2){
@@ -43,7 +44,7 @@ public:
 	}
 
 	void SetAt(FirstType item, SecondType item2){
-		typename m_map.insert(std::pair<FirstType,SecondType>(item,item2));
+	   m_map.insert(std::pair<FirstType,SecondType>(item,item2));
 	}
 
 	void RemoveAll(){

@@ -90,17 +90,17 @@ bool CTranslateRuleMacro::applyBackwards(CTranslateSALMain& cMain, NList<int, in
 					// instead the last matching node is chosen. This is because for large
 					// random BT's, this case happens too often and it is difficult to create
 					// a random BT that can be translated without this error occurring.
-					if (iMatchCount == 0){
-						// The matching node was not found.
-						NString strMessage = "Matching reference node not found for: ";
-						strMessage = strMessage + strComponent + " " + strState;
-						CTranslateException cException(strMessage);
-						throw cException;
-					}else{
-						NList<int, int>* plEmptyList = new NList<int, int>;
-						cMain.StoreTranslationStep(iCurrentNode, 5, iOtherGoto, plEmptyList);
-						bRuleMatched = true;
-					}
+			//		if (iMatchCount == 0){
+			//			// The matching node was not found.
+			//			NString strMessage = "Matching reference node not found for: ";
+			//			strMessage = strMessage + strComponent + " " + strState;
+			//			CTranslateException cException(strMessage);
+			//			throw cException;
+			//		}else{
+			//			NList<int, int>* plEmptyList = new NList<int, int>;
+			//			cMain.StoreTranslationStep(iCurrentNode, 5, iOtherGoto, plEmptyList);
+			//			bRuleMatched = true;
+			//		}
 				}else{ // This is a normal BT (not random).
 					if (iMatchCount == 0){
 						// The matching node was not found.

@@ -44,7 +44,6 @@ int CTranslateAtomicBlock::GetBottomNode(void)
 
 bool CTranslateAtomicBlock::ContainsNode(int iNode)
 {
-
 	NPosition cPosition = m_lNodes.Find(iNode);
 	if (!cPosition.IsNotNull()){
 		return false;

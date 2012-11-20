@@ -19,7 +19,7 @@ NString::NString(const char* charlist){
 	m_strInfo = charlist;
 }
 
-NString NString::operator+(NString& strSecondString){
+NString NString::operator+(const NString strSecondString){
 	std::string nestring = m_strInfo + strSecondString.GetString();
 	NString newNString;
 	newNString.SetString(nestring);
@@ -37,11 +37,11 @@ void NString::operator=(const char* charlist){
 	m_strInfo = charlist;
 }
 
-void NString::operator=(NString& strSecondString){
+void NString::operator=(const NString strSecondString){
 	m_strInfo = strSecondString.GetString();
 }
 
-std::string NString::GetString(){
+std::string NString::GetString() const{
 	return m_strInfo;
 }
 
@@ -50,8 +50,7 @@ void NString::SetString(std::string strSecondString){
 }
 
 void NString::Delete(int iInitialPosition, int iLength){
-
-	m_strInfo.replace(0,iLength,"");
+	m_strInfo.replace(iInitialPosition,iLength,"");
 }
 
 int NString::Length(){
@@ -80,7 +79,7 @@ int NString::Find(const char* charlist){
 	return -1;
 }
 
-void NString::Append(NString strSecondString){
+void NString::Append(const NString strSecondString){
 	m_strInfo.append(strSecondString.GetString());
 }
 
@@ -295,7 +294,7 @@ void NString::Format(NString strOriginal, int iNumber){
 	m_strInfo = strMain;
 }
 
-NString NString::Tokenize(char* strDelimiters, int &iStart){
+NString NString::Tokenize(const char* strDelimiters, int &iStart){
 	NString strNewString;
 	size_t position;
 	std::string strToken;
