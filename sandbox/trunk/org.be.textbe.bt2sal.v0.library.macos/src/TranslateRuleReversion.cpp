@@ -43,7 +43,7 @@ bool CTranslateRuleReversion::applyBackwards(CTranslateSALMain& cMain, NList<int
 				// Find the top reversion point.
 				bool bFoundTop = false;
 				int iNextParent = pcNode->GetParent();
-				int iTopNode;
+				int iTopNode = -1;
 				CTranslateNode* pcNextParent;
 				// If there's already a jumpingToLabel use that node as the top reversion point.
 				NString strJumpingToLabel = pcNode->GetJumpingToLabel();

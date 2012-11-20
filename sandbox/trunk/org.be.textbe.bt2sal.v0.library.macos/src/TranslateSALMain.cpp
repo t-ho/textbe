@@ -518,7 +518,8 @@ NString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 				if (iStateCounter == 0){ // This is the first state element.
 					strText.Append(TrimChangeCase(strStateName, false));
 				}else{ // This is not the first state element.
-					strText.Append("," + TrimChangeCase(strStateName, false));
+					strText.Append(",");
+					strText.Append(TrimChangeCase(strStateName, false));
 				}
 				iStateCounter++;
 			}
@@ -543,7 +544,8 @@ NString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 					if (iElementCounter == 0){ // This is the first element.
 						strText.Append(TrimChangeCase(strElementName, false));
 					}else{ // This is not the first element.
-						strText.Append("," + TrimChangeCase(strElementName, false));
+						strText.Append(",");
+						strText.Append(TrimChangeCase(strElementName, false));
 					}
 					iElementCounter++;
 				}
@@ -776,9 +778,11 @@ NString CTranslateSALMain::ParseBT(int iTreeID, bool bUsingSets, bool bUsingBESE
 				while(cLocalPosition.IsNotNull()){
 					NString strCurrentBoolean = cTranslateMain.m_cLocalBooleans.GetNext(cLocalBooleanPosition);  
 					if (iBooleanCounter == 0){  // This is the first element.
-						strText.Append("(" + TrimChangeCase(strCurrentBoolean, false));  
+						strText.Append("(");
+						strText.Append(TrimChangeCase(strCurrentBoolean, false));  
 					}else{
-						strText.Append(" OR (" + TrimChangeCase(strCurrentBoolean, false)); 
+						strText.Append(" OR (");
+						strText.Append(TrimChangeCase(strCurrentBoolean, false)); 
 					}
 					iBooleanCounter++;
 					strText.Append("\r\n");
@@ -1948,7 +1952,7 @@ int CTranslateSALMain::FindNextHighestPC(int iNode){
 		
 		// Try to find the next branch on the right side of the current branch.
 		int iChildrenSize = pcParent->GetNumberOfChildren();
-		int iNextBranch;
+		int iNextBranch = 0;
 		int iChildPC;
 		for (int i = 0; i < iChildrenSize; i++){
 			int iChild = pcParent->GetChildID(i);
@@ -2616,7 +2620,6 @@ void CTranslateSALMain::GetLeafNodes(int iRootNode, NList<int, int>& cLeafNodes)
 	if (cAllNodes.GetSize() == 0){  // The root is the only node in the BT.
 		cLeafNodes.AddHead(iRootNode);
 	}
-	int s = (int) cAllNodes.GetSize();
 	NPosition cCurrentPosition;
 	cCurrentPosition = cAllNodes.GetHeadPosition();
 	while(cCurrentPosition.IsNotNull()){
@@ -3206,7 +3209,7 @@ CTranslateNode* CTranslateSALMain::StoreSliceNodeInformation(NString strLine){
 	CTranslateNode* pcNode;
 	CTranslateNode* pcRoot = NULL;
 	CTranslateNode* pcBranchingParent;
-	CTranslateNode* pcParent;
+	CTranslateNode* pcParent = NULL;
 	int iListPosition;
 	bool bAtomic = false;
 	bool bSequential = true; // default
@@ -4482,7 +4485,7 @@ CTranslateNode* CTranslateSALMain::ExpandNode(CTranslateNode* pcNode){
 }
 
 CTranslateNode* CTranslateSALMain::CopyTreeBelow(CTranslateNode *pcRoot){
-	CTranslateNode* pcNode;
+	CTranslateNode* pcNode = NULL;
 	int iChildNumber = pcRoot->GetNumberOfChildren();
 	int iChild;
 	if (iChildNumber == 1){ // There is only one child.
@@ -4712,7 +4715,7 @@ int CTranslateSALMain::GetUserDefinedType(NString strComponent, NString strAttri
 // false. To be used with GetNumber().
 bool CTranslateSALMain::IsStringANumber(NString strNumberString){
 	int iNumber;
-	int iSuccess = sscanf_s(strNumberString.GetString().c_str(), "%d", &iNumber);
+	int iSuccess = sscanf(strNumberString.GetString().c_str(), "%d", &iNumber);
 	if (iSuccess == 0 || iSuccess == EOF){ // check if something went wrong during the conversion
 		iNumber = 0;
 	}
@@ -4739,7 +4742,7 @@ bool CTranslateSALMain::IsStringANumber(NString strNumberString){
 // number 0 with no errors.
 int CTranslateSALMain::GetNumber(NString strNumberString){
 	int iNumber;
-	int iSuccess = sscanf_s(strNumberString.GetString().c_str(), "%d", &iNumber);
+	int iSuccess = sscanf(strNumberString.GetString().c_str(), "%d", &iNumber);
 	if (iSuccess == 0 || iSuccess == EOF){ // check if something went wrong during the conversion
 		iNumber = 0;
 	}
@@ -4872,7 +4875,8 @@ NString CTranslateSALMain::PrintTree(CTranslateNode* pcRoot){
 		strTheTree.Append(" isAlt ");
 	}
 	if (pcRoot->GetFlag() != ""){
-		strTheTree.Append(" (flag) " + pcRoot->GetFlag());
+		strTheTree.Append(" (flag) ");
+		strTheTree.Append(pcRoot->GetFlag());
 	}
 	strTemp = "";
 	strTemp.Format("%d", pcRoot->GetParent());
@@ -4883,8 +4887,6 @@ NString CTranslateSALMain::PrintTree(CTranslateNode* pcRoot){
 	for (int i = 0; i < iChildren; i++){
 		iChildID = pcRoot->GetChildID(i);
 		pcChild = GetNode(iChildID);
-		int y = 4;
-		int z = 5;
 		strTheTree.Append(PrintTree(pcChild));
 	}
 	return strTheTree;

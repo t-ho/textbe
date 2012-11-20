@@ -24,6 +24,7 @@
 #include "TranslateStep.h"
 
 
+
 CTranslateMain::CTranslateMain(void)
 {
 }
@@ -314,7 +315,7 @@ NList<NString, NString>* CTranslateMain::ConvertGuardToList(NString strGuard){
 	NString strToken = strGuard.Tokenize("AND",iPos);
 	while (strToken != ""){
 		plGuardList->AddTail(strToken);
-		strToken = strGuard.Tokenize("AND",iPos);
+		strToken = strGuard.Tokenize("AND",iPos);		
 	}
 	return plGuardList;
 }
