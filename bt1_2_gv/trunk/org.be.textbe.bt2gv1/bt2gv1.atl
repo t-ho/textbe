@@ -1,0 +1,12 @@
+-- @nsURI TEXT=http://org.be.textbe/textbt/v1
+-- @nsURI GRAPH=http://org.be.textbe/gv
+
+module bt2gv1;
+create graph: GRAPH from text: TEXT;
+
+rule name {
+	from
+		specification: TEXT!Specification
+	to
+		graph: GRAPH!Graph
+}
