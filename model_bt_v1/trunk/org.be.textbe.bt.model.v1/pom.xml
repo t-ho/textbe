@@ -4,10 +4,10 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>org.be.textbe.bt.model.v1-parent</artifactId>
+		<artifactId>org.be.textbe.bt.model.v1.parent</artifactId>
 		<groupId>org.be.textbe</groupId>
-		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../org.be.textbe.bt.model.v1-parent</relativePath>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../org.be.textbe.bt.model.v1.parent</relativePath>
 	</parent>
 	<artifactId>org.be.textbe.bt.model.v1</artifactId>
 	<version>1.0.0.qualifier</version>
