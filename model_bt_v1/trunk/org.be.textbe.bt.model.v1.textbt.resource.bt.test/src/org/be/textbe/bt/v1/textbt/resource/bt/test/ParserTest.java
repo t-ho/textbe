@@ -19,7 +19,7 @@ public class ParserTest {
 
 	@Test
 	public void test() throws IOException {
-		Bundle bundle = Platform.getBundle("org.be.textbe.bt.v1.textbt.resource.bt.test");
+		Bundle bundle = Platform.getBundle("org.be.textbe.bt.model.v1.textbt.resource.bt.test");
 		Enumeration<URL> findEntries = bundle.findEntries("testFiles", "*.bt", true);
 		while (findEntries.hasMoreElements()) {
 			URL url = (URL) findEntries.nextElement();
