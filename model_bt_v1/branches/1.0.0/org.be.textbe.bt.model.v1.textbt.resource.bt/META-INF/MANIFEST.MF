@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: EMFText Parser Plugin: bt
 Bundle-SymbolicName: org.be.textbe.bt.model.v1.textbt.resource.bt;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.0.0
 Bundle-Vendor: Software Technology Group - TU Dresden Germany
 Require-Bundle: org.eclipse.core.resources,
   org.eclipse.emf,
