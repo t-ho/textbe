@@ -2,18 +2,18 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.be.textbe</groupId>
-	<artifactId>org.be.textbe.bt.model.v1-parent</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>org.be.textbe.bt.model.v1.parent</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
-		<tycho-version>0.14.1</tycho-version>
+		<tycho-version>0.16.0</tycho-version>
 	</properties>
 	<repositories>
 		<repository>
 			<id>indigo</id>
 			<layout>p2</layout>
-			<url>http://download.eclipse.org/releases/indigo</url>
+			<url>http://download.eclipse.org/releases/juno</url>
 		</repository>
 		<repository>
 			<id>emftext</id>
@@ -90,9 +90,8 @@
 		<module>../org.be.textbe.bt.model.v1.feature</module>
 		<module>../org.be.textbe.bt.model.v1.edit</module>
 		<module>../org.be.textbe.bt.model.v1.editor</module>
-		<module>../org.be.textbe.bt.v1.textbt.resource.bt</module>
-		<module>../org.be.textbe.bt.v1.textbt.resource.bt.ui</module>
-		<module>../org.emftext.commons.antlr3_3_0</module>
-		<module>../org.be.textbe.bt.v1.textbt.resource.bt.test</module>
+		<module>../org.be.textbe.bt.model.v1.textbt.resource.bt</module>
+		<module>../org.be.textbe.bt.model.v1.textbt.resource.bt.ui</module>
+		<module>../org.be.textbe.bt.model.v1.textbt.resource.bt.test</module>
 	</modules>
 </project>
