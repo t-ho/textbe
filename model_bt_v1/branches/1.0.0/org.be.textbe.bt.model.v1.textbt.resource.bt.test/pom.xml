@@ -6,11 +6,10 @@
 	<parent>
 		<groupId>org.be.textbe</groupId>
 		<artifactId>org.be.textbe.bt.model.v1.parent</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>1.0.0</version>
 		<relativePath>../org.be.textbe.bt.model.v1.parent</relativePath>
 	</parent>
 	<artifactId>org.be.textbe.bt.model.v1.textbt.resource.bt.test</artifactId>
-	<version>1.0.0.qualifier</version>
 	<packaging>eclipse-test-plugin</packaging>
 
 	<build>
