@@ -93,5 +93,6 @@
 		<module>../org.be.textbe.bt.model.v1.textbt.resource.bt</module>
 		<module>../org.be.textbe.bt.model.v1.textbt.resource.bt.ui</module>
 		<module>../org.be.textbe.bt.model.v1.textbt.resource.bt.test</module>
+		<module>../org.be.textbe.bt.model.v1.repository</module>
 	</modules>
 </project>
