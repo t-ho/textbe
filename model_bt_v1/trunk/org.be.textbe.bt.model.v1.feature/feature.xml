@@ -31,14 +31,14 @@
          unpack="false"/>
 
    <plugin
-         id="org.be.textbe.bt.v1.textbt.resource.bt"
+         id="org.be.textbe.bt.model.v1.textbt.resource.bt"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.be.textbe.bt.v1.textbt.resource.bt.ui"
+         id="org.be.textbe.bt.model.v1.textbt.resource.bt.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
