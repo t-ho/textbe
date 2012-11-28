@@ -1,136 +1,113 @@
-documentation for <platform:/resource/org.be.textbe.bt.model.v2/model/textbt.ecore>
-
-Specification : "Every TextBT model contains a specification of system behavior. This element represents the specification."
-
-Specification.components : "The components that are used in this specification."
-
-Specification.root : "The root of the behavior tree."
-
-Specification.requirements : "The components that are used in this specification."
-
-Specification.system : "The system component that contains all other components in this specification."
-
-BehaviorTree : "A tree-shaped analysis of a systems' components behavior and related requirements."
-
-BehaviorTree.subtrees : "trees contained within the tree rooted at the node of interest. \"Branch\" is a synonym for \"subtree\"."
-
-NamedElement : "An element of the model that has a name."
-
-NamedElement.name : "The name of this element."
-
-ComponentType : "An identifier for components that by manufacture have the same properties."
-
-ComponentType.behavior : "The behavior exhibited by all components that have this type."
-
-Component : "A physical assembly of functional parts, like an aircraft or part of a program in memory."
-
-Component.type : "The type of a component that determines its behavior."
-
-Singleton : "A component of which there is only one instance in the system."
-
-Member : "A component that is identified as part of a specified set."
-
-Node : "A location in a behavior tree, represented by a box with two compartments."
-
-Node.label : "An optional label for disambiguation, required in case a node with the same component and behavior appears elsewhere in the tree."
-
-Node.parent : "The immediate ancestor of this node."
-
-Node.parents : "nodes which appear in a direct line between this node and the root node of the tree"
-
-Node.siblings : "nodes which share the same parent as this node"
-
-Node.children : "Nodes immediately below this node"
-
-Node.descendants : "Any node appearing anywhere below this node"
-
-Node.isLeaf : "The node is a leaf"
-
-Node.siblingBranches : "Trees with a sibling node as their root"
-
-StateRealization : "Component C realizes state s"
-
-Selection : "Special"
-
-Event : "Wait until event e is received"
-
-Guard : "Wait until C is in state S"
-
-Behavior : "the behaviour associated with the component"
-
-BehaviorNode : "Behavior nodes have an associated behavior of a component or component set."
-
-BehaviorNode.actor : "specifies the component"
-
-InternalInput : "Wait for event e internally (from system)"
-
-InternalOutput : "Generate event e internally to system"
-
-ExternalInput : "Wait for event e to be received from environment"
-
-ExternalOutput : "Generate event e and send to environment"
-
-ForAll : "Execute an instance of T for every element in CSET"
-
-ForSome : "Execute an instance of T for some number (including 0) of elements in CSET"
-
-AtLeastOne : "Execute an instance of T for some number (but at least 1) of elements in CSET"
-
-ForOneArbitrary : "Execute an instance of T for one element in CSET"
-
-Reference : "Behave as the destination tree. The destination node must appear in an alternative branch to the origin."
-
-Reversion : "Behave as the destination tree. The destination node must be an ancestor. All sibling behaviour is terminated."
-
-BranchKill : "Terminate all behaviour associated with destination tree."
-
-Synchronisation : "Wait for destination node (or nodes)"
-
-StartNewNode : "Behave as the destination tree. The destination node must be an ancestor, as with reversion. But in 'Start New' sibling behaviour is not terminated."
-
-May : "The node may execute normally, or may have no effect."
-
-Sequence : "A Sequence executes behavior of components in order."
-
+documentation for <platform:/resource/org.be.textbe.bt.model/model/textbt.ecore>
 Activity : "An activity groups the behavior of nodes."
-
+Activity.child : "The activity that follows this one."
+AtLeastOne : "Execute an instance of T for some number (but at least 1) of elements in CSET"
 AtomicSequence : "Execute N1 immediately followed by N2, passing control to tree T . The behavior of concurrent BTs may not be interleaved between N1 and N2.Called 'Atomic Composition' in original documentation. "
-
-InterleavingSequence : "Execute node N, passing control to tree T . The behavior of concurrent BTs may be interleaved between N and T . Called 'Sequential Composition' in original documentation. "
-
-ForkBranch : "Execute N, passing control to both T1 and T2."
-
-Conjunction : "A Gate that triggers if all conditions are true. i.e. a Boolean AND operator."
-
-Disjunction : "A Gate that triggers if one or more conditions are true. i.e. a Boolean OR operator."
-
-MutualExclusion : "A Gate that triggers if exactly one condition is true. i.e. a Boolean XOR operator."
-
-RandomChoiceBranch : "A nondeterministic choice is made between T1 and T2, depending on which is ready to execute (not blocked)"
-
-TraceabilityLink : "A reference to the requirements document."
-
-Requirement : "A documented required property of the specified system."
-
-TraceabilityLink.requirement : "Indicates the requirements that are being covered by the behavior of this node."
-
-TraceabilityLink.status : "Indicates how the node relates to the link"
-
-TraceabilityLink.updatedInVersion : "The Traceability Status indicates that the behavior has been added in the post-development (PD) or maintenance phase. Where there are different series of changes / upgrades we use ++V1.0, ++V2.0, etc to indicate the particular upgrade series."
-
-QuantifyingNode : "A Component Set Node binds a member variable to a component type. The variable can then be used in the descendant tree to refer to the behavior specified by the type of the component set."
-
-QuantifyingNode.componentSet : "The set of components that this node uses as base for Quantification"
-
-ComponentSet.expression : "An expression that defines how to create the node set at this time. The expression selects a subset of all components contained in the system and binds this set to member variables that can be addressed in the subtree."
-
-QuantifyingNode.variableBinding : "The member of the set defined by the expression that is being bound."
-
-LabelOnlyNode : "Label Only Nodes are used with as origins or destinations of node operators. They only have a label and no associated behavior. They are called \"Empty Nodes\" in original documentation."
-
+Behavior : "the behaviour associated with the component"
+Behavior.id : "the global identifier of this behavior"
+BehaviorNode : "Behavior nodes have an associated behavior of a component or component set."
+BehaviorNode.actor : "specifies the component"
+BehaviorNode.behavior : "the behavior associated with this node"
+BehaviorTree : "A tree-shaped analysis of a systems' components behavior and related requirements."
+BehaviorTree.subtrees : "trees contained within the tree rooted at the node of interest. \"Branch\" is a synonym for \"subtree\"."
 Branch: "A node that redirects the control flow to one or more other destinations in the behavior tree, marked by a labeled node."
-
-LogicalSelection : "A LogicalSelection triggers, as soon as the condition is true. The operator op may be one of &, |, or XOR, corresponding to logical conjunction, disjunction and exclusive or. Called 'Conditional Operator' in the original documentation. The nodes must be atomically connected selection nodes which all have the AND operator (or OR or XOR), and then it means 'if the conjunction (or disjunction etc.) of the selections hold'."
-
+BranchKill : "Terminate all behaviour associated with destination tree."
+BranchKill.stop : "the destination node whose behavior should be terminated."
+Component : "A physical assembly of functional parts, like an aircraft or part of a program in memory."
+Component.type : "The type of a component that determines its behavior."
+ComponentSetDefinition : "A definition of a set of components."
+ComponentSetDefinitionExpression : "An expression that defines how to create the node set at this time. The expression selects a subset of all components contained in the system and binds this set to member variables that can be addressed in the subtree."
+ComponentType : "An identifier for components that by manufacture have the same properties."
+ComponentType.behavior : "The behavior exhibited by all components that have this type."
+ComponentType.id : "the unique identifier of this component"
+Conjunction : "A Gate that triggers if all conditions are true. i.e. a Boolean AND operator."
+Disjunction : "A Gate that triggers if one or more conditions are true. i.e. a Boolean OR operator."
+Event : "Wait until event e is received"
+Event.definition : "The definition of the event"
+EventDefinition : "A definition of an event"
+EventExpression : "a string defining an event, potentially in a formal language"
+ExternalInput : "Wait for event e to be received from environment"
+ExternalOutput : "Generate event e and send to environment"
+ForAll : "Execute an instance of T for every element in CSET"
+ForOneArbitrary : "Execute an instance of T for one element in CSET"
+ForSome : "Execute an instance of T for some number (including 0) of elements in CSET"
+ForkBranch : "Execute N, passing control to both T1 and T2."
+ForkBranch.processes : "the behavior trees that form the processes initiated by this fork."
+Guard : "Wait until C is in state S"
+Input : "Wait for an events"
+InterleavingSequence : "Execute node N, passing control to tree T . The behavior of concurrent BTs may be interleaved between N and T . Called 'Sequential Composition' in original documentation. "
+InternalInput : "Wait for event e internally (from system)"
+InternalOutput : "Generate event e internally to system"
+LabelOnlyNode : "Label Only Nodes are used with as origins or destinations of node operators. They only have a label and no associated behavior. They are called \"Empty Nodes\" in original documentation."
+May : "The node may execute normally, or may have no effect."
+MutualExclusion : "A Gate that triggers if exactly one condition is true. i.e. a Boolean XOR operator."
+NamedElement : "An element of the model that has a name."
+NamedElement.name : "The name of this element."
+Node : "A location in a behavior tree, represented by a box with two compartments."
+Node.children : "Nodes immediately below this node"
+Node.descendants : "Any node appearing anywhere below this node"
+Node.leaf : "The node is a leaf"
+Node.root : "The node is the specification root"
+Node.label : "An optional label for disambiguation, required in case a node with the same component and behavior appears elsewhere in the tree."
+Node.parent : "The immediate ancestor of this node."
+Node.parents : "nodes which appear in a direct line between this node and the root node of the tree"
+Node.siblingBranches : "Trees with a sibling node as their root"
+Node.siblings : "nodes which share the same parent as this node"
+Node.traceability : "The link of this node to its defining requirement."
+Operation : "An indicator that alters the behavior so loops and parallel execution constructs can be expressed."
+OperationNode : "A node that can have an operation."
+OperationNode.operation : "The operation associated with the node."
+Output : "Generate an event"
+QuantifyingNode : "A Component Set Node binds a member variable to a component type. The variable can then be used in the descendant tree to refer to the behavior specified by the type of the component set."
+QuantifyingNode.definition : "The definition of the set of components that this quantifier pertains to"
+QuantifyingNode.set : "The set of components that this node uses as base for Quantification"
+QuantifyingNode.variable : "The member of the set defined by the expression that is being bound."
+RandomChoiceBranch : "A nondeterministic choice is made between T1 and T2, depending on which is ready to execute (not blocked)"
+RandomChoiceBranch.choices : "the behavior trees that form the branches of this choice."
+Reference : "Behave as the destination tree. The destination node must appear in an alternative branch to the origin."
+Reference.continueLike : "the destination node whose behavior this tree should follow."
+Requirement : "A documented required property of the specified system."
+Requirement.id : "The unique identifier of this requirement."
+Reversion : "Behave as the destination tree. The destination node must be an ancestor. All sibling behaviour is terminated."
+Reversion.revertTo : "the destination node whose behavior should be reverted to."
+Selection : "Special"
+Sequence : "A Sequence executes behavior of components in order."
+Sequence.quantifier : "the quantifier that applies in the tree started by this sequence"
+Sequence.step : "the steps of the sequence"
+Specification : "Every TextBT model contains a specification of system behavior. This element represents the specification."
 Specification.componentTypes : "The types of components present in the specification."
+Specification.components : "The components that are used in this specification."
+Specification.requirements : "The components that are used in this specification."
+Specification.root : "The root of the behavior tree."
+Specification.system : "The system component that contains all other components in this specification."
+StartNew : "Behave as the destination tree. The destination node must be an ancestor, as with reversion. But in 'Start New' sibling behaviour is not terminated."
+StartNew.startNew : "the destination node whose behavior should be started."
+StateDefinition : "The definition of a state"
+StateExpression : "The type of textual state definitions."
+StateRealization : "Component C realizes state s"
+StatefulBehavior : "A behavior that pertains to the state of a single component in the system"
+StatefulBehavior.definition : "The definition of the state that this behavior pertains to"
+Synchronisation : "Wait for destination node (or nodes)"
+Synchronisation.waitFor : "the destination node or nodes whose execution this node should wait for."
+SystemStateGuard : "A SystemStateGuard will let behavior progress, as soon as the condition is true. The operator op may be one of &, |, or XOR, corresponding to logical conjunction, disjunction and exclusive or. Called 'Conditional Operator' in the original documentation. The nodes must be atomically connected selection nodes which all have the AND operator (or OR or XOR), and then it means 'if the conjunction (or disjunction etc.) of the selections hold'. 'Condition Operators define a composite node that acts as a guard. The node executes only if the joint condition over components holds. This is in contrast to simple selection, that can only query the state of one component at a time."
+SystemStateGuard.componentSelection : "The component selection nodes that make up this guard."
+TextualComponentSetDefinition : "A definition of a set of components given as text."
+TextualComponentSetDefinition.expression : "An expression that defines how to create the node set at this time. The expression selects a subset of all components contained in the system and binds this set to member variables that can be addressed in the subtree."
+TextualEventDefinition : "A definition of an event given as text"
+TextualEventDefinition.expression : "the string that defines the event"
+TextualStateDefinition : "The definition of a state by means of a textual language. This may be a formal language."
+TextualStateDefinition.expression : "The string expression that defines the state."
+TraceabilityLink : "A reference to the requirements document."
+TraceabilityLink.node : "the node whose requirement is linked."
+TraceabilityLink.requirement : "Indicates the requirements that are being covered by the behavior of this node."
+TraceabilityLink.status : "Indicates how the node relates to the link"
+TraceabilityLink.updatedInVersion : "The Traceability Status indicates that the behavior has been added in the post-development (PD) or maintenance phase. Where there are different series of changes / upgrades we use ++V1.0, ++V2.0, etc to indicate the particular upgrade series."
+TraceabilityStatus : "Definition of the status of the link."
+TraceabilityStatus.Deleted : "The requirement is redundant or unnecessary as stated. It is dropped."
+TraceabilityStatus.Implied : "The requirement is not explicitly stated. This behavior forms an interpretation of the requirement."
+TraceabilityStatus.Missing : "The requirement is not stated. However without it, the system cannot function."
+TraceabilityStatus.Original : "Definition of the status of the link."
+TraceabilityStatus.Refined : "The requirement behavior is more general, but the model is a faithful refinement."
+TraceabilityStatus.Updated : "The requirement is not correct as stated. Without alteration to it, the system cannot function."
+
 
