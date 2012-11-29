@@ -90,7 +90,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           iD="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="the unique identifier of this component type"/>
+          <details key="documentation" value="the unique identifier of this component"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
@@ -501,12 +501,12 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="AtomicSequence" eSuperTypes="#//activity/sequence/Sequence">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="Execute N1 immediately followed by N2, passing control to tree T . The behavior of concurrent BTs may not be interleaved between N1 and N2.Called 'Atomic Composition' in original documentation."/>
+          <details key="documentation" value="Execute N1 immediately followed by N2, passing control to tree T . The behavior of concurrent BTs may not be interleaved between N1 and N2.Called 'Atomic Composition' in original documentation. "/>
         </eAnnotations>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="InterleavingSequence" eSuperTypes="#//activity/sequence/Sequence">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="Execute node N, passing control to tree T . The behavior of concurrent BTs may be interleaved between N and T . Called 'Sequential Composition' in original documentation."/>
+          <details key="documentation" value="Execute node N, passing control to tree T . The behavior of concurrent BTs may be interleaved between N and T . Called 'Sequential Composition' in original documentation. "/>
         </eAnnotations>
       </eClassifiers>
     </eSubpackages>
