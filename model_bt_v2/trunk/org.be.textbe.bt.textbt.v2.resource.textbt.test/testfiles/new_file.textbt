@@ -1,0 +1,13 @@
+Specification specification
+
+Types
+t1 "Type 1" {1 Internal Input ""}
+
+Components
+c1 "Component 1" t1
+
+Requirements
+r1 "Requirement 1"
+
+Behavior
+||
