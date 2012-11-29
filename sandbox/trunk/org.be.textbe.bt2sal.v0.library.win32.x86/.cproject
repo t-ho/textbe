@@ -82,7 +82,7 @@
 							<tool id="org.eclipse.cdt.msvc.cl.c.dll.release.57190211" name="C Compiler (cl)" superClass="org.eclipse.cdt.msvc.cl.c.dll.release">
 								<option id="org.eclipse.cdt.msvc.cl.option.optimization.1538020572" name="Optimization" superClass="org.eclipse.cdt.msvc.cl.option.optimization"/>
 								<option id="org.eclipse.cdt.msvc.cl.option.debugFormat.1399071963" name="Debug Information Format" superClass="org.eclipse.cdt.msvc.cl.option.debugFormat"/>
-								<option id="org.eclipse.cdt.msvc.cl.option.includes.700725242" superClass="org.eclipse.cdt.msvc.cl.option.includes" valueType="includePath">
+								<option id="org.eclipse.cdt.msvc.cl.option.includes.700725242" name="Include Path (/I)" superClass="org.eclipse.cdt.msvc.cl.option.includes" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;E:\Program Files\Java\jdk1.6.0_30\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;E:\Program Files\Java\jdk1.6.0_30\include\win32&quot;"/>
 								</option>
@@ -91,7 +91,7 @@
 							<tool id="org.eclipse.cdt.msvc.cl.dll.release.1126391051" name="C++ Compiler (cl)" superClass="org.eclipse.cdt.msvc.cl.dll.release">
 								<option id="org.eclipse.cdt.msvc.cl.option.optimization.809504011" name="Optimization" superClass="org.eclipse.cdt.msvc.cl.option.optimization"/>
 								<option id="org.eclipse.cdt.msvc.cl.option.debugFormat.1624792269" name="Debug Information Format" superClass="org.eclipse.cdt.msvc.cl.option.debugFormat"/>
-								<option id="org.eclipse.cdt.msvc.cl.option.includes.2077008925" superClass="org.eclipse.cdt.msvc.cl.option.includes" valueType="includePath">
+								<option id="org.eclipse.cdt.msvc.cl.option.includes.2077008925" name="Include Path (/I)" superClass="org.eclipse.cdt.msvc.cl.option.includes" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;E:\Program Files\Java\jdk1.6.0_30\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;E:\Program Files\Java\jdk1.6.0_30\include\win32&quot;"/>
 								</option>
@@ -120,7 +120,14 @@
 		<project id="org.be.textbe.bt2sal.v0.library.org.eclipse.cdt.msvc.projectType.dll.266877515" name="Shared Library" projectType="org.eclipse.cdt.msvc.projectType.dll"/>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
-	<storageModule moduleId="refreshScope"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Release">
+			<resource resourceType="PROJECT" workspacePath="/bt2sal"/>
+		</configuration>
+		<configuration configurationName="Debug">
+			<resource resourceType="PROJECT" workspacePath="/bt2sal"/>
+		</configuration>
+	</storageModule>
 	<storageModule moduleId="scannerConfiguration">
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		<scannerConfigBuildInfo instanceId="org.eclipse.cdt.msvc.dll.debug.483992086;org.eclipse.cdt.msvc.dll.debug.483992086.;org.eclipse.cdt.msvc.cl.dll.debug.794027585;org.eclipse.cdt.msvc.cl.inputType.4255155">
