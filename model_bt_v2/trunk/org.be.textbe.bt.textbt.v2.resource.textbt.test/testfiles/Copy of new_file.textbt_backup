@@ -1,0 +1,17 @@
+Specification new_file
+
+Types
+ducks "Rubber Ducky" {
+ii1 Internal Input "huhu"
+e16 External Input "gravaz"
+eo5 External Output ""
+huhu Internal Input ""
+}
+books "Literature"
+
+Components
+"someName" ducks
+Requirements
+someId"someName"
+Behavior
+|e16|
