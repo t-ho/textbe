@@ -7,5 +7,5 @@ Bundle-Activator: org.be.textbe.bt2sal.v0.Activator
 Require-Bundle: org.eclipse.core.runtime
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Bundle-NativeCode: bt2sal.dll ; osname=Win32 ; processor=x86
+Bundle-NativeCode: bt2sal.dll ; osname=Win32 ; processor=x86 , libbt2sal.dylib ; osname=macosx; processor=x86_64
 Export-Package: org.be.textbe.bt2sal.v0
