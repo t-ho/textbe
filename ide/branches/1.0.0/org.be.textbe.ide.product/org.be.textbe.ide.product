@@ -52,8 +52,6 @@
       <feature id="org.eclipse.e4.rcp"/>
       <feature id="org.eclipse.emf.common"/>
       <feature id="org.be.textbe.ide.rcp.reuse" version="1.0.0.qualifier"/>
-      <feature id="org.behaviorengineering.combe.feature"/>
-      <feature id="org.strategoxt.imp"/>
    </features>
 
    <configurations>
