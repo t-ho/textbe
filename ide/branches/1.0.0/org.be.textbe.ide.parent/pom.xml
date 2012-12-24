@@ -18,49 +18,9 @@
 			<url>http://download.eclipse.org/releases/juno</url>
 		</repository>
 		<repository>
-			<id>model_bt_v0_1.0.0</id>
+			<id>btVisualizer_1.0.0</id>
 			<layout>p2</layout>
-			<url>http://textbe.googlecode.com/svn/model_bt_v0/p2/1.0.0</url>
-		</repository>
-		<repository>
-			<id>bt2gv_1.0.0</id>
-			<layout>p2</layout>
-			<url>http://textbe.googlecode.com/svn/bt2gv/p2/1.0.0</url>
-		</repository>
-		<repository>
-			<id>model_gv_1.0.0</id>
-			<layout>p2</layout>
-			<url>http://textbe.googlecode.com/svn/model_gv/p2/1.0.0</url>
-		</repository>
-		<repository>
-			<id>svgview_1.0.0</id>
-			<layout>p2</layout>
-			<url>http://textbe.googlecode.com/svn/svgview/p2/1.0.0</url>
-		</repository>
-		<repository>
-			<id>gvbuilder_1.0.0</id>
-			<layout>p2</layout>
-			<url>http://textbe.googlecode.com/svn/gvbuilder/p2/1.0.0</url>
-		</repository>
-		<repository>
-			<id>textbeFeature_1.0.0</id>
-			<layout>p2</layout>
-			<url>http://textbe.googlecode.com/svn/textBeFeature/p2/1.0.0</url>
-		</repository>
-		<repository>
-			<id>emftext</id>
-			<layout>p2</layout>
-			<url>http://emftext.org/update</url>
-		</repository>
-		<repository>
-			<id>JET2</id>
-			<layout>p2</layout>
-			<url>http://download.eclipse.org/modeling/m2t/updates/releases/</url>
-		</repository>
-		<repository>
-			<id>Orbit_R20120526062928</id>
-			<layout>p2</layout>
-			<url>http://download.eclipse.org/tools/orbit/downloads/drops/R20120526062928/repository/</url>
+			<url>https://textbe.googlecode.com/svn/btVisualizer/p2/1.0.0</url>
 		</repository>
 	</repositories>
 	<build>
