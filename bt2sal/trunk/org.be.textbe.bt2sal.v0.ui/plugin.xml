@@ -38,7 +38,7 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.be.textbe.bt2sal.v0.ui.handlers.SampleHandler"
+            class="org.be.textbe.bt2sal.v0.ui.handlers.Bt2SalHandler"
             commandId="org.be.textbe.bt2sal.v0.ui.commands.convertBt2SalCommand">
       </handler>
    </extension>

@@ -187,6 +187,8 @@ public class Bt2SalBuilder extends IncrementalProjectBuilder {
 			final String tree = IOUtils.toString(inputFile.getContents(),
 					"UTF-8");
 
+
+			
 			final String translateToSal = Bt2Sal.translateToSal(tree, priority,
 					buff, withSets, sets, init);
 

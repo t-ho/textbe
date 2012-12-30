@@ -2,10 +2,10 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Bt2sal
 Bundle-SymbolicName: org.be.textbe.bt2sal.v0;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.0.1.qualifier
 Bundle-Activator: org.be.textbe.bt2sal.v0.Activator
 Require-Bundle: org.eclipse.core.runtime
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Bundle-NativeCode: bt2sal.dll ; osname=Win32 ; processor=x86 , libbt2sal.jnilib ; osname=macosx; processor=x86_64
+Bundle-NativeCode: bt2sal.dll ; osname=win32 ; processor=x86 , libbt2sal.jnilib ; osname=macosx; processor=x86_64
 Export-Package: org.be.textbe.bt2sal.v0
