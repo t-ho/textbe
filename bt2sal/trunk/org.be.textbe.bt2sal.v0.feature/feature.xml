@@ -2,7 +2,7 @@
 <feature
       id="org.be.textbe.bt2sal.v0.feature"
       label="Feature"
-      version="1.0.0.qualifier"
+      version="1.0.1.qualifier"
       os="macosx,win32"
       ws="carbon,win32">
 
