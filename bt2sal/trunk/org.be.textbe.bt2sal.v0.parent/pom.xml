@@ -13,6 +13,7 @@
 	<module>../org.be.textbe.bt2sal.v0.feature</module>
 	<module>../org.be.textbe.bt2sal.v0.test</module>
 	<module>../org.be.textbe.bt2sal.v0.ui</module>
+	<module>../org.be.textbe.bt2sal.v0.repository</module>
 	</modules>
 
 	<properties>
