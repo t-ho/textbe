@@ -43,6 +43,7 @@
 								<option id="gnu.both.asm.option.include.paths.752748755" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Headers"/>
 									<listOptionValue builtIn="false" value="/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/JavaVM.framework/Versions/A/Headers"/>
+									<listOptionValue builtIn="false" value="/usr/include"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.529396662" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
@@ -51,8 +52,9 @@
 								<option id="gnu.cpp.compiler.macosx.so.debug.option.optimization.level.974017449" name="Optimization Level" superClass="gnu.cpp.compiler.macosx.so.debug.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.macosx.so.debug.option.debugging.level.541584316" name="Debug Level" superClass="gnu.cpp.compiler.macosx.so.debug.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.561229576" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Headers"/>
 									<listOptionValue builtIn="false" value="/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/JavaVM.framework/Versions/A/Headers"/>
+									<listOptionValue builtIn="false" value="/usr/include"/>
+									<listOptionValue builtIn="false" value="/usr/include/c++/4.2.1"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1009319317" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -60,8 +62,8 @@
 								<option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.macosx.so.debug.option.optimization.level.818581315" name="Optimization Level" superClass="gnu.c.compiler.macosx.so.debug.option.optimization.level" valueType="enumerated"/>
 								<option id="gnu.c.compiler.macosx.so.debug.option.debugging.level.1553414410" name="Debug Level" superClass="gnu.c.compiler.macosx.so.debug.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.include.paths.1868514256" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Headers"/>
 									<listOptionValue builtIn="false" value="/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/JavaVM.framework/Versions/A/Headers"/>
+									<listOptionValue builtIn="false" value="/usr/include"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1434268819" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
@@ -111,6 +113,7 @@
 								<option id="gnu.both.asm.option.include.paths.107036974" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Headers"/>
 									<listOptionValue builtIn="false" value="/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/JavaVM.framework/Versions/A/Headers"/>
+									<listOptionValue builtIn="false" value="/usr/include"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1711707256" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
@@ -119,8 +122,9 @@
 								<option id="gnu.cpp.compiler.macosx.so.release.option.optimization.level.1595576242" name="Optimization Level" superClass="gnu.cpp.compiler.macosx.so.release.option.optimization.level" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.macosx.so.release.option.debugging.level.1084714276" name="Debug Level" superClass="gnu.cpp.compiler.macosx.so.release.option.debugging.level" value="gnu.cpp.compiler.debugging.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.940767833" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Headers"/>
 									<listOptionValue builtIn="false" value="/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/JavaVM.framework/Versions/A/Headers"/>
+									<listOptionValue builtIn="false" value="/usr/include"/>
+									<listOptionValue builtIn="false" value="/usr/include/c++/4.2.1"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1341776670" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -128,8 +132,8 @@
 								<option defaultValue="gnu.c.optimization.level.most" id="gnu.c.compiler.macosx.so.release.option.optimization.level.2113741596" name="Optimization Level" superClass="gnu.c.compiler.macosx.so.release.option.optimization.level" valueType="enumerated"/>
 								<option id="gnu.c.compiler.macosx.so.release.option.debugging.level.1576172090" name="Debug Level" superClass="gnu.c.compiler.macosx.so.release.option.debugging.level" value="gnu.c.debugging.level.none" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.include.paths.1262648448" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Headers"/>
 									<listOptionValue builtIn="false" value="/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/JavaVM.framework/Versions/A/Headers"/>
+									<listOptionValue builtIn="false" value="/usr/include"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1067196058" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
