@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ui
+Bundle-SymbolicName: org.be.textbe.bt2sal.v0.ui;singleton:=true
+Bundle-Version: 1.0.1.qualifier
+Bundle-Activator: org.be.textbe.bt2sal.v0.ui.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.be.textbe.bt2sal.v0;bundle-version="1.0.0",
+ org.apache.commons.io;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
