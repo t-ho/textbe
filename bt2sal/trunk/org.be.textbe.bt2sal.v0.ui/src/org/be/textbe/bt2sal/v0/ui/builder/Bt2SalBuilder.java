@@ -3,6 +3,7 @@ package org.be.textbe.bt2sal.v0.ui.builder;
 import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
 
 import org.apache.commons.io.IOUtils;
@@ -184,8 +185,10 @@ public class Bt2SalBuilder extends IncrementalProjectBuilder {
 
 		try {
 
-			final String tree = IOUtils.toString(inputFile.getContents(),
+			InputStream contents = inputFile.getContents();
+			final String tree = IOUtils.toString(contents,
 					"UTF-8");
+			contents.close();
 
 
 			
