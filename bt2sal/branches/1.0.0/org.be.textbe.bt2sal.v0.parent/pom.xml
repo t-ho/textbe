@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>org.be.textbe.bt2sal.v0.parent</artifactId>
 	<groupId>org.be.textbe</groupId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 
 	<packaging>pom</packaging>
 	<modules>
