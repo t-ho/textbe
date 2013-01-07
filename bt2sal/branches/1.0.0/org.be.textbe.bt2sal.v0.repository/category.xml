@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.be.textbe.bt2sal.v0.feature_1.0.1.qualifier.jar" id="org.be.textbe.bt2sal.v0.feature" version="1.0.1.qualifier" os="macosx,win32" ws="carbon,win32">
+   <feature url="features/org.be.textbe.bt2sal.v0.feature_1.0.0.jar" id="org.be.textbe.bt2sal.v0.feature" version="1.0.0" os="macosx,win32" arch="x86,x86_64">
       <category name="org.be.textbe.bt"/>
    </feature>
    <category-def name="org.be.textbe.bt" label="%org_be_textbe_bt_v0_category_label">
