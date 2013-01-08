@@ -22,6 +22,11 @@
 			<layout>p2</layout>
 			<url>https://textbe.googlecode.com/svn/btVisualizer/p2/1.0.0</url>
 		</repository>
+		<repository>
+			<id>btVisualizer_1.0.0</id>
+			<layout>p2</layout>
+			<url>https://textbe.googlecode.com/svn/bt2sal/p2/1.0.0</url>
+		</repository>
 	</repositories>
 	<build>
 		<plugins>
